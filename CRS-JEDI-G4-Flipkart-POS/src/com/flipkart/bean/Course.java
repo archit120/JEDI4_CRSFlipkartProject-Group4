@@ -5,7 +5,7 @@ public class Course {
 	private String department;
 	private String descriptions;
 	private String preRequisites;
-	private String professor;
+	private Professor professor;
 	public String getCourseID() {
 		return courseID;
 	}
@@ -30,10 +30,10 @@ public class Course {
 	public void setPreRequisites(String preRequisites) {
 		this.preRequisites = preRequisites;
 	}
-	public String getProfessor() {
+	public Professor getProfessor() {
 		return professor;
 	}
-	public void setProfessor(String professor) {
+	public void setProfessor(Professor professor) {
 		this.professor = professor;
 	}
 }
