@@ -9,7 +9,7 @@ import java.util.Date;
  * @author anike
  *
  */
-public class PaymentOperation implements PaymentInterface{
+public class PaymentImpl implements PaymentInterface{
 
 	@Override
 	public boolean getDetails(int studentId, int billId, int amount, Date date) {
