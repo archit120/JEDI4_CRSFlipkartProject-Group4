@@ -11,6 +11,6 @@ import java.util.ArrayList;
  */
 public interface NotificationInterface {
 
-	public ArrayList <String> notify(int studentId);
+	public String[] notify(int studentId);
 	
 }

@@ -26,7 +26,7 @@ public class ProfessorOperation implements ProfessorInterface{
 	}
 
 	@Override
-	public ArrayList<Student> getEnrolledStudents(int courseId) {
+	public Student[] getEnrolledStudents(int courseId) {
 		// TODO Auto-generated method stub
 		return null;
 	}

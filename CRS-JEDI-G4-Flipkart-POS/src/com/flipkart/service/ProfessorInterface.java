@@ -17,6 +17,6 @@ public interface ProfessorInterface {
 	
 	public boolean chooseCourse(int professorId, int courseId);
 	
-	public ArrayList<Student> getEnrolledStudents(int courseId);
+	public Student[] getEnrolledStudents(int courseId);
 	
 }
