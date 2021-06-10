@@ -1,5 +1,8 @@
 package com.flipkart.service;
 
+import com.flipkart.bean.Course;
+import com.flipkart.bean.CourseCatalogue;
+
 public class CourseCatalogImpl implements CourseCatalogInterface {
 
 	@Override
@@ -15,11 +18,11 @@ public class CourseCatalogImpl implements CourseCatalogInterface {
 	}
 
 	@Override
-	public CourseCatalog getCourses() {
+	public CourseCatalogue getCourses() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
-	g
+	
 	
 }

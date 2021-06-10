@@ -1,6 +1,8 @@
 package com.flipkart.service;
 
+import com.flipkart.bean.ReportCard;
+
 public interface ReportCardInterface {
-	ReportCard printReportCard(int studentID);
+	ReportCard printReportCard(String rollNo);
 
 }

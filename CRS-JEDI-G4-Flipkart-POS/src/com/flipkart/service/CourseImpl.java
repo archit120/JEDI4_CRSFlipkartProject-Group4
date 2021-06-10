@@ -3,7 +3,7 @@ package com.flipkart.service;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
 
-public class SimpleCourseImpl implements CourseInterface{
+public class CourseImpl implements CourseInterface{
 
     @Override
     public Boolean indicateProfessor(Professor professor) {

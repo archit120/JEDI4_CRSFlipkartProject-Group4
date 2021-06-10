@@ -1,5 +1,8 @@
 package com.flipkart.service;
 
+import com.flipkart.bean.Course;
+import com.flipkart.bean.ReportCard;
+
 public class StudentImpl implements StudentInterface {
 
 	@Override
@@ -9,7 +12,7 @@ public class StudentImpl implements StudentInterface {
 	}
 
 	@Override
-	public boolean payFee(int rollno) {
+	public boolean payFee(String rollNo) {
 		// TODO Auto-generated method stub
 		return false;
 	}

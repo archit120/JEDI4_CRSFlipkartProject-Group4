@@ -1,21 +1,24 @@
 package com.flipkart.service;
 
+import com.flipkart.bean.Course;
+import com.flipkart.bean.Grade;
+
 public class RegisteredCourseImpl implements RegisteredCourse{
 
 	@Override
-	public boolean dropCourse(Course courseID) {
+	public boolean dropCourse(Course courseToBeDropped) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean addGrade(int studentID, Grade gradeToBeAdded) {
+	public boolean addGrade(String rollNo, Grade gradeToBeAdded) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public Grade viewGrade(int studentID) {
+	public Grade viewGrade(String rollNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}

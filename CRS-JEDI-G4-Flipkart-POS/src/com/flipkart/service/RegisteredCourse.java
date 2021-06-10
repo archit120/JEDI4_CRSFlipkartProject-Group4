@@ -1,8 +1,11 @@
 package com.flipkart.service;
 
+import com.flipkart.bean.Course;
+import com.flipkart.bean.Grade;
+
 public interface RegisteredCourse {
-	boolean dropCourse(Course courseID);
-	boolean addGrade(int studentID,Grade gradeToBeAdded);
-	Grade viewGrade(int studentID);
+	boolean dropCourse(Course courseToBeDropped);
+	boolean addGrade(String rollNo,Grade gradeToBeAdded);
+	Grade viewGrade(String rollNo);
 	
 }
