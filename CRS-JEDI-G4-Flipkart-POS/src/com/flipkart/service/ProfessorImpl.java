@@ -3,15 +3,13 @@
  */
 package com.flipkart.service;
 
-import java.util.ArrayList;
-
 import com.flipkart.bean.Student;
 
 /**
  * @author anike
  *
  */
-public class ProfessorOperation implements ProfessorInterface{
+public class ProfessorImpl implements ProfessorInterface{
 
 	@Override
 	public boolean addGrade(int courseId, int studentId, String gradeAlloted) {
