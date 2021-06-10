@@ -1,5 +1,8 @@
 package com.flipkart.service;
 
+import com.flipkart.bean.Course;
+import com.flipkart.bean.Professor;
+
 public interface AdminInterface {
 	public boolean addCourse(Course courseToBeAdded );
 
@@ -7,10 +10,10 @@ public interface AdminInterface {
 
 	public boolean addProfessor(Professor professorToBeAdded);
 
-	public boolean appoveStudent(int StudentID);
+	public boolean appoveStudent(String rollNo);
 	
-	public boolean approveGrade(int StudentID);
+	public boolean approveGrade(String rollNo);
 	
-	public boolean verifyCourseReg(int studentID);
+	public boolean verifyCourseReg(String rollNo);
 
 }

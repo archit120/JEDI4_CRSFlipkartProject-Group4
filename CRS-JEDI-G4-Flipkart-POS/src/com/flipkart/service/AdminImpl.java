@@ -1,33 +1,12 @@
 package com.flipkart.service;
 
+import com.flipkart.bean.Course;
+import com.flipkart.bean.Professor;
+
 public class AdminImpl implements AdminInterface {
 
 	@Override
 	public boolean addCourse(Course courseToBeAdded) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean removeCourse(int courseID) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean addProfessor(Professor professorToBeAdded) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean appoveStudent() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean approveGrade() {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -39,22 +18,30 @@ public class AdminImpl implements AdminInterface {
 	}
 
 	@Override
-	public boolean appoveStudent(int StudentID) {
+	public boolean addProfessor(Professor professorToBeAdded) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean approveGrade(int StudentID) {
+	public boolean appoveStudent(String rollNo ) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean verifyCourseReg(int studentID) {
+	public boolean approveGrade(String rollNo) {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	
+	@Override
+	public boolean verifyCourseReg(String rollNo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 	
 	
 
