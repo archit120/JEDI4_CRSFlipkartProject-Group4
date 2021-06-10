@@ -10,5 +10,4 @@ public class Admin extends User{
 	public void setEmpID(String empID) {
 		this.empID = empID;
 	}
->>>>>>> master
 }
