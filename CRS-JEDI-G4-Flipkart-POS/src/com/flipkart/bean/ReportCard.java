@@ -3,8 +3,8 @@ package com.flipkart.bean;
 public class ReportCard {
 	private double sgpa;
 	private double cgpa;
-	private String courses[];
-	private String grades[];
+	private Course[] courses;
+	private Grade[] grades;
 	private boolean approved;
 	
 	public double getSgpa() {
@@ -19,16 +19,16 @@ public class ReportCard {
 	public void setCgpa(double cgpa) {
 		this.cgpa = cgpa;
 	}
-	public String[] getCourses() {
+	public Course[] getCourses() {
 		return courses;
 	}
-	public void setCourses(String[] courses) {
+	public void setCourses(Course[] courses) {
 		this.courses = courses;
 	}
-	public String[] getGrades() {
+	public Grade[] getGrades() {
 		return grades;
 	}
-	public void setGrades(String[] grades) {
+	public void setGrades(Grade[] grades) {
 		this.grades = grades;
 	}
 	public boolean isApproved() {
