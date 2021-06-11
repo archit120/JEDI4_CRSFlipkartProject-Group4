@@ -34,6 +34,10 @@ public class CRSApplicationMenu {
 				switch(loginResponse) {
 				case 1:
 					//StudentIntefrace
+					
+					CRSStudentMenu menu = new CRSStudentMenu();
+					menu.StudentMenu();
+					
 					break;
 				case 2:
 					//ProfessorInterface
