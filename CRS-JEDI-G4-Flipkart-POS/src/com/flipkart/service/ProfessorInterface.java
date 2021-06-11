@@ -5,6 +5,7 @@ package com.flipkart.service;
 
 
 
+import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
 
 /**
@@ -20,4 +21,6 @@ public interface ProfessorInterface {
 	public Student[] getEnrolledStudents(int courseId);
 
 	public boolean login(String userID, String password);
+
+	public void addProfessor(Professor professor);
 }

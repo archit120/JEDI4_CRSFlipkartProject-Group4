@@ -33,7 +33,8 @@ public class AdminImpl implements AdminInterface {
 
 	@Override
 	public boolean addProfessor(Professor professorToBeAdded) {
-		System.out.println("Adding professor todo");
+		new ProfessorImpl().addProfessor(professorToBeAdded);
+		System.out.println("\nProfessor added\n");
 		// TODO Auto-generated method stub
 		return false;
 	}

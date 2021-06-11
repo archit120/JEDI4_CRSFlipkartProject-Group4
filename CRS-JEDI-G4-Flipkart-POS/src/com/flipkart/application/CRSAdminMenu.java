@@ -100,9 +100,9 @@ public class CRSAdminMenu {
 						
 						String takeInput2;
 						
-						System.out.print("Enter Professor Id:");
-					    int ID = sc.nextInt();
-					    newProfessor.setUserID(ID);
+						System.out.print("Enter Professor username:");
+						takeInput2 = sc.next();
+					    newProfessor.setUsername(takeInput2);
 
 						System.out.print("Enter Professor Name:");
 					    takeInput2 = sc.next();
@@ -125,19 +125,23 @@ public class CRSAdminMenu {
 					    newProfessor.setDept(takeInput2);
 
 					    admin.addProfessor(newProfessor);
+					    break;
 						
 					case 4:
-						
+
+						break;
 						
 					case 5:
 						List<Course> courses = courseCatalogue.getCourses();
 						System.out.println("Total " + courses.size() +" courses found");
 						for(Course course : courses) {
-							System.out.println("\n Course Details");
+							System.out.println("\nCourse Details");
 							System.out.println("CourseID: " + course.getCourseID());
 							System.out.println("Course Description: " + course.getDescriptions());
 							System.out.println("Course Department: " + course.getDepartment());
 							System.out.println("Course Pre Requisites : " + course.getPreRequisites());
+							if(course.getProfessor() != null)
+								System.out.println("Course Professor : " + course.getProfessor().getName());
 						}
 						break;
 					case 6:
