@@ -3,11 +3,13 @@
  */
 package com.flipkart.service;
 
+import com.flipkart.bean.ReportCard;
 import com.flipkart.bean.SemesterRegistration;
 import com.flipkart.bean.Student;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 
 /**
  * @author anike
@@ -15,11 +17,12 @@ import java.util.Hashtable;
  */
 public class SemesterRegistrationImpl implements SemesterRegistrationInterface{
 
-	private static Hashtable<Student, ArrayList<SemesterRegistration>> studentSemesterRegistrations;
+	private static List<SemesterRegistration> semesterRegistrations;
 
 	public SemesterRegistrationImpl() {
-		if(studentSemesterRegistrations == null)
-			studentSemesterRegistrations = new Hashtable<>();
+		if(semesterRegistrations == null){
+			semesterRegistrations = new ArrayList<>();
+		}
 	}
 
 	@Override
