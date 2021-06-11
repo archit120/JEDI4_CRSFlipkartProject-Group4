@@ -18,5 +18,6 @@ public interface ProfessorInterface {
 	public boolean chooseCourse(int professorId, int courseId);
 	
 	public Student[] getEnrolledStudents(int courseId);
-	
+
+	public boolean login(String userID, String password);
 }

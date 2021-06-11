@@ -9,6 +9,14 @@ public class CourseCatalogueImpl implements CourseCatalogueInterface {
 
 	private static CourseCatalogue catalogue;
 
+	@Override
+	public Course findCourse(String courseID) {
+		for(Course c : catalogue.getCourses())
+			if(c.getCourseID().equals(courseID))
+				return c;
+		return null;
+	}
+
 	public CourseCatalogueImpl() {
 		if(catalogue == null)
 			this.catalogue = new CourseCatalogue();
@@ -30,7 +38,6 @@ public class CourseCatalogueImpl implements CourseCatalogueInterface {
 
 	@Override
 	public List<Course> getCourses() {
-		// TODO Auto-generated method stub
 		return catalogue.getCourses();
 	}
 	

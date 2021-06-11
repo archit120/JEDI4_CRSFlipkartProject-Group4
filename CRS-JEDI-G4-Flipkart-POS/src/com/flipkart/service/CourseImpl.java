@@ -7,6 +7,7 @@ import com.flipkart.bean.Student;
 import java.util.List;
 
 public class CourseImpl implements CourseInterface{
+
     @Override
     public Boolean indicateProfessor(Course course, Professor professor) {
         if(course.getProfessor() != null)
@@ -25,6 +26,6 @@ public class CourseImpl implements CourseInterface{
 
     @Override
     public List<Student> viewEnrolledStudents(Course course) {
-        return null;
+        return new RegisteredCourseImpl().viewEnrolledStudents(course);
     }
 }

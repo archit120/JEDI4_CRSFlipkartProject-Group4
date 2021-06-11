@@ -83,7 +83,18 @@ public class CRSAdminMenu {
 					    break;
 
 					case 2:
-					
+
+						System.out.print("Enter Course ID of Course to removed: ");
+						takeInput = sc.next();
+						Course removalCourse = courseCatalogue.findCourse(takeInput);
+						if(removalCourse == null)
+							System.out.println("Course not found!");
+						else {
+							courseCatalogue.removeCourse(removalCourse);
+							System.out.println("Course removed successfully!");
+						}
+						break;
+
 					case 3:
 						Professor newProfessor = new Professor();
 						
@@ -112,6 +123,8 @@ public class CRSAdminMenu {
 					    System.out.print("Enter Professor Department:");
 					    takeInput2 = sc.next();
 					    newProfessor.setDept(takeInput2);
+
+					    admin.addProfessor(newProfessor);
 						
 					case 4:
 						

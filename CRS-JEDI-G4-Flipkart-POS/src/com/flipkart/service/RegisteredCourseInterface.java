@@ -7,7 +7,8 @@ import com.flipkart.bean.Student;
 import java.util.List;
 
 public interface RegisteredCourseInterface {
-	List<Student>
+
+	List<Student> viewEnrolledStudents(Course course);
 	boolean dropCourse(Course courseToBeDropped);
 	boolean addGrade(String rollNo,Grade gradeToBeAdded);
 	Grade viewGrade(String rollNo);
