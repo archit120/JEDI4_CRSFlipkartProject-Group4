@@ -25,23 +25,39 @@ public class RegisteredCourseImpl implements RegisteredCourseInterface {
 		return students;
 	}
 
+//	@Override
+//	public boolean dropCourse(Course courseToBeDropped) {
+//		// TODO Auto-generated method stub
+//		SemesterRegistrationImpl Inst= new SemesterRegistrationImpl();
+//		Inst.dropCourse(,courseToBeDropped);
+//		return true;
+//	}
+
 	@Override
-	public boolean dropCourse(Course courseToBeDropped) {
+	public boolean addGrade(RegisteredCourse registeredCourse, Grade gradeVal) {
+		registeredCourse.setGrade(gradeVal);
 		// TODO Auto-generated method stub
 		return false;
 	}
-
-	@Override
-	public boolean addGrade(String rollNo, Grade gradeToBeAdded) {
-		// TODO Auto-generated method stub
-		return false;
+	
+	public boolean checkAvailability(Course course) {
+		
+		int sz=viewEnrolledStudents(course).size();
+		
+		if(sz<10 && sz>=3) 
+			return true;
+		else
+			return false;
+		
+		
+		
 	}
 
-	@Override
-	public Grade viewGrade(String rollNo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public Grade viewGrade(String rollNo) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 	
 
 }
