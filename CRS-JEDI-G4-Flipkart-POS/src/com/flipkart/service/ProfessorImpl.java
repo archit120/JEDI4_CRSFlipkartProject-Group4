@@ -35,6 +35,11 @@ public class ProfessorImpl implements ProfessorInterface{
 	}
 
 	@Override
+	public void logout() {
+		professorInstance = null;
+	}
+
+	@Override
 	public boolean chooseCourse(Course course) {
 		return new CourseImpl().indicateProfessor(course, professorInstance);
 	}

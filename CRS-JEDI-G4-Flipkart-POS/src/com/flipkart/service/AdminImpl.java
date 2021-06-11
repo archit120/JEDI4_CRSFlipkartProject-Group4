@@ -3,6 +3,7 @@ package com.flipkart.service;
 import com.flipkart.bean.Admin;
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
+import com.flipkart.bean.Student;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,16 +19,6 @@ public class AdminImpl implements AdminInterface {
 	}
 
 	@Override
-	public boolean addCourse(Course courseToBeAdded) {
-		return new CourseCatalogueImpl().addCourse(courseToBeAdded);
-	}
-
-	@Override
-	public boolean removeCourse(Course courseToBeRemoved) {
-		return new CourseCatalogueImpl().removeCourse(courseToBeRemoved);
-	}
-
-	@Override
 	public boolean addProfessor(Professor professorToBeAdded) {
 		new ProfessorImpl().addProfessor(professorToBeAdded);
 		System.out.println("\nProfessor added\n");
@@ -35,10 +26,8 @@ public class AdminImpl implements AdminInterface {
 	}
 
 	@Override
-	public boolean approveStudent(String rollNo ) {
-		System.out.println("Approving student todo");
-
-		return false;
+	public boolean addStudent(Student student) {
+		return new StudentImpl().addStudent(student);
 	}
 
 	@Override
@@ -62,4 +51,6 @@ public class AdminImpl implements AdminInterface {
 		}
 		return false;
 	}
+
+
 }

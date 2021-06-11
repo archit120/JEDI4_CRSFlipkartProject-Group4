@@ -32,6 +32,11 @@ public class CourseCatalogueImpl implements CourseCatalogueInterface {
 	}
 
 	@Override
+	public List<CourseCatalogue> getCourseCatalogues() {
+		return catalogues;
+	}
+
+	@Override
 	public List<Course> getCourses(CourseCatalogue catalogue) {
 		CourseImpl courseImpl = new CourseImpl();
 		return courseImpl.findCourses(catalogue);

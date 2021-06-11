@@ -10,6 +10,8 @@ public interface CourseCatalogueInterface {
 	boolean removeCourseCatalogue(CourseCatalogue courseCatalogue);
 	Course findCourse(CourseCatalogue catalogue, String courseID);
 	List<Course> getCourses(CourseCatalogue catalogue);
+
+	List<CourseCatalogue> getCourseCatalogues();
 	
 	
 }

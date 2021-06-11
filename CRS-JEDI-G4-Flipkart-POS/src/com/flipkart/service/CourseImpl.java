@@ -26,9 +26,20 @@ public class CourseImpl implements CourseInterface{
     }
 
     @Override
+    public boolean addCourse(Course course) {
+        return courses.add(course);
+    }
+
+    @Override
     public Boolean checkAvailability(Course course) {
         RegisteredCourseImpl registeredCourse = new RegisteredCourseImpl();
         return registeredCourse.checkAvailability(course);
+    }
+
+    @Override
+    public boolean removeCourse(CourseCatalogue courseCatalogue, String courseID) {
+        Course c = findCourse(courseCatalogue, courseID);
+        return courses.remove(c);
     }
 
     @Override

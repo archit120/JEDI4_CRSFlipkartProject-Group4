@@ -6,8 +6,10 @@ import java.util.Scanner;
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.CourseCatalogue;
+import com.flipkart.bean.Student;
 import com.flipkart.service.AdminImpl;
 import com.flipkart.service.CourseCatalogueImpl;
+import com.flipkart.service.CourseImpl;
 
 public class CRSAdminMenu {
 	
@@ -21,7 +23,7 @@ public class CRSAdminMenu {
 
 		System.out.println("Press 3 - Add Professor");
 
-		System.out.println("Press 4 - Approve Student");
+		System.out.println("Press 4 - Add Student");
 
 		System.out.println("Press 5 - List Courses");
 
@@ -35,7 +37,16 @@ public class CRSAdminMenu {
 			// first login as an admin
 			Scanner sc = new Scanner(System. in);
 			AdminImpl admin = new AdminImpl();
-			CourseCatalogueImpl courseCatalogue = new CourseCatalogueImpl();
+			CourseCatalogueImpl courseCatalogues = new CourseCatalogueImpl();
+			CourseCatalogue chosen = null;
+			if(courseCatalogues.getCourseCatalogues().size() == 0) {
+				chosen = new CourseCatalogue();
+				chosen.setYear("2020");
+				chosen.setSem(0);
+				courseCatalogues.addCourseCatalogue(chosen);
+			}
+			else
+				chosen = courseCatalogues.getCourseCatalogues().get(0);
 			while(true) {
 				System.out.print("Enter admin username: ");
 				String username = sc.next();
@@ -45,7 +56,7 @@ public class CRSAdminMenu {
 					break;
 				System.out.println("Invalid login. Please retry.");
 			}
-
+			CourseImpl courseImpl = new CourseImpl();
 			while(true) {
 				
 				CRSAdminMenu.showAdminMenu();
@@ -78,19 +89,19 @@ public class CRSAdminMenu {
 					    takeInput = sc.next();
 					    newCourse.setPreRequisites(takeInput);
 
-						admin.addCourse(newCourse);
-
+					    newCourse.setCourseCatalogue(chosen);
+						courseImpl.addCourse(newCourse);
 					    break;
 
 					case 2:
 
 						System.out.print("Enter Course ID of Course to removed: ");
 						takeInput = sc.next();
-						Course removalCourse = courseCatalogue.findCourse(takeInput);
+						Course removalCourse = courseCatalogues.findCourse(chosen, takeInput);
 						if(removalCourse == null)
 							System.out.println("Course not found!");
 						else {
-							courseCatalogue.removeCourse(removalCourse);
+							courseImpl.removeCourse(chosen, takeInput);
 							System.out.println("Course removed successfully!");
 						}
 						break;
@@ -128,11 +139,36 @@ public class CRSAdminMenu {
 					    break;
 						
 					case 4:
+						Student newStudent = new Student();
+
+
+						System.out.print("Enter Student username:");
+						takeInput2 = sc.next();
+						newStudent.setUsername(takeInput2);
+
+						System.out.print("Enter Student Name:");
+						takeInput2 = sc.next();
+						newStudent.setName(takeInput2);
+
+						System.out.print("Enter Student Email:");
+						takeInput2 = sc.next();
+						newStudent.setEmail(takeInput2);
+
+						System.out.print("Enter Student Password:");
+						takeInput2 = sc.next();
+						newStudent.setPassword(takeInput2);
+
+						System.out.print("Enter Student roll number:");
+						takeInput2 = sc.next();
+						newStudent.setRollNo(takeInput2);
+
+
+						admin.addStudent(newStudent);
 
 						break;
 						
 					case 5:
-						List<Course> courses = courseCatalogue.getCourses();
+						List<Course> courses = courseImpl.findCourses(chosen);
 						System.out.println("Total " + courses.size() +" courses found");
 						for(Course course : courses) {
 							System.out.println("\nCourse Details");

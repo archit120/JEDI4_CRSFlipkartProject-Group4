@@ -51,6 +51,16 @@ public class RegisteredCourseImpl implements RegisteredCourseInterface {
 	}
 
 	@Override
+	public boolean markGrade(String courseID, CourseCatalogue courseCatalogue, String rollNo, Grade grade) {
+		RegisteredCourse ret = null;
+		for(RegisteredCourse r:registeredCourses)
+			if(r.getStudent().getRollNo().equals(rollNo) && r.getCourse().getCourseID().equals(courseID) && r.getSemesterRegistration().getSemester() == courseCatalogue.getSem())
+				ret =  r;
+		ret.setGrade(grade);
+		return true;
+	}
+
+	@Override
 	public List<Student> viewEnrolledStudents(Course course) {
 		ArrayList<Student> students = new ArrayList<>();
 		for(RegisteredCourse r : registeredCourses)

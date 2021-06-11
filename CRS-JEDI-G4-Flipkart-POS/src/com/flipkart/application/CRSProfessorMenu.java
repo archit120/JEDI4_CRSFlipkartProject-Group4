@@ -3,12 +3,8 @@ package com.flipkart.application;
 import java.util.List;
 import java.util.Scanner;
 
-import com.flipkart.bean.Course;
-import com.flipkart.bean.Professor;
-import com.flipkart.service.AdminImpl;
-import com.flipkart.service.CourseCatalogueImpl;
-import com.flipkart.service.CourseImpl;
-import com.flipkart.service.ProfessorImpl;
+import com.flipkart.bean.*;
+import com.flipkart.service.*;
 
 public class CRSProfessorMenu {
 	
@@ -31,9 +27,11 @@ public class CRSProfessorMenu {
 	public static void professorMenuHandler() {
 		
 		Scanner sc = new Scanner(System. in);
-		
+		CourseCatalogue chosen = new CourseCatalogueImpl().getCourseCatalogues().get(0);
 		try {
 			ProfessorImpl prof = new ProfessorImpl();
+			CourseImpl courseImpl = new CourseImpl();
+			RegisteredCourseImpl regImpl = new RegisteredCourseImpl();
 			CourseCatalogueImpl courseCatalogue = new CourseCatalogueImpl();
 			while(true) {
 				System.out.print("Enter prof username: ");
@@ -56,11 +54,26 @@ public class CRSProfessorMenu {
 				switch(option) {
 				
 					case 1:
-	
+						System.out.print("Enter Course ID of Course to list students: ");
+						Course registerCourse = courseImpl.findCourse(chosen, sc.next());
+						List<Student> students = regImpl.viewEnrolledStudents(registerCourse);
+						System.out.println("Total " + students.size() +" students");
+						for(Student s:students)
+							System.out.println("Name: " + s.getName() + " Rollno: " + s.getRollNo());
+						break;
 					case 2:
-					
+						System.out.print("Enter Course ID of Course to mark student: ");
+						String courseId = sc.next();
+						System.out.print("Enter rollno of student to mark student: ");
+						String rollno = sc.next();
+						System.out.print("Enter Grade as a single char (A,..,F): ");
+						String g = sc.next();
+						Grade gr = new Grade();
+						gr.setLetterGrade(g);
+						regImpl.markGrade(courseId, chosen, rollno, gr);
+						break;
 					case 3:
-						List<Course> courses = courseCatalogue.getCourses();
+						List<Course> courses = courseImpl.findCourses(chosen);
 						System.out.println("Total " + courses.size() +" courses found");
 						for(Course course : courses) {
 							System.out.println("\nCourse Details");
@@ -74,11 +87,11 @@ public class CRSProfessorMenu {
 						break;
 					case 4:
 						System.out.print("Enter Course ID of Course to teach: ");
-						Course registerCourse = courseCatalogue.findCourse(sc.next());
+						registerCourse = courseImpl.findCourse(chosen, sc.next());
 						if(registerCourse == null)
 							System.out.println("Course not found!");
 						else {
-							if(new CourseImpl().indicateProfessor(registerCourse, ProfessorImpl.getProfessorInstance()))
+							if(courseImpl.indicateProfessor(registerCourse, ProfessorImpl.getProfessorInstance()))
 								System.out.println("Course marked successfully!");
 							else
 								System.out.println("Unknown error while marking course!");
@@ -86,7 +99,7 @@ public class CRSProfessorMenu {
 						break;
 					case 5:
 						System.out.println("Successfully logged out");
-						
+						prof.logout();
 						return;
 					default:
 						System.out.println("Invalid choice");
