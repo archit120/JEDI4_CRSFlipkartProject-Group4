@@ -42,6 +42,12 @@ public class RegisteredCourseImpl implements RegisteredCourseInterface {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public boolean addCourse(Course courseToBeAddded) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 
 }

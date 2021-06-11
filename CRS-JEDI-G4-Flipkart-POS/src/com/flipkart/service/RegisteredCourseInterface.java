@@ -9,6 +9,7 @@ import java.util.List;
 public interface RegisteredCourseInterface {
 
 	List<Student> viewEnrolledStudents(Course course);
+	boolean addCourse(Course courseToBeAddded);
 	boolean dropCourse(Course courseToBeDropped);
 	boolean addGrade(String rollNo,Grade gradeToBeAdded);
 	Grade viewGrade(String rollNo);
