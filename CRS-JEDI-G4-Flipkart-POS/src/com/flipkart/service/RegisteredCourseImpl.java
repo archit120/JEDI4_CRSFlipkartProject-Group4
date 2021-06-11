@@ -3,7 +3,8 @@ package com.flipkart.service;
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Grade;
 
-public class RegisteredCourseImpl implements RegisteredCourse{
+public class RegisteredCourseImpl implements RegisteredCourseInterface {
+
 
 	@Override
 	public boolean dropCourse(Course courseToBeDropped) {

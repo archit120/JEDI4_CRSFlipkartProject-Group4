@@ -1,5 +1,7 @@
 package com.flipkart.application;
 
+import com.flipkart.bean.CourseCatalogue;
+
 import java.util.Scanner;
 
 public class CRSApplicationMenu {
@@ -21,6 +23,7 @@ public class CRSApplicationMenu {
 	public static void main(String[] args) {
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
+
 		while(true) {
 			firstMenu();
 			System.out.println("Your choice:");
@@ -39,7 +42,7 @@ public class CRSApplicationMenu {
 					//ProfessorInterface
 					break;
 				case 3:
-					//AdminInterface
+					CRSAdminMenu.adminMenuHandler();;
 					break;
 				default:
 					System.out.println("Invalid input.");	

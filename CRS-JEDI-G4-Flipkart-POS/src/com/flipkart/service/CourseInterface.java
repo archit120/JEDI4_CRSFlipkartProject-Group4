@@ -1,14 +1,17 @@
 package com.flipkart.service;
 
+import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
 
+import java.util.List;
+
 public interface CourseInterface {
 
-    public Boolean indicateProfessor(Professor professor);
+    public Boolean indicateProfessor(Course course, Professor professor);
 
-    public Boolean checkAvailibility();
+    public Boolean checkAvailability(Course course);
 
-    public Student[] viewEnrolledStudents();
+    public List<Student> viewEnrolledStudents(Course course);
 
 }

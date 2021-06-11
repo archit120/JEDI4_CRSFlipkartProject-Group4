@@ -4,10 +4,9 @@ import com.flipkart.bean.Course;
 
 import java.util.List;
 
-public interface CourseCatalogInterface {
+public interface CourseCatalogueInterface {
 	boolean addCourse(Course courseToBeAdded);
-	//getCourses();
-	boolean removeCourses(Course courseToBeRemoved);
+	boolean removeCourse(Course courseToBeRemoved);
 	List<Course> getCourses();
 	
 	

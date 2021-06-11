@@ -1,8 +1,12 @@
 package com.flipkart.application;
 
+import java.util.List;
 import java.util.Scanner;
 
 import com.flipkart.bean.Course;
+import com.flipkart.bean.CourseCatalogue;
+import com.flipkart.service.AdminImpl;
+import com.flipkart.service.CourseCatalogueImpl;
 
 public class CRSAdminMenu {
 	
@@ -18,18 +22,33 @@ public class CRSAdminMenu {
 
 		System.out.println("Press 4 - Approve Student");
 
-		System.out.println("Press 5 - Logout");
+		System.out.println("Press 5 - List Courses");
+
+		System.out.println("Press 6 - Logout");
 	}
 
 	public static void adminMenuHandler() {
 		
 		try {
-			
+
+			// first login as an admin
+			Scanner sc = new Scanner(System. in);
+			AdminImpl admin = new AdminImpl();
+			CourseCatalogueImpl courseCatalogue = new CourseCatalogueImpl();
+			while(true) {
+				System.out.print("Enter admin username: ");
+				String username = sc.next();
+				System.out.print("Enter admin password: ");
+				String password = sc.next();
+				if(admin.login(username, password))
+					break;
+				System.out.println("Invalid login. Please retry.");
+			}
+
 			while(true) {
 				
 				CRSAdminMenu.showAdminMenu();
 				
-				Scanner sc = new Scanner(System. in);
 			    int option = sc.nextInt();
 				
 				System.out.println();
@@ -56,11 +75,12 @@ public class CRSAdminMenu {
 
 						System.out.print("Enter Course preRequisites:");
 					    takeInput = sc.next();
-					    newCourse.setDescriptions(takeInput);
+					    newCourse.setPreRequisites(takeInput);
 
-						System.out.print("Enter Course professor:");
-					    takeInput = sc.next();
-					    newCourse.setDescriptions(takeInput);
+						admin.addCourse(newCourse);
+
+					    break;
+
 					case 2:
 					
 					case 3:
@@ -68,12 +88,25 @@ public class CRSAdminMenu {
 					case 4:
 					
 					case 5:
-						
-					default;
+						List<Course> courses = courseCatalogue.getCourses();
+						System.out.println("Total " + courses.size() +" courses found");
+						for(Course course : courses) {
+							System.out.println("\n Course Details");
+							System.out.println("CourseID: " + course.getCourseID());
+							System.out.println("Course Description: " + course.getDescriptions());
+							System.out.println("Course Department: " + course.getDepartment());
+							System.out.println("Course Pre Requisites : " + course.getPreRequisites());
+						}
+						break;
+					case 6:
+						System.out.println("Successfully logged out");
+						return;
+					default:
+						break;
 				}
 			}
 		} catch(Exception e) {
-			
+
 		}
 	}
 }

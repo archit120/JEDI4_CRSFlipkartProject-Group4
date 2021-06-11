@@ -5,12 +5,13 @@ import com.flipkart.bean.CourseCatalogue;
 
 import java.util.List;
 
-public class CourseCatalogeImpl implements CourseCatalogInterface {
+public class CourseCatalogueImpl implements CourseCatalogueInterface {
 
-	private CourseCatalogue catalogue;
+	private static CourseCatalogue catalogue;
 
-	public CourseCatalogeImpl() {
-		this.catalogue = new CourseCatalogue();
+	public CourseCatalogueImpl() {
+		if(catalogue == null)
+			this.catalogue = new CourseCatalogue();
 	}
 
 	@Override
@@ -20,7 +21,7 @@ public class CourseCatalogeImpl implements CourseCatalogInterface {
 	}
 
 	@Override
-	public boolean removeCourses(Course courseToBeRemoved) {
+	public boolean removeCourse(Course courseToBeRemoved) {
 		if(!catalogue.getCourses().contains(courseToBeRemoved))
 			return false;
 		catalogue.getCourses().remove(courseToBeRemoved);
