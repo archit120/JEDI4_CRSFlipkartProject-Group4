@@ -3,10 +3,13 @@
  */
 package com.flipkart.service;
 
+import com.flipkart.bean.Course;
+import com.flipkart.bean.Grade;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author anike
@@ -23,21 +26,31 @@ public class ProfessorImpl implements ProfessorInterface{
 	}
 
 	@Override
-	public boolean addGrade(int courseId, int studentId, String gradeAlloted) {
-		// TODO Auto-generated method stub
+	public boolean addGrade(String courseid, String rollno, Grade gradeAllotted) {
+		RegisteredCourseImpl regCourse= new RegisteredCourseImpl();
+		regCourse.addGrade(rollno, gradeAllotted);
 		return true;
 	}
 
 	@Override
-	public boolean chooseCourse(int professorId, int courseId) {
+	public boolean chooseCourse(String professorId, String courseId) {
 		// TODO Auto-generated method stub
+		CourseImpl couseObj=new CourseImpl();
+		Course courseToTeach=new Course();
+		courseToTeach.setCourseID(courseId);
+		couseObj.indicateProfessor(courseToTeach, professorInstance);
+		
 		return true;
 	}
 
 	@Override
-	public Student[] getEnrolledStudents(int courseId) {
+	public List<Student> getEnrolledStudents(String courseId) {
 		// TODO Auto-generated method stub
-		return null;
+		RegisteredCourseImpl regCourse=new RegisteredCourseImpl();
+		CourseCatalogueImpl toFindCourse= new CourseCatalogueImpl();
+		Course course=toFindCourse.findCourse(courseId);
+		List<Student> studentList=regCourse.viewEnrolledStudents(course);
+		return studentList;
 	}
 
 	@Override
@@ -47,6 +60,11 @@ public class ProfessorImpl implements ProfessorInterface{
 				professorInstance = prof;
 				return true;
 			}
-		return false;
+		return true;
+		//return false;
+	}
+	public void logout()
+	{
+		professorInstance=null;
 	}
 }

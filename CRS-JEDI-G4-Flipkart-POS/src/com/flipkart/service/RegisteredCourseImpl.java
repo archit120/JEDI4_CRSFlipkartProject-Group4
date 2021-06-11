@@ -33,8 +33,8 @@ public class RegisteredCourseImpl implements RegisteredCourseInterface {
 
 	@Override
 	public boolean addGrade(String rollNo, Grade gradeToBeAdded) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		return true;
 	}
 
 	@Override
