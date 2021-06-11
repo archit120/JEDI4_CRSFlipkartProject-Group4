@@ -1,7 +1,8 @@
 package com.flipkart.bean;
 
+import java.util.List;
+
 public class SemesterRegistration {
-    private RegisteredCourse[] registeredCourses;
     private int semester;
     private int year;
     private Student student;
@@ -12,14 +13,6 @@ public class SemesterRegistration {
 
     public void setStudent(Student student) {
         this.student = student;
-    }
-
-    public RegisteredCourse[] getRegisteredCourses() {
-        return registeredCourses;
-    }
-
-    public void setRegisteredCourses(RegisteredCourse[] registeredCourses) {
-        this.registeredCourses = registeredCourses;
     }
 
     public int getSemester() {

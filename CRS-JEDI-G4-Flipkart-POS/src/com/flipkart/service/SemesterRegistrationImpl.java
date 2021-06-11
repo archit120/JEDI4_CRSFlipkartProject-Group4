@@ -24,18 +24,22 @@ public class SemesterRegistrationImpl implements SemesterRegistrationInterface{
 	}
 
 	@Override
-	public boolean dropCourse(SemesterRegistration semesterRegistration, RegisteredCourse registeredCourse) {
-//		semesterRegistration.
-		return false;
+	public List<Grade> viewGrades(SemesterRegistration semesterRegistration) {
+		List<Grade> grades = new ArrayList<>();
+		RegisteredCourseImpl registeredCourses = new RegisteredCourseImpl();
+		for(RegisteredCourse temp : registeredCourses.findRegisteredCourses(semesterRegistration))
+			grades.add(temp.getGrade());
+		return grades;
 	}
 
 	@Override
-	public List<Grade> viewGrades(SemesterRegistration semesterRegistration) {
+	public List<SemesterRegistration> viewSemesterRegistrations(Student student) {
 		return null;
 	}
 
 	@Override
 	public List<RegisteredCourse> viewGradesAndCourses(SemesterRegistration semesterRegistration) {
-		return null;
+		RegisteredCourseImpl registeredCourses = new RegisteredCourseImpl();
+		return registeredCourses.findRegisteredCourses(semesterRegistration);
 	}
 }

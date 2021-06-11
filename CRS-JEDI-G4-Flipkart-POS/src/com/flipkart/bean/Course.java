@@ -6,14 +6,14 @@ public class Course {
 	private String descriptions;
 	private String preRequisites;
 	private Professor professor;
-	private int currentEnrollment;
+	private CourseCatalogue courseCatalogue;
 
-	public int getCurrentEnrollment() {
-		return currentEnrollment;
+	public CourseCatalogue getCourseCatalogue() {
+		return courseCatalogue;
 	}
 
-	public void setCurrentEnrollment(int currentEnrollment) {
-		this.currentEnrollment = currentEnrollment;
+	public void setCourseCatalogue(CourseCatalogue courseCatalogue) {
+		this.courseCatalogue = courseCatalogue;
 	}
 
 	public String getCourseID() {
