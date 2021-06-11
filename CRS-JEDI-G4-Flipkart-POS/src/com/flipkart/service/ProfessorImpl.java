@@ -17,6 +17,10 @@ public class ProfessorImpl implements ProfessorInterface{
 	private static ArrayList<Professor> professors;
 	private static Professor professorInstance;
 
+	public static Professor getProfessorInstance() {
+		return professorInstance;
+	}
+
 	public ProfessorImpl() {
 		if(professors == null)
 			professors = new ArrayList<>();
@@ -43,10 +47,15 @@ public class ProfessorImpl implements ProfessorInterface{
 	@Override
 	public boolean login(String userID, String password) {
 		for(Professor prof : professors)
-			if(userID.trim().equals(prof.getUserID()) && password.trim().equals(prof.getPassword())) {
+			if(userID.trim().equals(prof.getUsername()) && password.trim().equals(prof.getPassword())) {
 				professorInstance = prof;
 				return true;
 			}
 		return false;
+	}
+
+	@Override
+	public void addProfessor(Professor professor) {
+		professors.add(professor);
 	}
 }

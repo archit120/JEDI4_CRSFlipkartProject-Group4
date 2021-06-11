@@ -3,9 +3,7 @@
  */
 package com.flipkart.service;
 
-import com.flipkart.bean.ReportCard;
-import com.flipkart.bean.SemesterRegistration;
-import com.flipkart.bean.Student;
+import com.flipkart.bean.*;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -26,21 +24,18 @@ public class SemesterRegistrationImpl implements SemesterRegistrationInterface{
 	}
 
 	@Override
-	public boolean addGrade(int studentId, String grade) {
-		// TODO Auto-generated method stub
+	public boolean dropCourse(SemesterRegistration semesterRegistration, RegisteredCourse registeredCourse) {
+//		semesterRegistration.
 		return false;
 	}
 
 	@Override
-	public boolean dropCourse(int studentId, int courseId) {
-		// TODO Auto-generated method stub
-		return false;
+	public List<Grade> viewGrades(SemesterRegistration semesterRegistration) {
+		return null;
 	}
 
 	@Override
-	public int viewGrade(int courseId, String grade) {
-		// TODO Auto-generated method stub
-		return 0;
+	public List<RegisteredCourse> viewGradesAndCourses(SemesterRegistration semesterRegistration) {
+		return null;
 	}
-
 }
