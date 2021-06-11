@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.flipkart.bean.Course;
+import com.flipkart.bean.Professor;
 import com.flipkart.bean.CourseCatalogue;
 import com.flipkart.service.AdminImpl;
 import com.flipkart.service.CourseCatalogueImpl;
@@ -84,9 +85,37 @@ public class CRSAdminMenu {
 					case 2:
 					
 					case 3:
-					
+						Professor newProfessor = new Professor();
+						
+						String takeInput2;
+						
+						System.out.print("Enter Professor Id:");
+					    int ID = sc.nextInt();
+					    newProfessor.setUserID(ID);
+
+						System.out.print("Enter Professor Name:");
+					    takeInput2 = sc.next();
+					    newProfessor.setName(takeInput2);
+
+						System.out.print("Enter Professor Email:");
+					    takeInput2 = sc.next();
+					    newProfessor.setEmail(takeInput2);
+
+						System.out.print("Enter Professor Password:");
+					    takeInput2 = sc.next();
+					    newProfessor.setPassword(takeInput2);
+
+						System.out.print("Enter Professor EmployeeID:");
+					    takeInput2 = sc.next();
+					    newProfessor.setEmpID(takeInput2);
+					    
+					    System.out.print("Enter Professor Department:");
+					    takeInput2 = sc.next();
+					    newProfessor.setDept(takeInput2);
+						
 					case 4:
-					
+						
+						
 					case 5:
 						List<Course> courses = courseCatalogue.getCourses();
 						System.out.println("Total " + courses.size() +" courses found");
@@ -102,6 +131,7 @@ public class CRSAdminMenu {
 						System.out.println("Successfully logged out");
 						return;
 					default:
+            System.out.println("Invalid choice");
 						break;
 				}
 			}
