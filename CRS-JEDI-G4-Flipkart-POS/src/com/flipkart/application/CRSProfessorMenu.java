@@ -73,17 +73,18 @@ public class CRSProfessorMenu {
 						regImpl.markGrade(courseId, chosen, rollno, gr);
 						break;
 					case 3:
-						List<Course> courses = courseImpl.findCourses(chosen);
-						System.out.println("Total " + courses.size() +" courses found");
-						for(Course course : courses) {
-							System.out.println("\nCourse Details");
-							System.out.println("CourseID: " + course.getCourseID());
-							System.out.println("Course Description: " + course.getDescriptions());
-							System.out.println("Course Department: " + course.getDepartment());
-							System.out.println("Course Pre Requisites : " + course.getPreRequisites());
-							if(course.getProfessor() == null)
-								System.out.println("This course is free to be taught by you!");
-						}
+						
+//						List<Course> courses = courseImpl.findCourses(chosen);
+//						System.out.println("Total " + courses.size() +" courses found");
+//						for(Course course : courses) {
+//							System.out.println("\nCourse Details");
+//							System.out.println("CourseID: " + course.getCourseCode());
+//							System.out.println("Course Description: " + course.getDescriptions());
+//							System.out.println("Course Department: " + course.getDepartment());
+//							System.out.println("Course Pre Requisites : " + course.getPreRequisites());
+//							if(course.getProfessor() == null)
+//								System.out.println("This course is free to be taught by you!");
+						//}
 						break;
 					case 4:
 						System.out.print("Enter Course ID of Course to teach: ");

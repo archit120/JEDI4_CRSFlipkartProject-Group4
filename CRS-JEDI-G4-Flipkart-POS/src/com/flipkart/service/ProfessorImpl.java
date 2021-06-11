@@ -28,9 +28,9 @@ public class ProfessorImpl implements ProfessorInterface{
 
 	@Override
 	public boolean addGrade(RegisteredCourse registeredCourse, Grade grade) {
-		if(!registeredCourse.getCourse().getCourseID().equals(professorInstance.getTeachesCourse().getCourseID()))
-			return false;
-		registeredCourse.setGrade(grade);
+//		if(registeredCourse.getCourse().getcId()!=(professorInstance.getTeachesCourse().getcId()))
+//			return false;
+//		registeredCourse.setGrade(grade);
 		return true;
 	}
 

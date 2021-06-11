@@ -75,7 +75,7 @@ public class CRSAdminMenu {
 						
 						System.out.print("Enter Course Id:");
 					    takeInput = sc.next();
-					    newCourse.setCourseID(takeInput);
+					    newCourse.setCourseCode(takeInput);
 
 						System.out.print("Enter Course Department:");
 					    takeInput = sc.next();
@@ -89,8 +89,9 @@ public class CRSAdminMenu {
 					    takeInput = sc.next();
 					    newCourse.setPreRequisites(takeInput);
 
-					    newCourse.setCourseCatalogue(chosen);
+					  // newCourse.setCourseCatalogue(chosen); TODO
 						courseImpl.addCourse(newCourse);
+					    
 					    break;
 
 					case 2:
@@ -172,12 +173,12 @@ public class CRSAdminMenu {
 						System.out.println("Total " + courses.size() +" courses found");
 						for(Course course : courses) {
 							System.out.println("\nCourse Details");
-							System.out.println("CourseID: " + course.getCourseID());
+							System.out.println("CourseID: " + course.getCourseCode());
 							System.out.println("Course Description: " + course.getDescriptions());
 							System.out.println("Course Department: " + course.getDepartment());
 							System.out.println("Course Pre Requisites : " + course.getPreRequisites());
-							if(course.getProfessor() != null)
-								System.out.println("Course Professor : " + course.getProfessor().getName());
+//							if(course.getpId() != null)
+//								System.out.println("Course Professor : " + course.getpId().getName());
 						}
 						break;
 					case 6:

@@ -32,8 +32,8 @@ public class SemesterRegistrationImpl implements SemesterRegistrationInterface{
 	public List<Grade> viewGrades(SemesterRegistration semesterRegistration) {
 		List<Grade> grades = new ArrayList<>();
 		RegisteredCourseImpl registeredCourses = new RegisteredCourseImpl();
-		for(RegisteredCourse temp : registeredCourses.findRegisteredCourses(semesterRegistration))
-			grades.add(temp.getGrade());
+//		for(RegisteredCourse temp : registeredCourses.findRegisteredCourses(semesterRegistration))
+//			grades.add(temp.getGrade());
 		return grades;
 	}
 

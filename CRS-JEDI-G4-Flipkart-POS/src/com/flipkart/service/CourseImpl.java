@@ -4,6 +4,7 @@ import com.flipkart.bean.Course;
 import com.flipkart.bean.CourseCatalogue;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
+import com.flipkart.dao.CourseDao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,16 +19,17 @@ public class CourseImpl implements CourseInterface{
 
     @Override
     public Boolean indicateProfessor(Course course, Professor professor) {
-        if(course.getProfessor() != null)
-            return false;
-        course.setProfessor(professor);
-        professor.setTeachesCourse(course);
+//        if(course.getProfessor() != null)
+//            return false;
+//        course.setProfessor(professor);
+//        professor.setTeachesCourse(course);
         return true;
     }
 
     @Override
     public boolean addCourse(Course course) {
-        return courses.add(course);
+    	return CourseDao.addCourse(course);
+        //return courses.add(course);
     }
 
     @Override
@@ -45,18 +47,18 @@ public class CourseImpl implements CourseInterface{
     @Override
     public List<Course> findCourses(CourseCatalogue courseCatalogue) {
         List<Course> coursesRet = new ArrayList<>();
-        for(Course c: courses)
-            if(c.getCourseCatalogue() == courseCatalogue)
-                coursesRet.add(c);
+        //for(Course c: courses)
+           // if(c.getCourseCatalogue() == courseCatalogue)
+             //   coursesRet.add(c);
         return coursesRet;
     }
 
     @Override
     public Course findCourse(CourseCatalogue courseCatalogue, String courseID) {
         Course course = null;
-        for(Course c: courses)
-            if(c.getCourseCatalogue() == courseCatalogue && c.getCourseID().equals(courseID))
-                course = c;
+//        for(Course c: courses)
+//            if(c.getCourseCatalogue() == courseCatalogue && c.getCourseID().equals(courseID))
+//                course = c;
         return course;
     }
 

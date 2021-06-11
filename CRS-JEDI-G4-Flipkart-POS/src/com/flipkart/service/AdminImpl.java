@@ -4,6 +4,8 @@ import com.flipkart.bean.Admin;
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
+import com.flipkart.dao.ProfessorDao;
+import com.flipkart.dao.StudentDao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,14 +22,16 @@ public class AdminImpl implements AdminInterface {
 
 	@Override
 	public boolean addProfessor(Professor professorToBeAdded) {
-		new ProfessorImpl().addProfessor(professorToBeAdded);
-		System.out.println("\nProfessor added\n");
-		return true;
+		return ProfessorDao.addProfessor(professorToBeAdded);
+		//new ProfessorImpl().addProfessor(professorToBeAdded);
+//		System.out.println("\nProfessor added\n");
+//		return true;
 	}
 
 	@Override
 	public boolean addStudent(Student student) {
-		return new StudentImpl().addStudent(student);
+		return StudentDao.addStudent(student);
+		//return new StudentImpl().addStudent(student);
 	}
 
 	@Override
