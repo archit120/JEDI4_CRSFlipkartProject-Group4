@@ -24,6 +24,11 @@ public class SemesterRegistrationImpl implements SemesterRegistrationInterface{
 	}
 
 	@Override
+	public boolean addSemesterRegistration(SemesterRegistration semesterRegistration) {
+		return semesterRegistrations.add(semesterRegistration);
+	}
+
+	@Override
 	public List<Grade> viewGrades(SemesterRegistration semesterRegistration) {
 		List<Grade> grades = new ArrayList<>();
 		RegisteredCourseImpl registeredCourses = new RegisteredCourseImpl();
@@ -34,7 +39,11 @@ public class SemesterRegistrationImpl implements SemesterRegistrationInterface{
 
 	@Override
 	public List<SemesterRegistration> viewSemesterRegistrations(Student student) {
-		return null;
+		List<SemesterRegistration> ret = new ArrayList<>();
+		for(SemesterRegistration s:semesterRegistrations)
+			if(s.getStudent().getRollNo().equals(student.getRollNo()))
+				ret.add(s);
+		return ret;
 	}
 
 	@Override

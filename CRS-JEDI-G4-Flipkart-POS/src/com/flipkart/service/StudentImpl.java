@@ -7,6 +7,11 @@ import java.util.ArrayList;
 public class StudentImpl implements StudentInterface {
 
 	private static ArrayList<Student> students;
+
+	public Student getStudentInstance() {
+		return studentInstance;
+	}
+
 	private static Student studentInstance;
 
 	public StudentImpl() {
@@ -65,6 +70,11 @@ public class StudentImpl implements StudentInterface {
 				return true;
 			}
 		return false;
+	}
+
+	@Override
+	public boolean addStudent(Student student) {
+		return students.add(student);
 	}
 
 	@Override

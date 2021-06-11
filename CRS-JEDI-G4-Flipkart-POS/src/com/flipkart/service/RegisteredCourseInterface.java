@@ -15,4 +15,6 @@ public interface RegisteredCourseInterface {
 	public RegisteredCourse findRegisteredCourse(SemesterRegistration semesterRegistration, String courseID);
 	public List<RegisteredCourse> findRegisteredCourses(SemesterRegistration semesterRegistration);
 
+	public boolean markGrade(String courseID, CourseCatalogue courseCatalogue, String rollNo, Grade grade);
+
 }

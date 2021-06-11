@@ -21,5 +21,6 @@ public interface SemesterRegistrationInterface {
 
 	public List<SemesterRegistration> viewSemesterRegistrations(Student student);
 
+	boolean addSemesterRegistration(SemesterRegistration semesterRegistration);
 
 }
