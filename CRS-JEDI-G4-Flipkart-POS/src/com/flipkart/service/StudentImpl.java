@@ -1,10 +1,6 @@
 package com.flipkart.service;
 
-import com.flipkart.bean.Course;
-import com.flipkart.bean.Professor;
-import com.flipkart.bean.RegisteredCourse;
-import com.flipkart.bean.ReportCard;
-import com.flipkart.bean.Student;
+import com.flipkart.bean.*;
 
 import java.util.ArrayList;
 
@@ -33,45 +29,42 @@ public class StudentImpl implements StudentInterface {
 	@Override
 	public boolean checkAvailability(Course courseToCheck) {
 		// TODO Auto-generated method stub
-		
-		int currentEnrolled = courseToCheck.getCurrentEnrollment();
-		
-		if(currentEnrolled >= 10) return false;
-		
-		return true;
+
+		RegisteredCourseImpl rcInstance = new RegisteredCourseImpl();
+		return rcInstance.checkAvailability(courseToCheck);
 	}
 
 	@Override
-	public boolean registerForCourse(Course CourseToRegister) {
+	public boolean registerForCourse(SemesterRegistration semesterRegistration, Course CourseToRegister) {
 		// TODO Auto-generated method stub
 		
-		boolean temp = checkAvailability(CourseToRegister);
-		
-		if(temp == false) return false;
-		
 		RegisteredCourseImpl rcInstance = new RegisteredCourseImpl();
+
+		if(!rcInstance.checkAvailability(CourseToRegister))
+			return false;
 		
-		rcInstance.addCourse(CourseToRegister);
-		
-		
-		return true;
-		
+
+		RegisteredCourse registeredCourse = new RegisteredCourse();
+		registeredCourse.setCourse(CourseToRegister);
+		registeredCourse.setStudent(studentInstance);
+		registeredCourse.setSemesterRegistration(semesterRegistration);
+
+		return rcInstance.addRegisteredCourse(registeredCourse);
 		
 	}
 
 	@Override
-	public boolean login(String email, String password) {
+	public boolean login(String username, String password) {
 		// TODO Auto-generated method stub
 		
 		// will veridy credentails from database over here
-		
-		Student st = new Student();
-		st.setEmail(email);
-		st.setPassword(password);
-		
-		studentInstance = st;
-		
-		return true;
+
+		for(Student stud : students)
+			if(username.trim().equals(stud.getUsername()) && password.trim().equals(stud.getPassword())) {
+				studentInstance = stud;
+				return true;
+			}
+		return false;
 	}
 
 	@Override

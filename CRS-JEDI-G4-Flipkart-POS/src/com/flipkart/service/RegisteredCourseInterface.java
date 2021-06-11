@@ -1,17 +1,18 @@
 package com.flipkart.service;
 
-import com.flipkart.bean.Course;
-import com.flipkart.bean.Grade;
-import com.flipkart.bean.Student;
+import com.flipkart.bean.*;
 
 import java.util.List;
 
 public interface RegisteredCourseInterface {
 
 	List<Student> viewEnrolledStudents(Course course);
-	boolean addCourse(Course courseToBeAddded);
-	boolean dropCourse(Course courseToBeDropped);
-	boolean addGrade(String rollNo,Grade gradeToBeAdded);
-	Grade viewGrade(String rollNo);
-	
+	boolean checkAvailability(Course course);
+
+	public boolean addRegisteredCourse(RegisteredCourse registeredCourse);
+	public boolean dropRegisteredCourse(RegisteredCourse registeredCourse);
+
+	public RegisteredCourse findRegisteredCourse(SemesterRegistration semesterRegistration, String courseID);
+	public List<RegisteredCourse> findRegisteredCourses(SemesterRegistration semesterRegistration);
+
 }

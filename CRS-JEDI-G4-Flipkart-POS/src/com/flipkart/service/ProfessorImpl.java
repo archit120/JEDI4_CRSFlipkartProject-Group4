@@ -3,10 +3,10 @@
  */
 package com.flipkart.service;
 
-import com.flipkart.bean.Professor;
-import com.flipkart.bean.Student;
+import com.flipkart.bean.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author anike
@@ -27,21 +27,21 @@ public class ProfessorImpl implements ProfessorInterface{
 	}
 
 	@Override
-	public boolean addGrade(int courseId, int studentId, String gradeAlloted) {
-		// TODO Auto-generated method stub
+	public boolean addGrade(RegisteredCourse registeredCourse, Grade grade) {
+		if(!registeredCourse.getCourse().getCourseID().equals(professorInstance.getTeachesCourse().getCourseID()))
+			return false;
+		registeredCourse.setGrade(grade);
 		return true;
 	}
 
 	@Override
-	public boolean chooseCourse(int professorId, int courseId) {
-		// TODO Auto-generated method stub
-		return true;
+	public boolean chooseCourse(Course course) {
+		return new CourseImpl().indicateProfessor(course, professorInstance);
 	}
 
 	@Override
-	public Student[] getEnrolledStudents(int courseId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Student> getEnrolledStudents() {
+		return new RegisteredCourseImpl().viewEnrolledStudents(professorInstance.getTeachesCourse());
 	}
 
 	@Override

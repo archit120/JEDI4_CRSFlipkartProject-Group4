@@ -89,13 +89,6 @@ public class CRSStudentMenu {
 			option = sc.nextInt();
 			
 		}
-		
-		
-		
-		
-		
-		
-		
 	}
 
 }

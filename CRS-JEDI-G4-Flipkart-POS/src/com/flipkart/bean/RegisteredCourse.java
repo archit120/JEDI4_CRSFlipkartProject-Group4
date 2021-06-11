@@ -2,9 +2,17 @@ package com.flipkart.bean;
 
 public class RegisteredCourse {
     private Student student;
-    private Professor professor;
     private Course course;
     private Grade grade;
+    private SemesterRegistration semesterRegistration;
+
+    public SemesterRegistration getSemesterRegistration() {
+        return semesterRegistration;
+    }
+
+    public void setSemesterRegistration(SemesterRegistration semesterRegistration) {
+        this.semesterRegistration = semesterRegistration;
+    }
 
     public Student getStudent() {
         return student;
@@ -12,14 +20,6 @@ public class RegisteredCourse {
 
     public void setStudent(Student student) {
         this.student = student;
-    }
-
-    public Professor getProfessor() {
-        return professor;
-    }
-
-    public void setProfessor(Professor professor) {
-        this.professor = professor;
     }
 
     public Course getCourse() {

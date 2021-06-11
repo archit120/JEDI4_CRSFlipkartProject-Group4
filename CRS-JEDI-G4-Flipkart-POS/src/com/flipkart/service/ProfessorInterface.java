@@ -5,8 +5,9 @@ package com.flipkart.service;
 
 
 
-import com.flipkart.bean.Professor;
-import com.flipkart.bean.Student;
+import com.flipkart.bean.*;
+
+import java.util.List;
 
 /**
  * @author anike
@@ -14,13 +15,13 @@ import com.flipkart.bean.Student;
  */
 public interface ProfessorInterface {
 	
-	public boolean addGrade(int courseId,int studentId,String gradeAlloted);
+	public boolean addGrade(RegisteredCourse registeredCourse, Grade grade);
 	
-	public boolean chooseCourse(int professorId, int courseId);
+	public boolean chooseCourse(Course course);
 	
-	public Student[] getEnrolledStudents(int courseId);
+	public List<Student> getEnrolledStudents();
 
-	public boolean login(String userID, String password);
+	public boolean login(String username, String password);
 
 	public void addProfessor(Professor professor);
 }

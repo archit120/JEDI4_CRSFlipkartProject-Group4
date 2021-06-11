@@ -9,11 +9,45 @@ import java.util.List;
 public class RegisteredCourseImpl implements RegisteredCourseInterface {
 
 	private static List<RegisteredCourse> registeredCourses;
+	public static int maximumEnrollment = 10;
 
 	public RegisteredCourseImpl() {
 		if(registeredCourses == null){
 			registeredCourses = new ArrayList<>();
 		}
+	}
+
+	@Override
+	public boolean addRegisteredCourse(RegisteredCourse registeredCourse) {
+		return registeredCourses.add(registeredCourse);
+	}
+
+	@Override
+	public boolean dropRegisteredCourse(RegisteredCourse registeredCourse) {
+		return registeredCourses.remove(registeredCourse);
+	}
+
+	@Override
+	public List<RegisteredCourse> findRegisteredCourses(SemesterRegistration semesterRegistration) {
+		List<RegisteredCourse> ret = new ArrayList<>();
+		for(RegisteredCourse r:registeredCourses)
+			if(r.getSemesterRegistration() == semesterRegistration)
+				ret.add(r);
+		return ret;
+	}
+
+	@Override
+	public boolean checkAvailability(Course course) {
+		return viewEnrolledStudents(course).size() <= maximumEnrollment;
+	}
+
+	@Override
+	public RegisteredCourse findRegisteredCourse(SemesterRegistration semesterRegistration, String courseID) {
+		RegisteredCourse ret = null;
+		for(RegisteredCourse r:registeredCourses)
+			if(r.getSemesterRegistration() == semesterRegistration && r.getCourse().getCourseID().equals(courseID))
+				ret =  r;
+		return ret;
 	}
 
 	@Override
@@ -25,29 +59,5 @@ public class RegisteredCourseImpl implements RegisteredCourseInterface {
 		return students;
 	}
 
-	@Override
-	public boolean dropCourse(Course courseToBeDropped) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean addGrade(String rollNo, Grade gradeToBeAdded) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public Grade viewGrade(String rollNo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean addCourse(Course courseToBeAddded) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
 
 }
