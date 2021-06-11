@@ -10,10 +10,12 @@ public interface AdminInterface {
 
 	public boolean addProfessor(Professor professorToBeAdded);
 
-	public boolean appoveStudent(String rollNo);
+	public boolean approveStudent(String rollNo);
 	
 	public boolean approveGrade(String rollNo);
 	
 	public boolean verifyCourseReg(String rollNo);
+
+	public boolean login(String userID, String password);
 
 }

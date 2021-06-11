@@ -6,6 +6,16 @@ public class Course {
 	private String descriptions;
 	private String preRequisites;
 	private Professor professor;
+	private int currentEnrollment;
+
+	public int getCurrentEnrollment() {
+		return currentEnrollment;
+	}
+
+	public void setCurrentEnrollment(int currentEnrollment) {
+		this.currentEnrollment = currentEnrollment;
+	}
+
 	public String getCourseID() {
 		return courseID;
 	}
