@@ -68,6 +68,42 @@ public class CourseDao {
 
 	}
 	
+	public static List<Course> availableCourses(){
+		
+		Connection conn = Connection1.getConnection();
+
+		PreparedStatement stmt = null;
+		 List<Course>courseList=new ArrayList<Course>();
+		try {
+		 String sql = "SELECT* FROM course where pId = ? ";
+	      
+	      
+	      stmt = conn.prepareStatement(sql);
+	      
+	      stmt.setInt(1, -1);
+	      ResultSet rs = stmt.executeQuery();
+	      //STEP 5: Extract data from result set
+	      while(rs.next()){
+	         //Retrieve by column name
+	    	  Course temp=new Course();
+	         temp.setCourseCode(rs.getString("courseCode"));
+	         temp.setDepartment(rs.getString("department"));
+	         
+
+	         courseList.add(temp);
+	      }
+	      stmt.close();
+	      conn.close();
+		}catch (Exception e) {
+
+			System.out.println(e);
+		}
+	      //STEP 6: Clean-up environment
+	     // rs.close();
+	     
+		return courseList;
+	}
+	
 	public static List<Course> listCourses(){
 		
 		Connection conn = Connection1.getConnection();
@@ -129,5 +165,27 @@ public class CourseDao {
 		
 		return cId;
 	}
+	
+		public static boolean addCouseToTeach(int cId,int pId) {
+			
+			Connection conn = Connection1.getConnection();
+
+			PreparedStatement stmt = null;
+			String sql = "UPDATE course SET pId = ? where id = ? ";
+			
+			try {
+				stmt = conn.prepareStatement(sql);
+				stmt.setInt(1, pId);
+				stmt.setInt(2, cId);
+				
+				stmt.executeUpdate();
+			}catch(Exception e) {
+				System.out.println(e);
+			}
+			
+			return true;
+			
+			
+		}
 
 }

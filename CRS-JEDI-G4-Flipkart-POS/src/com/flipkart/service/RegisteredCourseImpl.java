@@ -27,8 +27,8 @@ public class RegisteredCourseImpl implements RegisteredCourseInterface {
 	}
 
 	@Override
-	public boolean dropRegisteredCourse(RegisteredCourse registeredCourse) {
-		return registeredCourses.remove(registeredCourse);
+	public boolean dropRegisteredCourse(int sId , int cId) {
+		return RegisteredCourseDao.deleteRegisteredCourse(sId, cId);
 	}
 
 	@Override
@@ -86,6 +86,11 @@ public class RegisteredCourseImpl implements RegisteredCourseInterface {
 	public boolean checkAvailability(Course course) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	
+	public boolean setGradeStudent(int sId,int grade,int cId) {
+		
+		return RegisteredCourseDao.setGradeStudent(sId, grade, cId);
 	}
 
 

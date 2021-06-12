@@ -43,6 +43,10 @@ public class CourseImpl implements CourseInterface{
 //        Course c = findCourse(courseCatalogue, courseID);
         return CourseDao.removeCourse(courseID);
     }
+    
+    public List<Course> availabelCourses(){
+    	return CourseDao.availableCourses();
+    }
 
     @Override
     public List<Course> findCourses(CourseCatalogue courseCatalogue) {
@@ -66,6 +70,10 @@ public class CourseImpl implements CourseInterface{
 	public List<Student> viewEnrolledStudents(Course course) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public  boolean addCouseToTeach(int cId,int pId) {
+		return CourseDao.addCouseToTeach(cId, pId);
 	}
 
 //    @
