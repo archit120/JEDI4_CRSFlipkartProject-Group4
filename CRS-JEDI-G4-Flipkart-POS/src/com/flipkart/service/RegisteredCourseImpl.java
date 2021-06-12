@@ -1,7 +1,9 @@
 package com.flipkart.service;
 
 import com.flipkart.bean.*;
+import com.flipkart.dao.CourseDao;
 import com.flipkart.dao.RegisteredCourseDao;
+import com.flipkart.dao.StudentDao;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -38,10 +40,10 @@ public class RegisteredCourseImpl implements RegisteredCourseInterface {
 		return ret;
 	}
 
-	@Override
-	public boolean checkAvailability(Course course) {
-		return viewEnrolledStudents(course).size() <= maximumEnrollment;
-	}
+//	@Override
+//	public boolean checkAvailability(Course course) {
+//		return viewEnrolledStudents(course).size() <= maximumEnrollment;
+//	}
 
 	@Override
 	public RegisteredCourse findRegisteredCourse(SemesterRegistration semesterRegistration, String courseID) {
@@ -63,12 +65,27 @@ public class RegisteredCourseImpl implements RegisteredCourseInterface {
 	}
 
 	@Override
-	public List<Student> viewEnrolledStudents(Course course) {
-		ArrayList<Student> students = new ArrayList<>();
+	public List<Student> viewEnrolledStudents(String courseCode) {
+		List<Student> students = new ArrayList<Student>();
+		
+		int cId=CourseDao.getCourseIdfromCode(courseCode);
+		System.out.println(cId);
+		
+		List<Integer>enrolledStudentsId=RegisteredCourseDao.getEnrolledStudents(cId);
+		System.out.println(enrolledStudentsId);
+		
+		students=StudentDao.getStudentsfromId(enrolledStudentsId);
+		
 //		for(RegisteredCourse r : registeredCourses)
 //			if(r.getCourse()==course)
 //				students.add(r.getStudent());
 		return students;
+	}
+
+	@Override
+	public boolean checkAvailability(Course course) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 

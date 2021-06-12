@@ -27,7 +27,9 @@ public class CRSProfessorMenu {
 	public static void professorMenuHandler() {
 		
 		Scanner sc = new Scanner(System. in);
-		CourseCatalogue chosen = new CourseCatalogueImpl().getCourseCatalogues().get(0);
+//		CourseCatalogue chosen = new CourseCatalogueImpl().getCourseCatalogues().get(0);
+		CourseCatalogue chosen = new CourseCatalogue();
+		
 		try {
 			ProfessorImpl prof = new ProfessorImpl();
 			CourseImpl courseImpl = new CourseImpl();
@@ -55,8 +57,9 @@ public class CRSProfessorMenu {
 				
 					case 1:
 						System.out.print("Enter Course ID of Course to list students: ");
-						Course registerCourse = courseImpl.findCourse(chosen, sc.next());
-						List<Student> students = regImpl.viewEnrolledStudents(registerCourse);
+						String courseCode=sc.next();
+//						Course registerCourse = courseImpl.findCourse(chosen, sc.next());
+						List<Student> students = regImpl.viewEnrolledStudents(courseCode);
 						System.out.println("Total " + students.size() +" students");
 						for(Student s:students)
 							System.out.println("Name: " + s.getName() + " Rollno: " + s.getRollNo());
@@ -87,16 +90,16 @@ public class CRSProfessorMenu {
 						//}
 						break;
 					case 4:
-						System.out.print("Enter Course ID of Course to teach: ");
-						registerCourse = courseImpl.findCourse(chosen, sc.next());
-						if(registerCourse == null)
-							System.out.println("Course not found!");
-						else {
-							if(courseImpl.indicateProfessor(registerCourse, ProfessorImpl.getProfessorInstance()))
-								System.out.println("Course marked successfully!");
-							else
-								System.out.println("Unknown error while marking course!");
-						}
+//						System.out.print("Enter Course ID of Course to teach: ");
+//						registerCourse = courseImpl.findCourse(chosen, sc.next());
+//						if(registerCourse == null)
+//							System.out.println("Course not found!");
+//						else {
+//							if(courseImpl.indicateProfessor(registerCourse, ProfessorImpl.getProfessorInstance()))
+//								System.out.println("Course marked successfully!");
+//							else
+//								System.out.println("Unknown error while marking course!");
+//						}
 						break;
 					case 5:
 						System.out.println("Successfully logged out");

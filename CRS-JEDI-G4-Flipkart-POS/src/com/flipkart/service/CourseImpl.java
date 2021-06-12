@@ -39,18 +39,18 @@ public class CourseImpl implements CourseInterface{
     }
 
     @Override
-    public boolean removeCourse(CourseCatalogue courseCatalogue, String courseID) {
-        Course c = findCourse(courseCatalogue, courseID);
-        return courses.remove(c);
+    public boolean removeCourse(String courseID) {
+//        Course c = findCourse(courseCatalogue, courseID);
+        return CourseDao.removeCourse(courseID);
     }
 
     @Override
     public List<Course> findCourses(CourseCatalogue courseCatalogue) {
-        List<Course> coursesRet = new ArrayList<>();
+//        List<Course> coursesRet = new ArrayList<>();
         //for(Course c: courses)
            // if(c.getCourseCatalogue() == courseCatalogue)
              //   coursesRet.add(c);
-        return coursesRet;
+        return CourseDao.listCourses();
     }
 
     @Override
@@ -62,8 +62,14 @@ public class CourseImpl implements CourseInterface{
         return course;
     }
 
-    @Override
-    public List<Student> viewEnrolledStudents(Course course) {
-        return new RegisteredCourseImpl().viewEnrolledStudents(course);
-    }
+	@Override
+	public List<Student> viewEnrolledStudents(Course course) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+//    @
+//    public List<Student> viewEnrolledStudents(Course course) {
+//        return new RegisteredCourseImpl().viewEnrolledStudents(course);
+//    }
 }

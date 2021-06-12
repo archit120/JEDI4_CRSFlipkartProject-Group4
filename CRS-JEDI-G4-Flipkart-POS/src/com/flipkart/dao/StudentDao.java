@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.flipkart.bean.Student;
 
@@ -33,5 +35,40 @@ public class StudentDao {
 		}
 		return true;
 
+	}
+	
+	public static List<Student>getStudentsfromId(List<Integer>sId){
+		
+		Connection conn = Connection1.getConnection();
+
+		PreparedStatement stmt = null;
+		List<Student>students=new ArrayList<Student>();
+		for(Integer id:sId) {
+			String sql ="Select * from Student where id= ? ";
+			try {
+				stmt = conn.prepareStatement(sql);
+
+				stmt.setInt(1,id);
+				ResultSet rs = stmt.executeQuery();
+				 while(rs.next()){
+			         //Retrieve by column name
+			    	  Student temp=new Student();
+			    	  temp.setUserID(rs.getInt("id"));
+			    	  temp.setName(rs.getString("name"));
+			    	  temp.setEmail(rs.getString("email"));
+			    	  temp.setUsername(rs.getString("username"));
+			    	  
+			    	  students.add(temp);
+			    	 
+			         
+			      }
+	
+			} catch (Exception e) {
+	
+				System.out.println(e);
+			}
+		}
+		return students;
+		
 	}
 }

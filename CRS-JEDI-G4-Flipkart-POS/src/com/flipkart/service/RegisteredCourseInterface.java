@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface RegisteredCourseInterface {
 
-	List<Student> viewEnrolledStudents(Course course);
+	List<Student> viewEnrolledStudents(String courseCode);
 	boolean checkAvailability(Course course);
 
 	public boolean addRegisteredCourse(RegisteredCourse registeredCourse);

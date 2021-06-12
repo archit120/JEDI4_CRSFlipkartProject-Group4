@@ -2,6 +2,9 @@ package com.flipkart.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
@@ -34,6 +37,39 @@ public class RegisteredCourseDao {
 		}
 		return true;
 
+	}
+	
+	public static List<Integer> getEnrolledStudents(int cId){
+		
+		Connection conn = Connection1.getConnection();
+
+		PreparedStatement stmt = null;
+		 List<Integer>enrolledStudentsId=new ArrayList<Integer>();
+		try {
+		 String sql = "SELECT sId from registercourse where cId=?";
+	      
+	      
+	      stmt = conn.prepareStatement(sql);
+	      stmt.setInt(1, cId);
+	      ResultSet rs = stmt.executeQuery();
+	      //STEP 5: Extract data from result set
+	      while(rs.next()){
+	         //Retrieve by column name
+	    	  
+	    	  int temp=rs.getInt("sId");
+	    	  enrolledStudentsId.add(temp);
+	         
+	      }
+	      stmt.close();
+	      conn.close();
+		}catch (Exception e) {
+
+			System.out.println(e);
+		}
+	      //STEP 6: Clean-up environment
+	     // rs.close();
+	     
+		return enrolledStudentsId;
 	}
 
 }

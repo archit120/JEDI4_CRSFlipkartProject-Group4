@@ -98,14 +98,19 @@ public class CRSAdminMenu {
 
 						System.out.print("Enter Course ID of Course to removed: ");
 						takeInput = sc.next();
-						Course removalCourse = courseCatalogues.findCourse(chosen, takeInput);
-						if(removalCourse == null)
-							System.out.println("Course not found!");
-						else {
-							courseImpl.removeCourse(chosen, takeInput);
-							System.out.println("Course removed successfully!");
-						}
+//						Course removalCourse = courseCatalogues.findCourse(chosen, takeInput);
+//						if(removalCourse == null)
+//							System.out.println("Course not found!");
+//						else {
+//							courseImpl.removeCourse(chosen, takeInput);
+//							System.out.println("Course removed successfully!");
+//						}
+						
+						//To be deleted from course catalogue********
+						courseImpl.removeCourse(takeInput);
 						break;
+						
+						
 
 					case 3:
 						Professor newProfessor = new Professor();
@@ -174,9 +179,9 @@ public class CRSAdminMenu {
 						for(Course course : courses) {
 							System.out.println("\nCourse Details");
 							System.out.println("CourseID: " + course.getCourseCode());
-							System.out.println("Course Description: " + course.getDescriptions());
+//							System.out.println("Course Description: " + course.getDescriptions());
 							System.out.println("Course Department: " + course.getDepartment());
-							System.out.println("Course Pre Requisites : " + course.getPreRequisites());
+//							System.out.println("Course Pre Requisites : " + course.getPreRequisites());
 //							if(course.getpId() != null)
 //								System.out.println("Course Professor : " + course.getpId().getName());
 						}
