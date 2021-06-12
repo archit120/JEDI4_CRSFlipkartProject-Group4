@@ -19,7 +19,5 @@ public interface StudentInterface {
 
 	boolean login(String username, String password);
 
-	boolean addStudent(Student student);
-
 	public Student getStudentInstance();
 }

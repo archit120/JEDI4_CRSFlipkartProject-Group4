@@ -1,26 +1,20 @@
 package com.flipkart.bean;
 
 public class Course {
-	private String courseID;
+
+	private String courseCode;
 	private String department;
 	private String descriptions;
 	private String preRequisites;
-	private Professor professor;
-	private CourseCatalogue courseCatalogue;
-
-	public CourseCatalogue getCourseCatalogue() {
-		return courseCatalogue;
+	private int professorId;
+	private int Id;
+	private int courseCatalogueId;	//catalog ID
+	
+	public String getCourseCode() {
+		return courseCode;
 	}
-
-	public void setCourseCatalogue(CourseCatalogue courseCatalogue) {
-		this.courseCatalogue = courseCatalogue;
-	}
-
-	public String getCourseID() {
-		return courseID;
-	}
-	public void setCourseID(String courseID) {
-		this.courseID = courseID;
+	public void setCourseCode(String courseCode) {
+		this.courseCode = courseCode;
 	}
 	public String getDepartment() {
 		return department;
@@ -40,10 +34,23 @@ public class Course {
 	public void setPreRequisites(String preRequisites) {
 		this.preRequisites = preRequisites;
 	}
-	public Professor getProfessor() {
-		return professor;
+	public int getProfessorId() {
+		return professorId;
 	}
-	public void setProfessor(Professor professor) {
-		this.professor = professor;
+	public void setProfessorId(int professorId) {
+		this.professorId = professorId;
 	}
+	public int getId() {
+		return Id;
+	}
+	public void setId(int id) {
+		this.Id = id;
+	}
+	public int getCourseCatalogueId() {
+		return courseCatalogueId;
+	}
+	public void setCourseCatalogueId(int courseCatalogueId) {
+		this.courseCatalogueId = courseCatalogueId;
+	}
+
 }

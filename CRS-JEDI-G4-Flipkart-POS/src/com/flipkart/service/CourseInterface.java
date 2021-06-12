@@ -13,12 +13,10 @@ public interface CourseInterface {
 
     public Boolean checkAvailability(Course course);
 
-    public List<Student> viewEnrolledStudents(Course course);
-
     public List<Course> findCourses(CourseCatalogue courseCatalogue);
     public Course findCourse(CourseCatalogue courseCatalogue, String courseID);
 
-    public boolean removeCourse(CourseCatalogue courseCatalogue, String courseID);
+    public boolean removeCourse(String courseID);
 
     public  boolean addCourse(Course course);
 

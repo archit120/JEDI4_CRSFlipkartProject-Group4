@@ -4,6 +4,8 @@
 package com.flipkart.service;
 
 import com.flipkart.bean.*;
+import com.flipkart.dao.AdminDao;
+import com.flipkart.dao.ProfessorDao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +16,7 @@ import java.util.List;
  */
 public class ProfessorImpl implements ProfessorInterface{
 
-	private static ArrayList<Professor> professors;
+//	private static ArrayList<Professor> professors;
 	private static Professor professorInstance;
 
 	public static Professor getProfessorInstance() {
@@ -22,15 +24,15 @@ public class ProfessorImpl implements ProfessorInterface{
 	}
 
 	public ProfessorImpl() {
-		if(professors == null)
-			professors = new ArrayList<>();
+//		if(professors == null)
+//			professors = new ArrayList<>();
 	}
 
 	@Override
 	public boolean addGrade(RegisteredCourse registeredCourse, Grade grade) {
-		if(!registeredCourse.getCourse().getCourseID().equals(professorInstance.getTeachesCourse().getCourseID()))
-			return false;
-		registeredCourse.setGrade(grade);
+//		if(registeredCourse.getCourse().getcId()!=(professorInstance.getTeachesCourse().getcId()))
+//			return false;
+//		registeredCourse.setGrade(grade);
 		return true;
 	}
 
@@ -44,23 +46,25 @@ public class ProfessorImpl implements ProfessorInterface{
 		return new CourseImpl().indicateProfessor(course, professorInstance);
 	}
 
-	@Override
-	public List<Student> getEnrolledStudents() {
-		return new RegisteredCourseImpl().viewEnrolledStudents(professorInstance.getTeachesCourse());
-	}
+//	@Override
+//	public List<Student> getEnrolledStudents() {
+//		return new RegisteredCourseImpl().viewEnrolledStudents(professorInstance.getTeachesCourse());
+//	}
 
 	@Override
 	public boolean login(String userID, String password) {
-		for(Professor prof : professors)
-			if(userID.trim().equals(prof.getUsername()) && password.trim().equals(prof.getPassword())) {
-				professorInstance = prof;
-				return true;
-			}
-		return false;
-	}
+		//CHECK******************
 
+		Professor loginRes = ProfessorDao.login(userID, password);
+		if(loginRes == null)
+			return false;
+		professorInstance = loginRes;
+		return true;
+  }
+  
 	@Override
-	public void addProfessor(Professor professor) {
-		professors.add(professor);
+	public List<Student> getEnrolledStudents() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

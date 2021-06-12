@@ -1,18 +1,25 @@
 package com.flipkart.bean;
 
-import java.util.ArrayList;
-
 public class CourseCatalogue {
-	private String year;
+	private int year;
 	private int sem;
+	private  int id;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public CourseCatalogue() {
 	}
 
-	public String getYear() {
+	public int getYear() {
 		return year;
 	}
-	public void setYear(String year) {
+	public void setYear(int year) {
 		this.year = year;
 	}
 	public int getSem() {

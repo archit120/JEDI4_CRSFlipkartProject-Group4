@@ -21,6 +21,7 @@ public class CRSApplicationMenu {
 		System.out.println("------------------------------------");
 	}
 	public static void main(String[] args) {
+		
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 
@@ -43,6 +44,7 @@ public class CRSApplicationMenu {
 					
 					break;
 				case 2:
+									
 					CRSProfessorMenu.professorMenuHandler();
 					break;
 				case 3:

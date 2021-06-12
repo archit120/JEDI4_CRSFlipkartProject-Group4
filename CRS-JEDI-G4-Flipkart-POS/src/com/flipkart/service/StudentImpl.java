@@ -1,6 +1,7 @@
 package com.flipkart.service;
 
 import com.flipkart.bean.*;
+import com.flipkart.dao.StudentDao;
 
 import java.util.ArrayList;
 
@@ -45,36 +46,27 @@ public class StudentImpl implements StudentInterface {
 		
 		RegisteredCourseImpl rcInstance = new RegisteredCourseImpl();
 
-		if(!rcInstance.checkAvailability(CourseToRegister))
+		//if(!rcInstance.checkAvailability(CourseToRegister))
 			return false;
 		
 
-		RegisteredCourse registeredCourse = new RegisteredCourse();
-		registeredCourse.setCourse(CourseToRegister);
-		registeredCourse.setStudent(studentInstance);
-		registeredCourse.setSemesterRegistration(semesterRegistration);
+//		RegisteredCourse registeredCourse = new RegisteredCourse();
+//		registeredCourse.setCourse(CourseToRegister);
+//		registeredCourse.setStudent(studentInstance);
+//		registeredCourse.setSemesterRegistration(semesterRegistration);
 
-		return rcInstance.addRegisteredCourse(registeredCourse);
+		//return rcInstance.addRegisteredCourse(registeredCourse);
 		
 	}
 
 	@Override
 	public boolean login(String username, String password) {
-		// TODO Auto-generated method stub
-		
-		// will veridy credentails from database over here
+		Student loginRes = StudentDao.login(username, password);
+		if(loginRes == null)
+			return false;
+		studentInstance = loginRes;
+		return true;
 
-		for(Student stud : students)
-			if(username.trim().equals(stud.getUsername()) && password.trim().equals(stud.getPassword())) {
-				studentInstance = stud;
-				return true;
-			}
-		return false;
-	}
-
-	@Override
-	public boolean addStudent(Student student) {
-		return students.add(student);
 	}
 
 	@Override

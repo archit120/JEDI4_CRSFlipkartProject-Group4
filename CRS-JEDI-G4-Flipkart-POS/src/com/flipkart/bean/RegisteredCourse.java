@@ -1,40 +1,59 @@
 package com.flipkart.bean;
 
 public class RegisteredCourse {
-    private Student student;
-    private Course course;
-    private Grade grade;
-    private SemesterRegistration semesterRegistration;
+    private int studentId;
+    private int courseId;
+    private int gradeId;
+    private int semesterRegistrationId;
+    private int id;
 
-    public SemesterRegistration getSemesterRegistration() {
-        return semesterRegistration;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public void setSemesterRegistration(SemesterRegistration semesterRegistration) {
-        this.semesterRegistration = semesterRegistration;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public Student getStudent() {
-        return student;
-    }
+	public RegisteredCourse(int studentId, int courseId, int gradeId, int semesterRegistrationId) {
+		super();
+		this.studentId = studentId;
+		this.courseId = courseId;
+		this.gradeId = gradeId;
+		this.semesterRegistrationId = semesterRegistrationId;
+	}
+    public int getStudentId() {
+		return studentId;
+	}
 
-    public void setStudent(Student student) {
-        this.student = student;
-    }
+	public void setStudentId(int studentId) {
+		this.studentId = studentId;
+	}
 
-    public Course getCourse() {
-        return course;
-    }
+	public int getCourseId() {
+		return courseId;
+	}
 
-    public void setCourse(Course course) {
-        this.course = course;
-    }
+	public void setCourseId(int courseId) {
+		this.courseId = courseId;
+	}
 
-    public Grade getGrade() {
-        return grade;
-    }
+	public int getGradeId() {
+		return gradeId;
+	}
 
-    public void setGrade(Grade grade) {
-        this.grade = grade;
-    }
+	public void setGradeId(int gradeId) {
+		this.gradeId = gradeId;
+	}
+
+	public int getSemesterRegistrationId() {
+		return semesterRegistrationId;
+	}
+
+	public void setSemesterRegistrationId(int semesterRegistrationId) {
+		this.semesterRegistrationId = semesterRegistrationId;
+	}
+
+	
+	
 }
