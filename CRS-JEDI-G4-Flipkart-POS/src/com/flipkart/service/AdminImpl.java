@@ -43,6 +43,7 @@ public class AdminImpl implements AdminInterface {
 
 	@Override
 	public boolean login(String userID, String password) {
+		
 		Admin loginRes = AdminDao.login(userID, password);
 		if(loginRes == null)
 				return false;

@@ -167,7 +167,10 @@ public class CRSAdminMenu {
 						System.out.print("Enter Student roll number:");
 						takeInput2 = sc.next();
 						newStudent.setRollNo(takeInput2);
-
+						
+						System.out.print("Enter Student department:");
+						takeInput2 = sc.next();
+						newStudent.setDepartment(takeInput2);
 
 						admin.addStudent(newStudent);
 

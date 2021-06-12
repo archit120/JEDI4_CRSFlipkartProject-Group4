@@ -1,0 +1,86 @@
+# Queries to create tables.
+
+CREATE TABLE courseCatalogue (
+	id int AUTO_INCREMENT PRIMARY KEY,
+	semester int,
+	year int
+);
+
+CREATE TABLE course (
+	id int AUTO_INCREMENT PRIMARY KEY,
+	courseCode varchar(50),
+	department varchar(50),
+	description varchar(50),
+	preRequisites varchar(50),
+	courseCatalogueId int,
+	professorId int,
+	FOREIGN KEY (courseCatalogueId) REFERENCES courseCatalogue(id)
+);
+
+CREATE TABLE student (
+	id int AUTO_INCREMENT PRIMARY KEY,
+	name varchar(50),
+	email varchar(50),
+	username varchar(50),
+	password varchar(50),
+	rollno varchar(50),
+	department varchar(50)
+);
+
+CREATE TABLE admin(
+	id int AUTO_INCREMENT PRIMARY KEY,
+	name varchar(50),
+	email varchar(50),
+	username varchar(50),
+	password varchar(50),
+	empId varchar(50)
+);
+
+CREATE TABLE professor (
+	id int AUTO_INCREMENT PRIMARY KEY,
+	name varchar(50),
+	email varchar(50),
+	username varchar(50),
+	password varchar(50),
+	empId varchar(50),
+	department varchar(50)
+);
+
+CREATE table semesterRegistration (
+	id int AUTO_INCREMENT PRIMARY KEY,
+	semester int,
+	year int,
+	studentId int,
+	FOREIGN KEY (studentId) REFERENCES student(id)
+);
+
+CREATE TABLE registeredCourse (
+	id int AUTO_INCREMENT PRIMARY KEY,
+	semesterRegistrationId int,
+	courseId int,
+	grade int,
+	studentId int,
+	FOREIGN KEY (studentId) REFERENCES student(id),
+	FOREIGN KEY (courseId) REFERENCES course(id),
+	FOREIGN KEY (semesterRegistrationId) REFERENCES semesterRegistration(id)
+);
+
+========================================================================================================================================================================
+
+# Queries to add data in table.
+
+INSERT courseCatalogue (semester, year) VALUES (7, 2021);
+
+INSERT INTO course (courseCode, department, description, preRequisites, courseCatalogueId, professorId) VALUES ("CO101", "Computer Science", "Data Structure in C", "C", 1, -1);
+
+INSERT INTO student (name, email, username, password, rollno, department) VALUES ("Amrit", "amritx8@gmail.com", "amritx8", "1234", "2K18/CO/062", "Computer Science");
+
+INSERT INTO admin (name, email, username, password, empId) VALUES ("Amrit", "amritx8@gmail.com", "amritx8", "1234", "101")
+
+INSERT INTO professor (name, email, username, password, empId, department) VALUES ("Amrit", "amritx8@gmail.com", "amritx8", "1234", "201", "Computer Science");
+
+INSERT INTO semesterRegistration (semester, year, studentId) VALUES (7, 2021, 1);
+
+INSERT INTO registeredCourse (semester, year, studentId) VALUES (7, 2021, 1);
+
+========================================================================================================================================================================
