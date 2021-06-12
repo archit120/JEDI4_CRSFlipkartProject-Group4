@@ -76,10 +76,10 @@ public class CRSStudentMenu {
 				System.out.println("Enter course id to be added");
 
 				int sId = 1;//stud.getStudentInstance().getUserID();
-				int pId = -1;
+				//int pId = -1;
 				int cId = sc.nextInt();
-				int gId = -1;
-				RegisteredCourse registeredCourse = new RegisteredCourse(sId, cId, pId, gId);
+				int grade = -1;
+				RegisteredCourse registeredCourse = new RegisteredCourse(sId, cId, grade , -1000);
 
 				regImpl.addRegisteredCourse(registeredCourse);
 //				System.out.println("Enter course id to be added");
@@ -96,7 +96,8 @@ public class CRSStudentMenu {
 			} else if (option == 3) {
 
 				System.out.println("Enter course id to be dropped");
-				regImpl.dropRegisteredCourse(regImpl.findRegisteredCourse(chosenSem, sc.next()));
+				regImpl.dropRegisteredCourse(1,sc.nextInt());
+				//regImpl.dropRegisteredCourse(regImpl.findRegisteredCourse(chosenSem, sc.next()));
 				System.out.println("Course dropped");
 
 			} else if (option == 4) {

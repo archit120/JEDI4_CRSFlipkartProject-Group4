@@ -39,6 +39,28 @@ public class RegisteredCourseDao {
 
 	}
 	
+	public static boolean deleteRegisteredCourse(int sId , int cId) {
+		
+		Connection conn = Connection1.getConnection();
+
+		PreparedStatement stmt = null;
+		String sql = "DELETE FROM registercourse where sId = ? and cId = ?";
+		try {
+			//System.out.println("hi");
+				stmt = conn.prepareStatement(sql);
+				stmt.setInt(1, sId); // This would set age
+				stmt.setInt(2, cId);
+				
+				stmt.executeUpdate();
+
+			} catch (Exception e) {
+
+				System.out.println(e);
+			}
+		return true;
+		
+	}
+	
 	public static List<Integer> getEnrolledStudents(int cId){
 		
 		Connection conn = Connection1.getConnection();
@@ -70,6 +92,36 @@ public class RegisteredCourseDao {
 	     // rs.close();
 	     
 		return enrolledStudentsId;
+	}
+	
+	public static boolean setGradeStudent(int sId,int grade,int cId) {
+		
+		Connection conn = Connection1.getConnection();
+
+		PreparedStatement stmt = null;
+		
+		
+		
+		try {
+			
+		//	String sql = "Select from registeredCourse where  cId = ? and sId = ?";
+			String sql = "UPDATE registercourse SET grade = ? where  cId = ? and sId = ?";
+			stmt = conn.prepareStatement(sql);
+			
+			stmt.setInt(1, grade);
+			stmt.setInt(2, cId);
+			stmt.setInt(3, sId);
+			
+			stmt.executeUpdate();
+			
+			
+		}catch(Exception e){
+			
+			
+			System.out.println(e);
+		}
+		
+		return true;
 	}
 
 }

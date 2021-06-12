@@ -60,9 +60,8 @@ public class ProfessorImpl implements ProfessorInterface{
 			return false;
 		professorInstance = loginRes;
 		return true;
-
-	}
-
+  }
+  
 	@Override
 	public List<Student> getEnrolledStudents() {
 		// TODO Auto-generated method stub

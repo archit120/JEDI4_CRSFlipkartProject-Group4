@@ -1,26 +1,22 @@
 package com.flipkart.bean;
 
 public class Grade {
-	private String letterGrade;
-	private int intGrade;
-	private boolean approved;
-	public String getLetterGrade() {
-		return letterGrade;
+	private int id;
+	private String grade;
+	
+	public int getId() {
+		return id;
 	}
-	public void setLetterGrade(String letterGrade) {
-		this.letterGrade = letterGrade;
+	public void setId(int id) {
+		this.id = id;
 	}
-	public int getIntGrade() {
-		return intGrade;
+	public String getGrade() {
+		return grade;
 	}
-	public void setIntGrade(int intGrade) {
-		this.intGrade = intGrade;
+	public void setGrade(String grade) {
+		this.grade = grade;
 	}
-	public boolean isApproved() {
-		return approved;
-	}
-	public void setApproved(boolean approved) {
-		this.approved = approved;
-	}
+	
+
 
 }

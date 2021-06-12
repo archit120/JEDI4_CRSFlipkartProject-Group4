@@ -44,6 +44,7 @@ public class CRSApplicationMenu {
 					
 					break;
 				case 2:
+									
 					CRSProfessorMenu.professorMenuHandler();
 					break;
 				case 3:

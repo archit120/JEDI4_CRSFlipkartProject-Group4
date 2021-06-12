@@ -10,7 +10,7 @@ public interface RegisteredCourseInterface {
 	boolean checkAvailability(Course course);
 
 	public boolean addRegisteredCourse(RegisteredCourse registeredCourse);
-	public boolean dropRegisteredCourse(RegisteredCourse registeredCourse);
+	public boolean dropRegisteredCourse(int sId , int cId); 
 
 	public RegisteredCourse findRegisteredCourse(SemesterRegistration semesterRegistration, String courseID);
 	public List<RegisteredCourse> findRegisteredCourses(SemesterRegistration semesterRegistration);
