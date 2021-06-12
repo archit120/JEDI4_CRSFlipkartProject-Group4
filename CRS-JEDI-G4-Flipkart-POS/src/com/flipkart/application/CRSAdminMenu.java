@@ -7,9 +7,11 @@ import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.CourseCatalogue;
 import com.flipkart.bean.Student;
+import com.flipkart.dao.ProfessorDao;
 import com.flipkart.service.AdminImpl;
 import com.flipkart.service.CourseCatalogueImpl;
 import com.flipkart.service.CourseImpl;
+import com.flipkart.service.ProfessorImpl;
 
 public class CRSAdminMenu {
 
@@ -95,18 +97,16 @@ public class CRSAdminMenu {
 
 					case 2:
 
-						System.out.print("Enter Course ID of Course to removed: ");
+						System.out.print("Enter Course code of Course to removed: ");
 						takeInput = sc.next();
-//						Course removalCourse = courseCatalogues.findCourse(chosen, takeInput);
-//						if(removalCourse == null)
-//							System.out.println("Course not found!");
-//						else {
-//							courseImpl.removeCourse(chosen, takeInput);
-//							System.out.println("Course removed successfully!");
-//						}
+						Course removalCourse = courseCatalogues.findCourse(chosen, takeInput);
+						if(removalCourse == null)
+							System.out.println("Course not found!");
+						else {
+							courseImpl.removeCourse(chosen, takeInput);
+							System.out.println("Course removed successfully!");
+						}
 
-						//To be deleted from course catalogue********
-						courseImpl.removeCourse(takeInput);
 						break;
 
 
@@ -180,11 +180,11 @@ public class CRSAdminMenu {
 						for (Course course : courses) {
 							System.out.println("\nCourse Details");
 							System.out.println("CourseID: " + course.getCourseCode());
-//							System.out.println("Course Description: " + course.getDescriptions());
+							System.out.println("Course Description: " + course.getDescriptions());
 							System.out.println("Course Department: " + course.getDepartment());
-//							System.out.println("Course Pre Requisites : " + course.getPreRequisites());
-//							if(course.getpId() != null)
-//								System.out.println("Course Professor : " + course.getpId().getName());
+							System.out.println("Course Pre Requisites : " + course.getPreRequisites());
+//							if(course.getProfessorId() != 0)
+//								System.out.println("Course Professor : " + ProfessorDao.ge.getName());
 						}
 						break;
 					case 6:

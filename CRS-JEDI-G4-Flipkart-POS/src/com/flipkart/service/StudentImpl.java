@@ -43,20 +43,21 @@ public class StudentImpl implements StudentInterface {
 	@Override
 	public boolean registerForCourse(SemesterRegistration semesterRegistration, Course CourseToRegister) {
 		// TODO Auto-generated method stub
-		
+
 		RegisteredCourseImpl rcInstance = new RegisteredCourseImpl();
 
-		//if(!rcInstance.checkAvailability(CourseToRegister))
+		if (!rcInstance.checkAvailability(CourseToRegister))
 			return false;
-		
 
-//		RegisteredCourse registeredCourse = new RegisteredCourse();
-//		registeredCourse.setCourse(CourseToRegister);
-//		registeredCourse.setStudent(studentInstance);
-//		registeredCourse.setSemesterRegistration(semesterRegistration);
 
-		//return rcInstance.addRegisteredCourse(registeredCourse);
-		
+		RegisteredCourse registeredCourse = new RegisteredCourse();
+		registeredCourse.setCourseId(CourseToRegister.getId());
+		registeredCourse.setStudentId(studentInstance.getUserID());
+		registeredCourse.setSemesterRegistrationId(semesterRegistration.getId());
+		registeredCourse.setGradeId(-1);
+
+		return rcInstance.addRegisteredCourse(registeredCourse);
+
 	}
 
 	@Override

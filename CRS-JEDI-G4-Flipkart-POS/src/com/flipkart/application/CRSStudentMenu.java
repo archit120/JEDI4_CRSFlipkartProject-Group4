@@ -4,6 +4,7 @@ import com.flipkart.bean.Course;
 import com.flipkart.bean.CourseCatalogue;
 import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.SemesterRegistration;
+import com.flipkart.dao.CourseDao;
 import com.flipkart.service.*;
 
 import java.util.List;
@@ -74,30 +75,16 @@ public class CRSStudentMenu {
 //						System.out.println("Course Professor : " + course.getProfessor().getName());
 				}
 			} else if (option == 2) {
-				System.out.println("Enter course code to be added");
+				System.out.println("Enter course id code be added");
+				Course c = courseImpl.findCourse(chosen, sc.next());
+				stud.registerForCourse(chosenSem, c);
 
-				int sId = stud.getStudentInstance().getUserID();
-				int cId = courseImpl.findCourse(chosen, sc.next()).getId();
-				int grade = -1;
-				RegisteredCourse registeredCourse = new RegisteredCourse(sId, cId, grade , chosen.getId());
-
-				regImpl.addRegisteredCourse(registeredCourse);
-//				System.out.println("Enter course id to be added");
-//				Course c = courseImpl.findCourse(chosen, sc.next());
-//				RegisteredCourse registeredCourse = new RegisteredCourse();
-//				registeredCourse.setCourse(c);
-//				registeredCourse.setSemesterRegistration(chosenSem);
-//				registeredCourse.setStudent(stud.getStudentInstance());
-//				regImpl.addRegisteredCourse(registeredCourse);
-//
-//				System.out.println("Course registered");
-//				int cId = sc.nextInt();
+				System.out.println("Course registered");
 
 			} else if (option == 3) {
 
 				System.out.println("Enter course id to be dropped");
-				regImpl.dropRegisteredCourse(1,sc.nextInt());
-				//regImpl.dropRegisteredCourse(regImpl.findRegisteredCourse(chosenSem, sc.next()));
+				regImpl.dropRegisteredCourse(regImpl.findRegisteredCourse(chosenSem, sc.next()));
 				System.out.println("Course dropped");
 
 			} else if (option == 4) {
@@ -109,17 +96,17 @@ public class CRSStudentMenu {
 			} else if (option == 5) {
 
 				System.out.println("Registered Courses are");
-//				List<RegisteredCourse> registeredCourses = regImpl.findRegisteredCourses(chosenSem);
-//				System.out.println("Total " + registeredCourses.size() + " courses are registered for!");
-//				for (RegisteredCourse registeredCourse : registeredCourses)
-//					System.out.println(registeredCourse.getCourse().getCourseCode());
+				List<RegisteredCourse> registeredCourses = regImpl.findRegisteredCourses(chosenSem);
+				System.out.println("Total " + registeredCourses.size() + " courses are registered for!");
+				for (RegisteredCourse registeredCourse : registeredCourses)
+					System.out.println(CourseDao.getCourse(registeredCourse.getCourseId()).getCourseCode());
 
 			} else if (option == 6) {
 
 				System.out.println("Report Card");
-//				for (RegisteredCourse registeredCourse : semImpl.viewGradesAndCourses(chosenSem))
-//					System.out.println(registeredCourse.getCourse().getCourseCode() + " : "
-//							+ registeredCourse.getGrade().getLetterGrade());
+				for (RegisteredCourse registeredCourse : semImpl.viewGradesAndCourses(chosenSem))
+					System.out.println(CourseDao.getCourse(registeredCourse.getCourseId()).getCourseCode() + " : "
+							+ registeredCourse.getGradeId());
 
 			} else if (option == 7) {
 

@@ -3,7 +3,6 @@ package com.flipkart.bean;
 public class Professor extends User{
 	private String empID;
 	private String dept;
-	private Course teachesCourse;
 	public String getEmpID() {
 		return empID;
 	}
@@ -15,11 +14,5 @@ public class Professor extends User{
 	}
 	public void setDept(String dept) {
 		this.dept = dept;
-	}
-	public Course getTeachesCourse() {
-		return teachesCourse;
-	}
-	public void setTeachesCourse(Course teachesCourse) {
-		this.teachesCourse = teachesCourse;
 	}
 }
