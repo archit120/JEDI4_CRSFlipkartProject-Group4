@@ -8,9 +8,39 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.flipkart.bean.Admin;
 import com.flipkart.bean.Student;
 
 public class StudentDao {
+
+	public static Student login(String username, String password) {
+		Connection conn = Connection1.getConnection();
+
+		PreparedStatement stmt = null;
+		String sql = "Select * from Student where username=? and password=?";
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, username);
+			stmt.setString(2, password);
+
+			ResultSet rs = stmt.executeQuery();
+			if(!rs.next())
+				return null;
+			Student temp = new Student();
+			temp.setUserID(rs.getInt("id"));
+			temp.setName(rs.getString("name"));
+			temp.setEmail(rs.getString("email"));
+			temp.setUsername(rs.getString("username"));
+			temp.setPassword(rs.getString("password"));
+			temp.setRollNo(rs.getString("rollno"));
+			temp.setDepartment(rs.getString("department"));
+			return temp;
+		} catch (Exception e) {
+
+			System.out.println(e);
+		}
+		return null;
+	}
 
 	public static boolean addStudent(Student s) {
 

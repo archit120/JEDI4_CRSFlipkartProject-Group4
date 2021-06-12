@@ -4,6 +4,7 @@ import com.flipkart.bean.Admin;
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
+import com.flipkart.dao.AdminDao;
 import com.flipkart.dao.ProfessorDao;
 import com.flipkart.dao.StudentDao;
 
@@ -12,26 +13,19 @@ import java.util.List;
 
 public class AdminImpl implements AdminInterface {
 
-	private static List<Admin> admins;
 	private static Admin adminInstance;
 
 	public AdminImpl() {
-		if(admins == null)
-			admins = new ArrayList<>();
 	}
 
 	@Override
 	public boolean addProfessor(Professor professorToBeAdded) {
 		return ProfessorDao.addProfessor(professorToBeAdded);
-		//new ProfessorImpl().addProfessor(professorToBeAdded);
-//		System.out.println("\nProfessor added\n");
-//		return true;
 	}
 
 	@Override
 	public boolean addStudent(Student student) {
 		return StudentDao.addStudent(student);
-		//return new StudentImpl().addStudent(student);
 	}
 
 	@Override
@@ -49,11 +43,11 @@ public class AdminImpl implements AdminInterface {
 
 	@Override
 	public boolean login(String userID, String password) {
-		if(userID.trim().equals("test") && password.trim().equals("test")) {
-			AdminImpl.adminInstance = new Admin();
-			return true;
-		}
-		return false;
+		Admin loginRes = AdminDao.login(userID, password);
+		if(loginRes == null)
+				return false;
+		adminInstance = loginRes;
+		return true;
 	}
 
 

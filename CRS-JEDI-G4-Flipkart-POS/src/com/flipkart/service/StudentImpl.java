@@ -1,6 +1,8 @@
 package com.flipkart.service;
 
 import com.flipkart.bean.*;
+import com.flipkart.dao.ProfessorDao;
+import com.flipkart.dao.StudentDao;
 
 import java.util.ArrayList;
 
@@ -60,22 +62,12 @@ public class StudentImpl implements StudentInterface {
 
 	@Override
 	public boolean login(String username, String password) {
-		// TODO Auto-generated method stub
-		
-		// will veridy credentails from database over here
-		
-//		for(Student stud : students)
-//			if(username.trim().equals(stud.getUsername()) && password.trim().equals(stud.getPassword())) {
-//				studentInstance = stud;
-//				return true;
-//			}
-		//TODO
+		Student loginRes = StudentDao.login(username, password);
+		if(loginRes == null)
+			return false;
+		studentInstance = loginRes;
 		return true;
-	}
 
-	@Override
-	public boolean addStudent(Student student) {
-		return students.add(student);
 	}
 
 	@Override

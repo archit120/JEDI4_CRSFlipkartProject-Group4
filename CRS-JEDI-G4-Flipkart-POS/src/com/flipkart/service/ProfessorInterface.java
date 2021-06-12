@@ -24,6 +24,4 @@ public interface ProfessorInterface {
 	public boolean login(String username, String password);
 
 	public void logout();
-
-	public void addProfessor(Professor professor);
 }
