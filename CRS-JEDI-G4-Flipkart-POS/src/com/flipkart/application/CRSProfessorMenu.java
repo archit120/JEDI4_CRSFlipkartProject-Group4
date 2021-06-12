@@ -75,12 +75,9 @@ public class CRSProfessorMenu {
 						regImpl.setGradeStudent(rollno, g, courseId);
 						break;
 					case 3:
+
 						
-						List<Course> courses = courseImpl.availabelCourses();
-						
-	
-						
-					//	List<Course> courses = courseImpl.findCourses(chosen);
+						List<Course> courses = courseImpl.findCourses(chosen);
 						System.out.println("Total " + courses.size() +" courses found");
 						for(Course course : courses) {
 							System.out.println("\nCourse Details");

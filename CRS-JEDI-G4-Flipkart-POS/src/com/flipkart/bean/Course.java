@@ -6,9 +6,9 @@ public class Course {
 	private String department;
 	private String descriptions;
 	private String preRequisites;
-	private int pId;
-	private int cId;
-	private int catalogId;	//catalog ID
+	private int professorId;
+	private int Id;
+	private int courseCatalogueId;	//catalog ID
 	
 	public String getCourseCode() {
 		return courseCode;
@@ -34,23 +34,23 @@ public class Course {
 	public void setPreRequisites(String preRequisites) {
 		this.preRequisites = preRequisites;
 	}
-	public int getpId() {
-		return pId;
+	public int getProfessorId() {
+		return professorId;
 	}
-	public void setpId(int pId) {
-		this.pId = pId;
+	public void setProfessorId(int professorId) {
+		this.professorId = professorId;
 	}
-	public int getcId() {
-		return cId;
+	public int getId() {
+		return Id;
 	}
-	public void setcId(int cId) {
-		this.cId = cId;
+	public void setId(int id) {
+		this.Id = id;
 	}
-	public int getCatalogId() {
-		return catalogId;
+	public int getCourseCatalogueId() {
+		return courseCatalogueId;
 	}
-	public void setCatalogId(int catalogId) {
-		this.catalogId = catalogId;
+	public void setCourseCatalogueId(int courseCatalogueId) {
+		this.courseCatalogueId = courseCatalogueId;
 	}
 
 }

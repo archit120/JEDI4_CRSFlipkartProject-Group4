@@ -1,7 +1,6 @@
 package com.flipkart.service;
 
 import com.flipkart.bean.*;
-import com.flipkart.dao.ProfessorDao;
 import com.flipkart.dao.StudentDao;
 
 import java.util.ArrayList;

@@ -6,10 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.flipkart.bean.Course;
-import com.flipkart.bean.Professor;
 import com.flipkart.bean.RegisteredCourse;
-import com.flipkart.bean.Student;
 
 public class RegisteredCourseDao {
 	public static boolean addRegisteredCourse(RegisteredCourse s) {
@@ -17,15 +14,15 @@ public class RegisteredCourseDao {
 		Connection conn = Connection1.getConnection();
 
 		PreparedStatement stmt = null;
-		String sql = "INSERT INTO registerCourse (sId,cId,gId,semId) VALUES (?,?,?,?)";
+		String sql = "INSERT INTO registeredCourse (semesterRegistrationId, courseId, grade, studentId) VALUES (?, ?, ?, ?);";
 				
 		try {
 		//System.out.println("hi");
 			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, s.getsId()); // This would set age
-			stmt.setInt(2, s.getcId());
-			stmt.setInt(3, s.getgId());
-			stmt.setInt(4, s.getSemId());
+			stmt.setInt(1, s.getStudentId()); // This would set age
+			stmt.setInt(2, s.getCourseId());
+			stmt.setInt(3, s.getGradeId());
+			stmt.setInt(4, s.getSemesterRegistrationId());
 
 
 			//stmt.setString(5, s.getEmpID());
@@ -44,7 +41,7 @@ public class RegisteredCourseDao {
 		Connection conn = Connection1.getConnection();
 
 		PreparedStatement stmt = null;
-		String sql = "DELETE FROM registercourse where sId = ? and cId = ?";
+		String sql = "DELETE FROM registeredCourse where sId = ? and cId = ?";
 		try {
 			//System.out.println("hi");
 				stmt = conn.prepareStatement(sql);
@@ -68,7 +65,7 @@ public class RegisteredCourseDao {
 		PreparedStatement stmt = null;
 		 List<Integer>enrolledStudentsId=new ArrayList<Integer>();
 		try {
-		 String sql = "SELECT sId from registercourse where cId=?";
+		 String sql = "SELECT sId from registeredCourse where cId=?";
 	      
 	      
 	      stmt = conn.prepareStatement(sql);

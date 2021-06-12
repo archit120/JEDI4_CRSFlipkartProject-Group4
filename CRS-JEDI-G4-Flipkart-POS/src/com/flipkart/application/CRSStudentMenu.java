@@ -26,7 +26,7 @@ public class CRSStudentMenu {
 	public void StudentMenu() {
 
 		Scanner sc = new Scanner(System.in);
-		//CourseCatalogue chosen = new CourseCatalogueImpl().getCourseCatalogues().get(0);
+		CourseCatalogue chosen = new CourseCatalogueImpl().getCourseCatalogues().get(0);
 		StudentImpl stud = new StudentImpl();
 		CourseImpl courseImpl = new CourseImpl();
 		RegisteredCourseImpl regImpl = new RegisteredCourseImpl();
@@ -47,13 +47,14 @@ public class CRSStudentMenu {
 		int option = sc.nextInt();
 
 		SemesterRegistration chosenSem = null;
-		if (semImpl.viewSemesterRegistrations(stud.getStudentInstance()).size() == 0) {
+		if (semImpl.viewSemesterRegistrations(stud.getStudentInstance().getUserID()).size() == 0) {
 			chosenSem = new SemesterRegistration();
-			chosenSem.setStudent(stud.getStudentInstance());
-			//chosenSem.setSemester(chosen.getSem());
+			chosenSem.setStudentId(stud.getStudentInstance().getUserID());
+			chosenSem.setSemester(chosen.getSem());
+			chosenSem.setYear(chosen.getYear());
 			semImpl.addSemesterRegistration(chosenSem);
 		} else
-			chosenSem = semImpl.viewSemesterRegistrations(stud.getStudentInstance()).get(0);
+			chosenSem = semImpl.viewSemesterRegistrations(stud.getStudentInstance().getUserID()).get(0);
 
 		while (true) {
 
@@ -61,25 +62,24 @@ public class CRSStudentMenu {
 
 				System.out.println("\n\n **********ALL THE AVAILABLE COURSES ARE********* \n\n");
 
-			//	List<Course> courses = courseImpl.findCourses(chosen);
-				//System.out.println("Total " + courses.size() + " courses found");
-//				for (Course course : courses) {
-//					System.out.println("\nCourse Details");
-//					System.out.println("CourseID: " + course.getCourseCode());
-//					System.out.println("Course Description: " + course.getDescriptions());
-//					System.out.println("Course Department: " + course.getDepartment());
-//					System.out.println("Course Pre Requisites : " + course.getPreRequisites());
-////					if(course.getProfessor() != null)
-////						System.out.println("Course Professor : " + course.getProfessor().getName());
-//				}
+				List<Course> courses = courseImpl.findCourses(chosen);
+				System.out.println("Total " + courses.size() + " courses found");
+				for (Course course : courses) {
+					System.out.println("\nCourse Details");
+					System.out.println("Course code: " + course.getCourseCode());
+					System.out.println("Course Description: " + course.getDescriptions());
+					System.out.println("Course Department: " + course.getDepartment());
+					System.out.println("Course Pre Requisites : " + course.getPreRequisites());
+//					if(course.getProfessor() != null)
+//						System.out.println("Course Professor : " + course.getProfessor().getName());
+				}
 			} else if (option == 2) {
-				System.out.println("Enter course id to be added");
+				System.out.println("Enter course code to be added");
 
-				int sId = 1;//stud.getStudentInstance().getUserID();
-				//int pId = -1;
-				int cId = sc.nextInt();
+				int sId = stud.getStudentInstance().getUserID();
+				int cId = courseImpl.findCourse(chosen, sc.next()).getId();
 				int grade = -1;
-				RegisteredCourse registeredCourse = new RegisteredCourse(sId, cId, grade , -1000);
+				RegisteredCourse registeredCourse = new RegisteredCourse(sId, cId, grade , chosen.getId());
 
 				regImpl.addRegisteredCourse(registeredCourse);
 //				System.out.println("Enter course id to be added");
@@ -109,8 +109,8 @@ public class CRSStudentMenu {
 			} else if (option == 5) {
 
 				System.out.println("Registered Courses are");
-				List<RegisteredCourse> registeredCourses = regImpl.findRegisteredCourses(chosenSem);
-				System.out.println("Total " + registeredCourses.size() + " courses are registered for!");
+//				List<RegisteredCourse> registeredCourses = regImpl.findRegisteredCourses(chosenSem);
+//				System.out.println("Total " + registeredCourses.size() + " courses are registered for!");
 //				for (RegisteredCourse registeredCourse : registeredCourses)
 //					System.out.println(registeredCourse.getCourse().getCourseCode());
 
