@@ -4,6 +4,8 @@
 package com.flipkart.service;
 
 import com.flipkart.bean.*;
+import com.flipkart.dao.AdminDao;
+import com.flipkart.dao.ProfessorDao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +16,7 @@ import java.util.List;
  */
 public class ProfessorImpl implements ProfessorInterface{
 
-	private static ArrayList<Professor> professors;
+//	private static ArrayList<Professor> professors;
 	private static Professor professorInstance;
 
 	public static Professor getProfessorInstance() {
@@ -22,8 +24,8 @@ public class ProfessorImpl implements ProfessorInterface{
 	}
 
 	public ProfessorImpl() {
-		if(professors == null)
-			professors = new ArrayList<>();
+//		if(professors == null)
+//			professors = new ArrayList<>();
 	}
 
 	@Override
@@ -52,18 +54,13 @@ public class ProfessorImpl implements ProfessorInterface{
 	@Override
 	public boolean login(String userID, String password) {
 		//CHECK******************
-		return true;
-//		for(Professor prof : professors)
-//			if(userID.trim().equals(prof.getUsername()) && password.trim().equals(prof.getPassword())) {
-//				professorInstance = prof;
-//				return true;
-//			}
-//		return false;
-	}
 
-	@Override
-	public void addProfessor(Professor professor) {
-		professors.add(professor);
+		Professor loginRes = ProfessorDao.login(userID, password);
+		if(loginRes == null)
+			return false;
+		professorInstance = loginRes;
+		return true;
+
 	}
 
 	@Override
