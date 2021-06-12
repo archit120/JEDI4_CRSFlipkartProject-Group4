@@ -4,9 +4,9 @@
 package com.flipkart.service;
 
 import com.flipkart.bean.*;
+import com.flipkart.dao.SemesterRegistrationDao;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.List;
 
 /**
@@ -15,17 +15,16 @@ import java.util.List;
  */
 public class SemesterRegistrationImpl implements SemesterRegistrationInterface{
 
-	private static List<SemesterRegistration> semesterRegistrations;
 
 	public SemesterRegistrationImpl() {
-		if(semesterRegistrations == null){
-			semesterRegistrations = new ArrayList<>();
-		}
+//		if(semesterRegistrations == null){
+//			semesterRegistrations = new ArrayList<>();
+//		}
 	}
 
 	@Override
 	public boolean addSemesterRegistration(SemesterRegistration semesterRegistration) {
-		return semesterRegistrations.add(semesterRegistration);
+		return SemesterRegistrationDao.addSemesterRegistration(semesterRegistration);
 	}
 
 	@Override
@@ -38,12 +37,8 @@ public class SemesterRegistrationImpl implements SemesterRegistrationInterface{
 	}
 
 	@Override
-	public List<SemesterRegistration> viewSemesterRegistrations(Student student) {
-		List<SemesterRegistration> ret = new ArrayList<>();
-		for(SemesterRegistration s:semesterRegistrations)
-			if(s.getStudent().getRollNo().equals(student.getRollNo()))
-				ret.add(s);
-		return ret;
+	public List<SemesterRegistration> viewSemesterRegistrations(int student) {
+		return SemesterRegistrationDao.getSemesterRegistrationsByStudentId(student);
 	}
 
 	@Override

@@ -12,11 +12,11 @@ import com.flipkart.service.CourseCatalogueImpl;
 import com.flipkart.service.CourseImpl;
 
 public class CRSAdminMenu {
-	
+
 	public static void showAdminMenu() {
-		
+
 		System.out.println("# Admin Menu");
-		
+
 		System.out.println("Press 1 - Add course");
 
 		System.out.println("Press 2 - Remove course");
@@ -31,68 +31,67 @@ public class CRSAdminMenu {
 	}
 
 	public static void adminMenuHandler() {
-		
+
 		try {
 
 			// first login as an admin
-			Scanner sc = new Scanner(System. in);
+			Scanner sc = new Scanner(System.in);
 			AdminImpl admin = new AdminImpl();
 			CourseCatalogueImpl courseCatalogues = new CourseCatalogueImpl();
 			CourseCatalogue chosen = null;
-			if(courseCatalogues.getCourseCatalogues().size() == 0) {
+			if (courseCatalogues.getCourseCatalogues().size() == 0) {
 				chosen = new CourseCatalogue();
-				chosen.setYear("2020");
+				chosen.setYear(2020);
 				chosen.setSem(0);
 				courseCatalogues.addCourseCatalogue(chosen);
-			}
-			else
+			} else
 				chosen = courseCatalogues.getCourseCatalogues().get(0);
-			while(true) {
+			while (true) {
 				System.out.print("Enter admin username: ");
 				String username = sc.next();
 				System.out.print("Enter admin password: ");
 				String password = sc.next();
-				if(admin.login(username, password))
+				if (admin.login(username, password))
 					break;
 				System.out.println("Invalid login. Please retry.");
 			}
 			CourseImpl courseImpl = new CourseImpl();
-			while(true) {
-				
+			while (true) {
+
 				CRSAdminMenu.showAdminMenu();
-				
-			    int option = sc.nextInt();
-				
+
+				int option = sc.nextInt();
+
 				System.out.println();
-				
-				switch(option) {
-				
+
+				switch (option) {
+
 					case 1:
-						
+
 						Course newCourse = new Course();
-						
+
 						String takeInput;
-						
+
 						System.out.print("Enter Course Id:");
-					    takeInput = sc.next();
-					    newCourse.setCourseCode(takeInput);
+						takeInput = sc.next();
+						newCourse.setCourseCode(takeInput);
 
 						System.out.print("Enter Course Department:");
-					    takeInput = sc.next();
-					    newCourse.setDepartment(takeInput);
+						takeInput = sc.next();
+						newCourse.setDepartment(takeInput);
 
 						System.out.print("Enter Course Description:");
-					    takeInput = sc.next();
-					    newCourse.setDescriptions(takeInput);
+						takeInput = sc.next();
+						newCourse.setDescriptions(takeInput);
 
 						System.out.print("Enter Course preRequisites:");
-					    takeInput = sc.next();
-					    newCourse.setPreRequisites(takeInput);
+						takeInput = sc.next();
+						newCourse.setPreRequisites(takeInput);
 
-					  // newCourse.setCourseCatalogue(chosen); TODO
+						newCourse.setCourseCatalogueId(chosen.getId());
 						courseImpl.addCourse(newCourse);
-					    
-					    break;
+
+						break;
 
 					case 2:
 
@@ -105,45 +104,44 @@ public class CRSAdminMenu {
 //							courseImpl.removeCourse(chosen, takeInput);
 //							System.out.println("Course removed successfully!");
 //						}
-						
+
 						//To be deleted from course catalogue********
 						courseImpl.removeCourse(takeInput);
 						break;
-						
-						
+
 
 					case 3:
 						Professor newProfessor = new Professor();
-						
+
 						String takeInput2;
-						
+
 						System.out.print("Enter Professor username:");
 						takeInput2 = sc.next();
-					    newProfessor.setUsername(takeInput2);
+						newProfessor.setUsername(takeInput2);
 
 						System.out.print("Enter Professor Name:");
-					    takeInput2 = sc.next();
-					    newProfessor.setName(takeInput2);
+						takeInput2 = sc.next();
+						newProfessor.setName(takeInput2);
 
 						System.out.print("Enter Professor Email:");
-					    takeInput2 = sc.next();
-					    newProfessor.setEmail(takeInput2);
+						takeInput2 = sc.next();
+						newProfessor.setEmail(takeInput2);
 
 						System.out.print("Enter Professor Password:");
-					    takeInput2 = sc.next();
-					    newProfessor.setPassword(takeInput2);
+						takeInput2 = sc.next();
+						newProfessor.setPassword(takeInput2);
 
 						System.out.print("Enter Professor EmployeeID:");
-					    takeInput2 = sc.next();
-					    newProfessor.setEmpID(takeInput2);
-					    
-					    System.out.print("Enter Professor Department:");
-					    takeInput2 = sc.next();
-					    newProfessor.setDept(takeInput2);
+						takeInput2 = sc.next();
+						newProfessor.setEmpID(takeInput2);
 
-					    admin.addProfessor(newProfessor);
-					    break;
-						
+						System.out.print("Enter Professor Department:");
+						takeInput2 = sc.next();
+						newProfessor.setDept(takeInput2);
+
+						admin.addProfessor(newProfessor);
+						break;
+
 					case 4:
 						Student newStudent = new Student();
 
@@ -172,11 +170,11 @@ public class CRSAdminMenu {
 						admin.addStudent(newStudent);
 
 						break;
-						
+
 					case 5:
 						List<Course> courses = courseImpl.findCourses(chosen);
-						System.out.println("Total " + courses.size() +" courses found");
-						for(Course course : courses) {
+						System.out.println("Total " + courses.size() + " courses found");
+						for (Course course : courses) {
 							System.out.println("\nCourse Details");
 							System.out.println("CourseID: " + course.getCourseCode());
 //							System.out.println("Course Description: " + course.getDescriptions());
@@ -190,11 +188,11 @@ public class CRSAdminMenu {
 						System.out.println("Successfully logged out");
 						return;
 					default:
-            System.out.println("Invalid choice");
+						System.out.println("Invalid choice");
 						break;
 				}
 			}
-		} catch(Exception e) {
+		} catch (Exception e) {
 
 		}
 	}

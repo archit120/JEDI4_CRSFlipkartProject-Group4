@@ -7,7 +7,7 @@ import com.flipkart.bean.Grade;
 
 public class GradeDao {
 	
-	public static int addGrade(Grade g) {
+	public static boolean addGrade(Grade g) {
 		
 		Connection conn = Connection1.getConnection();
 

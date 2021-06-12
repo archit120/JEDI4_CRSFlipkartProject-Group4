@@ -1,18 +1,25 @@
 package com.flipkart.bean;
 
-import java.util.List;
-
 public class SemesterRegistration {
     private int semester;
     private int year;
-    private Student student;
+    private int studentId;
+    private int id;
 
-    public Student getStudent() {
-        return student;
+    public int getId() {
+        return id;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
     }
 
     public int getSemester() {
