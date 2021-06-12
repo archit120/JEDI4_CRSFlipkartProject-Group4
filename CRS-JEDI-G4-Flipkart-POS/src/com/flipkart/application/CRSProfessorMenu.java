@@ -95,7 +95,7 @@ public class CRSProfessorMenu {
 					case 4:
 						System.out.print("Enter Course ID of Course to teach: ");
 						
-						courseImpl.addCouseToTeach(sc.nextInt(),100);
+						courseImpl.addCouseToTeach(sc.nextInt(),ProfessorImpl.getProfessorInstance().getUserID());
 						
 //						System.out.print("Enter Course ID of Course to teach: ");
 //						registerCourse = courseImpl.findCourse(chosen, sc.next());
