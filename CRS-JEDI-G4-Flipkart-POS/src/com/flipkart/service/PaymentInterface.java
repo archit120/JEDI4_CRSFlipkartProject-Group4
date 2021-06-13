@@ -2,6 +2,8 @@
  * 
  */
 package com.flipkart.service;
+import com.flipkart.bean.Payment;
+
 import java.util.Date;
 
 /**
@@ -10,6 +12,7 @@ import java.util.Date;
  */
 public interface PaymentInterface {
 	
-	public boolean getDetails(int studentId,int billId, int amount,Date date);
+//	public boolean getDetails(int studentId,int billId, int amount,Date date);
+	public boolean makePayment(Payment payment);
 
 }

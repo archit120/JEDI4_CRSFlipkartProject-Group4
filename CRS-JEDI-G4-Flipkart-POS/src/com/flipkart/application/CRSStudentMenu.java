@@ -177,7 +177,7 @@ System.out.println("Payment options:-");
 				
 				List<Notification> notificationList = new ArrayList<Notification>();
 				
-				notificationList = NotificationImpl.getNotification(studentId);
+				notificationList = paymentImpl.getNotification(studentId);
 				
 				for(Notification n : notificationList) {
 					

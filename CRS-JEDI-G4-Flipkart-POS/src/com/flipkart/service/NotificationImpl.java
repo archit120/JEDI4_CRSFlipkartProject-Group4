@@ -12,8 +12,8 @@ public class NotificationImpl implements NotificationInterface{
 		return true;
 	}
 	
-	public static List<Notification> getNotification(int studentId) {
+	public List<Notification> getNotification(int studentId) {
 
-		return NotificationDao.getNotification(studentId);
+		return new NotificationDao().getNotification(studentId);
 	}
 }

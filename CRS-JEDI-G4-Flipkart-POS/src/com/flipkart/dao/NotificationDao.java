@@ -17,26 +17,25 @@ public class NotificationDao {
 		PreparedStatement stmt = null;
 		 List<Notification> notificationList =new ArrayList<Notification>();
 		try {
-			
+			String sql = "SELECT* FROM course";
+
+
+			stmt = conn.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery(sql);
+
+			while (rs.next()) {
+
+				Notification temp = new Notification();
+				temp.setId(rs.getInt("id"));
+				temp.setMessage(rs.getString("message"));
+				temp.setStudentId(studentId);
+
+				notificationList.add(temp);
+			}
+			stmt.close();
+			conn.close();
 		}
-		 String sql = "SELECT* FROM course";
-	      
-	      
-	      stmt = conn.prepareStatement(sql);
-	      ResultSet rs = stmt.executeQuery(sql);
-
-	      while(rs.next()){
-
-	    	 Notification temp = new Notification();
-	         temp.setId(rs.getInt("id"));
-	         temp.setMessage(rs.getString("message"));
-	         temp.setStudentId(studentId);
-	       
-	         notificationList.add(temp);
-	      }
-	      stmt.close();
-	      conn.close();
-	      
+		catch (Exception e){}
 		return notificationList;
 	}
 }
