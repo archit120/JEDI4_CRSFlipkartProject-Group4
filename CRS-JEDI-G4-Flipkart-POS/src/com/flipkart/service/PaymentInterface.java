@@ -6,7 +6,7 @@ import java.util.Date;
 
 /**
  * @author anike
- *
+
  */
 public interface PaymentInterface {
 	

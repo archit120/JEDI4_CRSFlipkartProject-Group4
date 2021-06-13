@@ -1,14 +1,11 @@
-/**
- * 
- */
 package com.flipkart.service;
 
-/**
- * @author anike
- *
- */
-public interface NotificationInterface {
+import java.util.List;
 
-	public String[] notify(int studentId);
+import com.flipkart.bean.Notification;
+
+public interface NotificationInterface {
 	
+	public List<Notification> getNotification(int studentId);
 }
+
