@@ -3,12 +3,11 @@ package com.flipkart.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.flipkart.bean.CourseCatalogue;
 import com.flipkart.bean.RegisteredCourse;
-import com.flipkart.bean.SemesterRegistration;
 import com.flipkart.bean.Student;
 import com.flipkart.bean.ReportCard;
 
@@ -22,15 +21,20 @@ public class RegisteredCourseDao {
 				
 		try {
 		//System.out.println("hi");
-			stmt = conn.prepareStatement(sql);
+			stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			stmt.setInt(1, s.getStudentId()); // This would set age
 			stmt.setInt(2, s.getCourseId());
 			stmt.setInt(3, s.getGradeId());
 			stmt.setInt(4, s.getSemesterRegistrationId());
 
 
-			//stmt.setString(5, s.getEmpID());
 			stmt.executeUpdate();
+
+			ResultSet rs = stmt.getGeneratedKeys();
+			if (rs.next()){
+				s.setId(rs.getInt(1));
+			}
+
 
 		} catch (Exception e) {
 
@@ -210,7 +214,7 @@ public class RegisteredCourseDao {
 
 		return true;
 	}
-	public static ReportCard getReportCard(int studentId,int semesterId) {
+	public static ReportCard getReportCard(int semesterRegistrationId) {
 		double ans=0;
 	
 		Connection conn = Connection1.getConnection();
@@ -219,34 +223,35 @@ public class RegisteredCourseDao {
 		PreparedStatement stmt1 = null;
 		List <Integer> grade=new ArrayList<Integer>();
 		List <Integer> courseId=new ArrayList<Integer>();
+		List <String> courseCodes=new ArrayList<String>();
 		try {
 			
 		//	String sql = "Select from registeredCourse where  cId = ? and sId = ?";
-			String sql1="select avg(grade) as average from registeredcourse where studentId = ? and semesterRegistrationId = ?";
+			String sql1="select avg(grade) as average from registeredcourse where semesterRegistrationId = ?";
 			stmt1 = conn.prepareStatement(sql1);
-			stmt1.setInt(1,studentId);
-			stmt1.setInt(2, semesterId);
+			stmt1.setInt(1, semesterRegistrationId);
 			ResultSet rs1=stmt1.executeQuery();
 			while(rs1.next())
 			{
 				ans=rs1.getDouble("average");
 			}
 			report.setSgpa(ans);
-			String sql = "select courseId,grade from registeredcourse where studentId = ? and semesterRegistrationId = ?";
+			String sql = "select registeredcourse.courseId,registeredcourse.grade,course.courseCode from registeredcourse,course where semesterRegistrationId = ? and registeredcourse.courseId=course.id";
 			stmt = conn.prepareStatement(sql);
 			
-			stmt.setInt(1,studentId);
-			stmt.setInt(2, semesterId);
+			stmt.setInt(1, semesterRegistrationId);
 			
 			ResultSet rs=stmt.executeQuery();
 			while(rs.next())
 			{
-				grade.add(rs.getInt("grade"));
-				courseId.add(rs.getInt("courseId"));
+				grade.add(rs.getInt("registeredcourse.grade"));
+				courseId.add(rs.getInt("registeredcourse.courseId"));
+				courseCodes.add(rs.getString("course.courseCode"));
 			}
 			report.setGrades(grade);
-			report.setCourseID(courseId);
-			
+			report.setCourseIDs(courseId);
+			report.setCourseCodes(courseCodes);
+
 		}catch(Exception e){
 						
 			System.out.println(e);

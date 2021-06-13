@@ -23,8 +23,11 @@ public class CourseCatalogueDao {
 			stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			stmt.setInt(1, s.getSem()); // This would set age
 			stmt.setInt(2, s.getYear());
-
-			s.setId(stmt.executeUpdate());
+			stmt.executeUpdate();
+			ResultSet rs = stmt.getGeneratedKeys();
+			if (rs.next()){
+				s.setId(rs.getInt(1));
+			}
 
 
 		} catch (Exception e) {

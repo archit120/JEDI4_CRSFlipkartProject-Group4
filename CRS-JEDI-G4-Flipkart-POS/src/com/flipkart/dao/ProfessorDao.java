@@ -3,6 +3,7 @@ package com.flipkart.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 
 import com.flipkart.bean.Admin;
 import com.flipkart.bean.Professor;
@@ -44,7 +45,7 @@ public class ProfessorDao {
 		PreparedStatement stmt = null;
 		String sql = "INSERT INTO professor (name, email, username, password,empId,department) VALUES (?, ?,?,?,?,?)";
 		try {
-			stmt = conn.prepareStatement(sql);
+			stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, s.getName()); // This would set age
 			stmt.setString(2, s.getEmail());
 			stmt.setString(3, s.getUsername());
@@ -53,6 +54,12 @@ public class ProfessorDao {
 			stmt.setString(5, s.getEmpID());
 			stmt.setString(6,s.getDept());
 			stmt.executeUpdate();
+
+			ResultSet rs = stmt.getGeneratedKeys();
+			if (rs.next()){
+				s.setUserID(rs.getInt(1));
+			}
+
 
 		} catch (Exception e) {
 

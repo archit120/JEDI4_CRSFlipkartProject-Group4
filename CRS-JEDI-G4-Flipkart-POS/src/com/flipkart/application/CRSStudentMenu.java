@@ -22,7 +22,7 @@ public class CRSStudentMenu {
 		System.out.println("4. PAY FEE");
 		System.out.println("5. VIEW REGISTERED COURSES");
 		System.out.println("6. View REPORT CARD");
-		System.out.println("7. VIEW NOTOFICATIONS");
+		System.out.println("7. VIEW NOTIFICATIONS");
 		System.out.println("8. LOGOUT");
 	}
 
@@ -108,19 +108,11 @@ public class CRSStudentMenu {
 					mode = "Offline";
 				}
 				
-				System.out.println("Enter your semseter registration id");
-				
-				int semesterRegisrationId = sc.nextInt();
-				
-				StudentImpl temp = new StudentImpl();
-				
-				int studentId = temp.getStudentInstance().getUserID();
-				
 				Payment p = new Payment();
 				
 				p.setMode(mode);
-				p.setStudentId(studentId);
-				p.setSemesterRegisrationId(semesterRegisrationId);
+				p.setStudentId(stud.getStudentInstance().getUserID());
+				p.setSemesterRegisrationId(chosenSem.getId());
 				
 				PaymentImpl paymentImpl = new PaymentImpl();
 				
@@ -141,11 +133,11 @@ public class CRSStudentMenu {
 			} else if (option == 6) {
 
 				System.out.println("Report Card");
-				ReportCard report = stud.viewReportCard(stud.getStudentInstance().getUserID());
+				ReportCard report = stud.viewReportCard(chosenSem);
 				
-				for (int i=0;i<report.getCourseCode().size();i++)
+				for (int i = 0; i<report.getCourseCodes().size(); i++)
 				{
-					System.out.println(report.getCourseCode().get(i)+"       "+report.getGrades().get(i));
+					System.out.println(report.getCourseCodes().get(i)+"\t"+report.getGrades().get(i));
 				}
 				System.out.println("GPA: "+report.getSgpa());
 
@@ -161,7 +153,7 @@ public class CRSStudentMenu {
 			else {
 				System.out.println(" Enter valid Inputs ");
 			}
-
+			printMenu();
 			System.out.println("\n\n ENTER YOUR CHOICE \n\n");
 
 			option = sc.nextInt();

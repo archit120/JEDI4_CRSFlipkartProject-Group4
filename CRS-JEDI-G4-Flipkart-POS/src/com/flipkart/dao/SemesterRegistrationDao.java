@@ -25,7 +25,11 @@ public class SemesterRegistrationDao {
 			stmt.setInt(2, s.getYear());
 			stmt.setInt(3, s.getStudentId());
 
-			s.setId(stmt.executeUpdate());
+			stmt.executeUpdate();
+			ResultSet rs = stmt.getGeneratedKeys();
+			if (rs.next()){
+				s.setId(rs.getInt(1));
+			}
 
 
 		} catch (Exception e) {

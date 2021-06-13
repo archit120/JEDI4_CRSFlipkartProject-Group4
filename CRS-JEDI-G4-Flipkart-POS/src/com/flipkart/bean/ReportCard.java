@@ -5,9 +5,9 @@ import java.util.List;
 
 public class ReportCard {
 	private double sgpa;
-	private List<String> courseCode=new ArrayList<String>();
+	private List<String> courseCodes =new ArrayList<String>();
 	private List<Integer> grades=new ArrayList<Integer>();
-	private List<Integer> courseID=new ArrayList<Integer>();
+	private List<Integer> courseIDs =new ArrayList<Integer>();
 	//private boolean approved;
 	public double getSgpa() {
 		return sgpa;
@@ -15,11 +15,11 @@ public class ReportCard {
 	public void setSgpa(double sgpa) {
 		this.sgpa = sgpa;
 	}
-	public List<String> getCourseCode() {
-		return courseCode;
+	public List<String> getCourseCodes() {
+		return courseCodes;
 	}
-	public void setCourseCode(List<String> courseCode) {
-		this.courseCode = courseCode;
+	public void setCourseCodes(List<String> courseCodes) {
+		this.courseCodes = courseCodes;
 	}
 	public List<Integer> getGrades() {
 		return grades;
@@ -27,11 +27,11 @@ public class ReportCard {
 	public void setGrades(List<Integer> grades) {
 		this.grades = grades;
 	}
-	public List<Integer> getCourseID() {
-		return courseID;
+	public List<Integer> getCourseIDs() {
+		return courseIDs;
 	}
-	public void setCourseID(List<Integer> courseID) {
-		this.courseID = courseID;
+	public void setCourseIDs(List<Integer> courseIDs) {
+		this.courseIDs = courseIDs;
 	}
 	
 	

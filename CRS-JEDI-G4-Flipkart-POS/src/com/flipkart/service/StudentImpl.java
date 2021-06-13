@@ -1,7 +1,6 @@
 package com.flipkart.service;
 
 import com.flipkart.bean.*;
-import com.flipkart.dao.CourseDao;
 import com.flipkart.dao.RegisteredCourseDao;
 import com.flipkart.dao.StudentDao;
 
@@ -23,14 +22,12 @@ public class StudentImpl implements StudentInterface {
 	}
 
 	@Override
-	public ReportCard viewReportCard(int studentId) {
+	public ReportCard viewReportCard(SemesterRegistration semesterRegistration) {
 		
 		ReportCard report=new ReportCard();
-		report=RegisteredCourseDao.getReportCard(studentId, 1);
-		report=CourseDao.getCourseCodefromId(report);
+		report=RegisteredCourseDao.getReportCard(semesterRegistration.getId());
 		return report;
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override

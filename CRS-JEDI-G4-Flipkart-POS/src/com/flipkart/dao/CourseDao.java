@@ -30,8 +30,11 @@ public class CourseDao {
 			stmt.setString(4, s.getPreRequisites());
 			stmt.setInt(5, s.getCourseCatalogueId());
 			stmt.setInt(6, s.getProfessorId());
-			
-			s.setId(stmt.executeUpdate());
+			stmt.executeUpdate();
+			ResultSet rs = stmt.getGeneratedKeys();
+			if (rs.next()){
+				s.setId(rs.getInt(1));
+			}
 
 		} catch (Exception e) {
 
