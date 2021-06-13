@@ -27,8 +27,8 @@ public class CRSProfessorMenu {
 	public static void professorMenuHandler() {
 		
 		Scanner sc = new Scanner(System. in);
-//		CourseCatalogue chosen = new CourseCatalogueImpl().getCourseCatalogues().get(0);
-		CourseCatalogue chosen = new CourseCatalogue();
+		CourseCatalogue chosen = new CourseCatalogueImpl().getCourseCatalogues().get(0);
+//		CourseCatalogue chosen = new CourseCatalogue();
 		
 		try {
 			ProfessorImpl prof = new ProfessorImpl();
@@ -56,23 +56,21 @@ public class CRSProfessorMenu {
 				switch(option) {
 				
 					case 1:
-						System.out.print("Enter Course code of Course to list students: ");
-						String courseCode=sc.next();
-//						Course registerCourse = courseImpl.findCourse(chosen, sc.next());
-						List<Student> students = regImpl.viewEnrolledStudents(courseCode);
+						List<Student> students = prof.getEnrolledStudents(chosen);
 						System.out.println("Total " + students.size() +" students");
 						for(Student s:students)
 							System.out.println("Name: " + s.getName() + " Rollno: " + s.getRollNo());
 						break;
 					case 2:
-						System.out.print("Enter Course Code of Course to mark student: ");
-						String code=sc.next();
-						System.out.print("Enter  student rollno to mark student: ");
+						System.out.print("Enter Course code of Course to mark student: ");
+						String courseCode = sc.next();
+						System.out.print("Enter  student ID to mark student: ");
 						String rollno = sc.next();
-						System.out.print("Enter Grade as an integer");
+						System.out.print("Enter Grade as a single int (0-10): ");
 						int g = sc.nextInt();
-						
-						regImpl.setGradeStudent(rollno, g, code);
+						Grade grade = new Grade();
+						grade.setGrade(g);
+						regImpl.markGrade(courseCode, chosen, rollno, grade);
 						break;
 					case 3:
 
@@ -85,25 +83,21 @@ public class CRSProfessorMenu {
 							System.out.println("Course Description: " + course.getDescriptions());
 							System.out.println("Course Department: " + course.getDepartment());
 							System.out.println("Course Pre Requisites : " + course.getPreRequisites());
-//							if(course.getProfessor() == null)
-//								System.out.println("This course is free to be taught by you!");
+							if(course.getProfessorId() == 0)
+								System.out.println("This course is free to be taught by you!");
 						}
 						break;
 					case 4:
-						System.out.print("Enter Course code of Course to teach: ");
-						
-						courseImpl.addCouseToTeach(sc.next(),ProfessorImpl.getProfessorInstance().getUserID());
-						
-//						System.out.print("Enter Course ID of Course to teach: ");
-//						registerCourse = courseImpl.findCourse(chosen, sc.next());
-//						if(registerCourse == null)
-//							System.out.println("Course not found!");
-//						else {
-//							if(courseImpl.indicateProfessor(registerCourse, ProfessorImpl.getProfessorInstance()))
-//								System.out.println("Course marked successfully!");
-//							else
-//								System.out.println("Unknown error while marking course!");
-//						}
+						System.out.print("Enter Course ID of Course to teach: ");
+						Course registerCourse = courseImpl.findCourse(chosen, sc.next());
+						if(registerCourse == null)
+							System.out.println("Course not found!");
+						else {
+							if(courseImpl.indicateProfessor(registerCourse, ProfessorImpl.getProfessorInstance()))
+								System.out.println("Course marked successfully!");
+							else
+								System.out.println("Unknown error while marking course!");
+						}
 						break;
 					case 5:
 						System.out.println("Successfully logged out");
@@ -115,7 +109,7 @@ public class CRSProfessorMenu {
 				}
 			}
 		} catch (Exception e) {
-			
+			System.out.println(e);
 		}
 	}
 }

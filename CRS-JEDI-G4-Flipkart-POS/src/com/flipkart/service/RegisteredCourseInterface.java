@@ -6,11 +6,12 @@ import java.util.List;
 
 public interface RegisteredCourseInterface {
 
-	List<Student> viewEnrolledStudents(String courseCode);
+	public List<Student> viewEnrolledStudents(CourseCatalogue courseCatalogue, Professor professor);
+	public List<Student> viewEnrolledStudents(Course course);
 	boolean checkAvailability(Course course);
 
 	public boolean addRegisteredCourse(RegisteredCourse registeredCourse);
-	public boolean dropRegisteredCourse(int sId , String courseCode); 
+	public boolean dropRegisteredCourse(RegisteredCourse registeredCourse);
 
 	public RegisteredCourse findRegisteredCourse(SemesterRegistration semesterRegistration, String courseID);
 	public List<RegisteredCourse> findRegisteredCourses(SemesterRegistration semesterRegistration);

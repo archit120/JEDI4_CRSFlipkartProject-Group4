@@ -29,10 +29,15 @@ public class SemesterRegistrationImpl implements SemesterRegistrationInterface{
 
 	@Override
 	public List<Grade> viewGrades(SemesterRegistration semesterRegistration) {
+
 		List<Grade> grades = new ArrayList<>();
 		RegisteredCourseImpl registeredCourses = new RegisteredCourseImpl();
-//		for(RegisteredCourse temp : registeredCourses.findRegisteredCourses(semesterRegistration))
-//			grades.add(temp.getGrade());
+		for(RegisteredCourse temp : registeredCourses.findRegisteredCourses(semesterRegistration))
+		{
+			Grade t2 = new Grade();
+			t2.setGrade(temp.getGradeId());
+			grades.add(t2);
+		}
 		return grades;
 	}
 

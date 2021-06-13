@@ -16,7 +16,8 @@ public interface CourseInterface {
     public List<Course> findCourses(CourseCatalogue courseCatalogue);
     public Course findCourse(CourseCatalogue courseCatalogue, String courseID);
 
-    public boolean removeCourse(String courseID);
+    public boolean removeCourse(CourseCatalogue courseCatalogue, String courseID);
+    public List<Student> viewEnrolledStudents(Course course);
 
     public  boolean addCourse(Course course);
 

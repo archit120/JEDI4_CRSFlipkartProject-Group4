@@ -15,13 +15,13 @@ public class RegisteredCourse {
 		this.id = id;
 	}
 
-	public RegisteredCourse(int studentId, int courseId, int gradeId, int semesterRegistrationId) {
-		super();
-		this.studentId = studentId;
-		this.courseId = courseId;
-		this.gradeId = gradeId;
-		this.semesterRegistrationId = semesterRegistrationId;
-	}
+//	public RegisteredCourse(int studentId, int courseId, int gradeId, int semesterRegistrationId) {
+//		super();
+//		this.studentId = studentId;
+//		this.courseId = courseId;
+//		this.gradeId = gradeId;
+//		this.semesterRegistrationId = semesterRegistrationId;
+//	}
     public int getStudentId() {
 		return studentId;
 	}

@@ -83,8 +83,10 @@ public class StudentDao {
 			    	  temp.setUserID(rs.getInt("id"));
 			    	  temp.setName(rs.getString("name"));
 			    	  temp.setEmail(rs.getString("email"));
-			    	  temp.setUsername(rs.getString("username"));
-			    	  temp.setRollNo(rs.getString("rollno"));
+					 temp.setUsername(rs.getString("username"));
+					 temp.setRollNo(rs.getString("rollno"));
+					 temp.setDepartment(rs.getString("department"));
+
 			    	  students.add(temp);
 			    	 
 			         

@@ -19,17 +19,15 @@ public class CourseImpl implements CourseInterface{
 
     @Override
     public Boolean indicateProfessor(Course course, Professor professor) {
-//        if(course.getProfessor() != null)
-//            return false;
-//        course.setProfessor(professor);
-//        professor.setTeachesCourse(course);
-        return true;
+        if(course.getProfessorId() != 0)
+            return false;
+        course.setProfessorId(professor.getUserID());
+        return CourseDao.markCourseToTeach(course.getId(), professor.getUserID());
     }
 
     @Override
     public boolean addCourse(Course course) {
     	return CourseDao.addCourse(course);
-        //return courses.add(course);
     }
 
     @Override
@@ -39,17 +37,12 @@ public class CourseImpl implements CourseInterface{
     }
 
     @Override
-    public boolean removeCourse(String courseID) {
-//        Course c = findCourse(courseCatalogue, courseID);
-        return CourseDao.removeCourse(courseID);
+    public boolean removeCourse(CourseCatalogue courseCatalogue, String courseCode) {
+        return CourseDao.removeCourse(findCourse(courseCatalogue, courseCode).getId());
     }
 
     @Override
     public List<Course> findCourses(CourseCatalogue courseCatalogue) {
-//        List<Course> coursesRet = new ArrayList<>();
-        //for(Course c: courses)
-           // if(c.getCourseCatalogue() == courseCatalogue)
-             //   coursesRet.add(c);
         return CourseDao.findCourses(courseCatalogue);
     }
 
@@ -58,13 +51,8 @@ public class CourseImpl implements CourseInterface{
         return CourseDao.findCourse(courseCatalogue, courseID);
     }
 
-	public  boolean addCouseToTeach(String courseCode,int pId) {
-		int cId=CourseDao.getCourseIdfromCode(courseCode);
-		return CourseDao.addCouseToTeach(cId, pId);
-	}
-
-//    @
-//    public List<Student> viewEnrolledStudents(Course course) {
-//        return new RegisteredCourseImpl().viewEnrolledStudents(course);
-//    }
+    @Override
+    public List<Student> viewEnrolledStudents(Course course) {
+        return new RegisteredCourseImpl().viewEnrolledStudents(course);
+    }
 }

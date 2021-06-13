@@ -18,8 +18,8 @@ public interface ProfessorInterface {
 	public boolean addGrade(RegisteredCourse registeredCourse, Grade grade);
 	
 	public boolean chooseCourse(Course course);
-	
-	public List<Student> getEnrolledStudents();
+
+	public List<Student> getEnrolledStudents(CourseCatalogue courseCatalogue);
 
 	public boolean login(String username, String password);
 

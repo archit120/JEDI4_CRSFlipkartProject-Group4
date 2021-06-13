@@ -1,98 +1,62 @@
 package com.flipkart.service;
 
 import com.flipkart.bean.*;
-import com.flipkart.dao.CourseDao;
 import com.flipkart.dao.RegisteredCourseDao;
-import com.flipkart.dao.StudentDao;
 
-import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.List;
 
 public class RegisteredCourseImpl implements RegisteredCourseInterface {
 
-	private static List<RegisteredCourse> registeredCourses;
+//	private static List<RegisteredCourse> registeredCourses;
 	public static int maximumEnrollment = 10;
 
 	public RegisteredCourseImpl() {
-		if(registeredCourses == null){
-			registeredCourses = new ArrayList<>();
-		}
+//		if(registeredCourses == null){
+//			registeredCourses = new ArrayList<>();
+//		}
+	}
+
+	@Override
+	public RegisteredCourse findRegisteredCourse(SemesterRegistration semesterRegistration, String courseCode) {
+		return RegisteredCourseDao.getRegisteredCourseBySemesterRegistrationIdAndCourseCode(semesterRegistration.getId(), courseCode);
 	}
 
 	@Override
 	public boolean addRegisteredCourse(RegisteredCourse registeredCourse) {
 		return RegisteredCourseDao.addRegisteredCourse(registeredCourse);
-		//return registeredCourses.add(registeredCourse);
 	}
 
 	@Override
-	public boolean dropRegisteredCourse(int sId , String courseCode) {
-		int cId=CourseDao.getCourseIdfromCode(courseCode);
-		return RegisteredCourseDao.deleteRegisteredCourse(sId, cId);
+	public boolean dropRegisteredCourse(RegisteredCourse registeredCourse) {
+		return RegisteredCourseDao.deleteRegisteredCourse(registeredCourse);
 	}
 
 	@Override
 	public List<RegisteredCourse> findRegisteredCourses(SemesterRegistration semesterRegistration) {
-		List<RegisteredCourse> ret = new ArrayList<>();
-//		for(RegisteredCourse r:registeredCourses)
-//			if(r.getSemesterRegistration() == semesterRegistration)
-//				ret.add(r);
-		return ret;
-	}
-
-//	@Override
-//	public boolean checkAvailability(Course course) {
-//		return viewEnrolledStudents(course).size() <= maximumEnrollment;
-//	}
-
-	@Override
-	public RegisteredCourse findRegisteredCourse(SemesterRegistration semesterRegistration, String courseID) {
-		RegisteredCourse ret = null;
-//		for(RegisteredCourse r:registeredCourses)
-//			if(r.getSemesterRegistration() == semesterRegistration && r.getCourse().getCourseCode().equals(courseID))
-//				ret =  r;
-		return ret;
-	}
-
-	@Override
-	public boolean markGrade(String courseID, CourseCatalogue courseCatalogue, String rollNo, Grade grade) {
-		RegisteredCourse ret = null;
-//		for(RegisteredCourse r:registeredCourses)
-//			if(r.getStudent().getRollNo().equals(rollNo) && r.getCourse().getCourseCode().equals(courseID) && r.getSemesterRegistration().getSemester() == courseCatalogue.getSem())
-//				ret =  r;
-//		ret.setGrade(grade);
-		return true;
-	}
-
-	@Override
-	public List<Student> viewEnrolledStudents(String courseCode) {
-		List<Student> students = new ArrayList<Student>();
-		
-		int cId=CourseDao.getCourseIdfromCode(courseCode);
-	
-		List<Integer>enrolledStudentsId=RegisteredCourseDao.getEnrolledStudents(cId);
-		
-		students=StudentDao.getStudentsfromId(enrolledStudentsId);
-		
-//		for(RegisteredCourse r : registeredCourses)
-//			if(r.getCourse()==course)
-//				students.add(r.getStudent());
-		return students;
+		return RegisteredCourseDao.getRegisteredCourseBySemesterRegistrationIdAndCourseCode(semesterRegistration.getId());
 	}
 
 	@Override
 	public boolean checkAvailability(Course course) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
-	public boolean setGradeStudent(String rollno,int grade,String courseCode) {
-		
-		int sId=StudentDao.getIDfromRollNo(rollno);
-		int cId=CourseDao.getCourseIdfromCode(courseCode);
-		return RegisteredCourseDao.setGradeStudent(sId, grade, cId);
+		return viewEnrolledStudents(course).size() <= maximumEnrollment;
 	}
 
+	@Override
+	public boolean markGrade(String courseCode, CourseCatalogue courseCatalogue, String rollNo, Grade grade) {
+		return RegisteredCourseDao.setGradeStudent(courseCode, courseCatalogue.getId(), rollNo, grade.getGrade());
+	}
+
+	public boolean markGrade(RegisteredCourse registeredCourse, Grade grade) {
+		return RegisteredCourseDao.setGradeStudent(registeredCourse.getId(), grade.getGrade());
+	}
+
+	@Override
+	public List<Student> viewEnrolledStudents(Course course) {
+		return RegisteredCourseDao.getEnrolledStudents(course.getId());
+	}
+	@Override
+	public List<Student> viewEnrolledStudents(CourseCatalogue courseCatalogue, Professor professor) {
+		return RegisteredCourseDao.getEnrolledStudents(courseCatalogue.getId(), professor.getUserID());
+	}
 
 }

@@ -41,17 +41,17 @@ public class CourseDao {
 
 	}
 	
-	public static boolean removeCourse(String courseCode) {
+	public static boolean removeCourse(int courseId) {
 
 		Connection conn = Connection1.getConnection();
 
 		PreparedStatement stmt = null;
-		String sql = "Delete from course where courseCode=? ";
+		String sql = "Delete from course where id=? ";
 				
 		try {
 		//System.out.println("hi");
 			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, courseCode);
+			stmt.setInt(1, courseId);
 			
 			//stmt.setString(5, s.getEmpID());
 			stmt.executeUpdate();
@@ -108,6 +108,10 @@ public class CourseDao {
 		return courseList;
 	}
 
+	public  static Course getCourse(int courseId) {
+		return getCourses("select * from course where id="+courseId).get(0);
+	}
+
 	public static List<Course> findCourses(CourseCatalogue courseCatalogue) {
 		return getCourses("select * from course where courseCatalogueId="+courseCatalogue.getId());
 	}
@@ -116,67 +120,9 @@ public class CourseDao {
 		return getCourses("select * from course where courseCatalogueId="+courseCatalogue.getId()+" and coursecode='" + coursecode + "'").get(0);
 	}
 
-	public static int getCourseIdfromCode(String courseCode) {
-//		System.out.println(courseCode);
-		Connection conn = Connection1.getConnection();
 
-		PreparedStatement stmt = null;
-		String sql = "Select id from course where courseCode=?";
-		int cId=-1;	
-		try {
-		//System.out.println("hi");
-			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, courseCode);
-			 ResultSet rs = stmt.executeQuery();
-//			System.out.println(rs);
-			 while(rs.next()) {
-			 cId=rs.getInt("id");
-//			 System.out.println(cId);
-			 }
-			stmt.close();
-			conn.close();
-			
-		} catch (Exception e) {
 
-			System.out.println(e);
-		}
-		
-		return cId;
-	}
-	
-	public static ReportCard getCourseCodefromId(ReportCard report) {
-//		System.out.println(courseCode);
-		Connection conn = Connection1.getConnection();
-		List <String> courseCode=new ArrayList<String>();
-		PreparedStatement stmt = null;
-		for(int i=0;i<report.getCourseID().size();i++)
-		{
-		String sql = "Select courseCode from course where id=?";
-		int cId=-1;	
-		try {
-		//System.out.println("hi");
-			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1,report.getCourseID().get(i) );
-			 ResultSet rs = stmt.executeQuery();
-//			System.out.println(rs);
-			 while(rs.next()) {
-				 courseCode.add(rs.getString("courseCode"));
-//			 System.out.println(cId);
-			 }
-			 report.setCourseCode(courseCode);
-			stmt.close();
-			conn.close();
-			
-		} catch (Exception e) {
-
-			System.out.println(e);
-		}
-		}
-		return report;
-	}
-	
-		public static boolean addCouseToTeach(int cId,int pId) {
-			
+		public static boolean markCourseToTeach(int cId,int pId) {			
 			Connection conn = Connection1.getConnection();
 
 			PreparedStatement stmt = null;
