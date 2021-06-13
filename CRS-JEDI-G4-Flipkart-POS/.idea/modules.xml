@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CRS-JEDI-G4-Flipkart-POS.iml" filepath="$PROJECT_DIR$/CRS-JEDI-G4-Flipkart-POS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/CRS-JEDI-G4-Flipkart-POS.main.iml" filepath="$PROJECT_DIR$/.idea/modules/CRS-JEDI-G4-Flipkart-POS.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/CRS-JEDI-G4-Flipkart-POS.test.iml" filepath="$PROJECT_DIR$/.idea/modules/CRS-JEDI-G4-Flipkart-POS.test.iml" />
     </modules>
   </component>
 </project>
