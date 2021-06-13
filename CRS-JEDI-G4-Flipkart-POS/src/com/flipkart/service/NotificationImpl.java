@@ -1,18 +1,19 @@
-/**
- * 
- */
 package com.flipkart.service;
 
-/**
- * @author anike
- *
- */
+import java.util.List;
+
+import com.flipkart.bean.Notification;
+import com.flipkart.dao.NotificationDao;
+
 public class NotificationImpl implements NotificationInterface{
 
-	@Override
-	public String[] notify(int studentId) {
+	public boolean showNotification(String message, int studentId) {
 		// TODO Auto-generated method stub
-		return null;
+		return true;
 	}
+	
+	public static List<Notification> getNotification(int studentId) {
 
+		return NotificationDao.getNotification(studentId);
+	}
 }

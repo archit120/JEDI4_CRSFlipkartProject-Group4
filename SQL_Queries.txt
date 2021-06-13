@@ -74,22 +74,33 @@ CREATE TABLE payment (
 	FOREIGN KEY (semesterRegistrationId) REFERENCES semesterRegistration(id)
 );
 
+CREATE TABLE notification (
+	id int AUTO_INCREMENT PRIMARY KEY,
+	studentId int,
+	message varchar(50),
+	FOREIGN KEY (studentId) REFERENCES student(id)
+);
+
 ========================================================================================================================================================================
 
 # Queries to add data in table.
 
-INSERT courseCatalogue (semester, year) VALUES (7, 2021);
+INSERT INTO courseCatalogue (semester, year) VALUES (7, 2021);
 
 INSERT INTO course (courseCode, department, description, preRequisites, courseCatalogueId, professorId) VALUES ("CO101", "Computer Science", "Data Structure in C", "C", 1, -1);
 
 INSERT INTO student (name, email, username, password, rollno, department) VALUES ("Amrit", "amritx8@gmail.com", "amritx8", "1234", "2K18/CO/062", "Computer Science");
 
-INSERT INTO admin (name, email, username, password, empId) VALUES ("Amrit", "amritx8@gmail.com", "amritx8", "1234", "101")
+INSERT INTO admin (name, email, username, password, empId) VALUES ("Amrit", "amritx8@gmail.com", "amritx8", "1234", "101");
 
-INSERT INTO professor (name, email, username, password, empId, department) VALUES ("Amrit", "amritx8@gmail.com", "amritx8", "1234", "201", "Computer Science");
+INSERT INTO professor (name, email, username, password, empId, department) VALUES ("Amrit", "amritx8@gmail.com", "amritx8", "1234", "101", "Computer Science");
 
 INSERT INTO semesterRegistration (semester, year, studentId) VALUES (7, 2021, 1);
 
-INSERT INTO registeredCourse (semester, year, studentId) VALUES (7, 2021, 1);
+INSERT INTO registeredCourse (semesterRegistrationId, courseId, grade, studentId) VALUES (1, 2021, 0,1);
+
+INSERT INTO payment (mode, semesterRegistrationId, studentId) VALUES ("Online", 1, 1);
+
+INSERT INTO notification (studentId, message) VALUES (1, "Couese added successfully");
 
 ========================================================================================================================================================================
