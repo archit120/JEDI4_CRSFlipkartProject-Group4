@@ -17,7 +17,7 @@ public class CRSAdminMenu {
 
 	public static void showAdminMenu() {
 
-		System.out.println("# Admin Menu");
+		System.out.println("-----------Admin Menu-----------");
 
 		System.out.println("Press 1 - Add course");
 
@@ -30,6 +30,8 @@ public class CRSAdminMenu {
 		System.out.println("Press 5 - List Courses");
 
 		System.out.println("Press 6 - Logout");
+		
+		System.out.println("---------------------------------");
 	}
 
 	public static void adminMenuHandler() {
@@ -91,7 +93,11 @@ public class CRSAdminMenu {
 						newCourse.setPreRequisites(takeInput);
 
 						newCourse.setCourseCatalogueId(chosen.getId());
+						try {
 						courseImpl.addCourse(newCourse);
+						}catch(Exception e) {
+							System.out.println(e);
+						}
 
 						break;
 

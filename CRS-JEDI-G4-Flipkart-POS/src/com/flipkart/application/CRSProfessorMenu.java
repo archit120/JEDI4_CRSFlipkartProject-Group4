@@ -10,7 +10,7 @@ public class CRSProfessorMenu {
 	
 	public static void showProfessorMenu() {
 		
-		System.out.println("# Professor Menu");
+		System.out.println("-----------Professor Menu-----------");
 		
 		System.out.println("Press 1 - List the enrolled students");
 
@@ -21,6 +21,8 @@ public class CRSProfessorMenu {
 		System.out.println("Press 4 - Register for course to teach");
 
 		System.out.println("Press 5 - Logout");
+		
+		System.out.println("--------------------------------------");
 	}
 
 

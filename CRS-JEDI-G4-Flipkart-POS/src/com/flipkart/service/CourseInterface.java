@@ -4,6 +4,7 @@ import com.flipkart.bean.Course;
 import com.flipkart.bean.CourseCatalogue;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
+import com.flipkart.exception.CoursePreExistsException;
 
 import java.util.List;
 
@@ -19,6 +20,6 @@ public interface CourseInterface {
     public boolean removeCourse(CourseCatalogue courseCatalogue, String courseID);
     public List<Student> viewEnrolledStudents(Course course);
 
-    public  boolean addCourse(Course course);
+    public  boolean addCourse(Course course) throws CoursePreExistsException;
 
 }

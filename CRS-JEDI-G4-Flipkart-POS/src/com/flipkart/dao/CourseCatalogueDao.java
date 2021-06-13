@@ -10,7 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CourseCatalogueDao {
+public class CourseCatalogueDao implements CourseCatalogueDaoInterface {
 	public static boolean addCourseCatalogue(CourseCatalogue s) {
 
 		Connection conn = Connection1.getConnection();

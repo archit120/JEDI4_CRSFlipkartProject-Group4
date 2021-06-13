@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 import com.flipkart.bean.Payment;
 
-public class PaymentDao {
+public class PaymentDao implements PaymentDaoInterface {
 	
 	public static boolean makePayment(Payment p) {
 

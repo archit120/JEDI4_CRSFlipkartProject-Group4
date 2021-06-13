@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class CRSStudentMenu {
 
 	public void printMenu() {
-		System.out.println("*****Welcome to the Student Menu**********");
+		System.out.println("-----------Welcome to the Student Menu-----------");
 		System.out.println("1. View Course Catalogue");
 		System.out.println("2. ADD COURSE ");
 		System.out.println("3. DROP COURSE ");
@@ -24,6 +24,7 @@ public class CRSStudentMenu {
 		System.out.println("6. View REPORT CARD");
 		System.out.println("7. VIEW NOTIFICATIONS");
 		System.out.println("8. LOGOUT");
+		System.out.println("----------------------------------------------------");
 	}
 
 	public void StudentMenu() {
