@@ -1,27 +1,35 @@
 package com.flipkart.bean;
 
-import java.time.LocalDate;
-
 public class Payment {
-	private int billID;
-	private int amount;
-	private LocalDate date;
-	public int getBillID() {
-		return billID;
+
+	private int id;
+	private String mode;
+	private int studentId;
+	private int semesterRegistrationId;
+	public int getId() {
+		return id;
 	}
-	public void setBillID(int billID) {
-		this.billID = billID;
+	public void setId(int id) {
+		this.id = id;
 	}
-	public int getAmount() {
-		return amount;
+	public String getMode() {
+		return mode;
 	}
-	public void setAmount(int amount) {
-		this.amount = amount;
+	public void setMode(String mode) {
+		this.mode = mode;
 	}
-	public LocalDate getDate() {
-		return date;
+	public int getStudentId() {
+		return studentId;
 	}
-	public void setDate(LocalDate date) {
-		this.date = date;
+	public void setStudentId(int studentId) {
+		this.studentId = studentId;
 	}
+	public int getSemesterRegistrationId() {
+		return semesterRegistrationId;
+	}
+	public void setSemesterRegisrationId(int semesterRegistrationId) {
+		this.semesterRegistrationId = semesterRegistrationId;
+	}
+
+	
 }

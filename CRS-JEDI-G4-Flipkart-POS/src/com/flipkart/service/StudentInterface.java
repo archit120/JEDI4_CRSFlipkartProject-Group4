@@ -9,7 +9,7 @@ public interface StudentInterface {
 
 	public void logout();
 
-	ReportCard viewReportCard(String rollno);
+	ReportCard viewReportCard(SemesterRegistration semesterRegistration);
 
 	boolean payFee(String rollNo);
 

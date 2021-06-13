@@ -5,6 +5,7 @@ import com.flipkart.bean.CourseCatalogue;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
 import com.flipkart.dao.CourseDao;
+import com.flipkart.exception.CoursePreExistsException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,17 +20,20 @@ public class CourseImpl implements CourseInterface{
 
     @Override
     public Boolean indicateProfessor(Course course, Professor professor) {
-//        if(course.getProfessor() != null)
-//            return false;
-//        course.setProfessor(professor);
-//        professor.setTeachesCourse(course);
-        return true;
+        if(course.getProfessorId() != 0)
+            return false;
+        course.setProfessorId(professor.getUserID());
+        return CourseDao.markCourseToTeach(course.getId(), professor.getUserID());
     }
 
     @Override
-    public boolean addCourse(Course course) {
-    	return CourseDao.addCourse(course);
-        //return courses.add(course);
+    public boolean addCourse(Course course) throws CoursePreExistsException {
+    	boolean check = CourseDao.addCourse(course);
+    	if(check==true)
+    		return check;
+    	else
+    		throw new CoursePreExistsException(course.getCourseCode());
+       
     }
 
     @Override
@@ -39,45 +43,22 @@ public class CourseImpl implements CourseInterface{
     }
 
     @Override
-    public boolean removeCourse(String courseID) {
-//        Course c = findCourse(courseCatalogue, courseID);
-        return CourseDao.removeCourse(courseID);
-    }
-    
-    public List<Course> availabelCourses(){
-    	return CourseDao.availableCourses();
+    public boolean removeCourse(CourseCatalogue courseCatalogue, String courseCode) {
+        return CourseDao.removeCourse(findCourse(courseCatalogue, courseCode).getId());
     }
 
     @Override
     public List<Course> findCourses(CourseCatalogue courseCatalogue) {
-//        List<Course> coursesRet = new ArrayList<>();
-        //for(Course c: courses)
-           // if(c.getCourseCatalogue() == courseCatalogue)
-             //   coursesRet.add(c);
-        return CourseDao.listCourses();
+        return CourseDao.findCourses(courseCatalogue);
     }
 
     @Override
     public Course findCourse(CourseCatalogue courseCatalogue, String courseID) {
-        Course course = null;
-//        for(Course c: courses)
-//            if(c.getCourseCatalogue() == courseCatalogue && c.getCourseID().equals(courseID))
-//                course = c;
-        return course;
+        return CourseDao.findCourse(courseCatalogue, courseID);
     }
 
-	@Override
-	public List<Student> viewEnrolledStudents(Course course) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	public  boolean addCouseToTeach(int cId,int pId) {
-		return CourseDao.addCouseToTeach(cId, pId);
-	}
-
-//    @
-//    public List<Student> viewEnrolledStudents(Course course) {
-//        return new RegisteredCourseImpl().viewEnrolledStudents(course);
-//    }
+    @Override
+    public List<Student> viewEnrolledStudents(Course course) {
+        return new RegisteredCourseImpl().viewEnrolledStudents(course);
+    }
 }

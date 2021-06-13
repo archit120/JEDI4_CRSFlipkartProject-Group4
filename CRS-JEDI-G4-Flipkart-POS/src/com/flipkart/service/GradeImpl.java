@@ -10,7 +10,7 @@ public class GradeImpl {
 		
 		Grade grade = new Grade();
 		
-		grade.setGrade(g);
+//		grade.setGrade(g);
 		
 		return true;
 	}

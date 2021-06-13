@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdminDao {
+public class AdminDao implements AdminDaoInterface {
 
 	public static Admin login(String username, String password) {
 		

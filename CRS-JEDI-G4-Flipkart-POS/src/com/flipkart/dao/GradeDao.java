@@ -5,9 +5,9 @@ import java.sql.PreparedStatement;
 
 import com.flipkart.bean.Grade;
 
-public class GradeDao {
+public class GradeDao implements GradeDaoInterface {
 	
-	public static int addGrade(Grade g) {
+	public static boolean addGrade(Grade g) {
 		
 		Connection conn = Connection1.getConnection();
 
@@ -15,7 +15,7 @@ public class GradeDao {
 		String sql = "INSERT INTO grade (grade) VALUES (?)";
 		try {
 			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, g.getGrade()); 
+			stmt.setInt(1, g.getGrade());
 			stmt.executeUpdate();
 			
 		//	String sql1 = "SELECT LAST_INSERT_ID();"

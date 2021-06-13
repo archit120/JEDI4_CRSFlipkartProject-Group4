@@ -1,7 +1,7 @@
 package com.flipkart.service;
 
 import com.flipkart.bean.*;
-import com.flipkart.dao.ProfessorDao;
+import com.flipkart.dao.RegisteredCourseDao;
 import com.flipkart.dao.StudentDao;
 
 import java.util.ArrayList;
@@ -22,9 +22,12 @@ public class StudentImpl implements StudentInterface {
 	}
 
 	@Override
-	public ReportCard viewReportCard(String rollno) {
-		// TODO Auto-generated method stub
-		return null;
+	public ReportCard viewReportCard(SemesterRegistration semesterRegistration) {
+		
+		ReportCard report=new ReportCard();
+		report=RegisteredCourseDao.getReportCard(semesterRegistration.getId());
+		return report;
+
 	}
 
 	@Override
@@ -44,20 +47,21 @@ public class StudentImpl implements StudentInterface {
 	@Override
 	public boolean registerForCourse(SemesterRegistration semesterRegistration, Course CourseToRegister) {
 		// TODO Auto-generated method stub
-		
+
 		RegisteredCourseImpl rcInstance = new RegisteredCourseImpl();
 
-		//if(!rcInstance.checkAvailability(CourseToRegister))
+		if (!rcInstance.checkAvailability(CourseToRegister))
 			return false;
-		
 
-//		RegisteredCourse registeredCourse = new RegisteredCourse();
-//		registeredCourse.setCourse(CourseToRegister);
-//		registeredCourse.setStudent(studentInstance);
-//		registeredCourse.setSemesterRegistration(semesterRegistration);
 
-		//return rcInstance.addRegisteredCourse(registeredCourse);
-		
+		RegisteredCourse registeredCourse = new RegisteredCourse();
+		registeredCourse.setCourseId(CourseToRegister.getId());
+		registeredCourse.setStudentId(studentInstance.getUserID());
+		registeredCourse.setSemesterRegistrationId(semesterRegistration.getId());
+		registeredCourse.setGradeId(-1);
+
+		return rcInstance.addRegisteredCourse(registeredCourse);
+
 	}
 
 	@Override

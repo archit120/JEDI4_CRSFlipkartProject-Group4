@@ -5,6 +5,7 @@ package com.flipkart.service;
 
 import com.flipkart.bean.*;
 import com.flipkart.dao.AdminDao;
+import com.flipkart.dao.CourseDao;
 import com.flipkart.dao.ProfessorDao;
 
 import java.util.ArrayList;
@@ -30,9 +31,10 @@ public class ProfessorImpl implements ProfessorInterface{
 
 	@Override
 	public boolean addGrade(RegisteredCourse registeredCourse, Grade grade) {
-//		if(registeredCourse.getCourse().getcId()!=(professorInstance.getTeachesCourse().getcId()))
-//			return false;
-//		registeredCourse.setGrade(grade);
+		if(CourseDao.getCourse(registeredCourse.getCourseId()).getProfessorId()!=professorInstance.getUserID())
+			return false;
+		registeredCourse.setGradeId(grade.getGrade());
+		new RegisteredCourseImpl().markGrade(registeredCourse, grade);
 		return true;
 	}
 
@@ -46,14 +48,13 @@ public class ProfessorImpl implements ProfessorInterface{
 		return new CourseImpl().indicateProfessor(course, professorInstance);
 	}
 
-//	@Override
-//	public List<Student> getEnrolledStudents() {
-//		return new RegisteredCourseImpl().viewEnrolledStudents(professorInstance.getTeachesCourse());
-//	}
+	@Override
+	public List<Student> getEnrolledStudents(CourseCatalogue courseCatalogue) {
+		return new RegisteredCourseImpl().viewEnrolledStudents(courseCatalogue, professorInstance);
+	}
 
 	@Override
 	public boolean login(String userID, String password) {
-		//CHECK******************
 
 		Professor loginRes = ProfessorDao.login(userID, password);
 		if(loginRes == null)
@@ -61,10 +62,5 @@ public class ProfessorImpl implements ProfessorInterface{
 		professorInstance = loginRes;
 		return true;
   }
-  
-	@Override
-	public List<Student> getEnrolledStudents() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 }
