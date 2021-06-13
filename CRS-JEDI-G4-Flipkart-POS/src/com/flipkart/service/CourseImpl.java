@@ -58,7 +58,8 @@ public class CourseImpl implements CourseInterface{
         return CourseDao.findCourse(courseCatalogue, courseID);
     }
 
-	public  boolean addCouseToTeach(int cId,int pId) {
+	public  boolean addCouseToTeach(String courseCode,int pId) {
+		int cId=CourseDao.getCourseIdfromCode(courseCode);
 		return CourseDao.addCouseToTeach(cId, pId);
 	}
 

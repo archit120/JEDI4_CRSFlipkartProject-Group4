@@ -56,7 +56,7 @@ public class CRSProfessorMenu {
 				switch(option) {
 				
 					case 1:
-						System.out.print("Enter Course ID of Course to list students: ");
+						System.out.print("Enter Course code of Course to list students: ");
 						String courseCode=sc.next();
 //						Course registerCourse = courseImpl.findCourse(chosen, sc.next());
 						List<Student> students = regImpl.viewEnrolledStudents(courseCode);
@@ -65,14 +65,14 @@ public class CRSProfessorMenu {
 							System.out.println("Name: " + s.getName() + " Rollno: " + s.getRollNo());
 						break;
 					case 2:
-						System.out.print("Enter Course ID of Course to mark student: ");
-						int courseId = sc.nextInt();
-						System.out.print("Enter  student ID to mark student: ");
-						int rollno = sc.nextInt();
-					//	System.out.print("Enter Grade as a single char (A,..,F): ");
+						System.out.print("Enter Course Code of Course to mark student: ");
+						String code=sc.next();
+						System.out.print("Enter  student rollno to mark student: ");
+						String rollno = sc.next();
+						System.out.print("Enter Grade as an integer");
 						int g = sc.nextInt();
 						
-						regImpl.setGradeStudent(rollno, g, courseId);
+						regImpl.setGradeStudent(rollno, g, code);
 						break;
 					case 3:
 
@@ -90,9 +90,9 @@ public class CRSProfessorMenu {
 						}
 						break;
 					case 4:
-						System.out.print("Enter Course ID of Course to teach: ");
+						System.out.print("Enter Course code of Course to teach: ");
 						
-						courseImpl.addCouseToTeach(sc.nextInt(),ProfessorImpl.getProfessorInstance().getUserID());
+						courseImpl.addCouseToTeach(sc.next(),ProfessorImpl.getProfessorInstance().getUserID());
 						
 //						System.out.print("Enter Course ID of Course to teach: ");
 //						registerCourse = courseImpl.findCourse(chosen, sc.next());

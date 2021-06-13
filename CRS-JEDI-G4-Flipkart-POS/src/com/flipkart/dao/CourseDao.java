@@ -10,6 +10,7 @@ import java.util.List;
 import com.flipkart.bean.Course;
 import com.flipkart.bean.CourseCatalogue;
 import com.flipkart.bean.Professor;
+import com.flipkart.bean.ReportCard;
 import com.flipkart.bean.Student;
 
 public class CourseDao {
@@ -143,12 +144,43 @@ public class CourseDao {
 		return cId;
 	}
 	
+	public static ReportCard getCourseCodefromId(ReportCard report) {
+//		System.out.println(courseCode);
+		Connection conn = Connection1.getConnection();
+		List <String> courseCode=new ArrayList<String>();
+		PreparedStatement stmt = null;
+		for(int i=0;i<report.getCourseID().size();i++)
+		{
+		String sql = "Select courseCode from course where id=?";
+		int cId=-1;	
+		try {
+		//System.out.println("hi");
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1,report.getCourseID().get(i) );
+			 ResultSet rs = stmt.executeQuery();
+//			System.out.println(rs);
+			 while(rs.next()) {
+				 courseCode.add(rs.getString("courseCode"));
+//			 System.out.println(cId);
+			 }
+			 report.setCourseCode(courseCode);
+			stmt.close();
+			conn.close();
+			
+		} catch (Exception e) {
+
+			System.out.println(e);
+		}
+		}
+		return report;
+	}
+	
 		public static boolean addCouseToTeach(int cId,int pId) {
 			
 			Connection conn = Connection1.getConnection();
 
 			PreparedStatement stmt = null;
-			String sql = "UPDATE course SET pId = ? where id = ? ";
+			String sql = "UPDATE course SET professorId = ? where id = ? ";
 			
 			try {
 				stmt = conn.prepareStatement(sql);

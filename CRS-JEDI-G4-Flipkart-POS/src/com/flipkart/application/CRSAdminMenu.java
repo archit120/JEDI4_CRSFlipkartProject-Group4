@@ -72,7 +72,7 @@ public class CRSAdminMenu {
 
 						String takeInput;
 
-						System.out.print("Enter Course Id:");
+						System.out.print("Enter Course Code:");
 						takeInput = sc.next();
 						newCourse.setCourseCode(takeInput);
 
@@ -95,7 +95,7 @@ public class CRSAdminMenu {
 
 					case 2:
 
-						System.out.print("Enter Course ID of Course to removed: ");
+						System.out.print("Enter Course code of Course to removed: ");
 						takeInput = sc.next();
 //						Course removalCourse = courseCatalogues.findCourse(chosen, takeInput);
 //						if(removalCourse == null)

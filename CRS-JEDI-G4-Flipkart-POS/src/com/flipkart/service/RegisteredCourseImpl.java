@@ -27,7 +27,8 @@ public class RegisteredCourseImpl implements RegisteredCourseInterface {
 	}
 
 	@Override
-	public boolean dropRegisteredCourse(int sId , int cId) {
+	public boolean dropRegisteredCourse(int sId , String courseCode) {
+		int cId=CourseDao.getCourseIdfromCode(courseCode);
 		return RegisteredCourseDao.deleteRegisteredCourse(sId, cId);
 	}
 
@@ -69,10 +70,8 @@ public class RegisteredCourseImpl implements RegisteredCourseInterface {
 		List<Student> students = new ArrayList<Student>();
 		
 		int cId=CourseDao.getCourseIdfromCode(courseCode);
-		System.out.println(cId);
-		
+	
 		List<Integer>enrolledStudentsId=RegisteredCourseDao.getEnrolledStudents(cId);
-		System.out.println(enrolledStudentsId);
 		
 		students=StudentDao.getStudentsfromId(enrolledStudentsId);
 		
@@ -88,8 +87,10 @@ public class RegisteredCourseImpl implements RegisteredCourseInterface {
 		return false;
 	}
 	
-	public boolean setGradeStudent(int sId,int grade,int cId) {
+	public boolean setGradeStudent(String rollno,int grade,String courseCode) {
 		
+		int sId=StudentDao.getIDfromRollNo(rollno);
+		int cId=CourseDao.getCourseIdfromCode(courseCode);
 		return RegisteredCourseDao.setGradeStudent(sId, grade, cId);
 	}
 

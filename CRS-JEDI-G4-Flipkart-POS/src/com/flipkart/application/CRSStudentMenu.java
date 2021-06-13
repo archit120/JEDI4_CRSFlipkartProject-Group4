@@ -4,6 +4,7 @@ import com.flipkart.bean.Course;
 import com.flipkart.bean.CourseCatalogue;
 import com.flipkart.bean.Payment;
 import com.flipkart.bean.RegisteredCourse;
+import com.flipkart.bean.ReportCard;
 import com.flipkart.bean.SemesterRegistration;
 import com.flipkart.service.*;
 
@@ -96,8 +97,8 @@ public class CRSStudentMenu {
 
 			} else if (option == 3) {
 
-				System.out.println("Enter course id to be dropped");
-				regImpl.dropRegisteredCourse(1,sc.nextInt());
+				System.out.println("Enter course code to be dropped");
+				regImpl.dropRegisteredCourse(1,sc.next());
 				//regImpl.dropRegisteredCourse(regImpl.findRegisteredCourse(chosenSem, sc.next()));
 				System.out.println("Course dropped");
 
@@ -153,6 +154,14 @@ public class CRSStudentMenu {
 			} else if (option == 6) {
 
 				System.out.println("Report Card");
+				ReportCard report=new ReportCard();
+				report=stud.viewReportCard(stud.getStudentInstance().getUserID());
+				
+				for (int i=0;i<report.getCourseCode().size();i++)
+				{
+					System.out.println(report.getCourseCode().get(i)+"       "+report.getGrades().get(i));
+				}
+				System.out.println("GPA: "+report.getSgpa());
 //				for (RegisteredCourse registeredCourse : semImpl.viewGradesAndCourses(chosenSem))
 //					System.out.println(registeredCourse.getCourse().getCourseCode() + " : "
 //							+ registeredCourse.getGrade().getLetterGrade());

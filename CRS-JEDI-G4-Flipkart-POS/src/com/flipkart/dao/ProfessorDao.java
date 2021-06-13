@@ -42,7 +42,7 @@ public class ProfessorDao {
 		Connection conn = Connection1.getConnection();
 
 		PreparedStatement stmt = null;
-		String sql = "INSERT INTO professor (name, email, username, password,empId) VALUES (?, ?,?,?,?)";
+		String sql = "INSERT INTO professor (name, email, username, password,empId,department) VALUES (?, ?,?,?,?,?)";
 		try {
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, s.getName()); // This would set age
@@ -51,6 +51,7 @@ public class ProfessorDao {
 			stmt.setString(4, s.getPassword());
 
 			stmt.setString(5, s.getEmpID());
+			stmt.setString(6,s.getDept());
 			stmt.executeUpdate();
 
 		} catch (Exception e) {
