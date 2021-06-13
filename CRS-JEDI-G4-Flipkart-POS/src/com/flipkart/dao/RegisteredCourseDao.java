@@ -11,7 +11,7 @@ import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.Student;
 import com.flipkart.bean.ReportCard;
 
-public class RegisteredCourseDao {
+public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
 	public static boolean addRegisteredCourse(RegisteredCourse s) {
 
 		Connection conn = Connection1.getConnection();

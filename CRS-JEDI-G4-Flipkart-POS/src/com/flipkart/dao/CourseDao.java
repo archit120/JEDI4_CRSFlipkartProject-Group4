@@ -13,14 +13,34 @@ import com.flipkart.bean.Professor;
 import com.flipkart.bean.ReportCard;
 import com.flipkart.bean.Student;
 
-public class CourseDao {
+public class CourseDao implements CourseDaoInterface {
 	public static boolean addCourse(Course s) {
 
 		Connection conn = Connection1.getConnection();
+		boolean check=true;
 
 		PreparedStatement stmt = null;
+		String sql1="SELECT COUNT(*) as cnt from course where courseCode= ? ";
+		try {
+		stmt = conn.prepareStatement(sql1);
+		stmt.setString(1,s.getCourseCode());
+		ResultSet rs = stmt.executeQuery();
+		rs.next();
+		int cnt=rs.getInt("cnt");
+		if(cnt>0)
+			check=false;
+		}catch (Exception e) {
+			check=false;
+			System.out.println(e);
+		}
+		
+		if(check==false)
+			return check;
+		
 		String sql = "INSERT INTO course (courseCode, department, description, preRequisites, courseCatalogueId, professorId) VALUES (?,?,?,?,?,?)";
-				
+		
+		stmt=null;
+		
 		try {
 		//System.out.println("hi");
 			stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -37,10 +57,10 @@ public class CourseDao {
 			}
 
 		} catch (Exception e) {
-
+			check=false;
 			System.out.println(e);
 		}
-		return true;
+		return check;
 
 	}
 	

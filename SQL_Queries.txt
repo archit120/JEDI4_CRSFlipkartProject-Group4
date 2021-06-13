@@ -65,6 +65,15 @@ CREATE TABLE registeredCourse (
 	FOREIGN KEY (semesterRegistrationId) REFERENCES semesterRegistration(id)
 );
 
+CREATE TABLE payment (
+	id int AUTO_INCREMENT PRIMARY KEY,
+	mode varchar(50),
+	amount int,
+	semesterRegistrationId int,
+	studentId int,
+	FOREIGN KEY (semesterRegistrationId) REFERENCES semesterRegistration(id)
+);
+
 ========================================================================================================================================================================
 
 # Queries to add data in table.

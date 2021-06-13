@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 
 import com.flipkart.bean.Grade;
 
-public class GradeDao {
+public class GradeDao implements GradeDaoInterface {
 	
 	public static boolean addGrade(Grade g) {
 		

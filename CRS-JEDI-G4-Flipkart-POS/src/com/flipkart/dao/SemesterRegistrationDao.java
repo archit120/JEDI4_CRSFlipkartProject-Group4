@@ -10,7 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SemesterRegistrationDao {
+public class SemesterRegistrationDao implements SemesterRegistrationDaoInterface {
 	public static boolean addSemesterRegistration(SemesterRegistration s) {
 
 		Connection conn = Connection1.getConnection();

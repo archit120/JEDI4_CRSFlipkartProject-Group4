@@ -9,7 +9,7 @@ import java.util.List;
 
 import com.flipkart.bean.Student;
 
-public class StudentDao {
+public class StudentDao implements StudentDaoInterface {
 
 	public static Student login(String username, String password) {
 		Connection conn = Connection1.getConnection();

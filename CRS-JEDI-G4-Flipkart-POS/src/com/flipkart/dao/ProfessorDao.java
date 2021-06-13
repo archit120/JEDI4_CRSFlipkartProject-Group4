@@ -9,7 +9,7 @@ import com.flipkart.bean.Admin;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
 
-public class ProfessorDao {
+public class ProfessorDao implements ProfessorDaoInterface {
 	public static Professor login(String username, String password) {
 		Connection conn = Connection1.getConnection();
 

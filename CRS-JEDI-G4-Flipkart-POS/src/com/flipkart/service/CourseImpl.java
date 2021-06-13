@@ -5,6 +5,7 @@ import com.flipkart.bean.CourseCatalogue;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
 import com.flipkart.dao.CourseDao;
+import com.flipkart.exception.CoursePreExistsException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +27,13 @@ public class CourseImpl implements CourseInterface{
     }
 
     @Override
-    public boolean addCourse(Course course) {
-    	return CourseDao.addCourse(course);
+    public boolean addCourse(Course course) throws CoursePreExistsException {
+    	boolean check = CourseDao.addCourse(course);
+    	if(check==true)
+    		return check;
+    	else
+    		throw new CoursePreExistsException(course.getCourseCode());
+       
     }
 
     @Override
