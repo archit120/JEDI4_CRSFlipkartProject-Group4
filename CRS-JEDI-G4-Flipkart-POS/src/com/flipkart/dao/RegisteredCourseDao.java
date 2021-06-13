@@ -75,7 +75,7 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
 		return getRegisteredCourses("select * from registeredcourse where semesterRegistrationId="+semesterRegistrationId);
 	}
 	public static RegisteredCourse getRegisteredCourseBySemesterRegistrationIdAndCourseCode(int semesterRegistrationId, String courseCode) {
-		return getRegisteredCourses("select * from registeredcourse where semesterRegistrationId="+semesterRegistrationId + " and coursecode='"+courseCode +"'").get(0);
+		return getRegisteredCourses("select * from registeredcourse where semesterRegistrationId="+semesterRegistrationId + " and courseid in (select id from course where coursecode='"+courseCode +"')").get(0);
 	}
 
 	public static boolean deleteRegisteredCourse(RegisteredCourse registeredCourse) {

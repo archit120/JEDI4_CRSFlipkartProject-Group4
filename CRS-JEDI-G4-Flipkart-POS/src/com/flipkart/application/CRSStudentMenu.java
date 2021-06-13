@@ -86,7 +86,7 @@ public class CRSStudentMenu {
 
 			} else if (option == 3) {
 
-				System.out.println("Enter course id to be dropped");
+				System.out.println("Enter course code to be dropped");
 				regImpl.dropRegisteredCourse(regImpl.findRegisteredCourse(chosenSem, sc.next()));
 				System.out.println("Course dropped");
 

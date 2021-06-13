@@ -17,32 +17,33 @@ public class CourseDao implements CourseDaoInterface {
 	public static boolean addCourse(Course s) {
 
 		Connection conn = Connection1.getConnection();
-		boolean check=true;
+		boolean check = true;
 
 		PreparedStatement stmt = null;
-		String sql1="SELECT COUNT(*) as cnt from course where courseCode= ? ";
+		String sql1 = "SELECT COUNT(*) as cnt from course where courseCode= ? and courseCatalogueId=? ";
 		try {
-		stmt = conn.prepareStatement(sql1);
-		stmt.setString(1,s.getCourseCode());
-		ResultSet rs = stmt.executeQuery();
-		rs.next();
-		int cnt=rs.getInt("cnt");
-		if(cnt>0)
-			check=false;
-		}catch (Exception e) {
-			check=false;
+			stmt = conn.prepareStatement(sql1);
+			stmt.setString(1, s.getCourseCode());
+			stmt.setInt(2, s.getCourseCatalogueId());
+			ResultSet rs = stmt.executeQuery();
+			rs.next();
+			int cnt = rs.getInt("cnt");
+			if (cnt > 0)
+				check = false;
+		} catch (Exception e) {
+			check = false;
 			System.out.println(e);
 		}
-		
-		if(check==false)
+
+		if (check == false)
 			return check;
-		
+
 		String sql = "INSERT INTO course (courseCode, department, description, preRequisites, courseCatalogueId, professorId) VALUES (?,?,?,?,?,?)";
-		
-		stmt=null;
-		
+
+		stmt = null;
+
 		try {
-		//System.out.println("hi");
+			//System.out.println("hi");
 			stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, s.getCourseCode()); // This would set age
 			stmt.setString(2, s.getDepartment());
@@ -52,12 +53,12 @@ public class CourseDao implements CourseDaoInterface {
 			stmt.setInt(6, s.getProfessorId());
 			stmt.executeUpdate();
 			ResultSet rs = stmt.getGeneratedKeys();
-			if (rs.next()){
+			if (rs.next()) {
 				s.setId(rs.getInt(1));
 			}
 
 		} catch (Exception e) {
-			check=false;
+			check = false;
 			System.out.println(e);
 		}
 		return check;
