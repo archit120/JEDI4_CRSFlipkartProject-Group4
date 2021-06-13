@@ -5,6 +5,9 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./CRS-JEDI-G4-Flipkart-POS
 
     steps:
       - uses: actions/checkout@v2
@@ -13,7 +16,6 @@ jobs:
         with:
           java-version: '8'
           distribution: 'adopt'
-      - name: cd
-        run: cd CRS-JEDI-G4-Flipkart-POS
       - name: Build with Gradle
-        run: ./gradlew build
+        run: |
+          ./gradlew build
