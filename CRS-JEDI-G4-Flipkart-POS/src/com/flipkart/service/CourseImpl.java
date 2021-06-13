@@ -51,7 +51,6 @@ public class CourseImpl implements CourseInterface{
         return CourseDao.findCourse(courseCatalogue, courseID);
     }
 
-
     @Override
     public List<Student> viewEnrolledStudents(Course course) {
         return new RegisteredCourseImpl().viewEnrolledStudents(course);

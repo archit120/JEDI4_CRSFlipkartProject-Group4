@@ -1,15 +1,8 @@
-/**
- * 
- */
 package com.flipkart.service;
-import java.util.Date;
 
-/**
- * @author anike
- *
- */
+import com.flipkart.bean.Payment;
+
 public interface PaymentInterface {
-	
-	public boolean getDetails(int studentId,int billId, int amount,Date date);
 
+	public boolean makePayment(Payment payment);
 }

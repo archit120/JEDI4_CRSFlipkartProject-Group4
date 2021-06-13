@@ -9,6 +9,9 @@ import java.util.List;
 
 import com.flipkart.bean.Course;
 import com.flipkart.bean.CourseCatalogue;
+import com.flipkart.bean.Professor;
+import com.flipkart.bean.ReportCard;
+import com.flipkart.bean.Student;
 
 public class CourseDao {
 	public static boolean addCourse(Course s) {
@@ -119,8 +122,7 @@ public class CourseDao {
 
 
 
-		public static boolean markCourseToTeach(int cId,int pId) {
-			
+		public static boolean markCourseToTeach(int cId,int pId) {			
 			Connection conn = Connection1.getConnection();
 
 			PreparedStatement stmt = null;

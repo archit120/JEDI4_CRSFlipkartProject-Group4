@@ -10,6 +10,7 @@ import com.flipkart.bean.CourseCatalogue;
 import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.SemesterRegistration;
 import com.flipkart.bean.Student;
+import com.flipkart.bean.ReportCard;
 
 public class RegisteredCourseDao {
 	public static boolean addRegisteredCourse(RegisteredCourse s) {
@@ -208,6 +209,51 @@ public class RegisteredCourseDao {
 		}
 
 		return true;
+	}
+	public static ReportCard getReportCard(int studentId,int semesterId) {
+		double ans=0;
+	
+		Connection conn = Connection1.getConnection();
+		ReportCard report=new ReportCard();
+		PreparedStatement stmt = null;
+		PreparedStatement stmt1 = null;
+		List <Integer> grade=new ArrayList<Integer>();
+		List <Integer> courseId=new ArrayList<Integer>();
+		try {
+			
+		//	String sql = "Select from registeredCourse where  cId = ? and sId = ?";
+			String sql1="select avg(grade) as average from registeredcourse where studentId = ? and semesterRegistrationId = ?";
+			stmt1 = conn.prepareStatement(sql1);
+			stmt1.setInt(1,studentId);
+			stmt1.setInt(2, semesterId);
+			ResultSet rs1=stmt1.executeQuery();
+			while(rs1.next())
+			{
+				ans=rs1.getDouble("average");
+			}
+			report.setSgpa(ans);
+			String sql = "select courseId,grade from registeredcourse where studentId = ? and semesterRegistrationId = ?";
+			stmt = conn.prepareStatement(sql);
+			
+			stmt.setInt(1,studentId);
+			stmt.setInt(2, semesterId);
+			
+			ResultSet rs=stmt.executeQuery();
+			while(rs.next())
+			{
+				grade.add(rs.getInt("grade"));
+				courseId.add(rs.getInt("courseId"));
+			}
+			report.setGrades(grade);
+			report.setCourseID(courseId);
+			
+		}catch(Exception e){
+						
+			System.out.println(e);
+		}
+		return report;
+		
+		
 	}
 
 }

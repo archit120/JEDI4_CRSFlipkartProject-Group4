@@ -100,4 +100,32 @@ public class StudentDao {
 		return students;
 		
 	}
+	public static int getIDfromRollNo(String rollno)
+	{
+		int sId=-1;
+		Connection conn = Connection1.getConnection();
+
+		PreparedStatement stmt = null;
+		String sql = "Select id from student where rollno=?";
+	
+		try {
+		//System.out.println("hi");
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, rollno);
+			 ResultSet rs = stmt.executeQuery();
+//			System.out.println(rs);
+			 while(rs.next()) {
+				 sId=rs.getInt("id");
+//			 System.out.println(cId);
+			 }
+			stmt.close();
+			conn.close();
+			
+		} catch (Exception e) {
+
+			System.out.println(e);
+		}
+		
+		return sId;
+	}
 }

@@ -1,41 +1,38 @@
 package com.flipkart.bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ReportCard {
 	private double sgpa;
-	private double cgpa;
-	private Course[] courses;
-	private Grade[] grades;
-	private boolean approved;
-	
+	private List<String> courseCode=new ArrayList<String>();
+	private List<Integer> grades=new ArrayList<Integer>();
+	private List<Integer> courseID=new ArrayList<Integer>();
+	//private boolean approved;
 	public double getSgpa() {
 		return sgpa;
 	}
 	public void setSgpa(double sgpa) {
 		this.sgpa = sgpa;
 	}
-	public double getCgpa() {
-		return cgpa;
+	public List<String> getCourseCode() {
+		return courseCode;
 	}
-	public void setCgpa(double cgpa) {
-		this.cgpa = cgpa;
+	public void setCourseCode(List<String> courseCode) {
+		this.courseCode = courseCode;
 	}
-	public Course[] getCourses() {
-		return courses;
-	}
-	public void setCourses(Course[] courses) {
-		this.courses = courses;
-	}
-	public Grade[] getGrades() {
+	public List<Integer> getGrades() {
 		return grades;
 	}
-	public void setGrades(Grade[] grades) {
+	public void setGrades(List<Integer> grades) {
 		this.grades = grades;
 	}
-	public boolean isApproved() {
-		return approved;
+	public List<Integer> getCourseID() {
+		return courseID;
 	}
-	public void setApproved(boolean approved) {
-		this.approved = approved;
+	public void setCourseID(List<Integer> courseID) {
+		this.courseID = courseID;
 	}
+	
 	
 }

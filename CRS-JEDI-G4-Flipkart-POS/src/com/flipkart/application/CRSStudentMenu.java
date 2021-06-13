@@ -2,7 +2,9 @@ package com.flipkart.application;
 
 import com.flipkart.bean.Course;
 import com.flipkart.bean.CourseCatalogue;
+import com.flipkart.bean.Payment;
 import com.flipkart.bean.RegisteredCourse;
+import com.flipkart.bean.ReportCard;
 import com.flipkart.bean.SemesterRegistration;
 import com.flipkart.dao.CourseDao;
 import com.flipkart.service.*;
@@ -89,10 +91,45 @@ public class CRSStudentMenu {
 
 			} else if (option == 4) {
 
-				System.out.println("TODO Enter Fee method");
+				System.out.println("Payment options:-");
+				
+				System.out.println();
 
-//				int cId = sc.nextInt();
+				System.out.println("Press 1 - Pay Online");
 
+				System.out.println("Press 2 - Pay Offline");
+
+				int option2 = sc.nextInt();
+				
+				String mode = "Online";
+				
+				if(option2 == 2) {
+					
+					mode = "Offline";
+				}
+				
+				System.out.println("Enter your semseter registration id");
+				
+				int semesterRegisrationId = sc.nextInt();
+				
+				StudentImpl temp = new StudentImpl();
+				
+				int studentId = temp.getStudentInstance().getUserID();
+				
+				Payment p = new Payment();
+				
+				p.setMode(mode);
+				p.setStudentId(studentId);
+				p.setSemesterRegisrationId(semesterRegisrationId);
+				
+				PaymentImpl paymentImpl = new PaymentImpl();
+				
+				paymentImpl.makePayment(p);
+				
+				System.out.println("Payment Done!");
+				
+				break;
+				
 			} else if (option == 5) {
 
 				System.out.println("Registered Courses are");
@@ -104,9 +141,13 @@ public class CRSStudentMenu {
 			} else if (option == 6) {
 
 				System.out.println("Report Card");
-				for (RegisteredCourse registeredCourse : semImpl.viewGradesAndCourses(chosenSem))
-					System.out.println(CourseDao.getCourse(registeredCourse.getCourseId()).getCourseCode() + " : "
-							+ registeredCourse.getGradeId());
+				ReportCard report = stud.viewReportCard(stud.getStudentInstance().getUserID());
+				
+				for (int i=0;i<report.getCourseCode().size();i++)
+				{
+					System.out.println(report.getCourseCode().get(i)+"       "+report.getGrades().get(i));
+				}
+				System.out.println("GPA: "+report.getSgpa());
 
 			} else if (option == 7) {
 

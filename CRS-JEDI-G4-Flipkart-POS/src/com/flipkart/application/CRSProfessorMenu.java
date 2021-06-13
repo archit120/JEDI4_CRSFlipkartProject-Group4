@@ -56,9 +56,6 @@ public class CRSProfessorMenu {
 				switch(option) {
 				
 					case 1:
-//						System.out.print("Enter Course code of Course to list students: ");
-//						String courseCode=sc.next();
-//						Course registerCourse = courseImpl.findCourse(chosen, sc.next());
 						List<Student> students = prof.getEnrolledStudents(chosen);
 						System.out.println("Total " + students.size() +" students");
 						for(Student s:students)
@@ -91,7 +88,6 @@ public class CRSProfessorMenu {
 						}
 						break;
 					case 4:
-
 						System.out.print("Enter Course ID of Course to teach: ");
 						Course registerCourse = courseImpl.findCourse(chosen, sc.next());
 						if(registerCourse == null)

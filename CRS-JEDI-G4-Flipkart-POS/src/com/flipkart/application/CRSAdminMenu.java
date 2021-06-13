@@ -74,7 +74,7 @@ public class CRSAdminMenu {
 
 						String takeInput;
 
-						System.out.print("Enter Course Id:");
+						System.out.print("Enter Course Code:");
 						takeInput = sc.next();
 						newCourse.setCourseCode(takeInput);
 
