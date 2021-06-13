@@ -1,20 +1,14 @@
-/**
- * 
- */
+
 package com.flipkart.service;
 
-import java.util.Date;
 
-/**
- * @author anike
- *
- */
+import com.flipkart.bean.Payment;
+import com.flipkart.dao.PaymentDao;
 public class PaymentImpl implements PaymentInterface{
 
 	@Override
-	public boolean getDetails(int studentId, int billId, int amount, Date date) {
-		// TODO Auto-generated method stub
-		return true;
-	}
+	public boolean makePayment(Payment payment) {
 
+		return PaymentDao.makePayment(payment);
+	}
 }

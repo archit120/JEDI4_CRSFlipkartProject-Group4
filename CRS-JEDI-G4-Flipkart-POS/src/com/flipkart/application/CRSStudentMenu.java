@@ -2,6 +2,7 @@ package com.flipkart.application;
 
 import com.flipkart.bean.Course;
 import com.flipkart.bean.CourseCatalogue;
+import com.flipkart.bean.Payment;
 import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.SemesterRegistration;
 import com.flipkart.service.*;
@@ -102,10 +103,45 @@ public class CRSStudentMenu {
 
 			} else if (option == 4) {
 
-				System.out.println("TODO Enter Fee method");
+				System.out.println("Payment options:-");
+				
+				System.out.println();
 
-//				int cId = sc.nextInt();
+				System.out.println("Press 1 - Pay Online");
 
+				System.out.println("Press 2 - Pay Offline");
+
+				int option2 = sc.nextInt();
+				
+				String mode = "Online";
+				
+				if(option2 == 2) {
+					
+					mode = "Offline";
+				}
+				
+				System.out.println("Enter your semseter registration id");
+				
+				int semesterRegisrationId = sc.nextInt();
+				
+				StudentImpl temp = new StudentImpl();
+				
+				int studentId = temp.getStudentInstance().getUserID();
+				
+				Payment p = new Payment();
+				
+				p.setMode(mode);
+				p.setStudentId(studentId);
+				p.setSemesterRegisrationId(semesterRegisrationId);
+				
+				PaymentImpl paymentImpl = new PaymentImpl();
+				
+				paymentImpl.makePayment(p);
+				
+				System.out.println("Payment Done!");
+				
+				break;
+				
 			} else if (option == 5) {
 
 				System.out.println("Registered Courses are");
