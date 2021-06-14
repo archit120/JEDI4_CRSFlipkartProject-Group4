@@ -1,6 +1,5 @@
 package com.flipkart.application;
 
-
 import java.util.Scanner;
 
 // TODO: Auto-generated Javadoc
