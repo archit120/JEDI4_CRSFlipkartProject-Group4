@@ -6,7 +6,6 @@ import com.flipkart.service.*;
 import java.util.List;
 import java.util.Scanner;
 
-import javax.security.auth.login.LoginException;
 
 // TODO: Auto-generated Javadoc
 /** The Class CRSProfessorMenu. */
