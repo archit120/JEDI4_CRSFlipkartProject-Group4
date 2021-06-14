@@ -1,9 +1,12 @@
 package com.flipkart.application;
 
 import com.flipkart.bean.*;
+import com.flipkart.exception.LoginFailedException;
 import com.flipkart.service.*;
 import java.util.List;
 import java.util.Scanner;
+
+import javax.security.auth.login.LoginException;
 
 // TODO: Auto-generated Javadoc
 /** The Class CRSProfessorMenu. */
@@ -28,7 +31,7 @@ public class CRSProfessorMenu {
   }
 
   /** Professor menu handler. */
-  public static void professorMenuHandler() {
+  public static void professorMenuHandler() throws LoginFailedException {
 
     Scanner sc = new Scanner(System.in);
     CourseCatalogue chosen = new CourseCatalogueImpl().getCourseCatalogues().get(0);
@@ -44,8 +47,15 @@ public class CRSProfessorMenu {
         String username = sc.next();
         System.out.print("Enter prof password: ");
         String password = sc.next();
+        try {
         if (prof.login(username, password)) break;
-        System.out.println("Invalid login. Please retry.");
+        }
+        catch(LoginFailedException e){
+        	System.out.println(e.getMessage());
+        }
+        //throw new LoginFailedException(username);
+        
+        //System.out.println("Invalid login. Please retry.");
       }
 
       while (true) {

@@ -2,6 +2,13 @@ package com.flipkart.application;
 
 import java.util.Scanner;
 
+import javax.security.auth.login.LoginException;
+
+import org.apache.log4j.BasicConfigurator;
+
+import com.flipkart.exception.LoginFailedException;
+import com.flipkart.exception.StudentApprovalFailedException;
+import com.flipkart.exception.StudentNotApprovedException;
 import com.flipkart.service.StudentImpl;
 
 // TODO: Auto-generated Javadoc
@@ -17,7 +24,6 @@ public class CRSApplicationMenu {
     System.out.println("Press 4 to exit.");
     System.out.println("------------------------------------");
   }
-
   /** Login choices. */
   public static void loginChoices() {
     System.out.println("-----------LOG IN-----------");
@@ -31,9 +37,15 @@ public class CRSApplicationMenu {
    * The main method.
    *
    * @param args the arguments
+ * @throws StudentApprovalFailedException 
+ * @throws LoginFailedException 
+ * @throws StudentNotApprovedException 
+ * @throws StudentRegistrationFailedException 
+ * @throws StudentAlreadyApprovedException 
+ * @throws LoginException 
    */
-  public static void main(String[] args) {
-
+  public static void main(String[] args) throws LoginFailedException, StudentNotApprovedException,StudentApprovalFailedException {
+	  BasicConfigurator.configure();
     @SuppressWarnings("resource")
     Scanner sc = new Scanner(System.in);
 
@@ -59,8 +71,7 @@ public class CRSApplicationMenu {
             CRSProfessorMenu.professorMenuHandler();
             break;
           case 3:
-            CRSAdminMenu.adminMenuHandler();
-            ;
+				CRSAdminMenu.adminMenuHandler();
             break;
           default:
             System.out.println("Invalid input.");
@@ -92,11 +103,8 @@ public class CRSApplicationMenu {
     	  
     	  StudentImpl studImpl = new StudentImpl();
     	  boolean done = studImpl.addStudent(email, password, name,username,roll,dept);
-    	  
     	  if(done) {
     		  System.out.println("You have sucessfully been registered , waiting for admin approval !!");
-    	  }else {
-    		  System.out.println("Something went wrong");
     	  }
     	  
       }else {

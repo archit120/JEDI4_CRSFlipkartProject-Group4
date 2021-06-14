@@ -8,8 +8,11 @@ import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.ReportCard;
 import com.flipkart.bean.SemesterRegistration;
 import com.flipkart.dao.CourseDao;
+import com.flipkart.exception.LoginFailedException;
+import com.flipkart.exception.StudentNotApprovedException;
 import com.flipkart.exception.PaymentAlreadyDone;
 import com.flipkart.service.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -32,8 +35,10 @@ public class CRSStudentMenu {
     System.out.println("----------------------------------------------------");
   }
 
-  /** Student menu. */
-  public void StudentMenu() {
+  /** Student menu. 
+ * @throws LoginFailedException 
+ * @throws StudentNotApprovedException */
+  public void StudentMenu() throws LoginFailedException, StudentNotApprovedException {
 
     Scanner sc = new Scanner(System.in);
     CourseCatalogue chosen = new CourseCatalogueImpl().getCourseCatalogues().get(0);
@@ -48,8 +53,18 @@ public class CRSStudentMenu {
       String username = sc.next();
       System.out.print("Enter student password: ");
       String password = sc.next();
+      try {
       if (stud.login(username, password)) break;
-      System.out.println("Invalid login. Please retry.");
+      }
+      catch(LoginFailedException e){
+    	  System.out.println(e.getMessage());
+    	  
+      }
+      catch(StudentNotApprovedException e1){
+    	  System.out.println(e1.getMessage());
+    	  
+      }
+      //System.out.println("Invalid login. Please retry.");
     }
     printMenu();
 
@@ -204,6 +219,6 @@ public class CRSStudentMenu {
       System.out.println("\n\n ENTER YOUR CHOICE \n\n");
 
       option = sc.nextInt();
-    }
+    }    
   }
 }

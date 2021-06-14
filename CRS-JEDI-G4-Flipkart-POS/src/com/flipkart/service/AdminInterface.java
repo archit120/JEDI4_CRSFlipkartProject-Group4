@@ -2,6 +2,7 @@ package com.flipkart.service;
 
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
+import com.flipkart.exception.LoginFailedException;
 import com.flipkart.exception.ProfessorPreExistsException;
 import com.flipkart.exception.StudentPreExistsException;
 
@@ -49,6 +50,7 @@ public interface AdminInterface {
    * @param userID the user ID
    * @param password the password
    * @return true, if successful
+ * @throws LoginFailedException 
    */
-  public boolean login(String userID, String password);
+  public boolean login(String userID, String password) throws LoginFailedException;
 }

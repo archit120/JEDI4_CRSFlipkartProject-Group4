@@ -4,6 +4,8 @@ package com.flipkart.service;
 import com.flipkart.bean.*;
 import com.flipkart.dao.CourseDao;
 import com.flipkart.dao.ProfessorDao;
+import com.flipkart.exception.LoginFailedException;
+
 import java.util.List;
 
 // TODO: Auto-generated Javadoc
@@ -83,12 +85,13 @@ public class ProfessorImpl implements ProfessorInterface {
    * @param userID the user ID
    * @param password the password
    * @return true, if successful
+ * @throws LoginFailedException 
    */
   @Override
-  public boolean login(String userID, String password) {
+  public boolean login(String userID, String password) throws LoginFailedException {
 
     Professor loginRes = ProfessorDao.login(userID, password);
-    if (loginRes == null) return false;
+    if (loginRes == null) throw new LoginFailedException(userID);
     professorInstance = loginRes;
     return true;
   }
