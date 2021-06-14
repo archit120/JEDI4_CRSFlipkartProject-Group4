@@ -9,10 +9,13 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 public class AdminDao implements AdminDaoInterface {
 
+	private static Logger logger = Logger.getLogger(AdminDao.class);
+	
 	public static Admin login(String username, String password) {
-		
 		
 		
 		Connection conn = Connection1.getConnection();
@@ -37,7 +40,7 @@ public class AdminDao implements AdminDaoInterface {
 			return temp;
 		} catch (Exception e) {
 
-			System.out.println(e);
+			logger.error(e);
 		}
 		return null;
 	}
@@ -60,7 +63,7 @@ public class AdminDao implements AdminDaoInterface {
 
 		} catch (Exception e) {
 
-			System.out.println(e);
+			logger.error(e);
 		}
 		return true;
 
@@ -92,7 +95,7 @@ public class AdminDao implements AdminDaoInterface {
 
 		} catch (Exception e) {
 
-			System.out.println(e);
+			logger.error(e);
 		}
 
 		return admins;

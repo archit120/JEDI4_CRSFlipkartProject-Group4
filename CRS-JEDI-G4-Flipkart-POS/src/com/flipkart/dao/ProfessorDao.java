@@ -5,11 +5,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import org.apache.log4j.Logger;
+
 import com.flipkart.bean.Admin;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
 
 public class ProfessorDao implements ProfessorDaoInterface {
+	
+	private static Logger logger = Logger.getLogger(ProfessorDao.class);
 	public static Professor login(String username, String password) {
 		Connection conn = Connection1.getConnection();
 
@@ -33,7 +37,7 @@ public class ProfessorDao implements ProfessorDaoInterface {
 			return temp;
 		} catch (Exception e) {
 
-			System.out.println(e);
+			logger.error(e);
 		}
 		return null;
 	}
@@ -63,7 +67,7 @@ public class ProfessorDao implements ProfessorDaoInterface {
 
 		} catch (Exception e) {
 
-			System.out.println(e);
+			logger.error(e);
 		}
 		return true;
 

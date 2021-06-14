@@ -7,6 +7,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.flipkart.bean.Course;
 import com.flipkart.bean.CourseCatalogue;
 import com.flipkart.bean.Professor;
@@ -14,6 +16,8 @@ import com.flipkart.bean.ReportCard;
 import com.flipkart.bean.Student;
 
 public class CourseDao implements CourseDaoInterface {
+	
+	private static Logger logger = Logger.getLogger(CourseDao.class);
 	public static boolean addCourse(Course s) {
 
 		Connection conn = Connection1.getConnection();
@@ -32,7 +36,7 @@ public class CourseDao implements CourseDaoInterface {
 				check = false;
 		} catch (Exception e) {
 			check = false;
-			System.out.println(e);
+			logger.error(e);
 		}
 
 		if (check == false)
@@ -59,7 +63,7 @@ public class CourseDao implements CourseDaoInterface {
 
 		} catch (Exception e) {
 			check = false;
-			System.out.println(e);
+			logger.error(e);
 		}
 		return check;
 
@@ -84,7 +88,7 @@ public class CourseDao implements CourseDaoInterface {
 			
 		} catch (Exception e) {
 
-			System.out.println(e);
+			logger.error(e);
 		}
 		
 		return true;
@@ -104,7 +108,7 @@ public class CourseDao implements CourseDaoInterface {
 			return temp;
 		}
 		catch (Exception e) {
-			System.out.println(e);
+			logger.error(e);
 			return null;
 		}
 
@@ -127,7 +131,7 @@ public class CourseDao implements CourseDaoInterface {
 			conn.close();
 		} catch (Exception e) {
 
-			System.out.println(e);
+			logger.error(e);
 		}
 		return courseList;
 	}
@@ -159,7 +163,7 @@ public class CourseDao implements CourseDaoInterface {
 				
 				stmt.executeUpdate();
 			}catch(Exception e) {
-				System.out.println(e);
+				logger.error(e);
 			}
 			
 			return true;

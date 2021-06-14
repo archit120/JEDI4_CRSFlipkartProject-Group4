@@ -10,7 +10,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 public class CourseCatalogueDao implements CourseCatalogueDaoInterface {
+	private static Logger logger = Logger.getLogger(CourseCatalogueDao.class);
 	public static boolean addCourseCatalogue(CourseCatalogue s) {
 
 		Connection conn = Connection1.getConnection();
@@ -32,7 +35,7 @@ public class CourseCatalogueDao implements CourseCatalogueDaoInterface {
 
 		} catch (Exception e) {
 
-			System.out.println(e);
+			logger.error(e);
 		}
 		return true;
 
@@ -63,7 +66,7 @@ public class CourseCatalogueDao implements CourseCatalogueDaoInterface {
 			conn.close();
 		} catch (Exception e) {
 
-			System.out.println(e);
+			logger.error(e);
 		}
 		//STEP 6: Clean-up environment
 		// rs.close();
@@ -94,7 +97,7 @@ public class CourseCatalogueDao implements CourseCatalogueDaoInterface {
 			
 		} catch (Exception e) {
 
-			System.out.println(e);
+			logger.error(e);
 		}
 		
 		return cId;
@@ -114,7 +117,7 @@ public class CourseCatalogueDao implements CourseCatalogueDaoInterface {
 				
 				stmt.executeUpdate();
 			}catch(Exception e) {
-				System.out.println(e);
+				logger.error(e);
 			}
 			
 			return true;

@@ -3,9 +3,13 @@ package com.flipkart.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
+import org.apache.log4j.Logger;
+
 import com.flipkart.bean.Grade;
 
 public class GradeDao implements GradeDaoInterface {
+	
+	private static Logger logger = Logger.getLogger(GradeDao.class);
 	
 	public static boolean addGrade(Grade g) {
 		
@@ -22,7 +26,7 @@ public class GradeDao implements GradeDaoInterface {
 
 		} catch (Exception e) {
 
-			System.out.println(e);
+			logger.error(e);
 		}
 		return true;
 		

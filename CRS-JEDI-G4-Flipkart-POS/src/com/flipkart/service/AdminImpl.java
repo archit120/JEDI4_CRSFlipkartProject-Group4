@@ -11,8 +11,11 @@ import com.flipkart.dao.StudentDao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 public class AdminImpl implements AdminInterface {
 
+	private static Logger logger = Logger.getLogger(AdminImpl.class);
 	private static Admin adminInstance;
 
 	public AdminImpl() {
@@ -30,14 +33,14 @@ public class AdminImpl implements AdminInterface {
 
 	@Override
 	public boolean approveGrade(String rollNo) {
-		System.out.println("Approving grade todo");
+		logger.info("Approving grade todo");
 		return false;
 	}
 
 	
 	@Override
 	public boolean verifyCourseReg(String rollNo) {
-		System.out.println("Approving course todo");
+		logger.info("Approving course todo");
 		return false;
 	}
 

@@ -5,9 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import org.apache.log4j.Logger;
+
 import com.flipkart.bean.Payment;
 
 public class PaymentDao implements PaymentDaoInterface {
+	
+	private static Logger logger = Logger.getLogger(PaymentDao.class);
 	
 	public static boolean makePayment(Payment p) {
 
@@ -29,7 +33,7 @@ public class PaymentDao implements PaymentDaoInterface {
 
 		} catch (Exception e) {
 
-			System.out.println(e);
+			logger.error(e);
 		}
 		return true;
 	}

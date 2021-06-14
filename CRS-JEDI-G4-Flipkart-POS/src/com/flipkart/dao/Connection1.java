@@ -39,8 +39,6 @@ public class Connection1 {
 			Class.forName("com.mysql.jdbc.Driver");
 
 			// Step 4 make/open  a connection
-
-			System.out.println("Connecting to database...");
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 		}
 		// TODO Auto-generated method stub

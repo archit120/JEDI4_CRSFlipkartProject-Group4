@@ -7,11 +7,16 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.Student;
 import com.flipkart.bean.ReportCard;
 
 public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
+	
+	private static Logger logger = Logger.getLogger(RegisteredCourseDao.class);
+	
 	public static boolean addRegisteredCourse(RegisteredCourse s) {
 
 		Connection conn = Connection1.getConnection();
@@ -38,7 +43,7 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
 
 		} catch (Exception e) {
 
-			System.out.println(e);
+			logger.error(e);
 		}
 		return true;
 
@@ -66,7 +71,7 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
 			conn.close();
 		} catch (Exception e) {
 
-			System.out.println(e);
+			logger.error(e);
 		}
 		return courseList;
 	}
@@ -93,7 +98,7 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
 
 			} catch (Exception e) {
 
-				System.out.println(e);
+				logger.error(e);
 			}
 		return true;
 		
@@ -125,7 +130,7 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
 			conn.close();
 		} catch (Exception e) {
 
-			System.out.println(e);
+			logger.error(e);
 		}
 		//STEP 6: Clean-up environment
 		// rs.close();
@@ -157,8 +162,7 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
 			stmt.close();
 			conn.close();
 		} catch (Exception e) {
-
-			System.out.println(e);
+			logger.error(e);
 		}
 		//STEP 6: Clean-up environment
 		// rs.close();

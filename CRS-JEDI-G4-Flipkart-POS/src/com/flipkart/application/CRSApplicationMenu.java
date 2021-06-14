@@ -54,8 +54,8 @@ public class CRSApplicationMenu {
 					System.out.println("Invalid input.");	
 				}
 			}
-			else if(response1 == 2) {
-				//updatePasswordUser
+			else  if(response1 == 2) {
+				
 			}
 			else {
 				System.out.println("Exiting from the website.");
