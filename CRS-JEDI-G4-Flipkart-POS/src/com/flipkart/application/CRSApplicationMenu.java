@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import com.flipkart.exception.CourseAlreadyFullException;
 import com.flipkart.exception.CourseAlreadyRegisteredException;
-import javax.security.auth.login.LoginException;
 
 import org.apache.log4j.BasicConfigurator;
 
