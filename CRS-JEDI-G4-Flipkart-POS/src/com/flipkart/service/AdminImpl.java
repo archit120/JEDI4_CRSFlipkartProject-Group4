@@ -71,7 +71,7 @@ public class AdminImpl implements AdminInterface {
    */
   @Override
   public boolean approveGrade(String rollNo) {
-	  BasicConfigurator.configure();
+	 // BasicConfigurator.configure();
 	  logger.info("Approving grade todo");
     return false;
   }
@@ -84,7 +84,7 @@ public class AdminImpl implements AdminInterface {
    */
   @Override
   public boolean verifyCourseReg(String rollNo) {
-	  BasicConfigurator.configure();
+	 // BasicConfigurator.configure();
 	  logger.info("Approving grade todo");
     return false;
   }

@@ -2,6 +2,8 @@ package com.flipkart.application;
 
 import java.util.Scanner;
 
+import org.apache.log4j.BasicConfigurator;
+
 import com.flipkart.service.StudentImpl;
 
 // TODO: Auto-generated Javadoc
@@ -33,6 +35,7 @@ public class CRSApplicationMenu {
    * @param args the arguments
    */
   public static void main(String[] args) {
+	  BasicConfigurator.configure();
 
     @SuppressWarnings("resource")
     Scanner sc = new Scanner(System.in);

@@ -20,7 +20,7 @@ public class GradeDao implements GradeDaoInterface {
 	*/
 	
 	public static boolean addGrade(Grade g) {
-		BasicConfigurator.configure();
+		//BasicConfigurator.configure();
 
 	    Connection conn = Connection1.getConnection();
 

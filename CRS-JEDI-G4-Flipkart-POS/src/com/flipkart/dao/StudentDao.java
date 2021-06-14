@@ -29,7 +29,7 @@ public class StudentDao implements StudentDaoInterface {
    */
   public static Student login(String username, String password) {
     Connection conn = Connection1.getConnection();
-    BasicConfigurator.configure();
+   // BasicConfigurator.configure();
     PreparedStatement stmt = null;
     String sql = "Select * from Student where username=? and password=?";
     try {
@@ -65,7 +65,7 @@ public class StudentDao implements StudentDaoInterface {
   public static boolean addStudent(Student s) {
 
     Connection conn = Connection1.getConnection();
-    BasicConfigurator.configure();
+  //  BasicConfigurator.configure();
     boolean check = true;
 
     PreparedStatement stmt = null;
@@ -122,7 +122,7 @@ public class StudentDao implements StudentDaoInterface {
    * @return the studentsfrom id
    */
   public static List<Student> getStudentsfromId(List<Integer> sId) {
-	  BasicConfigurator.configure();
+	//  BasicConfigurator.configure();
     Connection conn = Connection1.getConnection();
 
     PreparedStatement stmt = null;
@@ -164,7 +164,7 @@ public class StudentDao implements StudentDaoInterface {
   public static int getIDfromRollNo(String rollno) {
     int sId = -1;
     Connection conn = Connection1.getConnection();
-    BasicConfigurator.configure();
+    //BasicConfigurator.configure();
     PreparedStatement stmt = null;
     String sql = "Select id from student where rollno=?";
 
@@ -190,7 +190,7 @@ public class StudentDao implements StudentDaoInterface {
   }
   
   public static List<Student> getStudentsPendingApproval() {
-	  BasicConfigurator.configure();
+	 // BasicConfigurator.configure();
 	  List<Student> students = new ArrayList<Student>();
 	  
 	  String sql = "SELECT * FROM student where isApproved = ?";
@@ -223,7 +223,7 @@ public class StudentDao implements StudentDaoInterface {
   }
   
   public  static boolean approveStudent(String email) {
-	  BasicConfigurator.configure();
+	 // BasicConfigurator.configure();
 	  
 	  String sql = "UPDATE student set isApproved = ? where email = ?";
 	  Connection con = Connection1.getConnection();

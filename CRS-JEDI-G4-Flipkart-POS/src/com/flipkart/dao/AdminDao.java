@@ -25,7 +25,7 @@ public class AdminDao implements AdminDaoInterface {
 	
 	public static Admin login(String username, String password) {
 
-	BasicConfigurator.configure();
+	//BasicConfigurator.configure();
     Connection conn = Connection1.getConnection();
 
     PreparedStatement stmt = null;
@@ -60,7 +60,7 @@ public class AdminDao implements AdminDaoInterface {
    */
   public static boolean addAdmin(Admin s) {
 
-	  BasicConfigurator.configure();
+	 // BasicConfigurator.configure();
     Connection conn = Connection1.getConnection();
 
     PreparedStatement stmt = null;
@@ -89,7 +89,7 @@ public class AdminDao implements AdminDaoInterface {
    */
   public static List<Admin> getAdmins() {
 
-	  BasicConfigurator.configure();
+	 // BasicConfigurator.configure();
     Connection conn = Connection1.getConnection();
 
     PreparedStatement stmt = null;

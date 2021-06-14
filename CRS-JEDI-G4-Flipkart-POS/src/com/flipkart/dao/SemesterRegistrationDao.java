@@ -25,7 +25,7 @@ public class SemesterRegistrationDao implements SemesterRegistrationDaoInterface
    * @return true, if successful
    */
   public static boolean addSemesterRegistration(SemesterRegistration s) {
-	  BasicConfigurator.configure();
+	 // BasicConfigurator.configure();
     Connection conn = Connection1.getConnection();
 
     PreparedStatement stmt = null;
@@ -59,7 +59,7 @@ public class SemesterRegistrationDao implements SemesterRegistrationDaoInterface
    */
   private static List<SemesterRegistration> getSemesterRegistrations(String sql) {
     Connection conn = Connection1.getConnection();
-    BasicConfigurator.configure();
+   // BasicConfigurator.configure();
     PreparedStatement stmt = null;
     List<SemesterRegistration> courseList = new ArrayList<SemesterRegistration>();
     try {
@@ -113,7 +113,7 @@ public class SemesterRegistrationDao implements SemesterRegistrationDaoInterface
   public static int getCourseIdfromCode(String courseCode) {
     //		System.out.println(courseCode);
     Connection conn = Connection1.getConnection();
-    BasicConfigurator.configure();
+   // BasicConfigurator.configure();
     PreparedStatement stmt = null;
     String sql = "Select id from course where courseCode=?";
     int cId = -1;
@@ -148,7 +148,7 @@ public class SemesterRegistrationDao implements SemesterRegistrationDaoInterface
   public static boolean addCouseToTeach(int cId, int pId) {
 
     Connection conn = Connection1.getConnection();
-    BasicConfigurator.configure();
+   // BasicConfigurator.configure();
     PreparedStatement stmt = null;
     String sql = "UPDATE course SET pId = ? where id = ? ";
 

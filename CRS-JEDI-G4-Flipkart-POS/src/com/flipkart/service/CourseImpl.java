@@ -10,10 +10,14 @@ import com.flipkart.exception.CoursePreExistsException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
+
 // TODO: Auto-generated Javadoc
 /** The Class CourseImpl. */
 public class CourseImpl implements CourseInterface {
 
+	private static Logger logger = Logger.getLogger(CourseImpl.class);
   /** The courses. */
   private static List<Course> courses;
 
@@ -47,6 +51,8 @@ public class CourseImpl implements CourseInterface {
   @Override
   public boolean addCourse(Course course) throws CoursePreExistsException {
     boolean check = CourseDao.addCourse(course);
+//    BasicConfigurator.configure();
+//    logger.info("Course added");
     if (check == true) return check;
     else throw new CoursePreExistsException(course.getCourseCode());
   }

@@ -22,12 +22,15 @@ public class CourseDao implements CourseDaoInterface {
    * @param s the s
    * @return true, if successful
    */
-	
+
 	private static Logger logger = Logger.getLogger(CourseDao.class);
+//	public CourseDao(){
+//		 BasicConfigurator.configure();
+//	}
 
   public static boolean addCourse(Course s) {
 
-	  BasicConfigurator.configure();
+	  //BasicConfigurator.configure();
     Connection conn = Connection1.getConnection();
     boolean check = true;
 
@@ -41,6 +44,7 @@ public class CourseDao implements CourseDaoInterface {
       rs.next();
       int cnt = rs.getInt("cnt");
       if (cnt > 0) check = false;
+
     } catch (Exception e) {
       check = false;
       logger.error(e);
@@ -73,6 +77,7 @@ public class CourseDao implements CourseDaoInterface {
       check = false;
       logger.error(e);
     }
+    logger.info("Course added");
     return check;
   }
 
@@ -84,7 +89,7 @@ public class CourseDao implements CourseDaoInterface {
    */
   public static boolean removeCourse(int courseId) {
 
-	  BasicConfigurator.configure();
+	//  BasicConfigurator.configure();
     Connection conn = Connection1.getConnection();
 
     PreparedStatement stmt = null;
@@ -116,7 +121,7 @@ public class CourseDao implements CourseDaoInterface {
    */
   private static Course readCourse(ResultSet rs) {
     try {
-    	BasicConfigurator.configure();
+    	//BasicConfigurator.configure();
       Course temp = new Course();
       temp.setCourseCode(rs.getString("courseCode"));
       temp.setDepartment(rs.getString("department"));
@@ -141,7 +146,7 @@ public class CourseDao implements CourseDaoInterface {
   private static List<Course> getCourses(String sql) {
     Connection conn = Connection1.getConnection();
 
-    BasicConfigurator.configure();
+  //  BasicConfigurator.configure();
     PreparedStatement stmt = null;
     List<Course> courseList = new ArrayList<Course>();
     try {
@@ -207,7 +212,7 @@ public class CourseDao implements CourseDaoInterface {
    */
   public static boolean markCourseToTeach(int cId, int pId) {
     Connection conn = Connection1.getConnection();
-    BasicConfigurator.configure();
+   // BasicConfigurator.configure();
     PreparedStatement stmt = null;
     String sql = "UPDATE course SET professorId = ? where id = ? ";
 

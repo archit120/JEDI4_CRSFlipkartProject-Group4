@@ -14,7 +14,7 @@ import org.apache.log4j.Logger;
 public class PaymentDao implements PaymentDaoInterface {
 	
 
-private static Logger logger = Logger.getLogger(AdminDao.class);
+private static Logger logger = Logger.getLogger(PaymentDao.class);
 
 
   /**
@@ -24,7 +24,7 @@ private static Logger logger = Logger.getLogger(AdminDao.class);
    * @return true, if successful
    */
   public static boolean makePayment(Payment p) {
-	  BasicConfigurator.configure();
+	  //BasicConfigurator.configure();
     Connection conn = Connection1.getConnection();
 
     PreparedStatement stmt = null;
@@ -40,6 +40,7 @@ private static Logger logger = Logger.getLogger(AdminDao.class);
       if (rs.next()) {
         p.setId(rs.getInt(1));
       }
+      logger.info("Pay done");
 
     } catch (Exception e) {
 

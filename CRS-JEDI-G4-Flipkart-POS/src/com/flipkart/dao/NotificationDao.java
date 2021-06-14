@@ -24,7 +24,7 @@ public class NotificationDao {
     */
 	
 	public List<Notification> getNotification(int studentId) {
-		BasicConfigurator.configure();
+		//BasicConfigurator.configure();
 		Connection conn = Connection1.getConnection();
 
 	    PreparedStatement stmt = null;

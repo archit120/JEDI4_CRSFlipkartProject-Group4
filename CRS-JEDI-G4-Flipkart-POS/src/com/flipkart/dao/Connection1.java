@@ -44,7 +44,7 @@ public class Connection1 {
     java.sql.Connection conn = null;
     PreparedStatement stmt = null;
 
-    BasicConfigurator.configure();
+  //  BasicConfigurator.configure();
     try {
 
       // Step 3 Register Driver here and create connection
