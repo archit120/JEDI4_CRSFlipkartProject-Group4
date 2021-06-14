@@ -223,28 +223,43 @@ public class StudentDao implements StudentDaoInterface {
   
   public  static boolean approveStudent(String email) {
 	  
-	  
+	  String sql1 = "select count(email)as count from student where isApproved = ? and email =?";
 	  String sql = "UPDATE student set isApproved = ? where email = ?";
 	  Connection con = Connection1.getConnection();
-	  
+	  try {
+		  PreparedStatement stmt1 = con.prepareStatement(sql1);
+			 stmt1.setBoolean(1,false);
+			 stmt1.setString(2, email);
+			 ResultSet rs=stmt1.executeQuery();
+			 int count=0;
+			 while(rs.next())
+			 {
+				 count=rs.getInt(count);
+			 }
+			 if(count==0) return false;
+	  }
+	  catch(Exception e)
+	  {
+		 logger.error(e.getMessage());
+		  return false;
+	  }
 	
 	  try {
 		  PreparedStatement stmt = con.prepareStatement(sql);
 		 stmt.setBoolean(1,true);
 		 stmt.setString(2, email);
-		 stmt.executeUpdate();
+		 stmt.executeUpdate(sql);
 		  
 		 return true;
 		  
 	  }catch(Exception e){
 		  
 		  logger.error(e.getMessage());
+		  return false;
 		  
 	  }finally {
 		  
 	  }
-	  
-	  return false;
 	  
   }
   

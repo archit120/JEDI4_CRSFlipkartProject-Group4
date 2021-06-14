@@ -2,6 +2,8 @@
 package com.flipkart.service;
 
 import com.flipkart.bean.*;
+import com.flipkart.exception.LoginFailedException;
+
 import java.util.List;
 
 // TODO: Auto-generated Javadoc
@@ -43,8 +45,9 @@ public interface ProfessorInterface {
    * @param username the username
    * @param password the password
    * @return true, if successful
+ * @throws LoginFailedException 
    */
-  public boolean login(String username, String password);
+  public boolean login(String username, String password) throws LoginFailedException;
 
   /** Logout. */
   public void logout();

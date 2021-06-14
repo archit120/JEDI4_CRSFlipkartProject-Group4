@@ -4,6 +4,8 @@ import com.flipkart.bean.Course;
 import com.flipkart.bean.CourseCatalogue;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
+import com.flipkart.exception.LoginFailedException;
+import com.flipkart.exception.StudentApprovalFailedException;
 import com.flipkart.service.AdminImpl;
 import com.flipkart.service.CourseCatalogueImpl;
 import com.flipkart.service.CourseImpl;
@@ -11,6 +13,8 @@ import com.flipkart.service.StudentImpl;
 
 import java.util.List;
 import java.util.Scanner;
+
+import javax.security.auth.login.LoginException;
 
 // TODO: Auto-generated Javadoc
 /** The Class CRSAdminMenu. */
@@ -39,7 +43,7 @@ public class CRSAdminMenu {
   }
 
   /** Admin menu handler. */
-  public static void adminMenuHandler() {
+  public static void adminMenuHandler() throws LoginFailedException, StudentApprovalFailedException{
 
     try {
 
@@ -59,8 +63,19 @@ public class CRSAdminMenu {
         String username = sc.next();
         System.out.print("Enter admin password: ");
         String password = sc.next();
-        if (admin.login(username, password)) break;
-        System.out.println("Invalid login. Please retry.");
+        try {
+        	if (admin.login(username, password)) break;
+        }
+        catch(LoginFailedException e){
+        	System.out.println(e.getMessage());        	
+        }
+        
+        //System.out.println("Invalid login. Please retry.");
+
+        if(true) {
+        	System.out.println("Hi");
+        	throw new LoginFailedException(username);
+        }
       }
       CourseImpl courseImpl = new CourseImpl();
       while (true) {
@@ -214,12 +229,17 @@ public class CRSAdminMenu {
     		  
     		  StudentImpl studImpl = new StudentImpl();
     		  
-    		  boolean done  = studImpl.approveStudent(email);
-    		  
-    		  if(done  == true) {
+    		  try {
+
+        		  boolean done  = studImpl.approveStudent(email);
+//        		  if(done  == true) {
     			  System.out.println("Student approved successfully !!!");
+//        		  }
     		  }
-    		  
+    		  catch(StudentApprovalFailedException e){
+    			  System.out.println(e.getMessage());
+    			  
+    		  }
     		  break;
         	  
           case 7:

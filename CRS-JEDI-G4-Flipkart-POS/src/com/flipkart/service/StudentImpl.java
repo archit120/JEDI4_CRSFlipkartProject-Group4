@@ -3,6 +3,10 @@ package com.flipkart.service;
 import com.flipkart.bean.*;
 import com.flipkart.dao.RegisteredCourseDao;
 import com.flipkart.dao.StudentDao;
+import com.flipkart.exception.LoginFailedException;
+import com.flipkart.exception.StudentApprovalFailedException;
+import com.flipkart.exception.StudentNotApprovedException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -101,12 +105,18 @@ public class StudentImpl implements StudentInterface {
    * @param username the username
    * @param password the password
    * @return true, if successful
+ * @throws StudentNotApprovedException 
+ * @throws LoginFailedException 
    */
   @Override
-  public boolean login(String username, String password) {
+  public boolean login(String username, String password) throws StudentNotApprovedException, LoginFailedException {
     Student loginRes = StudentDao.login(username, password);
-    if (loginRes == null) return false;
-    if(loginRes.getIsApproved() == false) return false;
+    if (loginRes == null) throw new LoginFailedException(username);
+    if(loginRes.getIsApproved() == false)
+    	{
+    	throw new StudentNotApprovedException(username);
+    		//return false;
+    	}
     studentInstance = loginRes;
     return true;
   }
@@ -131,12 +141,13 @@ public boolean approveStudent() {
 }
 
 @Override
-public boolean approveStudent(String email) {
+public boolean approveStudent(String email) throws StudentApprovalFailedException {
 	// TODO Auto-generated method stub
-	return StudentDao.approveStudent(email);
+	if( StudentDao.approveStudent(email)) return true;
+	else throw new StudentApprovalFailedException(email);
 }
 
-public boolean addStudent(String email,String password,String name,String username,String roll,String dept) {
+public boolean addStudent(String email,String password,String name,String username,String roll,String dept){
 	Student s = new Student();
 	s.setEmail(email);
 	s.setName(name);
