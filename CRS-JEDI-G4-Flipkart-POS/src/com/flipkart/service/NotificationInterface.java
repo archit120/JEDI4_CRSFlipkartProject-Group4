@@ -1,21 +1,17 @@
 package com.flipkart.service;
 
+import com.flipkart.bean.Notification;
 import java.util.List;
 
-import com.flipkart.bean.Notification;
-
 // TODO: Auto-generated Javadoc
-/**
- * The Interface NotificationInterface.
- */
+/** The Interface NotificationInterface. */
 public interface NotificationInterface {
-	
-	/**
-	 * Gets the notification.
-	 *
-	 * @param studentId the student id
-	 * @return the notification
-	 */
-	public List<Notification> getNotification(int studentId);
-}
 
+  /**
+   * Gets the notification.
+   *
+   * @param studentId the student id
+   * @return the notification
+   */
+  public List<Notification> getNotification(int studentId);
+}

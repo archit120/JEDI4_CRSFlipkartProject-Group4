@@ -1,5 +1,7 @@
 package com.flipkart.dao;
 
+import com.flipkart.bean.Course;
+import com.flipkart.bean.CourseCatalogue;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,219 +9,208 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.flipkart.bean.Course;
-import com.flipkart.bean.CourseCatalogue;
-import com.flipkart.bean.Professor;
-import com.flipkart.bean.ReportCard;
-import com.flipkart.bean.Student;
-
 // TODO: Auto-generated Javadoc
-/**
- * The Class CourseDao.
- */
+/** The Class CourseDao. */
 public class CourseDao implements CourseDaoInterface {
-	
-	/**
-	 * Adds the course.
-	 *
-	 * @param s the s
-	 * @return true, if successful
-	 */
-	public static boolean addCourse(Course s) {
 
-		Connection conn = Connection1.getConnection();
-		boolean check = true;
+  /**
+   * Adds the course.
+   *
+   * @param s the s
+   * @return true, if successful
+   */
+  public static boolean addCourse(Course s) {
 
-		PreparedStatement stmt = null;
-		String sql1 = "SELECT COUNT(*) as cnt from course where courseCode= ? and courseCatalogueId=? ";
-		try {
-			stmt = conn.prepareStatement(sql1);
-			stmt.setString(1, s.getCourseCode());
-			stmt.setInt(2, s.getCourseCatalogueId());
-			ResultSet rs = stmt.executeQuery();
-			rs.next();
-			int cnt = rs.getInt("cnt");
-			if (cnt > 0)
-				check = false;
-		} catch (Exception e) {
-			check = false;
-			System.out.println(e);
-		}
+    Connection conn = Connection1.getConnection();
+    boolean check = true;
 
-		if (check == false)
-			return check;
+    PreparedStatement stmt = null;
+    String sql1 = "SELECT COUNT(*) as cnt from course where courseCode= ? and courseCatalogueId=? ";
+    try {
+      stmt = conn.prepareStatement(sql1);
+      stmt.setString(1, s.getCourseCode());
+      stmt.setInt(2, s.getCourseCatalogueId());
+      ResultSet rs = stmt.executeQuery();
+      rs.next();
+      int cnt = rs.getInt("cnt");
+      if (cnt > 0) check = false;
+    } catch (Exception e) {
+      check = false;
+      System.out.println(e);
+    }
 
-		String sql = "INSERT INTO course (courseCode, department, description, preRequisites, courseCatalogueId, professorId) VALUES (?,?,?,?,?,?)";
+    if (check == false) return check;
 
-		stmt = null;
+    String sql =
+        "INSERT INTO course (courseCode, department, description, preRequisites, courseCatalogueId,"
+            + " professorId) VALUES (?,?,?,?,?,?)";
 
-		try {
-			//System.out.println("hi");
-			stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			stmt.setString(1, s.getCourseCode()); // This would set age
-			stmt.setString(2, s.getDepartment());
-			stmt.setString(3, s.getDescriptions());
-			stmt.setString(4, s.getPreRequisites());
-			stmt.setInt(5, s.getCourseCatalogueId());
-			stmt.setInt(6, s.getProfessorId());
-			stmt.executeUpdate();
-			ResultSet rs = stmt.getGeneratedKeys();
-			if (rs.next()) {
-				s.setId(rs.getInt(1));
-			}
+    stmt = null;
 
-		} catch (Exception e) {
-			check = false;
-			System.out.println(e);
-		}
-		return check;
+    try {
+      // System.out.println("hi");
+      stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+      stmt.setString(1, s.getCourseCode()); // This would set age
+      stmt.setString(2, s.getDepartment());
+      stmt.setString(3, s.getDescriptions());
+      stmt.setString(4, s.getPreRequisites());
+      stmt.setInt(5, s.getCourseCatalogueId());
+      stmt.setInt(6, s.getProfessorId());
+      stmt.executeUpdate();
+      ResultSet rs = stmt.getGeneratedKeys();
+      if (rs.next()) {
+        s.setId(rs.getInt(1));
+      }
 
-	}
-	
-	/**
-	 * Removes the course.
-	 *
-	 * @param courseId the course id
-	 * @return true, if successful
-	 */
-	public static boolean removeCourse(int courseId) {
+    } catch (Exception e) {
+      check = false;
+      System.out.println(e);
+    }
+    return check;
+  }
 
-		Connection conn = Connection1.getConnection();
+  /**
+   * Removes the course.
+   *
+   * @param courseId the course id
+   * @return true, if successful
+   */
+  public static boolean removeCourse(int courseId) {
 
-		PreparedStatement stmt = null;
-		String sql = "Delete from course where id=? ";
-				
-		try {
-		//System.out.println("hi");
-			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, courseId);
-			
-			//stmt.setString(5, s.getEmpID());
-			stmt.executeUpdate();
-			stmt.close();
-			conn.close();
-			
-		} catch (Exception e) {
+    Connection conn = Connection1.getConnection();
 
-			System.out.println(e);
-		}
-		
-		return true;
+    PreparedStatement stmt = null;
+    String sql = "Delete from course where id=? ";
 
-	}
+    try {
+      // System.out.println("hi");
+      stmt = conn.prepareStatement(sql);
+      stmt.setInt(1, courseId);
 
-	/**
-	 * Read course.
-	 *
-	 * @param rs the rs
-	 * @return the course
-	 */
-	private static Course readCourse(ResultSet rs) {
-		try {
-			Course temp = new Course();
-			temp.setCourseCode(rs.getString("courseCode"));
-			temp.setDepartment(rs.getString("department"));
-			temp.setId(rs.getInt("id"));
-			temp.setCourseCatalogueId(rs.getInt("courseCatalogueId"));
-			temp.setProfessorId(rs.getInt("professorId"));
-			temp.setPreRequisites(rs.getString("prerequisites"));
-			temp.setDescriptions(rs.getString("description"));
-			return temp;
-		}
-		catch (Exception e) {
-			System.out.println(e);
-			return null;
-		}
+      // stmt.setString(5, s.getEmpID());
+      stmt.executeUpdate();
+      stmt.close();
+      conn.close();
 
-	}
+    } catch (Exception e) {
 
-	/**
-	 * Gets the courses.
-	 *
-	 * @param sql the sql
-	 * @return the courses
-	 */
-	private static List<Course> getCourses(String sql) {
-		Connection conn = Connection1.getConnection();
+      System.out.println(e);
+    }
 
-		PreparedStatement stmt = null;
-		List<Course> courseList = new ArrayList<Course>();
-		try {
-			stmt = conn.prepareStatement(sql);
-			ResultSet rs = stmt.executeQuery(sql);
-			//STEP 5: Extract data from result set
-			while (rs.next()) {
-				//Retrieve by column name
-				courseList.add(readCourse(rs));
-			}
-			stmt.close();
-			conn.close();
-		} catch (Exception e) {
+    return true;
+  }
 
-			System.out.println(e);
-		}
-		return courseList;
-	}
+  /**
+   * Read course.
+   *
+   * @param rs the rs
+   * @return the course
+   */
+  private static Course readCourse(ResultSet rs) {
+    try {
+      Course temp = new Course();
+      temp.setCourseCode(rs.getString("courseCode"));
+      temp.setDepartment(rs.getString("department"));
+      temp.setId(rs.getInt("id"));
+      temp.setCourseCatalogueId(rs.getInt("courseCatalogueId"));
+      temp.setProfessorId(rs.getInt("professorId"));
+      temp.setPreRequisites(rs.getString("prerequisites"));
+      temp.setDescriptions(rs.getString("description"));
+      return temp;
+    } catch (Exception e) {
+      System.out.println(e);
+      return null;
+    }
+  }
 
-	/**
-	 * Gets the course.
-	 *
-	 * @param courseId the course id
-	 * @return the course
-	 */
-	public  static Course getCourse(int courseId) {
-		return getCourses("select * from course where id="+courseId).get(0);
-	}
+  /**
+   * Gets the courses.
+   *
+   * @param sql the sql
+   * @return the courses
+   */
+  private static List<Course> getCourses(String sql) {
+    Connection conn = Connection1.getConnection();
 
-	/**
-	 * Find courses.
-	 *
-	 * @param courseCatalogue the course catalogue
-	 * @return the list
-	 */
-	public static List<Course> findCourses(CourseCatalogue courseCatalogue) {
-		return getCourses("select * from course where courseCatalogueId="+courseCatalogue.getId());
-	}
+    PreparedStatement stmt = null;
+    List<Course> courseList = new ArrayList<Course>();
+    try {
+      stmt = conn.prepareStatement(sql);
+      ResultSet rs = stmt.executeQuery(sql);
+      // STEP 5: Extract data from result set
+      while (rs.next()) {
+        // Retrieve by column name
+        courseList.add(readCourse(rs));
+      }
+      stmt.close();
+      conn.close();
+    } catch (Exception e) {
 
-	/**
-	 * Find course.
-	 *
-	 * @param courseCatalogue the course catalogue
-	 * @param coursecode the coursecode
-	 * @return the course
-	 */
-	public static Course findCourse(CourseCatalogue courseCatalogue, String coursecode) {
-		return getCourses("select * from course where courseCatalogueId="+courseCatalogue.getId()+" and coursecode='" + coursecode + "'").get(0);
-	}
+      System.out.println(e);
+    }
+    return courseList;
+  }
 
+  /**
+   * Gets the course.
+   *
+   * @param courseId the course id
+   * @return the course
+   */
+  public static Course getCourse(int courseId) {
+    return getCourses("select * from course where id=" + courseId).get(0);
+  }
 
+  /**
+   * Find courses.
+   *
+   * @param courseCatalogue the course catalogue
+   * @return the list
+   */
+  public static List<Course> findCourses(CourseCatalogue courseCatalogue) {
+    return getCourses("select * from course where courseCatalogueId=" + courseCatalogue.getId());
+  }
 
-		/**
-		 * Mark course to teach.
-		 *
-		 * @param cId the c id
-		 * @param pId the id
-		 * @return true, if successful
-		 */
-		public static boolean markCourseToTeach(int cId,int pId) {			
-			Connection conn = Connection1.getConnection();
+  /**
+   * Find course.
+   *
+   * @param courseCatalogue the course catalogue
+   * @param coursecode the coursecode
+   * @return the course
+   */
+  public static Course findCourse(CourseCatalogue courseCatalogue, String coursecode) {
+    return getCourses(
+            "select * from course where courseCatalogueId="
+                + courseCatalogue.getId()
+                + " and coursecode='"
+                + coursecode
+                + "'")
+        .get(0);
+  }
 
-			PreparedStatement stmt = null;
-			String sql = "UPDATE course SET professorId = ? where id = ? ";
-			
-			try {
-				stmt = conn.prepareStatement(sql);
-				stmt.setInt(1, pId);
-				stmt.setInt(2, cId);
-				
-				stmt.executeUpdate();
-			}catch(Exception e) {
-				System.out.println(e);
-			}
-			
-			return true;
-			
-			
-		}
+  /**
+   * Mark course to teach.
+   *
+   * @param cId the c id
+   * @param pId the id
+   * @return true, if successful
+   */
+  public static boolean markCourseToTeach(int cId, int pId) {
+    Connection conn = Connection1.getConnection();
 
+    PreparedStatement stmt = null;
+    String sql = "UPDATE course SET professorId = ? where id = ? ";
+
+    try {
+      stmt = conn.prepareStatement(sql);
+      stmt.setInt(1, pId);
+      stmt.setInt(2, cId);
+
+      stmt.executeUpdate();
+    } catch (Exception e) {
+      System.out.println(e);
+    }
+
+    return true;
+  }
 }

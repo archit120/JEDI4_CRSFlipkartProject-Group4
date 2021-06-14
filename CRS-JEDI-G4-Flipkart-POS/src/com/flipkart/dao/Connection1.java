@@ -1,12 +1,8 @@
-/**
- * 
- */
+/** */
 package com.flipkart.dao;
 
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -16,53 +12,48 @@ import java.sql.SQLException;
  */
 public class Connection1 {
 
-	/**
-	 * The Constant JDBC_DRIVER.
-	 *
-	 */
-	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	
-	/** The Constant DB_URL. */
-	static final String DB_URL = "jdbc:mysql://localhost/crs";
+  /** The Constant JDBC_DRIVER. */
+  static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 
-	/** The Constant USER. */
-	//  Database credentials
-	static final String USER = "root";
-	
-	/** The Constant PASS. */
-	static final String PASS = "root";
+  /** The Constant DB_URL. */
+  static final String DB_URL = "jdbc:mysql://localhost/crs";
 
-	/** The connection instance. */
-	private static java.sql.Connection connectionInstance = null;
+  /** The Constant USER. */
+  //  Database credentials
+  static final String USER = "root";
 
-	/**
-	 * Gets the connection.
-	 *
-	 * @return the connection
-	 */
-	public static java.sql.Connection getConnection() {
-		if (connectionInstance != null)
-			return connectionInstance;
-		java.sql.Connection conn = null;
-		PreparedStatement stmt = null;
+  /** The Constant PASS. */
+  static final String PASS = "root";
 
-		try {
+  /** The connection instance. */
+  private static java.sql.Connection connectionInstance = null;
 
-			// Step 3 Register Driver here and create connection
+  /**
+   * Gets the connection.
+   *
+   * @return the connection
+   */
+  public static java.sql.Connection getConnection() {
+    if (connectionInstance != null) return connectionInstance;
+    java.sql.Connection conn = null;
+    PreparedStatement stmt = null;
 
-			Class.forName("com.mysql.jdbc.Driver");
+    try {
 
-			// Step 4 make/open  a connection
+      // Step 3 Register Driver here and create connection
 
-//			System.out.println("Connecting to database...");
-			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-		}
-		// TODO Auto-generated method stub
-		catch (Exception e) {
-			System.out.println(e);
-		}
-//		connectionInstance = conn;
-		return conn;
-	}
+      Class.forName("com.mysql.jdbc.Driver");
 
+      // Step 4 make/open  a connection
+
+      //			System.out.println("Connecting to database...");
+      conn = DriverManager.getConnection(DB_URL, USER, PASS);
+    }
+    // TODO Auto-generated method stub
+    catch (Exception e) {
+      System.out.println(e);
+    }
+    //		connectionInstance = conn;
+    return conn;
+  }
 }

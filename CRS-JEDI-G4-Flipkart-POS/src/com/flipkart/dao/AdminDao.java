@@ -1,8 +1,6 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.Admin;
-import com.flipkart.bean.Student;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,115 +8,106 @@ import java.util.ArrayList;
 import java.util.List;
 
 // TODO: Auto-generated Javadoc
-/**
- * The Class AdminDao.
- */
+/** The Class AdminDao. */
 public class AdminDao implements AdminDaoInterface {
 
-	/**
-	 * Login.
-	 *
-	 * @param username the username
-	 * @param password the password
-	 * @return the admin
-	 */
-	public static Admin login(String username, String password) {
-		
-		
-		
-		Connection conn = Connection1.getConnection();
+  /**
+   * Login.
+   *
+   * @param username the username
+   * @param password the password
+   * @return the admin
+   */
+  public static Admin login(String username, String password) {
 
-		PreparedStatement stmt = null;
-		String sql = "Select * from admin where username=? and password=?";
-		try {
-			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, username);
-			stmt.setString(2, password);
+    Connection conn = Connection1.getConnection();
 
-			ResultSet rs = stmt.executeQuery();
-			if(!rs.next())
-				return null;
-			Admin temp = new Admin();
-			temp.setUserID(rs.getInt("id"));
-			temp.setName(rs.getString("name"));
-			temp.setEmail(rs.getString("email"));
-			temp.setUsername(rs.getString("username"));
-			temp.setPassword(rs.getString("password"));
-			temp.setEmpID(rs.getString("empid"));
-			return temp;
-		} catch (Exception e) {
+    PreparedStatement stmt = null;
+    String sql = "Select * from admin where username=? and password=?";
+    try {
+      stmt = conn.prepareStatement(sql);
+      stmt.setString(1, username);
+      stmt.setString(2, password);
 
-			System.out.println(e);
-		}
-		return null;
-	}
+      ResultSet rs = stmt.executeQuery();
+      if (!rs.next()) return null;
+      Admin temp = new Admin();
+      temp.setUserID(rs.getInt("id"));
+      temp.setName(rs.getString("name"));
+      temp.setEmail(rs.getString("email"));
+      temp.setUsername(rs.getString("username"));
+      temp.setPassword(rs.getString("password"));
+      temp.setEmpID(rs.getString("empid"));
+      return temp;
+    } catch (Exception e) {
 
-	/**
-	 * Adds the admin.
-	 *
-	 * @param s the s
-	 * @return true, if successful
-	 */
-	public static boolean addAdmin(Admin s) {
+      System.out.println(e);
+    }
+    return null;
+  }
 
-		Connection conn = Connection1.getConnection();
+  /**
+   * Adds the admin.
+   *
+   * @param s the s
+   * @return true, if successful
+   */
+  public static boolean addAdmin(Admin s) {
 
-		PreparedStatement stmt = null;
-		String sql = "INSERT INTO admin (name, email, username, password, empid) VALUES (?, ?,?,?,?)";
-		try {
-			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, s.getName()); // This would set age
-			stmt.setString(2, s.getEmail());
-			stmt.setString(3, s.getUsername());
-			stmt.setString(4, s.getPassword());
+    Connection conn = Connection1.getConnection();
 
-			stmt.setString(5, s.getEmpID());
-			stmt.executeUpdate();
+    PreparedStatement stmt = null;
+    String sql = "INSERT INTO admin (name, email, username, password, empid) VALUES (?, ?,?,?,?)";
+    try {
+      stmt = conn.prepareStatement(sql);
+      stmt.setString(1, s.getName()); // This would set age
+      stmt.setString(2, s.getEmail());
+      stmt.setString(3, s.getUsername());
+      stmt.setString(4, s.getPassword());
 
-		} catch (Exception e) {
+      stmt.setString(5, s.getEmpID());
+      stmt.executeUpdate();
 
-			System.out.println(e);
-		}
-		return true;
+    } catch (Exception e) {
 
+      System.out.println(e);
+    }
+    return true;
+  }
 
-	}
+  /**
+   * Gets the admins.
+   *
+   * @return the admins
+   */
+  public static List<Admin> getAdmins() {
 
-	/**
-	 * Gets the admins.
-	 *
-	 * @return the admins
-	 */
-	public static List<Admin> getAdmins() {
+    Connection conn = Connection1.getConnection();
 
-		Connection conn = Connection1.getConnection();
+    PreparedStatement stmt = null;
+    List<Admin> admins = new ArrayList<Admin>();
+    String sql = "Select * from admin ";
+    try {
+      stmt = conn.prepareStatement(sql);
 
-		PreparedStatement stmt = null;
-		List<Admin> admins = new ArrayList<Admin>();
-		String sql = "Select * from admin ";
-		try {
-			stmt = conn.prepareStatement(sql);
+      ResultSet rs = stmt.executeQuery();
+      while (rs.next()) {
+        // Retrieve by column name
+        Admin temp = new Admin();
+        temp.setUserID(rs.getInt("id"));
+        temp.setName(rs.getString("name"));
+        temp.setEmail(rs.getString("email"));
+        temp.setUsername(rs.getString("username"));
+        temp.setPassword(rs.getString("password"));
+        temp.setEmpID(rs.getString("empid"));
+        admins.add(temp);
+      }
 
-			ResultSet rs = stmt.executeQuery();
-			while (rs.next()) {
-				//Retrieve by column name
-				Admin temp = new Admin();
-				temp.setUserID(rs.getInt("id"));
-				temp.setName(rs.getString("name"));
-				temp.setEmail(rs.getString("email"));
-				temp.setUsername(rs.getString("username"));
-				temp.setPassword(rs.getString("password"));
-				temp.setEmpID(rs.getString("empid"));
-				admins.add(temp);
-			}
+    } catch (Exception e) {
 
-		} catch (Exception e) {
+      System.out.println(e);
+    }
 
-			System.out.println(e);
-		}
-
-		return admins;
-	}
-
+    return admins;
+  }
 }
-
