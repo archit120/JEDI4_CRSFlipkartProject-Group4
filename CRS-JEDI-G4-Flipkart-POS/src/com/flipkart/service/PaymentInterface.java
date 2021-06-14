@@ -2,6 +2,7 @@
 package com.flipkart.service;
 
 import com.flipkart.bean.Payment;
+import com.flipkart.exception.PaymentAlreadyDone;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -18,5 +19,5 @@ public interface PaymentInterface {
    * @return true, if successful
    */
   //	public boolean getDetails(int studentId,int billId, int amount,Date date);
-  public boolean makePayment(Payment payment);
+  public boolean makePayment(Payment payment) throws PaymentAlreadyDone;
 }
