@@ -112,13 +112,13 @@ public class CRSStudentMenu {
 
       } else if (option == 3) {
 
-        System.out.println("Enter course code to be dropped");
+        System.out.println("Enter course code to be dropped: ");
         regImpl.dropRegisteredCourse(regImpl.findRegisteredCourse(chosenSem, sc.next()));
         System.out.println("Course dropped");
 
       } else if (option == 4) {
 
-        System.out.println("Payment options:-");
+        System.out.println("Payment options: ");
 
         System.out.println();
 
@@ -196,7 +196,7 @@ public class CRSStudentMenu {
         //          mode = "Offline";
         //        }
 
-        System.out.println("Enter your semseter registration id");
+        System.out.println("Enter your semseter registration id: ");
 
         int semesterRegisrationId = sc.nextInt();
 
@@ -221,7 +221,7 @@ public class CRSStudentMenu {
         stud.logout();
         break;
       } else {
-        System.out.println(" Enter valid Inputs ");
+        System.out.println("Enter valid Inputs");
       }
       printMenu();
       System.out.println("\n\n ENTER YOUR CHOICE \n\n");
