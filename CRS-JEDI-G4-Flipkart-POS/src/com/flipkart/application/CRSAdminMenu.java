@@ -94,6 +94,7 @@ public class CRSAdminMenu {
             newCourse.setPreRequisites(takeInput);
 
             newCourse.setCourseCatalogueId(chosen.getId());
+            
             try {
               courseImpl.addCourse(newCourse);
             } catch (Exception e) {
@@ -142,8 +143,12 @@ public class CRSAdminMenu {
             System.out.print("Enter Professor Department:");
             takeInput2 = sc.next();
             newProfessor.setDept(takeInput2);
-
+            
+            try {
             admin.addProfessor(newProfessor);
+            } catch (Exception e) {
+              System.out.println(e);
+            }
             break;
 
           case 4:

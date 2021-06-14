@@ -1,11 +1,15 @@
 package com.flipkart.service;
 
 import com.flipkart.bean.Admin;
+import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
 import com.flipkart.dao.AdminDao;
+import com.flipkart.dao.CourseDao;
 import com.flipkart.dao.ProfessorDao;
 import com.flipkart.dao.StudentDao;
+import com.flipkart.exception.CoursePreExistsException;
+import com.flipkart.exception.ProfessorPreExistsException;
 
 // TODO: Auto-generated Javadoc
 /** The Class AdminImpl. */
@@ -24,9 +28,16 @@ public class AdminImpl implements AdminInterface {
    * @return true, if successful
    */
   @Override
-  public boolean addProfessor(Professor professorToBeAdded) {
-    return ProfessorDao.addProfessor(professorToBeAdded);
-  }
+  	public boolean addProfessor(Professor professorToBeAdded) throws ProfessorPreExistsException {
+  		
+  		if (ProfessorDao.addProfessor(professorToBeAdded) == true) {
+	    	
+	    	return true;
+	    } else {
+	    	
+	    	throw new ProfessorPreExistsException(professorToBeAdded.getEmpID());
+	    }
+  	}
 
   /**
    * Adds the student.
