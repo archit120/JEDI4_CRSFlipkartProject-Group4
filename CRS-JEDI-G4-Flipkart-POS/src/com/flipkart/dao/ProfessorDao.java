@@ -1,6 +1,8 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.Professor;
+import com.flipkart.utils.DBUtil;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -57,7 +59,7 @@ public class ProfessorDao implements ProfessorDaoInterface {
    */
   public static boolean addProfessor(Professor s) {
 
-    Connection conn = Connection1.getConnection();
+	  Connection conn = Connection1.getConnection();
     
     boolean check = true;
 
