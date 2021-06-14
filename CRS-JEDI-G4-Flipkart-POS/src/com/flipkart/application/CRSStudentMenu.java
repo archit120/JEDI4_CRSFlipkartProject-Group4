@@ -10,7 +10,11 @@ import com.flipkart.bean.SemesterRegistration;
 import com.flipkart.dao.CourseDao;
 import com.flipkart.exception.CourseAlreadyFullException;
 import com.flipkart.exception.CourseAlreadyRegisteredException;
+import com.flipkart.exception.LoginFailedException;
+import com.flipkart.exception.StudentNotApprovedException;
+import com.flipkart.exception.PaymentAlreadyDone;
 import com.flipkart.service.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -34,8 +38,11 @@ public class CRSStudentMenu {
   }
 
   /** Student menu. 
- * @throws CourseAlreadyFullException */
-  public void StudentMenu() throws CourseAlreadyFullException, CourseAlreadyRegisteredException {
+ * @throws CourseAlreadyFullException 
+ * @throws LoginFailedException 
+ * @throws StudentNotApprovedException 
+ */
+  public void StudentMenu() throws LoginFailedException, StudentNotApprovedException, CourseAlreadyFullException, CourseAlreadyRegisteredException {
 
     Scanner sc = new Scanner(System.in);
     CourseCatalogue chosen = new CourseCatalogueImpl().getCourseCatalogues().get(0);
@@ -50,8 +57,18 @@ public class CRSStudentMenu {
       String username = sc.next();
       System.out.print("Enter student password: ");
       String password = sc.next();
+      try {
       if (stud.login(username, password)) break;
-      System.out.println("Invalid login. Please retry.");
+      }
+      catch(LoginFailedException e){
+    	  System.out.println(e.getMessage());
+    	  
+      }
+      catch(StudentNotApprovedException e1){
+    	  System.out.println(e1.getMessage());
+    	  
+      }
+      //System.out.println("Invalid login. Please retry.");
     }
     printMenu();
 
@@ -126,9 +143,15 @@ public class CRSStudentMenu {
 
         PaymentImpl paymentImpl = new PaymentImpl();
 
-        paymentImpl.makePayment(p);
+        try {
+        	paymentImpl.makePayment(p);
+        	 System.out.println("Payment Done!");
+        }catch(PaymentAlreadyDone e){
+        	System.out.println(e.getMessage());
+        }
+        
 
-        System.out.println("Payment Done!");
+       
 
         break;
 
@@ -204,6 +227,6 @@ public class CRSStudentMenu {
       System.out.println("\n\n ENTER YOUR CHOICE \n\n");
 
       option = sc.nextInt();
-    }
+    }    
   }
 }

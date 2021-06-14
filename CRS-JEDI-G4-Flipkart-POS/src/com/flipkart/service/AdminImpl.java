@@ -3,14 +3,12 @@ package com.flipkart.service;
 import org.apache.log4j.Logger;
 
 import com.flipkart.bean.Admin;
-import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
 import com.flipkart.dao.AdminDao;
-import com.flipkart.dao.CourseDao;
 import com.flipkart.dao.ProfessorDao;
 import com.flipkart.dao.StudentDao;
-import com.flipkart.exception.CoursePreExistsException;
+import com.flipkart.exception.LoginFailedException;
 import com.flipkart.exception.ProfessorPreExistsException;
 import com.flipkart.exception.StudentPreExistsException;
 
@@ -92,12 +90,13 @@ public class AdminImpl implements AdminInterface {
    * @param userID the user ID
    * @param password the password
    * @return true, if successful
+ * @throws LoginFailedException 
    */
   @Override
-  public boolean login(String userID, String password) {
+  public boolean login(String userID, String password) throws LoginFailedException {
 
     Admin loginRes = AdminDao.login(userID, password);
-    if (loginRes == null) return false;
+    if (loginRes == null) throw new LoginFailedException(userID);
     adminInstance = loginRes;
     return true;
   }

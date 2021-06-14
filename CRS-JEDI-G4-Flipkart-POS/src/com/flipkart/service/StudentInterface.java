@@ -8,6 +8,9 @@ import com.flipkart.bean.SemesterRegistration;
 import com.flipkart.bean.Student;
 import com.flipkart.exception.CourseAlreadyFullException;
 import com.flipkart.exception.CourseAlreadyRegisteredException;
+import com.flipkart.exception.LoginFailedException;
+import com.flipkart.exception.StudentApprovalFailedException;
+import com.flipkart.exception.StudentNotApprovedException;
 
 
 // TODO: Auto-generated Javadoc
@@ -58,8 +61,10 @@ public interface StudentInterface {
    * @param username the username
    * @param password the password
    * @return true, if successful
+ * @throws StudentNotApprovedException 
+ * @throws LoginFailedException 
    */
-  boolean login(String username, String password);
+  boolean login(String username, String password) throws StudentNotApprovedException, LoginFailedException;
 
   /**
    * Gets the student instance.
@@ -72,5 +77,5 @@ public interface StudentInterface {
   
   public boolean approveStudent();
 
-  boolean approveStudent(String email);
+  boolean approveStudent(String email) throws StudentApprovalFailedException;
 }

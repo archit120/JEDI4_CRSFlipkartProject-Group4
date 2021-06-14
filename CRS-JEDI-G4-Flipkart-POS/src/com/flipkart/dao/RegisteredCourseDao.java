@@ -4,6 +4,7 @@ import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.ReportCard;
 import com.flipkart.bean.Student;
 import com.flipkart.utils.DBUtil;
+import com.flipkart.exception.GradeNotAssigned;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -317,7 +318,7 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
    * @param semesterRegistrationId the semester registration id
    * @return the report card
    */
-  public static ReportCard getReportCard(int semesterRegistrationId) {
+  public static ReportCard getReportCard(int semesterRegistrationId)  throws GradeNotAssigned{
     double ans = 0;
 
     Connection conn = Connection1.getConnection();
@@ -349,6 +350,8 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
 
       ResultSet rs = stmt.executeQuery();
       while (rs.next()) {
+    	  
+    	 if(rs.getInt("registeredcourse.grade") == -1) throw new GradeNotAssigned("Your grades are not been assigned"); 
         grade.add(rs.getInt("registeredcourse.grade"));
         courseId.add(rs.getInt("registeredcourse.courseId"));
         courseCodes.add(rs.getString("course.courseCode"));
