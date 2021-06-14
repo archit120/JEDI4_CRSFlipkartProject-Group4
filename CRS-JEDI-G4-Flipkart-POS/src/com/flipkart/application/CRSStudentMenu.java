@@ -10,7 +10,9 @@ import com.flipkart.bean.SemesterRegistration;
 import com.flipkart.dao.CourseDao;
 import com.flipkart.exception.LoginFailedException;
 import com.flipkart.exception.StudentNotApprovedException;
+import com.flipkart.exception.PaymentAlreadyDone;
 import com.flipkart.service.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -133,9 +135,15 @@ public class CRSStudentMenu {
 
         PaymentImpl paymentImpl = new PaymentImpl();
 
-        paymentImpl.makePayment(p);
+        try {
+        	paymentImpl.makePayment(p);
+        	 System.out.println("Payment Done!");
+        }catch(PaymentAlreadyDone e){
+        	System.out.println(e.getMessage());
+        }
+        
 
-        System.out.println("Payment Done!");
+       
 
         break;
 
