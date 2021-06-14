@@ -12,12 +12,11 @@ public class NotificationImpl implements NotificationInterface {
    * Show notification.
    *
    * @param message the message
-   * @param studentId the student id
+   * @param rollno the student rollno
    * @return true, if successful
    */
-  public boolean showNotification(String message, int studentId) {
-    // TODO Auto-generated method stub
-    return true;
+  public boolean showNotification(String message, String rollno) {
+    return new NotificationDao().addNotification(message, rollno);
   }
 
   /**

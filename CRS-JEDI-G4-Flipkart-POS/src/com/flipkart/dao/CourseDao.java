@@ -141,7 +141,7 @@ public class CourseDao implements CourseDaoInterface {
     List<Course> courseList = new ArrayList<Course>();
     try {
       stmt = conn.prepareStatement(sql);
-      ResultSet rs = stmt.executeQuery(sql);
+      ResultSet rs = stmt.executeQuery();
       // STEP 5: Extract data from result set
       while (rs.next()) {
         // Retrieve by column name

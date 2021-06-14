@@ -177,45 +177,19 @@ public class CRSStudentMenu {
 
       } else if (option == 7) {
 
-        System.out.println("All Notification are");
+        System.out.println("All Notifications are");
 
-        //        System.out.println("Payment options:-");
-        //
-        //        System.out.println();
-        //
-        //        System.out.println("Press 1 - Pay Online");
-        //
-        //        System.out.println("Press 2 - Pay Offline");
-        //
-        //        int option2 = sc.nextInt();
-        //
-        //        String mode = "Online";
-        //
-        //        if (option2 == 2) {
-        //
-        //          mode = "Offline";
-        //        }
+        int studentId = stud.getStudentInstance().getUserID();
 
-        System.out.println("Enter your semseter registration id: ");
-
-        int semesterRegisrationId = sc.nextInt();
-
-        StudentImpl temp = new StudentImpl();
-
-        int studentId = temp.getStudentInstance().getUserID();
-
-        NotificationImpl paymentImpl = new NotificationImpl();
+        NotificationImpl notificationImp = new NotificationImpl();
 
         List<Notification> notificationList = new ArrayList<Notification>();
 
-        notificationList = paymentImpl.getNotification(studentId);
+        notificationList = notificationImp.getNotification(studentId);
 
         for (Notification n : notificationList) {
-
-          System.out.println(n.message);
+          System.out.println(n.getMessage());
         }
-
-        break;
 
       } else if (option == 8) {
         stud.logout();
