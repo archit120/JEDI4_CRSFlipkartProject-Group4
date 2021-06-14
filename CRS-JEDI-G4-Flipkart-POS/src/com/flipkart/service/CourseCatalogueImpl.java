@@ -9,7 +9,7 @@ import java.util.List;
 /** The Class CourseCatalogueImpl. */
 public class CourseCatalogueImpl implements CourseCatalogueInterface {
 
-  //	private static List<CourseCatalogue> catalogues;
+  // private static List<CourseCatalogue> catalogues;
 
   /**
    * Find course.

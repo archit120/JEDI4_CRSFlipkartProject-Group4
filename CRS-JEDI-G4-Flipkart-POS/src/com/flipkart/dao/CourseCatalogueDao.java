@@ -17,8 +17,7 @@ import org.apache.log4j.Logger;
 /** The Class CourseCatalogueDao. */
 public class CourseCatalogueDao implements CourseCatalogueDaoInterface {
 
-	private static Logger logger = Logger.getLogger(CourseCatalogueDao.class);
-
+  private static Logger logger = Logger.getLogger(CourseCatalogueDao.class);
 
   /**
    * Adds the course catalogue.
@@ -28,26 +27,29 @@ public class CourseCatalogueDao implements CourseCatalogueDaoInterface {
    */
   public static boolean addCourseCatalogue(CourseCatalogue s) {
 
-	  Connection conn = DBUtil.getConnection();
+    Connection conn = DBUtil.getConnection();
 
     PreparedStatement stmt = null;
     String sql = SQLConstants.courseCatalogueAdd;
 
     try {
-      // System.out.println("hi");
+
       stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-      stmt.setInt(1, s.getSem()); // This would set age
+      stmt.setInt(1, s.getSem());
       stmt.setInt(2, s.getYear());
       stmt.executeUpdate();
       ResultSet rs = stmt.getGeneratedKeys();
+
       if (rs.next()) {
+
         s.setId(rs.getInt(1));
       }
 
     } catch (Exception e) {
 
-    	logger.error(e);
+      logger.error(e);
     }
+
     return true;
   }
 
@@ -58,17 +60,21 @@ public class CourseCatalogueDao implements CourseCatalogueDaoInterface {
    */
   public static List<CourseCatalogue> getCourseCatalogues() {
 
-	  Connection conn = DBUtil.getConnection();
+    Connection conn = DBUtil.getConnection();
 
     PreparedStatement stmt = null;
     List<CourseCatalogue> courseList = new ArrayList<CourseCatalogue>();
+
     try {
+
       String sql = SQLConstants.courseCatalogueList;
 
       stmt = conn.prepareStatement(sql);
       ResultSet rs = stmt.executeQuery();
       // STEP 5: Extract data from result set
+
       while (rs.next()) {
+
         // Retrieve by column name
         CourseCatalogue temp = new CourseCatalogue();
         temp.setId(rs.getInt("id"));
@@ -76,15 +82,16 @@ public class CourseCatalogueDao implements CourseCatalogueDaoInterface {
         temp.setYear(rs.getInt("year"));
         courseList.add(temp);
       }
+
       stmt.close();
       conn.close();
     } catch (Exception e) {
 
-    	logger.error(e);
+      logger.error(e);
     }
+
     // STEP 6: Clean-up environment
     // rs.close();
-
     return courseList;
   }
 
@@ -95,31 +102,34 @@ public class CourseCatalogueDao implements CourseCatalogueDaoInterface {
    * @return the course idfrom code
    */
   public static int getCourseIdfromCode(String courseCode) {
-    //		System.out.println(courseCode);
+
+    // System.out.println(courseCode);
     Connection conn = DBUtil.getConnection();
 
     PreparedStatement stmt = null;
     String sql = SQLConstants.getCourseIdfromCode;
     int cId = -1;
+
     try {
-      // System.out.println("hi");
+
       stmt = conn.prepareStatement(sql);
       stmt.setString(1, courseCode);
       ResultSet rs = stmt.executeQuery();
-      //			System.out.println(rs);
+      // System.out.println(rs);
+
       while (rs.next()) {
+
         cId = rs.getInt("id");
-        //			 System.out.println(cId);
+        // System.out.println(cId);
       }
+
       stmt.close();
       conn.close();
-
     } catch (Exception e) {
 
-    	logger.error(e);
+      logger.error(e);
     }
 
     return cId;
   }
-
 }

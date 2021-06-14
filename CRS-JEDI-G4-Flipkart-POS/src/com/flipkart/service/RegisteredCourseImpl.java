@@ -27,10 +27,9 @@ public class RegisteredCourseImpl implements RegisteredCourseInterface {
    * @return the registered course
    */
   @Override
-  public RegisteredCourse findRegisteredCourse(
-      SemesterRegistration semesterRegistration, String courseCode) {
-    return RegisteredCourseDao.getRegisteredCourseBySemesterRegistrationIdAndCourseCode(
-        semesterRegistration.getId(), courseCode);
+  public RegisteredCourse findRegisteredCourse(SemesterRegistration semesterRegistration, String courseCode) {
+
+    return RegisteredCourseDao.getRegisteredCourseBySemesterRegistrationIdAndCourseCode(semesterRegistration.getId(), courseCode);
   }
 
   /**
@@ -41,6 +40,7 @@ public class RegisteredCourseImpl implements RegisteredCourseInterface {
    */
   @Override
   public boolean addRegisteredCourse(RegisteredCourse registeredCourse) {
+
     return RegisteredCourseDao.addRegisteredCourse(registeredCourse);
   }
 
@@ -52,6 +52,7 @@ public class RegisteredCourseImpl implements RegisteredCourseInterface {
    */
   @Override
   public boolean dropRegisteredCourse(RegisteredCourse registeredCourse) {
+
     return RegisteredCourseDao.deleteRegisteredCourse(registeredCourse);
   }
 
@@ -63,8 +64,8 @@ public class RegisteredCourseImpl implements RegisteredCourseInterface {
    */
   @Override
   public List<RegisteredCourse> findRegisteredCourses(SemesterRegistration semesterRegistration) {
-    return RegisteredCourseDao.getRegisteredCourseBySemesterRegistrationIdAndCourseCode(
-        semesterRegistration.getId());
+
+    return RegisteredCourseDao.getRegisteredCourseBySemesterRegistrationIdAndCourseCode(semesterRegistration.getId());
   }
 
   /**
@@ -75,6 +76,7 @@ public class RegisteredCourseImpl implements RegisteredCourseInterface {
    */
   @Override
   public boolean checkAvailability(Course course) {
+
     return viewEnrolledStudents(course).size() <= maximumEnrollment;
   }
 
@@ -88,10 +90,9 @@ public class RegisteredCourseImpl implements RegisteredCourseInterface {
    * @return true, if successful
    */
   @Override
-  public boolean markGrade(
-      String courseCode, CourseCatalogue courseCatalogue, String rollNo, Grade grade) {
-    return RegisteredCourseDao.setGradeStudent(
-        courseCode, courseCatalogue.getId(), rollNo, grade.getGrade());
+  public boolean markGrade(String courseCode, CourseCatalogue courseCatalogue, String rollNo, Grade grade) {
+
+    return RegisteredCourseDao.setGradeStudent(courseCode, courseCatalogue.getId(), rollNo, grade.getGrade());
   }
 
   /**
@@ -102,6 +103,7 @@ public class RegisteredCourseImpl implements RegisteredCourseInterface {
    * @return true, if successful
    */
   public boolean markGrade(RegisteredCourse registeredCourse, Grade grade) {
+
     return RegisteredCourseDao.setGradeStudent(registeredCourse.getId(), grade.getGrade());
   }
 
@@ -113,6 +115,7 @@ public class RegisteredCourseImpl implements RegisteredCourseInterface {
    */
   @Override
   public List<Student> viewEnrolledStudents(Course course) {
+
     return RegisteredCourseDao.getEnrolledStudents(course.getId());
   }
 
@@ -125,6 +128,7 @@ public class RegisteredCourseImpl implements RegisteredCourseInterface {
    */
   @Override
   public List<Student> viewEnrolledStudents(CourseCatalogue courseCatalogue, Professor professor) {
+
     return RegisteredCourseDao.getEnrolledStudents(courseCatalogue.getId(), professor.getUserID());
   }
 }

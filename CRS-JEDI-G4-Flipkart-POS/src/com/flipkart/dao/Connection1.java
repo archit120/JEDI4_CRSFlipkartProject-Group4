@@ -13,9 +13,8 @@ import org.apache.log4j.Logger;
  * @author Shravya
  */
 public class Connection1 {
-	
-	private static Logger logger = Logger.getLogger(Connection1.class);
 
+  private static Logger logger = Logger.getLogger(Connection1.class);
 
   /** The Constant JDBC_DRIVER. */
   static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -39,6 +38,7 @@ public class Connection1 {
    * @return the connection
    */
   public static java.sql.Connection getConnection() {
+
     if (connectionInstance != null) return connectionInstance;
     java.sql.Connection conn = null;
     PreparedStatement stmt = null;
@@ -51,14 +51,16 @@ public class Connection1 {
 
       // Step 4 make/open  a connection
 
-      //			System.out.println("Connecting to database...");
+      // System.out.println("Connecting to database...");
       conn = DriverManager.getConnection(DB_URL, USER, PASS);
     }
     // TODO Auto-generated method stub
     catch (Exception e) {
+
     	logger.error(e);
     }
-    //		connectionInstance = conn;
+
+    // connectionInstance = conn;
     return conn;
   }
 }

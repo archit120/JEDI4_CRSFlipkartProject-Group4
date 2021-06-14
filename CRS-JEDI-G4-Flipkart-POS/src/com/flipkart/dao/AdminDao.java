@@ -15,6 +15,8 @@ import java.util.List;
 /** The Class AdminDao. */
 public class AdminDao implements AdminDaoInterface {
 
+  private static Logger logger = Logger.getLogger(AdminDao.class);
+
   /**
    * Login.
    *
@@ -22,21 +24,25 @@ public class AdminDao implements AdminDaoInterface {
    * @param password the password
    * @return the admin
    */
-	private static Logger logger = Logger.getLogger(AdminDao.class);
-	
-	public static Admin login(String username, String password) {
+  public static Admin login(String username, String password) {
 
     Connection conn = DBUtil.getConnection();
 
     PreparedStatement stmt = null;
     String sql = SQLConstants.adminLogin;
+
     try {
+
       stmt = conn.prepareStatement(sql);
       stmt.setString(1, username);
       stmt.setString(2, password);
-
       ResultSet rs = stmt.executeQuery();
-      if (!rs.next()) return null;
+
+      if (!rs.next()) {
+
+        return null;
+      }
+
       Admin temp = new Admin();
       temp.setUserID(rs.getInt("id"));
       temp.setName(rs.getString("name"));
@@ -44,11 +50,13 @@ public class AdminDao implements AdminDaoInterface {
       temp.setUsername(rs.getString("username"));
       temp.setPassword(rs.getString("password"));
       temp.setEmpID(rs.getString("empid"));
+
       return temp;
     } catch (Exception e) {
 
       logger.error(e);
     }
+
     return null;
   }
 
@@ -64,20 +72,21 @@ public class AdminDao implements AdminDaoInterface {
 
     PreparedStatement stmt = null;
     String sql = SQLConstants.adminAdd;
+
     try {
+
       stmt = conn.prepareStatement(sql);
       stmt.setString(1, s.getName()); // This would set age
       stmt.setString(2, s.getEmail());
       stmt.setString(3, s.getUsername());
       stmt.setString(4, s.getPassword());
-
       stmt.setString(5, s.getEmpID());
       stmt.executeUpdate();
-
     } catch (Exception e) {
 
-    	logger.error(e);
+      logger.error(e);
     }
+
     return true;
   }
 
@@ -91,13 +100,17 @@ public class AdminDao implements AdminDaoInterface {
     Connection conn = DBUtil.getConnection();
 
     PreparedStatement stmt = null;
-    List<Admin> admins = new ArrayList<Admin>();
     String sql = SQLConstants.adminList;
-    try {
-      stmt = conn.prepareStatement(sql);
 
+    List<Admin> admins = new ArrayList<Admin>();
+
+    try {
+
+      stmt = conn.prepareStatement(sql);
       ResultSet rs = stmt.executeQuery();
+
       while (rs.next()) {
+
         // Retrieve by column name
         Admin temp = new Admin();
         temp.setUserID(rs.getInt("id"));
@@ -108,10 +121,9 @@ public class AdminDao implements AdminDaoInterface {
         temp.setEmpID(rs.getString("empid"));
         admins.add(temp);
       }
-
     } catch (Exception e) {
 
-    	logger.error(e);
+      logger.error(e);
     }
 
     return admins;

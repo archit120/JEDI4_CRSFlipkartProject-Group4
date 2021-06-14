@@ -16,6 +16,7 @@ public class NotificationImpl implements NotificationInterface {
    * @return true, if successful
    */
   public boolean showNotification(String message, String rollno) {
+
     return new NotificationDao().addNotification(message, rollno);
   }
 
