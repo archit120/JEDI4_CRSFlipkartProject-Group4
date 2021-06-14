@@ -147,22 +147,22 @@ public class CRSStudentMenu {
 
         System.out.println("All Notification are");
 
-//        System.out.println("Payment options:-");
-//
-//        System.out.println();
-//
-//        System.out.println("Press 1 - Pay Online");
-//
-//        System.out.println("Press 2 - Pay Offline");
-//
-//        int option2 = sc.nextInt();
-//
-//        String mode = "Online";
-//
-//        if (option2 == 2) {
-//
-//          mode = "Offline";
-//        }
+        //        System.out.println("Payment options:-");
+        //
+        //        System.out.println();
+        //
+        //        System.out.println("Press 1 - Pay Online");
+        //
+        //        System.out.println("Press 2 - Pay Offline");
+        //
+        //        int option2 = sc.nextInt();
+        //
+        //        String mode = "Online";
+        //
+        //        if (option2 == 2) {
+        //
+        //          mode = "Offline";
+        //        }
 
         System.out.println("Enter your semseter registration id");
 
