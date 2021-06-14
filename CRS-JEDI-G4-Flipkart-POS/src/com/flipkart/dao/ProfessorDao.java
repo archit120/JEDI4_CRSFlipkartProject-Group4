@@ -53,8 +53,27 @@ public class ProfessorDao implements ProfessorDaoInterface {
   public static boolean addProfessor(Professor s) {
 
     Connection conn = Connection1.getConnection();
+    
+    boolean check = true;
 
     PreparedStatement stmt = null;
+    String sql1 = "SELECT COUNT(*) as cnt from professor where empId= ?";
+    try {
+      stmt = conn.prepareStatement(sql1);
+      stmt.setString(1, s.getEmpID());
+//      stmt.setInt(2, s.getCourseCatalogueId());
+      ResultSet rs = stmt.executeQuery();
+      rs.next();
+      int cnt = rs.getInt("cnt");
+      if (cnt > 0) check = false;
+    } catch (Exception e) {
+      check = false;
+      System.out.println(e);
+    }
+
+    if (check == false) return check;
+
+    stmt = null;
     String sql =
         "INSERT INTO professor (name, email, username, password,empId,department) VALUES (?,"
             + " ?,?,?,?,?)";
