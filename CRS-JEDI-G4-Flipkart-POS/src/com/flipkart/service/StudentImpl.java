@@ -4,6 +4,7 @@ import com.flipkart.bean.*;
 import com.flipkart.dao.RegisteredCourseDao;
 import com.flipkart.dao.StudentDao;
 import java.util.ArrayList;
+import java.util.List;
 
 // TODO: Auto-generated Javadoc
 /** The Class StudentImpl. */
@@ -105,6 +106,7 @@ public class StudentImpl implements StudentInterface {
   public boolean login(String username, String password) {
     Student loginRes = StudentDao.login(username, password);
     if (loginRes == null) return false;
+    if(loginRes.getIsApproved() == false) return false;
     studentInstance = loginRes;
     return true;
   }
@@ -115,4 +117,32 @@ public class StudentImpl implements StudentInterface {
     // TODO Auto-generated method stub
     studentInstance = null;
   }
+
+@Override
+public List<Student> getStudentsWaitingApprocal() {
+	// TODO Auto-generated method stub
+	return StudentDao.getStudentsPendingApproval();
+}
+
+@Override
+public boolean approveStudent() {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+@Override
+public boolean approveStudent(String email) {
+	// TODO Auto-generated method stub
+	return StudentDao.approveStudent(email);
+}
+
+public boolean addStudent(String email,String password,String name) {
+	Student s = new Student();
+	s.setEmail(email);
+	s.setName(name);
+	s.setPassword(password);
+	
+	return StudentDao.addStudent(s);
+}
+
 }

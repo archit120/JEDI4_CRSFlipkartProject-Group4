@@ -7,6 +7,8 @@ import com.flipkart.bean.Student;
 import com.flipkart.service.AdminImpl;
 import com.flipkart.service.CourseCatalogueImpl;
 import com.flipkart.service.CourseImpl;
+import com.flipkart.service.StudentImpl;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -28,8 +30,10 @@ public class CRSAdminMenu {
     System.out.println("Press 4 - Add Student");
 
     System.out.println("Press 5 - List Courses");
-
-    System.out.println("Press 6 - Logout");
+    
+    System.out.println("Press 6 - Get Student list waiting for approval");
+    
+    System.out.println("Press 7 - Logout");
 
     System.out.println("---------------------------------");
   }
@@ -186,7 +190,33 @@ public class CRSAdminMenu {
               //								System.out.println("Course Professor : " + ProfessorDao.ge.getName());
             }
             break;
-          case 6:
+          case 6 : 
+        	  System.out.println("****All the stduent waiting approval are***");
+        	  
+        	  StudentImpl s = new StudentImpl();
+        	  List<Student> student = s.getStudentsWaitingApprocal();
+        	  
+        	  for(int i=0;i<student.size();i++) {
+        		  System.out.println("Name     " + "Email   ");
+        		  System.out.println(student.get(i).getName() + "    " + student.get(i).getEmail());
+        		 
+        		  
+        	  }
+        	  System.out.println("** ENTER THEB EMAIL NUMBER OF THE STUDENT YOU WANT TO APPROVE");
+        	  
+        	  String email = sc.next();
+    		  
+    		  StudentImpl studImpl = new StudentImpl();
+    		  
+    		  boolean done  = studImpl.approveStudent(email);
+    		  
+    		  if(done  == true) {
+    			  System.out.println("Student approved successfully !!!");
+    		  }
+    		  
+    		  break;
+        	  
+          case 7:
             System.out.println("Successfully logged out");
             return;
           default:

@@ -1,6 +1,8 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.Student;
+
+import java.security.KeyPair;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -39,6 +41,7 @@ public class StudentDao implements StudentDaoInterface {
       temp.setPassword(rs.getString("password"));
       temp.setRollNo(rs.getString("rollno"));
       temp.setDepartment(rs.getString("department"));
+      temp.setApproved(rs.getBoolean("isApproved"));
       return temp;
     } catch (Exception e) {
 
@@ -59,8 +62,8 @@ public class StudentDao implements StudentDaoInterface {
 
     PreparedStatement stmt = null;
     String sql =
-        "INSERT INTO student (name, email, username, password, rollno, department) VALUES (?,"
-            + " ?,?,?,?,?)";
+        "INSERT INTO student (name, email, username, password, rollno, department,isApproved) VALUES (?,"
+            + " ?,?,?,?,?,?)";
     try {
       stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
       stmt.setString(1, s.getName()); // This would set age
@@ -70,18 +73,21 @@ public class StudentDao implements StudentDaoInterface {
 
       stmt.setString(5, s.getRollNo());
       stmt.setString(6, s.getDepartment());
+      stmt.setBoolean(7, false);
       stmt.executeUpdate();
 
       ResultSet rs = stmt.getGeneratedKeys();
       if (rs.next()) {
         s.setUserID(rs.getInt(1));
       }
+      
+      return true;
 
     } catch (Exception e) {
 
       System.out.println(e);
     }
-    return true;
+   return false;
   }
 
   /**
@@ -157,4 +163,65 @@ public class StudentDao implements StudentDaoInterface {
 
     return sId;
   }
+  
+  public static List<Student> getStudentsPendingApproval() {
+	  
+	  List<Student> students = new ArrayList<Student>();
+	  
+	  String sql = "SELECT * FROM student where isApproved = ?";
+	  Connection con = Connection1.getConnection();
+	  
+	
+	  try {
+		  PreparedStatement stmt = con.prepareStatement(sql);
+		 stmt.setBoolean(1, false);
+		  ResultSet rs =  stmt.executeQuery();
+		  
+		  while(rs.next()) {
+			  Student s = new Student();
+			  s.setName(rs.getString("name"));
+			  s.setEmail(rs.getString("email"));
+			  
+			  students.add(s);
+		  }
+		  
+	  }catch(Exception e){
+		  
+		  System.out.println(e.getMessage());
+		  
+	  }finally {
+		  
+	  }
+	  
+	  return students;
+	  
+  }
+  
+  public  static boolean approveStudent(String email) {
+	  
+	  
+	  String sql = "UPDATE student set isApproved = ? where email = ?";
+	  Connection con = Connection1.getConnection();
+	  
+	
+	  try {
+		  PreparedStatement stmt = con.prepareStatement(sql);
+		 stmt.setBoolean(1,true);
+		 stmt.setString(2, email);
+		 stmt.executeUpdate();
+		  
+		 return true;
+		  
+	  }catch(Exception e){
+		  
+		  System.out.println(e.getMessage());
+		  
+	  }finally {
+		  
+	  }
+	  
+	  return false;
+	  
+  }
+  
 }

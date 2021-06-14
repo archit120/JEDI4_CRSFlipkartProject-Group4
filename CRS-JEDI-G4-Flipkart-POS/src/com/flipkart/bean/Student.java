@@ -6,6 +6,7 @@ public class Student extends User {
 
   /** The department. */
   private String department;
+  private boolean isApproved;
 
   /** The roll no. */
   private String rollNo;
@@ -45,4 +46,12 @@ public class Student extends User {
   public void setRollNo(String rollNo) {
     this.rollNo = rollNo;
   }
+
+public boolean getIsApproved() {
+	return isApproved;
+}
+
+public void setApproved(boolean isApproved) {
+	this.isApproved = isApproved;
+}
 }

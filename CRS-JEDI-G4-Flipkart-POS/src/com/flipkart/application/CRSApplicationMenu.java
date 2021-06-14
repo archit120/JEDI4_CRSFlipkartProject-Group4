@@ -2,6 +2,8 @@ package com.flipkart.application;
 
 import java.util.Scanner;
 
+import com.flipkart.service.StudentImpl;
+
 // TODO: Auto-generated Javadoc
 /** The Class CRSApplicationMenu. */
 public class CRSApplicationMenu {
@@ -12,6 +14,7 @@ public class CRSApplicationMenu {
     System.out.println("Press 1 to login.");
     System.out.println("Press 2 to change password.");
     System.out.println("Press 3 to exit.");
+    System.out.println("Press 4 to Register as a student.");
     System.out.println("------------------------------------");
   }
 
@@ -64,9 +67,31 @@ public class CRSApplicationMenu {
         }
       } else if (response1 == 2) {
         // updatePasswordUser
-      } else {
+      } else if(response1 == 3) {
         System.out.println("Exiting from the website.");
         break;
+      }else if(response1 ==4){
+    	  
+    	  System.out.println("Enter your name");
+    	  String name = sc.next();
+    	  
+    	  System.out.println("Enter your email");
+    	  String email = sc.next();
+    	  
+    	  System.out.println("Enter your password");
+    	  String password = sc.next();
+    	  
+    	  StudentImpl studImpl = new StudentImpl();
+    	  boolean done = studImpl.addStudent(email, password, name);
+    	  
+    	  if(done) {
+    		  System.out.println("You Have sucessfully been registered , waiting for admin approval !!");
+    	  }else {
+    		  System.out.println("Somethign went wrong");
+    	  }
+    	  
+      }else {
+    	  System.out.println("INVALID !!!!");
       }
     }
   }
