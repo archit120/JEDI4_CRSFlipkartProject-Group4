@@ -1,9 +1,12 @@
 package com.flipkart.service;
 
+import java.util.List;
+
 import com.flipkart.bean.Course;
 import com.flipkart.bean.ReportCard;
 import com.flipkart.bean.SemesterRegistration;
 import com.flipkart.bean.Student;
+
 
 // TODO: Auto-generated Javadoc
 /** The Interface StudentInterface. */
@@ -60,4 +63,10 @@ public interface StudentInterface {
    * @return the student instance
    */
   public Student getStudentInstance();
+  
+  public List<Student> getStudentsWaitingApprocal();
+  
+  public boolean approveStudent();
+
+  boolean approveStudent(String email);
 }
