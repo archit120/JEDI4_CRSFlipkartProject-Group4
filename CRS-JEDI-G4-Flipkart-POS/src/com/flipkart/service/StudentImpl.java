@@ -3,6 +3,8 @@ package com.flipkart.service;
 import com.flipkart.bean.*;
 import com.flipkart.dao.RegisteredCourseDao;
 import com.flipkart.dao.StudentDao;
+import com.flipkart.exception.GradeNotAssigned;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +42,13 @@ public class StudentImpl implements StudentInterface {
   public ReportCard viewReportCard(SemesterRegistration semesterRegistration) {
 
     ReportCard report = new ReportCard();
-    report = RegisteredCourseDao.getReportCard(semesterRegistration.getId());
+    
+    try {
+    	 report = RegisteredCourseDao.getReportCard(semesterRegistration.getId());
+    }catch(GradeNotAssigned e){
+    	System.out.println(e.getMessage());
+    }
+   
     return report;
   }
 

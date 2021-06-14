@@ -8,6 +8,7 @@ import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.ReportCard;
 import com.flipkart.bean.SemesterRegistration;
 import com.flipkart.dao.CourseDao;
+import com.flipkart.exception.PaymentAlreadyDone;
 import com.flipkart.service.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -119,9 +120,15 @@ public class CRSStudentMenu {
 
         PaymentImpl paymentImpl = new PaymentImpl();
 
-        paymentImpl.makePayment(p);
+        try {
+        	paymentImpl.makePayment(p);
+        	 System.out.println("Payment Done!");
+        }catch(PaymentAlreadyDone e){
+        	System.out.println(e.getMessage());
+        }
+        
 
-        System.out.println("Payment Done!");
+       
 
         break;
 

@@ -27,6 +27,24 @@ private static Logger logger = Logger.getLogger(AdminDao.class);
     Connection conn = Connection1.getConnection();
 
     PreparedStatement stmt = null;
+    PreparedStatement stmt1 = null;
+    
+    String sql1 = "SELECT COUNT(*) as cnt from payment where studentId= ? and semesterRegistrationId=? ";
+    
+    try {
+    	stmt1 = conn.prepareStatement(sql1);
+    	stmt1.setInt(1, p.getStudentId());
+    	stmt1.setInt(2, p.getSemesterRegistrationId());
+    	
+    	ResultSet rs = stmt1.executeQuery();
+    	
+    	while(rs.next()) {
+    		if(rs.getInt("cnt")  > 0) return false;
+    	}
+    }catch(Exception e){
+    	logger.error(e);
+    }
+    
     String sql = "INSERT INTO payment (mode, studentId , semesterRegistrationId ) VALUES (?,?,?)";
 
     try {
