@@ -88,14 +88,15 @@ public class CRSProfessorMenu {
             }
             break;
           case 4:
-            System.out.print("Enter Course ID of Course to teach: ");
+            System.out.print("Enter Course code of Course to teach: ");
             Course registerCourse = courseImpl.findCourse(chosen, sc.next());
             if (registerCourse == null) System.out.println("Course not found!");
             else {
-              if (courseImpl.indicateProfessor(
-                  registerCourse, ProfessorImpl.getProfessorInstance()))
-                System.out.println("Course marked successfully!");
-              else System.out.println("Unknown error while marking course!");
+            	try {
+            		courseImpl.indicateProfessor(registerCourse, ProfessorImpl.getProfessorInstance());
+            	}catch (Exception e) {
+            		System.out.println(e);
+            	}
             }
             break;
           case 5:

@@ -5,6 +5,7 @@ import com.flipkart.bean.CourseCatalogue;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
 import com.flipkart.dao.CourseDao;
+import com.flipkart.exception.CourseNotAvailable;
 import com.flipkart.exception.CoursePreExistsException;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +30,9 @@ public class CourseImpl implements CourseInterface {
    * @return the boolean
    */
   @Override
-  public Boolean indicateProfessor(Course course, Professor professor) {
-    if (course.getProfessorId() != 0) return false;
+  public Boolean indicateProfessor(Course course, Professor professor) throws CourseNotAvailable {
+	 
+    if (course.getProfessorId() != 0) throw new CourseNotAvailable(course.getCourseCode());
     course.setProfessorId(professor.getUserID());
     return CourseDao.markCourseToTeach(course.getId(), professor.getUserID());
   }

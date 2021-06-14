@@ -139,7 +139,9 @@ public class CRSStudentMenu {
         ReportCard report = stud.viewReportCard(chosenSem);
 
         for (int i = 0; i < report.getCourseCodes().size(); i++) {
+      
           System.out.println(report.getCourseCodes().get(i) + "\t" + report.getGrades().get(i));
+        
         }
         System.out.println("GPA: " + report.getSgpa());
 

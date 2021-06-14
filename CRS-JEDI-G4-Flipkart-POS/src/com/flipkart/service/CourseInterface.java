@@ -4,6 +4,7 @@ import com.flipkart.bean.Course;
 import com.flipkart.bean.CourseCatalogue;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
+import com.flipkart.exception.CourseNotAvailable;
 import com.flipkart.exception.CoursePreExistsException;
 import java.util.List;
 
@@ -17,8 +18,9 @@ public interface CourseInterface {
    * @param course the course
    * @param professor the professor
    * @return the boolean
+ * @throws CourseNotAvailable 
    */
-  public Boolean indicateProfessor(Course course, Professor professor);
+  public Boolean indicateProfessor (Course course, Professor professor) throws CourseNotAvailable;
 
   /**
    * Check availability.
