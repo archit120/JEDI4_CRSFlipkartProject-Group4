@@ -72,13 +72,20 @@ public class CRSStudentMenu {
 
         List<Course> courses = courseImpl.findCourses(chosen);
         System.out.println("Total " + courses.size() + " courses found");
-        
-        System.out.format("%25s%25s%25s%25s%n", "Course Code", "Course Description", "Course Department", "Course Prerequisites" );
-        
-        for (Course course : courses) {    
-          System.out.format("%25s%25s%25s%25s%n",course.getCourseCode(), course.getDescriptions(), course.getDepartment(), course.getPreRequisites());         
+
+        System.out.format(
+            "%25s%25s%25s%25s%n",
+            "Course Code", "Course Description", "Course Department", "Course Prerequisites");
+
+        for (Course course : courses) {
+          System.out.format(
+              "%25s%25s%25s%25s%n",
+              course.getCourseCode(),
+              course.getDescriptions(),
+              course.getDepartment(),
+              course.getPreRequisites());
         }
-        
+
       } else if (option == 2) {
         System.out.println("Enter course id code be added");
         Course c = courseImpl.findCourse(chosen, sc.next());
@@ -129,7 +136,8 @@ public class CRSStudentMenu {
 
         System.out.println("Registered Courses are");
         List<RegisteredCourse> registeredCourses = regImpl.findRegisteredCourses(chosenSem);
-        System.out.println("You have registered for a total of " + registeredCourses.size() + " courses.");
+        System.out.println(
+            "You have registered for a total of " + registeredCourses.size() + " courses.");
         for (RegisteredCourse registeredCourse : registeredCourses)
           System.out.println(CourseDao.getCourse(registeredCourse.getCourseId()).getCourseCode());
 

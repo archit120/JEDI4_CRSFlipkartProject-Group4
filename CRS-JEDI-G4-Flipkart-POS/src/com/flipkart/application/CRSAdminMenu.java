@@ -176,11 +176,18 @@ public class CRSAdminMenu {
           case 5:
             List<Course> courses = courseImpl.findCourses(chosen);
             System.out.println("Total " + courses.size() + " courses found");
-            
-            System.out.format("%25s%25s%25s%25s%n", "Course Code", "Course Description", "Course Department", "Course Prerequisites" );
-            
-            for (Course course : courses) {    
-              System.out.format("%25s%25s%25s%25s%n",course.getCourseCode(), course.getDescriptions(), course.getDepartment(), course.getPreRequisites());         
+
+            System.out.format(
+                "%25s%25s%25s%25s%n",
+                "Course Code", "Course Description", "Course Department", "Course Prerequisites");
+
+            for (Course course : courses) {
+              System.out.format(
+                  "%25s%25s%25s%25s%n",
+                  course.getCourseCode(),
+                  course.getDescriptions(),
+                  course.getDepartment(),
+                  course.getPreRequisites());
             }
             break;
           case 6:

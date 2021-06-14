@@ -60,11 +60,10 @@ public class CRSProfessorMenu {
           case 1:
             List<Student> students = prof.getEnrolledStudents(chosen);
             System.out.println("Total " + students.size() + " students");
-            
+
             System.out.format("%25s%25s%n", "Name", "Roll Number");
-            
-            for (Student s : students)
-            	System.out.format("%25s%25s%n", s.getName(), s.getRollNo());
+
+            for (Student s : students) System.out.format("%25s%25s%n", s.getName(), s.getRollNo());
             break;
           case 2:
             System.out.print("Enter Course code of Course to mark student: ");
@@ -80,11 +79,23 @@ public class CRSProfessorMenu {
           case 3:
             List<Course> courses = courseImpl.findCourses(chosen);
             System.out.println("Total " + courses.size() + " courses found");
-            
-            System.out.format("%25s%25s%25s%25s%25s%n", "Course Code", "Course Description", "Course Department", "Course Prerequisites", "Availability" );
-            
+
+            System.out.format(
+                "%25s%25s%25s%25s%25s%n",
+                "Course Code",
+                "Course Description",
+                "Course Department",
+                "Course Prerequisites",
+                "Availability");
+
             for (Course course : courses) {
-            	System.out.format("%25s%25s%25s%25s%25s%n",course.getCourseCode(), course.getDescriptions(), course.getDepartment(), course.getPreRequisites(),(course.getProfessorId()==0) ? "Available" : "Not Available");
+              System.out.format(
+                  "%25s%25s%25s%25s%25s%n",
+                  course.getCourseCode(),
+                  course.getDescriptions(),
+                  course.getDepartment(),
+                  course.getPreRequisites(),
+                  (course.getProfessorId() == 0) ? "Available" : "Not Available");
             }
             break;
           case 4:
