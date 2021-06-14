@@ -92,19 +92,19 @@ public class CRSAdminMenu {
 
             String takeInput;
 
-            System.out.print("Enter Course Code:");
+            System.out.print("Enter Course Code: ");
             takeInput = sc.next();
             newCourse.setCourseCode(takeInput);
 
-            System.out.print("Enter Course Department:");
+            System.out.print("Enter Course Department: ");
             takeInput = sc.next();
             newCourse.setDepartment(takeInput);
 
-            System.out.print("Enter Course Description:");
+            System.out.print("Enter Course Description: ");
             takeInput = sc.next();
             newCourse.setDescriptions(takeInput);
 
-            System.out.print("Enter Course preRequisites:");
+            System.out.print("Enter Course preRequisites: ");
             takeInput = sc.next();
             newCourse.setPreRequisites(takeInput);
 
@@ -135,27 +135,27 @@ public class CRSAdminMenu {
 
             String takeInput2;
 
-            System.out.print("Enter Professor username:");
+            System.out.print("Enter Professor username: ");
             takeInput2 = sc.next();
             newProfessor.setUsername(takeInput2);
 
-            System.out.print("Enter Professor Name:");
+            System.out.print("Enter Professor Name: ");
             takeInput2 = sc.next();
             newProfessor.setName(takeInput2);
 
-            System.out.print("Enter Professor Email:");
+            System.out.print("Enter Professor Email: ");
             takeInput2 = sc.next();
             newProfessor.setEmail(takeInput2);
 
-            System.out.print("Enter Professor Password:");
+            System.out.print("Enter Professor Password: ");
             takeInput2 = sc.next();
             newProfessor.setPassword(takeInput2);
 
-            System.out.print("Enter Professor EmployeeID:");
+            System.out.print("Enter Professor EmployeeID: ");
             takeInput2 = sc.next();
             newProfessor.setEmpID(takeInput2);
 
-            System.out.print("Enter Professor Department:");
+            System.out.print("Enter Professor Department: ");
             takeInput2 = sc.next();
             newProfessor.setDept(takeInput2);
             
@@ -169,27 +169,27 @@ public class CRSAdminMenu {
           case 4:
             Student newStudent = new Student();
 
-            System.out.print("Enter Student username:");
+            System.out.print("Enter Student username: ");
             takeInput2 = sc.next();
             newStudent.setUsername(takeInput2);
 
-            System.out.print("Enter Student Name:");
+            System.out.print("Enter Student Name: ");
             takeInput2 = sc.next();
             newStudent.setName(takeInput2);
 
-            System.out.print("Enter Student Email:");
+            System.out.print("Enter Student Email: ");
             takeInput2 = sc.next();
             newStudent.setEmail(takeInput2);
 
-            System.out.print("Enter Student Password:");
+            System.out.print("Enter Student Password: ");
             takeInput2 = sc.next();
             newStudent.setPassword(takeInput2);
 
-            System.out.print("Enter Student roll number:");
+            System.out.print("Enter Student roll number: ");
             takeInput2 = sc.next();
             newStudent.setRollNo(takeInput2);
 
-            System.out.print("Enter Student department:");
+            System.out.print("Enter Student department: ");
             takeInput2 = sc.next();
             newStudent.setDepartment(takeInput2);
             
@@ -243,7 +243,7 @@ public class CRSAdminMenu {
     		  break;
         	  
           case 7:
-            System.out.println("Successfully logged out");
+            System.out.println("Successfully logged out !!");
             return;
           default:
             System.out.println("Invalid choice");

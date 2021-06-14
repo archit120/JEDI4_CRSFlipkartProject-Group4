@@ -18,18 +18,18 @@ public class CRSApplicationMenu {
   /** First menu. */
   public static void firstMenu() {
     System.out.println("-----------Welcome to CRS-----------");
-    System.out.println("Press 1 to login.");
-    System.out.println("Press 2 to change password.");
-    System.out.println("Press 3 to Register as a student.");
-    System.out.println("Press 4 to exit.");
+    System.out.println("Press 1 - Login.");
+    System.out.println("Press 2 - Change password.");
+    System.out.println("Press 3 - Register as a student.");
+    System.out.println("Press 4 - Exit.");
     System.out.println("------------------------------------");
   }
   /** Login choices. */
   public static void loginChoices() {
     System.out.println("-----------LOG IN-----------");
-    System.out.println("Press 1 if you are a student.");
-    System.out.println("Press 2 if you are a professor.");
-    System.out.println("Press 3 if you are an admin.");
+    System.out.println("Press 1 - Student.");
+    System.out.println("Press 2 - Professor.");
+    System.out.println("Press 3 - Admin.");
     System.out.println("------------------------------------");
   }
 
@@ -51,12 +51,12 @@ public class CRSApplicationMenu {
 
     while (true) {
       firstMenu();
-      System.out.println("Your choice:");
+      System.out.println("Your choice: ");
       int response1 = sc.nextInt();
 
       if (response1 == 1) {
         loginChoices();
-        System.out.println("Your response:");
+        System.out.println("Your response: ");
         int loginResponse = sc.nextInt();
 
         switch (loginResponse) {
@@ -83,28 +83,28 @@ public class CRSApplicationMenu {
         break;
       }else if(response1 ==3){
     	  
-    	  System.out.println("Enter your name");
+    	  System.out.println("Enter your name: ");
     	  String name = sc.next();
     	  
-    	  System.out.println("Enter your email");
+    	  System.out.println("Enter your email: ");
     	  String email = sc.next();
     	  
-    	  System.out.println("Enter your username");
+    	  System.out.println("Enter your username: ");
     	  String username = sc.next();
     	  
-    	  System.out.println("Enter your password");
+    	  System.out.println("Enter your password: ");
     	  String password = sc.next();
     	  
-    	  System.out.println("Enter your Roll number");
+    	  System.out.println("Enter your Roll number: ");
     	  String roll = sc.next();
     	  
-    	  System.out.println("Enter your department");
+    	  System.out.println("Enter your department: ");
     	  String dept = sc.next();
     	  
     	  StudentImpl studImpl = new StudentImpl();
     	  boolean done = studImpl.addStudent(email, password, name,username,roll,dept);
     	  if(done) {
-    		  System.out.println("You have sucessfully been registered , waiting for admin approval !!");
+    		  System.out.println("You have sucessfully been registered, waiting for admin approval !!");
     	  }
     	  
       }else {
