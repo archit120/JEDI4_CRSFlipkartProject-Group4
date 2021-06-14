@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
 // TODO: Auto-generated Javadoc
@@ -24,7 +25,7 @@ public class ProfessorDao implements ProfessorDaoInterface {
    */
   public static Professor login(String username, String password) {
     Connection conn = Connection1.getConnection();
-
+    BasicConfigurator.configure();
     PreparedStatement stmt = null;
     String sql = "Select * from professor where username=? and password=?";
     try {
@@ -56,7 +57,7 @@ public class ProfessorDao implements ProfessorDaoInterface {
    * @return true, if successful
    */
   public static boolean addProfessor(Professor s) {
-
+	  BasicConfigurator.configure();
     Connection conn = Connection1.getConnection();
     
     boolean check = true;

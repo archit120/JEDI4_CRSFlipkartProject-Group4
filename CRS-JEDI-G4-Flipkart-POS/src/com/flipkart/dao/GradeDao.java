@@ -4,6 +4,7 @@ import com.flipkart.bean.Grade;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
 /** The Class GradeDao. **/
@@ -19,6 +20,7 @@ public class GradeDao implements GradeDaoInterface {
 	*/
 	
 	public static boolean addGrade(Grade g) {
+		BasicConfigurator.configure();
 
 	    Connection conn = Connection1.getConnection();
 

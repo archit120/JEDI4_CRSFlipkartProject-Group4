@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
 // TODO: Auto-generated Javadoc
@@ -25,6 +26,7 @@ public class CourseCatalogueDao implements CourseCatalogueDaoInterface {
    */
   public static boolean addCourseCatalogue(CourseCatalogue s) {
 
+	  BasicConfigurator.configure();
     Connection conn = Connection1.getConnection();
 
     PreparedStatement stmt = null;
@@ -55,6 +57,7 @@ public class CourseCatalogueDao implements CourseCatalogueDaoInterface {
    */
   public static List<CourseCatalogue> getCourseCatalogues() {
 
+	  BasicConfigurator.configure();
     Connection conn = Connection1.getConnection();
 
     PreparedStatement stmt = null;
@@ -93,6 +96,7 @@ public class CourseCatalogueDao implements CourseCatalogueDaoInterface {
    */
   public static int getCourseIdfromCode(String courseCode) {
     //		System.out.println(courseCode);
+	  BasicConfigurator.configure();
     Connection conn = Connection1.getConnection();
 
     PreparedStatement stmt = null;
@@ -128,6 +132,7 @@ public class CourseCatalogueDao implements CourseCatalogueDaoInterface {
    */
   public static boolean addCouseToTeach(int cId, int pId) {
 
+	  BasicConfigurator.configure();
     Connection conn = Connection1.getConnection();
 
     PreparedStatement stmt = null;

@@ -1,5 +1,6 @@
 package com.flipkart.service;
 
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
 import com.flipkart.bean.Admin;
@@ -70,6 +71,7 @@ public class AdminImpl implements AdminInterface {
    */
   @Override
   public boolean approveGrade(String rollNo) {
+	  BasicConfigurator.configure();
 	  logger.info("Approving grade todo");
     return false;
   }
@@ -82,6 +84,7 @@ public class AdminImpl implements AdminInterface {
    */
   @Override
   public boolean verifyCourseReg(String rollNo) {
+	  BasicConfigurator.configure();
 	  logger.info("Approving grade todo");
     return false;
   }

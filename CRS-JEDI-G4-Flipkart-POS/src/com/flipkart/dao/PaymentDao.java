@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
 // TODO: Auto-generated Javadoc
@@ -23,7 +24,7 @@ private static Logger logger = Logger.getLogger(AdminDao.class);
    * @return true, if successful
    */
   public static boolean makePayment(Payment p) {
-
+	  BasicConfigurator.configure();
     Connection conn = Connection1.getConnection();
 
     PreparedStatement stmt = null;

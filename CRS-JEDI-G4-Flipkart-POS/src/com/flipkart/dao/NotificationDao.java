@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
 /** The Class NotificationDao. */
@@ -23,7 +24,7 @@ public class NotificationDao {
     */
 	
 	public List<Notification> getNotification(int studentId) {
-		
+		BasicConfigurator.configure();
 		Connection conn = Connection1.getConnection();
 
 	    PreparedStatement stmt = null;

@@ -10,6 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
 // TODO: Auto-generated Javadoc
@@ -26,7 +27,7 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
    * @return true, if successful
    */
   public static boolean addRegisteredCourse(RegisteredCourse s) {
-
+	  BasicConfigurator.configure();
     Connection conn = Connection1.getConnection();
 
     PreparedStatement stmt = null;
@@ -64,7 +65,7 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
    */
   private static List<RegisteredCourse> getRegisteredCourses(String sql) {
     Connection conn = Connection1.getConnection();
-
+    BasicConfigurator.configure();
     PreparedStatement stmt = null;
     List<RegisteredCourse> courseList = new ArrayList<RegisteredCourse>();
     try {
@@ -129,7 +130,7 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
   public static boolean deleteRegisteredCourse(RegisteredCourse registeredCourse) {
 
     Connection conn = Connection1.getConnection();
-
+    BasicConfigurator.configure();
     PreparedStatement stmt = null;
     String sql = "DELETE FROM registeredCourse where id = ?";
     try {
@@ -154,7 +155,7 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
    * @return the enrolled students
    */
   public static List<Student> getEnrolledStudents(int courseCatalogueId, int professorId) {
-
+	  BasicConfigurator.configure();
     Connection conn = Connection1.getConnection();
 
     PreparedStatement stmt = null;
@@ -195,7 +196,7 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
    * @return the enrolled students
    */
   public static List<Student> getEnrolledStudents(int courseId) {
-
+	  BasicConfigurator.configure();
     Connection conn = Connection1.getConnection();
 
     PreparedStatement stmt = null;
@@ -236,7 +237,7 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
    */
   public static boolean setGradeStudent(
       String courseCode, int courseCatalogueId, String rollNo, int grade) {
-
+	  BasicConfigurator.configure();
     Connection conn = Connection1.getConnection();
 
     PreparedStatement stmt = null;
@@ -270,7 +271,7 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
    * @return true, if successful
    */
   public static boolean setGradeStudent(int id, int grade) {
-
+	  BasicConfigurator.configure();
     Connection conn = Connection1.getConnection();
 
     PreparedStatement stmt = null;
@@ -298,7 +299,7 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
    */
   public static ReportCard getReportCard(int semesterRegistrationId) {
     double ans = 0;
-
+    BasicConfigurator.configure();
     Connection conn = Connection1.getConnection();
     ReportCard report = new ReportCard();
     PreparedStatement stmt = null;

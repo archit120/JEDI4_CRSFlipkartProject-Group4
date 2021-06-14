@@ -1,6 +1,8 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.Admin;
+
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
@@ -23,6 +25,7 @@ public class AdminDao implements AdminDaoInterface {
 	
 	public static Admin login(String username, String password) {
 
+	BasicConfigurator.configure();
     Connection conn = Connection1.getConnection();
 
     PreparedStatement stmt = null;
@@ -57,6 +60,7 @@ public class AdminDao implements AdminDaoInterface {
    */
   public static boolean addAdmin(Admin s) {
 
+	  BasicConfigurator.configure();
     Connection conn = Connection1.getConnection();
 
     PreparedStatement stmt = null;
@@ -85,6 +89,7 @@ public class AdminDao implements AdminDaoInterface {
    */
   public static List<Admin> getAdmins() {
 
+	  BasicConfigurator.configure();
     Connection conn = Connection1.getConnection();
 
     PreparedStatement stmt = null;

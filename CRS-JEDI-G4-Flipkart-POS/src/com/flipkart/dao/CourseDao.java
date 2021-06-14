@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
 // TODO: Auto-generated Javadoc
@@ -26,6 +27,7 @@ public class CourseDao implements CourseDaoInterface {
 
   public static boolean addCourse(Course s) {
 
+	  BasicConfigurator.configure();
     Connection conn = Connection1.getConnection();
     boolean check = true;
 
@@ -82,6 +84,7 @@ public class CourseDao implements CourseDaoInterface {
    */
   public static boolean removeCourse(int courseId) {
 
+	  BasicConfigurator.configure();
     Connection conn = Connection1.getConnection();
 
     PreparedStatement stmt = null;
@@ -113,6 +116,7 @@ public class CourseDao implements CourseDaoInterface {
    */
   private static Course readCourse(ResultSet rs) {
     try {
+    	BasicConfigurator.configure();
       Course temp = new Course();
       temp.setCourseCode(rs.getString("courseCode"));
       temp.setDepartment(rs.getString("department"));
@@ -137,6 +141,7 @@ public class CourseDao implements CourseDaoInterface {
   private static List<Course> getCourses(String sql) {
     Connection conn = Connection1.getConnection();
 
+    BasicConfigurator.configure();
     PreparedStatement stmt = null;
     List<Course> courseList = new ArrayList<Course>();
     try {
@@ -202,7 +207,7 @@ public class CourseDao implements CourseDaoInterface {
    */
   public static boolean markCourseToTeach(int cId, int pId) {
     Connection conn = Connection1.getConnection();
-
+    BasicConfigurator.configure();
     PreparedStatement stmt = null;
     String sql = "UPDATE course SET professorId = ? where id = ? ";
 

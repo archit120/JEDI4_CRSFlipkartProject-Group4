@@ -4,6 +4,7 @@ package com.flipkart.dao;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
 // TODO: Auto-generated Javadoc
@@ -43,6 +44,7 @@ public class Connection1 {
     java.sql.Connection conn = null;
     PreparedStatement stmt = null;
 
+    BasicConfigurator.configure();
     try {
 
       // Step 3 Register Driver here and create connection
