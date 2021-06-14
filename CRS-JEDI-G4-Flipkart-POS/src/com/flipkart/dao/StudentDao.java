@@ -222,7 +222,7 @@ public class StudentDao implements StudentDaoInterface {
 	  
   }
   
-  public  static boolean approveStudent(String email) {
+  public  static boolean approveStudent(String rollno) {
 	  
 	  String sql1 = SQLConstants.approveStudent_check;
 	  String sql = SQLConstants.approveStudent;
@@ -230,12 +230,12 @@ public class StudentDao implements StudentDaoInterface {
 	  try {
 		  PreparedStatement stmt1 = con.prepareStatement(sql1);
 			 stmt1.setBoolean(1,false);
-			 stmt1.setString(2, email);
+			 stmt1.setString(2, rollno);
 			 ResultSet rs=stmt1.executeQuery();
 			 int count=0;
 			 while(rs.next())
 			 {
-				 count=rs.getInt(count);
+				 count=rs.getInt(1);
 			 }
 			 if(count==0) return false;
 	  }
@@ -246,10 +246,9 @@ public class StudentDao implements StudentDaoInterface {
 	  }
 	
 	  try {
-		  PreparedStatement stmt = con.prepareStatement(sql);
-		 stmt.setBoolean(1,true);
-		 stmt.setString(2, email);
-		 stmt.executeUpdate(sql);
+        PreparedStatement stmt = con.prepareStatement(sql);
+		 stmt.setString(1, rollno);
+		 stmt.executeUpdate();
 		  
 		 return true;
 		  

@@ -12,7 +12,7 @@ public class SQLConstants {
     public static final String getCourseIdfromCode = "Select id from course where courseCode=?";
 
     public static final String addCourse_check = "SELECT COUNT(*) as cnt from course where courseCode= ? and courseCatalogueId=?";
-    public static final String addCourse = "INSERT INTO course (courseCode, department, description, preRequisites, courseCatalogueId,professorId) VALUES (?,?,?,?,?,?";
+    public static final String addCourse = "INSERT INTO course (courseCode, department, description, preRequisites, courseCatalogueId,professorId) VALUES (?,?,?,?,?,?)";
     public static final String removeCourse = "Delete from course where id=? ";
     public static final String getCoursePrefix = "select * from course where";
     public static final String markCourseToTeach = "UPDATE course SET professorId = ? where id = ?";
@@ -48,7 +48,7 @@ public class SQLConstants {
     public static final String getStudentsFromId = "Select * from Student where id= ? ";
     public static final String getIdFromRollNo = "Select id from student where rollno=?";
     public static final String getStudentPendingApproval = "SELECT * FROM student where isApproved = ?";
-    public static final String approveStudent_check = "select count(email)as count from student where isApproved = ? and email =?";
-    public static final String approveStudent = "UPDATE student set isApproved = ? where email = ?";
+    public static final String approveStudent_check = "select count(*) as count from student where isApproved = ? and rollno =?";
+    public static final String approveStudent = "UPDATE student set isApproved=1 where rollno=?";
 
 }

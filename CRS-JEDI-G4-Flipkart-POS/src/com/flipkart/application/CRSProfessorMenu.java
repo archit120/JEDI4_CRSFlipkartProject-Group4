@@ -78,13 +78,14 @@ public class CRSProfessorMenu {
           case 2:
             System.out.print("Enter Course code of Course to mark student: ");
             String courseCode = sc.next();
-            System.out.print("Enter  student ID to mark student: ");
+            System.out.print("Enter  student roll no to mark student: ");
             String rollno = sc.next();
             System.out.print("Enter Grade as a single int (0-10): ");
             int g = sc.nextInt();
             Grade grade = new Grade();
             grade.setGrade(g);
             regImpl.markGrade(courseCode, chosen, rollno, grade);
+            (new NotificationImpl()).showNotification("Your course " + courseCode + " has been graded now!", rollno);
             break;
           case 3:
             List<Course> courses = courseImpl.findCourses(chosen);

@@ -42,7 +42,6 @@ public class CRSAdminMenu {
 
   /** Admin menu handler. */
   public static void adminMenuHandler() throws LoginFailedException, StudentApprovalFailedException{
-
     try {
 
       // first login as an admin
@@ -71,7 +70,6 @@ public class CRSAdminMenu {
         //System.out.println("Invalid login. Please retry.");
 
         if(true) {
-        	System.out.println("Hi");
         	throw new LoginFailedException(username);
         }
       }
@@ -181,12 +179,12 @@ public class CRSAdminMenu {
         	  List<Student> student = s.getStudentsWaitingApprocal();
         	  
         	  for(int i=0;i<student.size();i++) {
-        		  System.out.println("Name     " + "Email   ");
-        		  System.out.println(student.get(i).getName() + "    " + student.get(i).getEmail());
+        		  System.out.println("Name\t" + "Rollno   ");
+        		  System.out.println(student.get(i).getName() + "\t" + student.get(i).getEmail());
         		 
         		  
         	  }
-        	  System.out.println("** ENTER THE EMAIL NUMBER OF THE STUDENT YOU WANT TO APPROVE");
+        	  System.out.println("** ENTER THE roll number OF THE STUDENT YOU WANT TO APPROVE");
         	  
         	  String email = sc.next();
     		  
@@ -214,7 +212,8 @@ public class CRSAdminMenu {
         }
       }
     } catch (Exception e) {
-
+      System.out.println(e);
+      System.out.println(e.getCause());
     }
   }
 }
