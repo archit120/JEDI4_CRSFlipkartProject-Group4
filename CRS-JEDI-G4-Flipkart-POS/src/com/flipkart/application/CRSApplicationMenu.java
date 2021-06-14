@@ -2,6 +2,8 @@ package com.flipkart.application;
 
 import java.util.Scanner;
 
+import com.flipkart.exception.CourseAlreadyFullException;
+import com.flipkart.exception.CourseAlreadyRegisteredException;
 import javax.security.auth.login.LoginException;
 
 import org.apache.log4j.BasicConfigurator;
@@ -37,6 +39,9 @@ public class CRSApplicationMenu {
    * The main method.
    *
    * @param args the arguments
+
+ * @throws CourseAlreadyFullException 
+ * @throws CourseAlreadyRegisteredException 
  * @throws StudentApprovalFailedException 
  * @throws LoginFailedException 
  * @throws StudentNotApprovedException 
@@ -44,7 +49,7 @@ public class CRSApplicationMenu {
  * @throws StudentAlreadyApprovedException 
  * @throws LoginException 
    */
-  public static void main(String[] args) throws LoginFailedException, StudentNotApprovedException,StudentApprovalFailedException {
+  public static void main(String[] args) throws LoginFailedException, StudentNotApprovedException,StudentApprovalFailedException,CourseAlreadyFullException, CourseAlreadyRegisteredException {
 	  BasicConfigurator.configure();
     @SuppressWarnings("resource")
     Scanner sc = new Scanner(System.in);

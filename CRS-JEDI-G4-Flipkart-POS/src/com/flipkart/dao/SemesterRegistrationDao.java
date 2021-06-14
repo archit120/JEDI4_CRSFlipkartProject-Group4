@@ -1,6 +1,8 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.SemesterRegistration;
+import com.flipkart.utils.DBUtil;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,7 +27,7 @@ public class SemesterRegistrationDao implements SemesterRegistrationDaoInterface
    */
   public static boolean addSemesterRegistration(SemesterRegistration s) {
 
-    Connection conn = Connection1.getConnection();
+	  Connection conn = Connection1.getConnection();
 
     PreparedStatement stmt = null;
     String sql = "INSERT INTO semesterregistration (semester, year, studentid) VALUES (?,?, ?)";

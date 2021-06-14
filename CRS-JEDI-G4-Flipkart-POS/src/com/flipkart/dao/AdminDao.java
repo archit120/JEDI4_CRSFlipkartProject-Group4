@@ -1,6 +1,8 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.Admin;
+import com.flipkart.utils.DBUtil;
+
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;

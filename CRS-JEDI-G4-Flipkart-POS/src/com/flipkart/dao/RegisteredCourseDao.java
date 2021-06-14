@@ -3,6 +3,7 @@ package com.flipkart.dao;
 import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.ReportCard;
 import com.flipkart.bean.Student;
+import com.flipkart.utils.DBUtil;
 import com.flipkart.exception.GradeNotAssigned;
 
 import java.sql.Connection;
@@ -29,9 +30,28 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
    */
   public static boolean addRegisteredCourse(RegisteredCourse s) {
 
-    Connection conn = Connection1.getConnection();
+	  Connection conn = Connection1.getConnection();
+	  
+	  boolean check = true;
 
-    PreparedStatement stmt = null;
+	    PreparedStatement stmt = null;
+	    String sql1 = "SELECT COUNT(*) as cnt from registeredCourse where courseId= ? and studentId=? ";
+	    try {
+	      stmt = conn.prepareStatement(sql1);
+	      stmt.setInt(1, s.getCourseId());
+	      stmt.setInt(2, s.getStudentId());
+	      ResultSet rs = stmt.executeQuery();
+	      rs.next();
+	      int cnt = rs.getInt("cnt");
+	      if (cnt > 0) check = false;
+	    } catch (Exception e) {
+	      check = false;
+	      logger.error(e);
+	    }
+
+	    if (check == false) return check;
+
+    stmt = null;
     String sql =
         "INSERT INTO registeredCourse (semesterRegistrationId, courseId, grade, studentId) VALUES"
             + " (?, ?, ?, ?);";

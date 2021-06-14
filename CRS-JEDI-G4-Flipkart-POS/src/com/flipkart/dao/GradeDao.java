@@ -1,6 +1,8 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.Grade;
+import com.flipkart.utils.DBUtil;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
@@ -20,7 +22,7 @@ public class GradeDao implements GradeDaoInterface {
 	
 	public static boolean addGrade(Grade g) {
 
-	    Connection conn = Connection1.getConnection();
+		 Connection conn = Connection1.getConnection();
 
 	    PreparedStatement stmt = null;
 	    

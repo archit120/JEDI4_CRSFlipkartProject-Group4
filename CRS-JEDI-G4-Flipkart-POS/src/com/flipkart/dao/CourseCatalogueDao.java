@@ -1,6 +1,8 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.CourseCatalogue;
+import com.flipkart.utils.DBUtil;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,7 +27,7 @@ public class CourseCatalogueDao implements CourseCatalogueDaoInterface {
    */
   public static boolean addCourseCatalogue(CourseCatalogue s) {
 
-    Connection conn = Connection1.getConnection();
+	  Connection conn = Connection1.getConnection();
 
     PreparedStatement stmt = null;
     String sql = "INSERT INTO coursecatalogue (semester, year) VALUES (?,?)";
@@ -55,7 +57,7 @@ public class CourseCatalogueDao implements CourseCatalogueDaoInterface {
    */
   public static List<CourseCatalogue> getCourseCatalogues() {
 
-    Connection conn = Connection1.getConnection();
+	  Connection conn = Connection1.getConnection();
 
     PreparedStatement stmt = null;
     List<CourseCatalogue> courseList = new ArrayList<CourseCatalogue>();

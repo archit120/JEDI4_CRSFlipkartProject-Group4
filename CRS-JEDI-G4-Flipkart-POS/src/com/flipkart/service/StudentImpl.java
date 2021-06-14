@@ -3,6 +3,8 @@ package com.flipkart.service;
 import com.flipkart.bean.*;
 import com.flipkart.dao.RegisteredCourseDao;
 import com.flipkart.dao.StudentDao;
+import com.flipkart.exception.CourseAlreadyFullException;
+import com.flipkart.exception.CourseAlreadyRegisteredException;
 import com.flipkart.exception.LoginFailedException;
 import com.flipkart.exception.StudentApprovalFailedException;
 import com.flipkart.exception.StudentNotApprovedException;
@@ -87,23 +89,31 @@ public class StudentImpl implements StudentInterface {
    * @param semesterRegistration the semester registration
    * @param CourseToRegister the course to register
    * @return true, if successful
+ * @throws CourseAlreadyFullException 
+ * @throws CourseAlreadyRegisteredException 
    */
   @Override
   public boolean registerForCourse(
-      SemesterRegistration semesterRegistration, Course CourseToRegister) {
+      SemesterRegistration semesterRegistration, Course CourseToRegister) throws CourseAlreadyFullException, CourseAlreadyRegisteredException {
     // TODO Auto-generated method stub
 
     RegisteredCourseImpl rcInstance = new RegisteredCourseImpl();
 
-    if (!rcInstance.checkAvailability(CourseToRegister)) return false;
-
+    if (!rcInstance.checkAvailability(CourseToRegister)) { 
+    	throw new CourseAlreadyFullException(CourseToRegister.getCourseCode());
+    	}
+    
     RegisteredCourse registeredCourse = new RegisteredCourse();
     registeredCourse.setCourseId(CourseToRegister.getId());
     registeredCourse.setStudentId(studentInstance.getUserID());
     registeredCourse.setSemesterRegistrationId(semesterRegistration.getId());
     registeredCourse.setGradeId(-1);
 
-    return rcInstance.addRegisteredCourse(registeredCourse);
+    if(!rcInstance.addRegisteredCourse(registeredCourse)) {
+    	throw new CourseAlreadyRegisteredException("You have already registered for this course.");
+    }else {
+    	return true;
+    }
   }
 
   /**

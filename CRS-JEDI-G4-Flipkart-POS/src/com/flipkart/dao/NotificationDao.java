@@ -1,6 +1,8 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.Notification;
+import com.flipkart.utils.DBUtil;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,7 +26,7 @@ public class NotificationDao {
 	
 	public List<Notification> getNotification(int studentId) {
 		
-		Connection conn = Connection1.getConnection();
+		 Connection conn = Connection1.getConnection();
 
 	    PreparedStatement stmt = null;
 	    
