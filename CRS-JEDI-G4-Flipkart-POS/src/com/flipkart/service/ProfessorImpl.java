@@ -61,10 +61,10 @@ public class ProfessorImpl implements ProfessorInterface {
    * @param course the course
    * @return true, if successful
    */
-  @Override
-  public boolean chooseCourse(Course course) {
-    return new CourseImpl().indicateProfessor(course, professorInstance);
-  }
+//  @Override
+//  public boolean chooseCourse(Course course) {
+//    return new CourseImpl().indicateProfessor(course, professorInstance);
+//  }
 
   /**
    * Gets the enrolled students.

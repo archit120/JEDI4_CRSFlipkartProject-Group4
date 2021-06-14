@@ -27,7 +27,7 @@ public interface ProfessorInterface {
    * @param course the course
    * @return true, if successful
    */
-  public boolean chooseCourse(Course course);
+//  public boolean chooseCourse(Course course);
 
   /**
    * Gets the enrolled students.
