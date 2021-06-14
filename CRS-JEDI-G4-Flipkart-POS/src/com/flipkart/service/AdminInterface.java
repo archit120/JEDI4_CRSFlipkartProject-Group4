@@ -2,6 +2,7 @@ package com.flipkart.service;
 
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
+import com.flipkart.exception.ProfessorPreExistsException;
 
 // TODO: Auto-generated Javadoc
 /** The Interface AdminInterface. */
@@ -12,8 +13,9 @@ public interface AdminInterface {
    *
    * @param professorToBeAdded the professor to be added
    * @return true, if successful
+ * @throws ProfessorPreExistsException 
    */
-  public boolean addProfessor(Professor professorToBeAdded);
+  public boolean addProfessor(Professor professorToBeAdded) throws ProfessorPreExistsException;
 
   /**
    * Adds the student.
