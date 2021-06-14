@@ -13,8 +13,8 @@ public class CRSApplicationMenu {
     System.out.println("-----------Welcome to CRS-----------");
     System.out.println("Press 1 to login.");
     System.out.println("Press 2 to change password.");
-    System.out.println("Press 3 to exit.");
-    System.out.println("Press 4 to Register as a student.");
+    System.out.println("Press 3 to Register as a student.");
+    System.out.println("Press 4 to exit.");
     System.out.println("------------------------------------");
   }
 
@@ -67,10 +67,10 @@ public class CRSApplicationMenu {
         }
       } else if (response1 == 2) {
         // updatePasswordUser
-      } else if(response1 == 3) {
+      } else if(response1 == 4) {
         System.out.println("Exiting from the website.");
         break;
-      }else if(response1 ==4){
+      }else if(response1 ==3){
     	  
     	  System.out.println("Enter your name");
     	  String name = sc.next();
@@ -94,9 +94,9 @@ public class CRSApplicationMenu {
     	  boolean done = studImpl.addStudent(email, password, name,username,roll,dept);
     	  
     	  if(done) {
-    		  System.out.println("You Have sucessfully been registered , waiting for admin approval !!");
+    		  System.out.println("You have sucessfully been registered , waiting for admin approval !!");
     	  }else {
-    		  System.out.println("Somethign went wrong");
+    		  System.out.println("Something went wrong");
     	  }
     	  
       }else {

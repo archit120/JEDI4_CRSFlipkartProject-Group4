@@ -10,6 +10,7 @@ import com.flipkart.dao.ProfessorDao;
 import com.flipkart.dao.StudentDao;
 import com.flipkart.exception.CoursePreExistsException;
 import com.flipkart.exception.ProfessorPreExistsException;
+import com.flipkart.exception.StudentPreExistsException;
 
 // TODO: Auto-generated Javadoc
 /** The Class AdminImpl. */
@@ -46,8 +47,15 @@ public class AdminImpl implements AdminInterface {
    * @return true, if successful
    */
   @Override
-  public boolean addStudent(Student student) {
-    return StudentDao.addStudent(student);
+  public boolean addStudent(Student student) throws StudentPreExistsException {
+    
+    if (StudentDao.addStudent(student) == true) {
+    	
+    	return true;
+    } else {
+    	
+    	throw new StudentPreExistsException(student.getUsername());
+    }
   }
 
   /**

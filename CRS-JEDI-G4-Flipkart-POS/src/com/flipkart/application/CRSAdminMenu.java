@@ -177,8 +177,12 @@ public class CRSAdminMenu {
             System.out.print("Enter Student department:");
             takeInput2 = sc.next();
             newStudent.setDepartment(takeInput2);
-
-            admin.addStudent(newStudent);
+            
+            try {
+                admin.addStudent(newStudent);
+                } catch (Exception e) {
+                  System.out.println(e);
+                }
 
             break;
 
@@ -204,7 +208,7 @@ public class CRSAdminMenu {
         		 
         		  
         	  }
-        	  System.out.println("** ENTER THEB EMAIL NUMBER OF THE STUDENT YOU WANT TO APPROVE");
+        	  System.out.println("** ENTER THE EMAIL NUMBER OF THE STUDENT YOU WANT TO APPROVE");
         	  
         	  String email = sc.next();
     		  
