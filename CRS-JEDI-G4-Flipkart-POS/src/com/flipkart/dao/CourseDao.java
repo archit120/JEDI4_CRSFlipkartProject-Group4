@@ -2,6 +2,7 @@ package com.flipkart.dao;
 
 import com.flipkart.bean.Course;
 import com.flipkart.bean.CourseCatalogue;
+import com.flipkart.constants.SQLConstants;
 import com.flipkart.utils.DBUtil;
 
 import java.sql.Connection;
@@ -28,11 +29,11 @@ public class CourseDao implements CourseDaoInterface {
 
   public static boolean addCourse(Course s) {
 
-	 Connection conn = Connection1.getConnection();
+	 Connection conn = DBUtil.getConnection();
     boolean check = true;
 
     PreparedStatement stmt = null;
-    String sql1 = "SELECT COUNT(*) as cnt from course where courseCode= ? and courseCatalogueId=? ";
+    String sql1 = SQLConstants.addCourse_check;
     try {
       stmt = conn.prepareStatement(sql1);
       stmt.setString(1, s.getCourseCode());
@@ -48,10 +49,7 @@ public class CourseDao implements CourseDaoInterface {
 
     if (check == false) return check;
 
-    String sql =
-        "INSERT INTO course (courseCode, department, description, preRequisites, courseCatalogueId,"
-            + " professorId) VALUES (?,?,?,?,?,?)";
-
+    String sql = SQLConstants.addCourse;
     stmt = null;
 
     try {
@@ -84,10 +82,10 @@ public class CourseDao implements CourseDaoInterface {
    */
   public static boolean removeCourse(int courseId) {
 
-    Connection conn = Connection1.getConnection();
+    Connection conn = DBUtil.getConnection();
 
     PreparedStatement stmt = null;
-    String sql = "Delete from course where id=? ";
+    String sql = SQLConstants.removeCourse;
 
     try {
       // System.out.println("hi");
@@ -137,7 +135,7 @@ public class CourseDao implements CourseDaoInterface {
    * @return the courses
    */
   private static List<Course> getCourses(String sql) {
-    Connection conn = Connection1.getConnection();
+    Connection conn = DBUtil.getConnection();
 
     PreparedStatement stmt = null;
     List<Course> courseList = new ArrayList<Course>();
@@ -165,7 +163,7 @@ public class CourseDao implements CourseDaoInterface {
    * @return the course
    */
   public static Course getCourse(int courseId) {
-    return getCourses("select * from course where id=" + courseId).get(0);
+    return getCourses(SQLConstants.getCoursePrefix+" id=" + courseId).get(0);
   }
 
   /**
@@ -175,7 +173,7 @@ public class CourseDao implements CourseDaoInterface {
    * @return the list
    */
   public static List<Course> findCourses(CourseCatalogue courseCatalogue) {
-    return getCourses("select * from course where courseCatalogueId=" + courseCatalogue.getId());
+    return getCourses(SQLConstants.getCoursePrefix+" courseCatalogueId=" + courseCatalogue.getId());
   }
 
   /**
@@ -187,7 +185,7 @@ public class CourseDao implements CourseDaoInterface {
    */
   public static Course findCourse(CourseCatalogue courseCatalogue, String coursecode) {
     return getCourses(
-            "select * from course where courseCatalogueId="
+            SQLConstants.getCoursePrefix+" courseCatalogueId="
                 + courseCatalogue.getId()
                 + " and coursecode='"
                 + coursecode
@@ -203,10 +201,10 @@ public class CourseDao implements CourseDaoInterface {
    * @return true, if successful
    */
   public static boolean markCourseToTeach(int cId, int pId) {
-    Connection conn = Connection1.getConnection();
+    Connection conn = DBUtil.getConnection();
 
     PreparedStatement stmt = null;
-    String sql = "UPDATE course SET professorId = ? where id = ? ";
+    String sql = SQLConstants.markCourseToTeach;
 
     try {
       stmt = conn.prepareStatement(sql);

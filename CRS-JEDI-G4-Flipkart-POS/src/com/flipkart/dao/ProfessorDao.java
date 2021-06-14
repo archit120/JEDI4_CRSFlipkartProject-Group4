@@ -1,6 +1,7 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.Professor;
+import com.flipkart.constants.SQLConstants;
 import com.flipkart.utils.DBUtil;
 
 import java.sql.Connection;
@@ -25,10 +26,10 @@ public class ProfessorDao implements ProfessorDaoInterface {
    * @return the professor
    */
   public static Professor login(String username, String password) {
-    Connection conn = Connection1.getConnection();
+    Connection conn = DBUtil.getConnection();
 
     PreparedStatement stmt = null;
-    String sql = "Select * from professor where username=? and password=?";
+    String sql = SQLConstants.professorLogin;
     try {
       stmt = conn.prepareStatement(sql);
       stmt.setString(1, username);
@@ -59,12 +60,12 @@ public class ProfessorDao implements ProfessorDaoInterface {
    */
   public static boolean addProfessor(Professor s) {
 
-	  Connection conn = Connection1.getConnection();
+	  Connection conn = DBUtil.getConnection();
     
     boolean check = true;
 
     PreparedStatement stmt = null;
-    String sql1 = "SELECT COUNT(*) as cnt from professor where empId= ?";
+    String sql1 = SQLConstants.addProfessor_check;
     try {
       stmt = conn.prepareStatement(sql1);
       stmt.setString(1, s.getEmpID());
@@ -81,9 +82,7 @@ public class ProfessorDao implements ProfessorDaoInterface {
     if (check == false) return check;
 
     stmt = null;
-    String sql =
-        "INSERT INTO professor (name, email, username, password,empId,department) VALUES (?,"
-            + " ?,?,?,?,?)";
+    String sql =SQLConstants.addProfessor;
     try {
       stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
       stmt.setString(1, s.getName()); // This would set age

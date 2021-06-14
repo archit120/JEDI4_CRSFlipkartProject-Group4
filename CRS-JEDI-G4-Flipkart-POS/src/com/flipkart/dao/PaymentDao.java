@@ -1,6 +1,7 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.Payment;
+import com.flipkart.constants.SQLConstants;
 import com.flipkart.utils.DBUtil;
 
 import java.sql.Connection;
@@ -26,12 +27,12 @@ private static Logger logger = Logger.getLogger(AdminDao.class);
    */
   public static boolean makePayment(Payment p) {
 
-	  Connection conn = Connection1.getConnection();
+	  Connection conn = DBUtil.getConnection();
 
     PreparedStatement stmt = null;
     PreparedStatement stmt1 = null;
     
-    String sql1 = "SELECT COUNT(*) as cnt from payment where studentId= ? and semesterRegistrationId=? ";
+    String sql1 = SQLConstants.makePayment_check;
     
     try {
     	stmt1 = conn.prepareStatement(sql1);
@@ -47,7 +48,7 @@ private static Logger logger = Logger.getLogger(AdminDao.class);
     	logger.error(e);
     }
     
-    String sql = "INSERT INTO payment (mode, studentId , semesterRegistrationId ) VALUES (?,?,?)";
+    String sql = SQLConstants.makePayment;
 
     try {
       stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);

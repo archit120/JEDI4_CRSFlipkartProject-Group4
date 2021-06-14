@@ -26,7 +26,7 @@ public class NotificationDao {
 	
 	public List<Notification> getNotification(int studentId) {
 		
-		 Connection conn = Connection1.getConnection();
+		 Connection conn = DBUtil.getConnection();
 
 	    PreparedStatement stmt = null;
 	    

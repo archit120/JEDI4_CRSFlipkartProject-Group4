@@ -1,7 +1,6 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.SemesterRegistration;
-import com.flipkart.utils.DBUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,13 +9,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.flipkart.constants.SQLConstants;
 import org.apache.log4j.Logger;
 
 // TODO: Auto-generated Javadoc
 /** The Class SemesterRegistrationDao. */
 public class SemesterRegistrationDao implements SemesterRegistrationDaoInterface {
-	
-	private static Logger logger = Logger.getLogger(AdminDao.class);
+
+  private static Logger logger = Logger.getLogger(AdminDao.class);
 
 
   /**
@@ -30,11 +30,10 @@ public class SemesterRegistrationDao implements SemesterRegistrationDaoInterface
 	  Connection conn = Connection1.getConnection();
 
     PreparedStatement stmt = null;
-    String sql = "INSERT INTO semesterregistration (semester, year, studentid) VALUES (?,?, ?)";
 
     try {
       // System.out.println("hi");
-      stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+      stmt = conn.prepareStatement(SQLConstants.addSemesterRegistration, Statement.RETURN_GENERATED_KEYS);
       stmt.setInt(1, s.getSemester()); // This would set age
       stmt.setInt(2, s.getYear());
       stmt.setInt(3, s.getStudentId());
@@ -93,7 +92,7 @@ public class SemesterRegistrationDao implements SemesterRegistrationDaoInterface
    */
   public static List<SemesterRegistration> getSemesterRegistrationsByStudentId(int studentId) {
     return getSemesterRegistrations(
-        "select * from semesterregistration where studentid=" + studentId);
+        SQLConstants.getSemesterRegisrationsByStudentId + studentId);
   }
 
   /**
@@ -102,67 +101,7 @@ public class SemesterRegistrationDao implements SemesterRegistrationDaoInterface
    * @return the semester registrations
    */
   public static List<SemesterRegistration> getSemesterRegistrations() {
-    return getSemesterRegistrations("select * from semesterregistration");
+    return getSemesterRegistrations(SQLConstants.getSemesterRegistrations);
   }
 
-  /**
-   * Gets the course idfrom code.
-   *
-   * @param courseCode the course code
-   * @return the course idfrom code
-   */
-  public static int getCourseIdfromCode(String courseCode) {
-    //		System.out.println(courseCode);
-    Connection conn = Connection1.getConnection();
-
-    PreparedStatement stmt = null;
-    String sql = "Select id from course where courseCode=?";
-    int cId = -1;
-    try {
-      // System.out.println("hi");
-      stmt = conn.prepareStatement(sql);
-      stmt.setString(1, courseCode);
-      ResultSet rs = stmt.executeQuery();
-      //			System.out.println(rs);
-      while (rs.next()) {
-        cId = rs.getInt("id");
-        //			 System.out.println(cId);
-      }
-      stmt.close();
-      conn.close();
-
-    } catch (Exception e) {
-
-    	logger.error(e);
-    }
-
-    return cId;
-  }
-
-  /**
-   * Adds the couse to teach.
-   *
-   * @param cId the c id
-   * @param pId the id
-   * @return true, if successful
-   */
-  public static boolean addCouseToTeach(int cId, int pId) {
-
-    Connection conn = Connection1.getConnection();
-
-    PreparedStatement stmt = null;
-    String sql = "UPDATE course SET pId = ? where id = ? ";
-
-    try {
-      stmt = conn.prepareStatement(sql);
-      stmt.setInt(1, pId);
-      stmt.setInt(2, cId);
-
-      stmt.executeUpdate();
-    } catch (Exception e) {
-    	logger.error(e);
-    }
-
-    return true;
-  }
 }

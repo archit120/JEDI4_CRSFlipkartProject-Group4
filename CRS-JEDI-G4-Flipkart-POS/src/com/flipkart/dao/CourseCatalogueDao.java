@@ -1,6 +1,7 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.CourseCatalogue;
+import com.flipkart.constants.SQLConstants;
 import com.flipkart.utils.DBUtil;
 
 import java.sql.Connection;
@@ -15,7 +16,7 @@ import org.apache.log4j.Logger;
 // TODO: Auto-generated Javadoc
 /** The Class CourseCatalogueDao. */
 public class CourseCatalogueDao implements CourseCatalogueDaoInterface {
-	
+
 	private static Logger logger = Logger.getLogger(CourseCatalogueDao.class);
 
 
@@ -27,10 +28,10 @@ public class CourseCatalogueDao implements CourseCatalogueDaoInterface {
    */
   public static boolean addCourseCatalogue(CourseCatalogue s) {
 
-	  Connection conn = Connection1.getConnection();
+	  Connection conn = DBUtil.getConnection();
 
     PreparedStatement stmt = null;
-    String sql = "INSERT INTO coursecatalogue (semester, year) VALUES (?,?)";
+    String sql = SQLConstants.courseCatalogueAdd;
 
     try {
       // System.out.println("hi");
@@ -57,12 +58,12 @@ public class CourseCatalogueDao implements CourseCatalogueDaoInterface {
    */
   public static List<CourseCatalogue> getCourseCatalogues() {
 
-	  Connection conn = Connection1.getConnection();
+	  Connection conn = DBUtil.getConnection();
 
     PreparedStatement stmt = null;
     List<CourseCatalogue> courseList = new ArrayList<CourseCatalogue>();
     try {
-      String sql = "SELECT* FROM coursecatalogue  ";
+      String sql = SQLConstants.courseCatalogueList;
 
       stmt = conn.prepareStatement(sql);
       ResultSet rs = stmt.executeQuery();
@@ -95,10 +96,10 @@ public class CourseCatalogueDao implements CourseCatalogueDaoInterface {
    */
   public static int getCourseIdfromCode(String courseCode) {
     //		System.out.println(courseCode);
-    Connection conn = Connection1.getConnection();
+    Connection conn = DBUtil.getConnection();
 
     PreparedStatement stmt = null;
-    String sql = "Select id from course where courseCode=?";
+    String sql = SQLConstants.getCourseIdfromCode;
     int cId = -1;
     try {
       // System.out.println("hi");
@@ -121,30 +122,4 @@ public class CourseCatalogueDao implements CourseCatalogueDaoInterface {
     return cId;
   }
 
-  /**
-   * Adds the couse to teach.
-   *
-   * @param cId the c id
-   * @param pId the id
-   * @return true, if successful
-   */
-  public static boolean addCouseToTeach(int cId, int pId) {
-
-    Connection conn = Connection1.getConnection();
-
-    PreparedStatement stmt = null;
-    String sql = "UPDATE course SET pId = ? where id = ? ";
-
-    try {
-      stmt = conn.prepareStatement(sql);
-      stmt.setInt(1, pId);
-      stmt.setInt(2, cId);
-
-      stmt.executeUpdate();
-    } catch (Exception e) {
-    	logger.error(e);
-    }
-
-    return true;
-  }
 }

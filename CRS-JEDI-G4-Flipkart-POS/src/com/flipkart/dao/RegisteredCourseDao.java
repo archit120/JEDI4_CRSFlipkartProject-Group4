@@ -3,6 +3,7 @@ package com.flipkart.dao;
 import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.ReportCard;
 import com.flipkart.bean.Student;
+import com.flipkart.constants.SQLConstants;
 import com.flipkart.utils.DBUtil;
 import com.flipkart.exception.GradeNotAssigned;
 
@@ -30,12 +31,12 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
    */
   public static boolean addRegisteredCourse(RegisteredCourse s) {
 
-	  Connection conn = Connection1.getConnection();
+	  Connection conn = DBUtil.getConnection();
 	  
 	  boolean check = true;
 
 	    PreparedStatement stmt = null;
-	    String sql1 = "SELECT COUNT(*) as cnt from registeredCourse where courseId= ? and studentId=? ";
+	    String sql1 = SQLConstants.addRegisteredCourse_check;
 	    try {
 	      stmt = conn.prepareStatement(sql1);
 	      stmt.setInt(1, s.getCourseId());
@@ -52,10 +53,7 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
 	    if (check == false) return check;
 
     stmt = null;
-    String sql =
-        "INSERT INTO registeredCourse (semesterRegistrationId, courseId, grade, studentId) VALUES"
-            + " (?, ?, ?, ?);";
-
+    String sql = SQLConstants.addRegisteredCourse;
     try {
       // System.out.println("hi");
       stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -85,7 +83,7 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
    * @return the registered courses
    */
   private static List<RegisteredCourse> getRegisteredCourses(String sql) {
-    Connection conn = Connection1.getConnection();
+    Connection conn = DBUtil.getConnection();
 
     PreparedStatement stmt = null;
     List<RegisteredCourse> courseList = new ArrayList<RegisteredCourse>();
@@ -121,7 +119,7 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
   public static List<RegisteredCourse> getRegisteredCourseBySemesterRegistrationIdAndCourseCode(
       int semesterRegistrationId) {
     return getRegisteredCourses(
-        "select * from registeredcourse where semesterRegistrationId=" + semesterRegistrationId);
+            SQLConstants.registerCoursePrefix+" semesterRegistrationId=" + semesterRegistrationId);
   }
 
   /**
@@ -134,7 +132,7 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
   public static RegisteredCourse getRegisteredCourseBySemesterRegistrationIdAndCourseCode(
       int semesterRegistrationId, String courseCode) {
     return getRegisteredCourses(
-            "select * from registeredcourse where semesterRegistrationId="
+            SQLConstants.registerCoursePrefix+  "semesterRegistrationId="
                 + semesterRegistrationId
                 + " and courseid in (select id from course where coursecode='"
                 + courseCode   
@@ -150,10 +148,10 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
    */
   public static boolean deleteRegisteredCourse(RegisteredCourse registeredCourse) {
 
-    Connection conn = Connection1.getConnection();
+    Connection conn = DBUtil.getConnection();
 
     PreparedStatement stmt = null;
-    String sql = "DELETE FROM registeredCourse where id = ?";
+    String sql = SQLConstants.deleteRegisteredCourse;
     try {
       // System.out.println("hi");
       stmt = conn.prepareStatement(sql);
@@ -177,13 +175,13 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
    */
   public static List<Student> getEnrolledStudents(int courseCatalogueId, int professorId) {
 
-    Connection conn = Connection1.getConnection();
+    Connection conn = DBUtil.getConnection();
 
     PreparedStatement stmt = null;
     List<Integer> enrolledStudentsId = new ArrayList<Integer>();
     try {
       String sql =
-          "SELECT registeredCourse.studentId from registeredCourse, course where"
+          SQLConstants.getEnrolledStudent
               + " registeredCourse.courseid=course.id and course.courseCatalogueId=? and"
               + " course.professorId=?";
 
@@ -218,12 +216,12 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
    */
   public static List<Student> getEnrolledStudents(int courseId) {
 
-    Connection conn = Connection1.getConnection();
+    Connection conn = DBUtil.getConnection();
 
     PreparedStatement stmt = null;
     List<Integer> enrolledStudentsId = new ArrayList<Integer>();
     try {
-      String sql = "SELECT studentId from registeredCourse where registeredCourse.courseid=?";
+      String sql = SQLConstants.registerCoursePrefix+"registeredCourse.courseid=?";
 
       stmt = conn.prepareStatement(sql);
       stmt.setInt(1, courseId);
@@ -259,15 +257,12 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
   public static boolean setGradeStudent(
       String courseCode, int courseCatalogueId, String rollNo, int grade) {
 
-    Connection conn = Connection1.getConnection();
+    Connection conn = DBUtil.getConnection();
 
     PreparedStatement stmt = null;
 
     try {
-      String sql =
-          "UPDATE registeredcourse SET grade = ? where  courseID = (select Id from course where"
-              + " courseCode=? and courseCatalogueId=?) and studentId = (select Id from student"
-              + " where rollno=?)";
+      String sql =SQLConstants.setGradeStudent;
       stmt = conn.prepareStatement(sql);
 
       stmt.setInt(1, grade);
@@ -293,7 +288,7 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
    */
   public static boolean setGradeStudent(int id, int grade) {
 
-    Connection conn = Connection1.getConnection();
+    Connection conn = DBUtil.getConnection();
 
     PreparedStatement stmt = null;
 
@@ -321,7 +316,7 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
   public static ReportCard getReportCard(int semesterRegistrationId)  throws GradeNotAssigned{
     double ans = 0;
 
-    Connection conn = Connection1.getConnection();
+    Connection conn = DBUtil.getConnection();
     ReportCard report = new ReportCard();
     PreparedStatement stmt = null;
     PreparedStatement stmt1 = null;
@@ -331,8 +326,7 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
     try {
 
       //	String sql = "Select from registeredCourse where  cId = ? and sId = ?";
-      String sql1 =
-          "select avg(grade) as average from registeredcourse where semesterRegistrationId = ?";
+      String sql1 =SQLConstants.getReportCard_GPA;
       stmt1 = conn.prepareStatement(sql1);
       stmt1.setInt(1, semesterRegistrationId);
       ResultSet rs1 = stmt1.executeQuery();
@@ -340,8 +334,7 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
         ans = rs1.getDouble("average");
       }
       report.setSgpa(ans);
-      String sql =
-          "select registeredcourse.courseId,registeredcourse.grade,course.courseCode from"
+      String sql = SQLConstants.getRepoortCard
               + " registeredcourse,course where semesterRegistrationId = ? and"
               + " registeredcourse.courseId=course.id";
       stmt = conn.prepareStatement(sql);

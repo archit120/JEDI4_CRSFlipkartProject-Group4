@@ -1,6 +1,7 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.Student;
+import com.flipkart.constants.SQLConstants;
 import com.flipkart.utils.DBUtil;
 
 import java.security.KeyPair;
@@ -16,8 +17,8 @@ import org.apache.log4j.Logger;
 // TODO: Auto-generated Javadoc
 /** The Class StudentDao. */
 public class StudentDao implements StudentDaoInterface {
-	
-	private static Logger logger = Logger.getLogger(AdminDao.class);
+
+    private static Logger logger = Logger.getLogger(AdminDao.class);
 
 
   /**
@@ -31,7 +32,7 @@ public class StudentDao implements StudentDaoInterface {
     Connection conn = Connection1.getConnection();
 
     PreparedStatement stmt = null;
-    String sql = "Select * from Student where username=? and password=?";
+    String sql = SQLConstants.studentLogin;
     try {
       stmt = conn.prepareStatement(sql);
       stmt.setString(1, username);
@@ -69,7 +70,7 @@ public class StudentDao implements StudentDaoInterface {
     boolean check = true;
 
     PreparedStatement stmt = null;
-    String sql1 = "SELECT COUNT(*) as cnt from student where username= ?";
+    String sql1 = SQLConstants.addStudent_check;
     try {
       stmt = conn.prepareStatement(sql1);
       stmt.setString(1, s.getUsername());
@@ -87,8 +88,7 @@ public class StudentDao implements StudentDaoInterface {
 
     stmt = null;
     String sql =
-        "INSERT INTO student (name, email, username, password, rollno, department,isApproved) VALUES (?,"
-            + " ?,?,?,?,?,?)";
+            SQLConstants.addStudent;
     try {
       stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
       stmt.setString(1, s.getName()); // This would set age
@@ -128,7 +128,7 @@ public class StudentDao implements StudentDaoInterface {
     PreparedStatement stmt = null;
     List<Student> students = new ArrayList<Student>();
     for (Integer id : sId) {
-      String sql = "Select * from Student where id= ? ";
+      String sql = SQLConstants.getStudentsFromId;
       try {
         stmt = conn.prepareStatement(sql);
 
@@ -166,7 +166,7 @@ public class StudentDao implements StudentDaoInterface {
     Connection conn = Connection1.getConnection();
 
     PreparedStatement stmt = null;
-    String sql = "Select id from student where rollno=?";
+    String sql = SQLConstants.getIdFromRollNo;
 
     try {
       // System.out.println("hi");
@@ -193,7 +193,7 @@ public class StudentDao implements StudentDaoInterface {
 	  
 	  List<Student> students = new ArrayList<Student>();
 	  
-	  String sql = "SELECT * FROM student where isApproved = ?";
+	  String sql = SQLConstants.getStudentPendingApproval;
 	  Connection con = Connection1.getConnection();
 	  
 	
@@ -224,8 +224,8 @@ public class StudentDao implements StudentDaoInterface {
   
   public  static boolean approveStudent(String email) {
 	  
-	  String sql1 = "select count(email)as count from student where isApproved = ? and email =?";
-	  String sql = "UPDATE student set isApproved = ? where email = ?";
+	  String sql1 = SQLConstants.approveStudent_check;
+	  String sql = SQLConstants.approveStudent;
 	  Connection con = Connection1.getConnection();
 	  try {
 		  PreparedStatement stmt1 = con.prepareStatement(sql1);

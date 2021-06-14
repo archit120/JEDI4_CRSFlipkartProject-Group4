@@ -1,6 +1,7 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.Admin;
+import com.flipkart.constants.SQLConstants;
 import com.flipkart.utils.DBUtil;
 
 import org.apache.log4j.Logger;
@@ -25,10 +26,10 @@ public class AdminDao implements AdminDaoInterface {
 	
 	public static Admin login(String username, String password) {
 
-    Connection conn = Connection1.getConnection();
+    Connection conn = DBUtil.getConnection();
 
     PreparedStatement stmt = null;
-    String sql = "Select * from admin where username=? and password=?";
+    String sql = SQLConstants.adminLogin;
     try {
       stmt = conn.prepareStatement(sql);
       stmt.setString(1, username);
@@ -59,10 +60,10 @@ public class AdminDao implements AdminDaoInterface {
    */
   public static boolean addAdmin(Admin s) {
 
-    Connection conn = Connection1.getConnection();
+    Connection conn = DBUtil.getConnection();
 
     PreparedStatement stmt = null;
-    String sql = "INSERT INTO admin (name, email, username, password, empid) VALUES (?, ?,?,?,?)";
+    String sql = SQLConstants.adminAdd;
     try {
       stmt = conn.prepareStatement(sql);
       stmt.setString(1, s.getName()); // This would set age
@@ -87,11 +88,11 @@ public class AdminDao implements AdminDaoInterface {
    */
   public static List<Admin> getAdmins() {
 
-    Connection conn = Connection1.getConnection();
+    Connection conn = DBUtil.getConnection();
 
     PreparedStatement stmt = null;
     List<Admin> admins = new ArrayList<Admin>();
-    String sql = "Select * from admin ";
+    String sql = SQLConstants.adminList;
     try {
       stmt = conn.prepareStatement(sql);
 
