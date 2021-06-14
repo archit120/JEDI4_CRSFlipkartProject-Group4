@@ -20,7 +20,7 @@ public class CRSApplicationMenu {
     System.out.println("-----------LOG IN-----------");
     System.out.println("Press 1 if you are a student.");
     System.out.println("Press 2 if you are a professor.");
-    System.out.println("Press 3 if you are admin.");
+    System.out.println("Press 3 if you are an admin.");
     System.out.println("------------------------------------");
   }
 
