@@ -8,6 +8,7 @@ import com.flipkart.exception.CourseAlreadyRegisteredException;
 import com.flipkart.exception.LoginFailedException;
 import com.flipkart.exception.StudentApprovalFailedException;
 import com.flipkart.exception.StudentNotApprovedException;
+import com.flipkart.exception.StudentPreExistsException;
 import com.flipkart.exception.GradeNotAssigned;
 
 import java.util.ArrayList;
@@ -164,7 +165,7 @@ public boolean approveStudent(String email) throws StudentApprovalFailedExceptio
 	else throw new StudentApprovalFailedException(email);
 }
 
-public boolean addStudent(String email,String password,String name,String username,String roll,String dept){
+public boolean addStudent(String email,String password,String name,String username,String roll,String dept) throws StudentPreExistsException{
 	Student s = new Student();
 	s.setEmail(email);
 	s.setName(name);
@@ -174,7 +175,13 @@ public boolean addStudent(String email,String password,String name,String userna
 	s.setDepartment(dept);
 	s.setApproved(false);
 	
-	return StudentDao.addStudent(s);
+if (StudentDao.addStudent(s) == true) {
+    	
+    	return true;
+    } else {
+    	
+    	throw new StudentPreExistsException(s.getUsername());
+    }
 }
 
 }

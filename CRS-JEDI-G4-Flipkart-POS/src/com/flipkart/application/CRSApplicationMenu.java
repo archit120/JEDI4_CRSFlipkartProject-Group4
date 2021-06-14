@@ -106,10 +106,12 @@ public class CRSApplicationMenu {
     	  String dept = sc.next();
     	  
     	  StudentImpl studImpl = new StudentImpl();
-    	  boolean done = studImpl.addStudent(email, password, name,username,roll,dept);
-    	  if(done) {
-    		  System.out.println("You have sucessfully been registered, waiting for admin approval !!");
-    	  }
+    	  try {
+    		  studImpl.addStudent(email, password, name,username,roll,dept);
+    		  System.out.println("You have successfully been registered, waiting for admin approval !!");
+              } catch (Exception e) {
+                System.out.println(e.getMessage());
+              }
     	  
       }else {
     	  System.out.println("INVALID !!!!");
