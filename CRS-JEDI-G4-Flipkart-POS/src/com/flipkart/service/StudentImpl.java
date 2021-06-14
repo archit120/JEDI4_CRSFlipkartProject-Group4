@@ -100,7 +100,7 @@ public class StudentImpl implements StudentInterface {
     registeredCourse.setGradeId(-1);
 
     if(!rcInstance.addRegisteredCourse(registeredCourse)) {
-    	throw new CourseAlreadyRegisteredException("Hello1");
+    	throw new CourseAlreadyRegisteredException("You have already registered for this course.");
     }else {
     	return true;
     }
