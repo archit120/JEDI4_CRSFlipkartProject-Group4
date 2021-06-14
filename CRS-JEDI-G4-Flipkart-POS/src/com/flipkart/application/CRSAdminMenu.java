@@ -31,13 +31,11 @@ public class CRSAdminMenu {
 
     System.out.println("Press 3 - Add Professor");
 
-    System.out.println("Press 4 - Add Student");
-
-    System.out.println("Press 5 - List Courses");
+    System.out.println("Press 4 - List Courses");
     
-    System.out.println("Press 6 - Get Student list waiting for approval");
+    System.out.println("Press 5 - Get Student list waiting for approval");
     
-    System.out.println("Press 7 - Logout");
+    System.out.println("Press 6 - Logout");
 
     System.out.println("---------------------------------");
   }
@@ -167,41 +165,6 @@ public class CRSAdminMenu {
             break;
 
           case 4:
-            Student newStudent = new Student();
-
-            System.out.print("Enter Student username: ");
-            takeInput2 = sc.next();
-            newStudent.setUsername(takeInput2);
-
-            System.out.print("Enter Student Name: ");
-            takeInput2 = sc.next();
-            newStudent.setName(takeInput2);
-
-            System.out.print("Enter Student Email: ");
-            takeInput2 = sc.next();
-            newStudent.setEmail(takeInput2);
-
-            System.out.print("Enter Student Password: ");
-            takeInput2 = sc.next();
-            newStudent.setPassword(takeInput2);
-
-            System.out.print("Enter Student roll number: ");
-            takeInput2 = sc.next();
-            newStudent.setRollNo(takeInput2);
-
-            System.out.print("Enter Student department: ");
-            takeInput2 = sc.next();
-            newStudent.setDepartment(takeInput2);
-            
-            try {
-                admin.addStudent(newStudent);
-                } catch (Exception e) {
-                  System.out.println(e);
-                }
-
-            break;
-
-          case 5:
             List<Course> courses = courseImpl.findCourses(chosen);
             System.out.println("Total " + courses.size() + " courses found");
             
@@ -211,7 +174,7 @@ public class CRSAdminMenu {
               System.out.format("%25s%25s%25s%25s%n",course.getCourseCode(), course.getDescriptions(), course.getDepartment(), course.getPreRequisites());         
             }
             break;
-          case 6 : 
+          case 5 : 
         	  System.out.println("****All the stduent waiting approval are***");
         	  
         	  StudentImpl s = new StudentImpl();
@@ -242,7 +205,7 @@ public class CRSAdminMenu {
     		  }
     		  break;
         	  
-          case 7:
+          case 6:
             System.out.println("Successfully logged out !!");
             return;
           default:
