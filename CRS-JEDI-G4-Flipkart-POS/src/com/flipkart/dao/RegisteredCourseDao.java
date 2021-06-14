@@ -110,7 +110,7 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
             "select * from registeredcourse where semesterRegistrationId="
                 + semesterRegistrationId
                 + " and courseid in (select id from course where coursecode='"
-                + courseCode     dd
+                + courseCode   
                 + "')")
         .get(0);
   }
