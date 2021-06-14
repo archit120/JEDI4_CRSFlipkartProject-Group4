@@ -8,6 +8,8 @@ import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.ReportCard;
 import com.flipkart.bean.SemesterRegistration;
 import com.flipkart.dao.CourseDao;
+import com.flipkart.exception.CourseAlreadyFullException;
+import com.flipkart.exception.CourseAlreadyRegisteredException;
 import com.flipkart.service.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,8 +33,9 @@ public class CRSStudentMenu {
     System.out.println("----------------------------------------------------");
   }
 
-  /** Student menu. */
-  public void StudentMenu() {
+  /** Student menu. 
+ * @throws CourseAlreadyFullException */
+  public void StudentMenu() throws CourseAlreadyFullException, CourseAlreadyRegisteredException {
 
     Scanner sc = new Scanner(System.in);
     CourseCatalogue chosen = new CourseCatalogueImpl().getCourseCatalogues().get(0);
@@ -80,11 +83,15 @@ public class CRSStudentMenu {
         }
         
       } else if (option == 2) {
-        System.out.println("Enter course id code be added");
+        System.out.println("Enter the course code you want to add");
+        try {
         Course c = courseImpl.findCourse(chosen, sc.next());
         stud.registerForCourse(chosenSem, c);
-
         System.out.println("Course registered");
+        }catch(CourseAlreadyRegisteredException e) {
+        	System.out.println(e.getMessage());
+        }
+        	
 
       } else if (option == 3) {
 

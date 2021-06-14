@@ -1,6 +1,8 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.Payment;
+import com.flipkart.utils.DBUtil;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,7 +26,7 @@ private static Logger logger = Logger.getLogger(AdminDao.class);
    */
   public static boolean makePayment(Payment p) {
 
-    Connection conn = Connection1.getConnection();
+	  Connection conn = Connection1.getConnection();
 
     PreparedStatement stmt = null;
     String sql = "INSERT INTO payment (mode, studentId , semesterRegistrationId ) VALUES (?,?,?)";

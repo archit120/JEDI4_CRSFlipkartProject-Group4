@@ -1,6 +1,7 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.Student;
+import com.flipkart.utils.DBUtil;
 
 import java.security.KeyPair;
 import java.sql.Connection;
@@ -63,7 +64,7 @@ public class StudentDao implements StudentDaoInterface {
    */
   public static boolean addStudent(Student s) {
 
-    Connection conn = Connection1.getConnection();
+	  Connection conn = Connection1.getConnection();
     
     boolean check = true;
 

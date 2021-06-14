@@ -2,6 +2,8 @@ package com.flipkart.application;
 
 import java.util.Scanner;
 
+import com.flipkart.exception.CourseAlreadyFullException;
+import com.flipkart.exception.CourseAlreadyRegisteredException;
 import com.flipkart.service.StudentImpl;
 
 // TODO: Auto-generated Javadoc
@@ -31,8 +33,10 @@ public class CRSApplicationMenu {
    * The main method.
    *
    * @param args the arguments
+ * @throws CourseAlreadyFullException 
+ * @throws CourseAlreadyRegisteredException 
    */
-  public static void main(String[] args) {
+  public static void main(String[] args) throws CourseAlreadyFullException, CourseAlreadyRegisteredException {
 
     @SuppressWarnings("resource")
     Scanner sc = new Scanner(System.in);

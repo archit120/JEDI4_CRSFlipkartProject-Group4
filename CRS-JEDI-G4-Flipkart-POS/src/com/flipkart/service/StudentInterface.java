@@ -6,6 +6,8 @@ import com.flipkart.bean.Course;
 import com.flipkart.bean.ReportCard;
 import com.flipkart.bean.SemesterRegistration;
 import com.flipkart.bean.Student;
+import com.flipkart.exception.CourseAlreadyFullException;
+import com.flipkart.exception.CourseAlreadyRegisteredException;
 
 
 // TODO: Auto-generated Javadoc
@@ -45,8 +47,10 @@ public interface StudentInterface {
    * @param semesterRegistration the semester registration
    * @param CourseToRegister the course to register
    * @return true, if successful
+ * @throws CourseAlreadyFullException 
+ * @throws CourseAlreadyRegisteredException 
    */
-  boolean registerForCourse(SemesterRegistration semesterRegistration, Course CourseToRegister);
+  boolean registerForCourse(SemesterRegistration semesterRegistration, Course CourseToRegister) throws CourseAlreadyFullException, CourseAlreadyRegisteredException;
 
   /**
    * Login.
