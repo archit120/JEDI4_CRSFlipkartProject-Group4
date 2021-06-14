@@ -11,7 +11,18 @@ import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.Student;
 import com.flipkart.bean.ReportCard;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class RegisteredCourseDao.
+ */
 public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
+	
+	/**
+	 * Adds the registered course.
+	 *
+	 * @param s the s
+	 * @return true, if successful
+	 */
 	public static boolean addRegisteredCourse(RegisteredCourse s) {
 
 		Connection conn = Connection1.getConnection();
@@ -43,6 +54,13 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
 		return true;
 
 	}
+	
+	/**
+	 * Gets the registered courses.
+	 *
+	 * @param sql the sql
+	 * @return the registered courses
+	 */
 	private static List<RegisteredCourse> getRegisteredCourses(String sql) {
 		Connection conn = Connection1.getConnection();
 
@@ -71,13 +89,33 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
 		return courseList;
 	}
 
+	/**
+	 * Gets the registered course by semester registration id and course code.
+	 *
+	 * @param semesterRegistrationId the semester registration id
+	 * @return the registered course by semester registration id and course code
+	 */
 	public static List<RegisteredCourse> getRegisteredCourseBySemesterRegistrationIdAndCourseCode(int semesterRegistrationId) {
 		return getRegisteredCourses("select * from registeredcourse where semesterRegistrationId="+semesterRegistrationId);
 	}
+	
+	/**
+	 * Gets the registered course by semester registration id and course code.
+	 *
+	 * @param semesterRegistrationId the semester registration id
+	 * @param courseCode the course code
+	 * @return the registered course by semester registration id and course code
+	 */
 	public static RegisteredCourse getRegisteredCourseBySemesterRegistrationIdAndCourseCode(int semesterRegistrationId, String courseCode) {
 		return getRegisteredCourses("select * from registeredcourse where semesterRegistrationId="+semesterRegistrationId + " and courseid in (select id from course where coursecode='"+courseCode +"')").get(0);
 	}
 
+	/**
+	 * Delete registered course.
+	 *
+	 * @param registeredCourse the registered course
+	 * @return true, if successful
+	 */
 	public static boolean deleteRegisteredCourse(RegisteredCourse registeredCourse) {
 		
 		Connection conn = Connection1.getConnection();
@@ -99,6 +137,13 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
 		
 	}
 	
+	/**
+	 * Gets the enrolled students.
+	 *
+	 * @param courseCatalogueId the course catalogue id
+	 * @param professorId the professor id
+	 * @return the enrolled students
+	 */
 	public static List<Student> getEnrolledStudents(int courseCatalogueId, int professorId) {
 
 		Connection conn = Connection1.getConnection();
@@ -133,6 +178,12 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
 //		return enrolledStudentsId;
 	}
 
+	/**
+	 * Gets the enrolled students.
+	 *
+	 * @param courseId the course id
+	 * @return the enrolled students
+	 */
 	public static List<Student> getEnrolledStudents(int courseId) {
 
 		Connection conn = Connection1.getConnection();
@@ -169,6 +220,15 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
 
 
 
+	/**
+	 * Sets the grade student.
+	 *
+	 * @param courseCode the course code
+	 * @param courseCatalogueId the course catalogue id
+	 * @param rollNo the roll no
+	 * @param grade the grade
+	 * @return true, if successful
+	 */
 	public static boolean setGradeStudent(String courseCode, int courseCatalogueId, String rollNo, int grade) {
 
 		Connection conn = Connection1.getConnection();
@@ -193,6 +253,14 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
 
 		return true;
 	}
+	
+	/**
+	 * Sets the grade student.
+	 *
+	 * @param id the id
+	 * @param grade the grade
+	 * @return true, if successful
+	 */
 	public static boolean setGradeStudent(int id, int grade) {
 
 		Connection conn = Connection1.getConnection();
@@ -214,6 +282,13 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
 
 		return true;
 	}
+	
+	/**
+	 * Gets the report card.
+	 *
+	 * @param semesterRegistrationId the semester registration id
+	 * @return the report card
+	 */
 	public static ReportCard getReportCard(int semesterRegistrationId) {
 		double ans=0;
 	

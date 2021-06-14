@@ -3,19 +3,32 @@
  */
 package com.flipkart.exception;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author anike
+ * The Class CoursePreExistsException.
  *
+ * @author anike
  */
 public class CoursePreExistsException extends Exception{
 		
+		/** The course code. */
 		private String courseCode;
 	
-	    public CoursePreExistsException(String courseCode) {
+	    /**
+    	 * Instantiates a new course pre exists exception.
+    	 *
+    	 * @param courseCode the course code
+    	 */
+    	public CoursePreExistsException(String courseCode) {
 	    	this.courseCode=courseCode;
 	    }
 
-	    @Override
+	    /**
+    	 * Gets the message.
+    	 *
+    	 * @return the message
+    	 */
+    	@Override
 	    public String getMessage() {
 	        return "The course with code = " + this.courseCode + " already exists!";
 	    }

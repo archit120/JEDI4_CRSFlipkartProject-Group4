@@ -9,24 +9,41 @@ import com.flipkart.dao.SemesterRegistrationDao;
 import java.util.ArrayList;
 import java.util.List;
 
+// TODO: Auto-generated Javadoc
 /**
- * @author anike
+ * The Class SemesterRegistrationImpl.
  *
+ * @author anike
  */
 public class SemesterRegistrationImpl implements SemesterRegistrationInterface{
 
 
+	/**
+	 * Instantiates a new semester registration impl.
+	 */
 	public SemesterRegistrationImpl() {
 //		if(semesterRegistrations == null){
 //			semesterRegistrations = new ArrayList<>();
 //		}
 	}
 
+	/**
+	 * Adds the semester registration.
+	 *
+	 * @param semesterRegistration the semester registration
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean addSemesterRegistration(SemesterRegistration semesterRegistration) {
 		return SemesterRegistrationDao.addSemesterRegistration(semesterRegistration);
 	}
 
+	/**
+	 * View grades.
+	 *
+	 * @param semesterRegistration the semester registration
+	 * @return the list
+	 */
 	@Override
 	public List<Grade> viewGrades(SemesterRegistration semesterRegistration) {
 
@@ -41,11 +58,23 @@ public class SemesterRegistrationImpl implements SemesterRegistrationInterface{
 		return grades;
 	}
 
+	/**
+	 * View semester registrations.
+	 *
+	 * @param student the student
+	 * @return the list
+	 */
 	@Override
 	public List<SemesterRegistration> viewSemesterRegistrations(int student) {
 		return SemesterRegistrationDao.getSemesterRegistrationsByStudentId(student);
 	}
 
+	/**
+	 * View grades and courses.
+	 *
+	 * @param semesterRegistration the semester registration
+	 * @return the list
+	 */
 	@Override
 	public List<RegisteredCourse> viewGradesAndCourses(SemesterRegistration semesterRegistration) {
 		RegisteredCourseImpl registeredCourses = new RegisteredCourseImpl();

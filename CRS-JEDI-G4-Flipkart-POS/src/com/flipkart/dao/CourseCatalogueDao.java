@@ -10,7 +10,18 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CourseCatalogueDao.
+ */
 public class CourseCatalogueDao implements CourseCatalogueDaoInterface {
+	
+	/**
+	 * Adds the course catalogue.
+	 *
+	 * @param s the s
+	 * @return true, if successful
+	 */
 	public static boolean addCourseCatalogue(CourseCatalogue s) {
 
 		Connection conn = Connection1.getConnection();
@@ -38,6 +49,11 @@ public class CourseCatalogueDao implements CourseCatalogueDaoInterface {
 
 	}
 
+	/**
+	 * Gets the course catalogues.
+	 *
+	 * @return the course catalogues
+	 */
 	public static List<CourseCatalogue> getCourseCatalogues() {
 
 		Connection conn = Connection1.getConnection();
@@ -72,6 +88,12 @@ public class CourseCatalogueDao implements CourseCatalogueDaoInterface {
 	}
 	
 
+	/**
+	 * Gets the course idfrom code.
+	 *
+	 * @param courseCode the course code
+	 * @return the course idfrom code
+	 */
 	public static int getCourseIdfromCode(String courseCode) {
 //		System.out.println(courseCode);
 		Connection conn = Connection1.getConnection();
@@ -100,6 +122,13 @@ public class CourseCatalogueDao implements CourseCatalogueDaoInterface {
 		return cId;
 	}
 	
+		/**
+		 * Adds the couse to teach.
+		 *
+		 * @param cId the c id
+		 * @param pId the id
+		 * @return true, if successful
+		 */
 		public static boolean addCouseToTeach(int cId,int pId) {
 			
 			Connection conn = Connection1.getConnection();

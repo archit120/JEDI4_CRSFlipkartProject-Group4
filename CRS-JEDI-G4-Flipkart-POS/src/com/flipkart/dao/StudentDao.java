@@ -9,8 +9,19 @@ import java.util.List;
 
 import com.flipkart.bean.Student;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class StudentDao.
+ */
 public class StudentDao implements StudentDaoInterface {
 
+	/**
+	 * Login.
+	 *
+	 * @param username the username
+	 * @param password the password
+	 * @return the student
+	 */
 	public static Student login(String username, String password) {
 		Connection conn = Connection1.getConnection();
 
@@ -40,6 +51,12 @@ public class StudentDao implements StudentDaoInterface {
 		return null;
 	}
 
+	/**
+	 * Adds the student.
+	 *
+	 * @param s the s
+	 * @return true, if successful
+	 */
 	public static boolean addStudent(Student s) {
 
 		Connection conn = Connection1.getConnection();
@@ -71,6 +88,12 @@ public class StudentDao implements StudentDaoInterface {
 
 	}
 	
+	/**
+	 * Gets the studentsfrom id.
+	 *
+	 * @param sId the s id
+	 * @return the studentsfrom id
+	 */
 	public static List<Student>getStudentsfromId(List<Integer>sId){
 		
 		Connection conn = Connection1.getConnection();
@@ -107,6 +130,13 @@ public class StudentDao implements StudentDaoInterface {
 		return students;
 		
 	}
+	
+	/**
+	 * Gets the i dfrom roll no.
+	 *
+	 * @param rollno the rollno
+	 * @return the i dfrom roll no
+	 */
 	public static int getIDfromRollNo(String rollno)
 	{
 		int sId=-1;

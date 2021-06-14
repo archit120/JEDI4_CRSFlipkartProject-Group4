@@ -4,7 +4,15 @@ import com.flipkart.bean.CourseCatalogue;
 
 import java.util.Scanner;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CRSApplicationMenu.
+ */
 public class CRSApplicationMenu {
+	
+	/**
+	 * First menu.
+	 */
 	public static void firstMenu() {
 		System.out.println("-----------Welcome to CRS-----------");
 		System.out.println("Press 1 to login.");
@@ -13,6 +21,9 @@ public class CRSApplicationMenu {
 		System.out.println("------------------------------------");
 	}
 	
+	/**
+	 * Login choices.
+	 */
 	public static void loginChoices() {
 		System.out.println("-----------LOG IN-----------");
 		System.out.println("Press 1 if you are a student.");
@@ -20,6 +31,12 @@ public class CRSApplicationMenu {
 		System.out.println("Press 3 if you are admin.");
 		System.out.println("------------------------------------");
 	}
+	
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 		
 		@SuppressWarnings("resource")

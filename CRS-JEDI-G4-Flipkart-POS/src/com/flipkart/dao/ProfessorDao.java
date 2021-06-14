@@ -9,7 +9,19 @@ import com.flipkart.bean.Admin;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ProfessorDao.
+ */
 public class ProfessorDao implements ProfessorDaoInterface {
+	
+	/**
+	 * Login.
+	 *
+	 * @param username the username
+	 * @param password the password
+	 * @return the professor
+	 */
 	public static Professor login(String username, String password) {
 		Connection conn = Connection1.getConnection();
 
@@ -38,6 +50,12 @@ public class ProfessorDao implements ProfessorDaoInterface {
 		return null;
 	}
 
+  /**
+   * Adds the professor.
+   *
+   * @param s the s
+   * @return true, if successful
+   */
   public static boolean addProfessor(Professor s) {
 
 		Connection conn = Connection1.getConnection();
