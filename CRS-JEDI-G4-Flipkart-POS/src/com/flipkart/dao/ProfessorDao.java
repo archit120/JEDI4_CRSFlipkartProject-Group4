@@ -6,9 +6,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import org.apache.log4j.Logger;
+
 // TODO: Auto-generated Javadoc
 /** The Class ProfessorDao. */
 public class ProfessorDao implements ProfessorDaoInterface {
+	
+	private static Logger logger = Logger.getLogger(AdminDao.class);
+
 
   /**
    * Login.
@@ -39,7 +44,7 @@ public class ProfessorDao implements ProfessorDaoInterface {
       return temp;
     } catch (Exception e) {
 
-      System.out.println(e);
+    	logger.error(e);
     }
     return null;
   }
@@ -76,7 +81,7 @@ public class ProfessorDao implements ProfessorDaoInterface {
 
     } catch (Exception e) {
 
-      System.out.println(e);
+    	logger.error(e);
     }
     return true;
   }

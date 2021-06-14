@@ -1,5 +1,7 @@
 package com.flipkart.service;
 
+import org.apache.log4j.Logger;
+
 import com.flipkart.bean.Admin;
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
@@ -14,6 +16,8 @@ import com.flipkart.exception.ProfessorPreExistsException;
 // TODO: Auto-generated Javadoc
 /** The Class AdminImpl. */
 public class AdminImpl implements AdminInterface {
+	
+	private static Logger logger = Logger.getLogger(AdminImpl.class);
 
   /** The admin instance. */
   private static Admin adminInstance;
@@ -58,7 +62,7 @@ public class AdminImpl implements AdminInterface {
    */
   @Override
   public boolean approveGrade(String rollNo) {
-    System.out.println("Approving grade todo");
+	  logger.info("Approving grade todo");
     return false;
   }
 
@@ -70,7 +74,7 @@ public class AdminImpl implements AdminInterface {
    */
   @Override
   public boolean verifyCourseReg(String rollNo) {
-    System.out.println("Approving course todo");
+	  logger.info("Approving grade todo");
     return false;
   }
 
