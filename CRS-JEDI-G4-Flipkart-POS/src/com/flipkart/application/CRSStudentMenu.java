@@ -21,13 +21,13 @@ public class CRSStudentMenu {
   public void printMenu() {
     System.out.println("-----------Welcome to the Student Menu-----------");
     System.out.println("1. View Course Catalogue");
-    System.out.println("2. ADD COURSE ");
-    System.out.println("3. DROP COURSE ");
-    System.out.println("4. PAY FEE");
-    System.out.println("5. VIEW REGISTERED COURSES");
-    System.out.println("6. View REPORT CARD");
-    System.out.println("7. VIEW NOTIFICATIONS");
-    System.out.println("8. LOGOUT");
+    System.out.println("2. Add Course ");
+    System.out.println("3. Drop Course ");
+    System.out.println("4. Pay Fee");
+    System.out.println("5. View Registered Courses");
+    System.out.println("6. View Report Card");
+    System.out.println("7. View Notifications");
+    System.out.println("8. Logout");
     System.out.println("----------------------------------------------------");
   }
 
@@ -72,15 +72,13 @@ public class CRSStudentMenu {
 
         List<Course> courses = courseImpl.findCourses(chosen);
         System.out.println("Total " + courses.size() + " courses found");
-        for (Course course : courses) {
-          System.out.println("\nCourse Details");
-          System.out.println("Course code: " + course.getCourseCode());
-          System.out.println("Course Description: " + course.getDescriptions());
-          System.out.println("Course Department: " + course.getDepartment());
-          System.out.println("Course Pre Requisites : " + course.getPreRequisites());
-          //					if(course.getProfessor() != null)
-          //						System.out.println("Course Professor : " + course.getProfessor().getName());
+        
+        System.out.format("%25s%25s%25s%25s%n", "Course Code", "Course Description", "Course Department", "Course Prerequisites" );
+        
+        for (Course course : courses) {    
+          System.out.format("%25s%25s%25s%25s%n",course.getCourseCode(), course.getDescriptions(), course.getDepartment(), course.getPreRequisites());         
         }
+        
       } else if (option == 2) {
         System.out.println("Enter course id code be added");
         Course c = courseImpl.findCourse(chosen, sc.next());
@@ -131,7 +129,7 @@ public class CRSStudentMenu {
 
         System.out.println("Registered Courses are");
         List<RegisteredCourse> registeredCourses = regImpl.findRegisteredCourses(chosenSem);
-        System.out.println("Total " + registeredCourses.size() + " courses are registered for!");
+        System.out.println("You have registered for a total of " + registeredCourses.size() + " courses.");
         for (RegisteredCourse registeredCourse : registeredCourses)
           System.out.println(CourseDao.getCourse(registeredCourse.getCourseId()).getCourseCode());
 
