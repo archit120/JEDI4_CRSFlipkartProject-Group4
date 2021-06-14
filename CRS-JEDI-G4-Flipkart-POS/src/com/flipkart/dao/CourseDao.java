@@ -9,6 +9,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 // TODO: Auto-generated Javadoc
 /** The Class CourseDao. */
 public class CourseDao implements CourseDaoInterface {
@@ -19,6 +21,9 @@ public class CourseDao implements CourseDaoInterface {
    * @param s the s
    * @return true, if successful
    */
+	
+	private static Logger logger = Logger.getLogger(CourseDao.class);
+
   public static boolean addCourse(Course s) {
 
     Connection conn = Connection1.getConnection();
@@ -36,7 +41,7 @@ public class CourseDao implements CourseDaoInterface {
       if (cnt > 0) check = false;
     } catch (Exception e) {
       check = false;
-      System.out.println(e);
+      logger.error(e);
     }
 
     if (check == false) return check;
@@ -64,7 +69,7 @@ public class CourseDao implements CourseDaoInterface {
 
     } catch (Exception e) {
       check = false;
-      System.out.println(e);
+      logger.error(e);
     }
     return check;
   }
@@ -94,7 +99,7 @@ public class CourseDao implements CourseDaoInterface {
 
     } catch (Exception e) {
 
-      System.out.println(e);
+    	logger.error(e);
     }
 
     return true;
@@ -118,7 +123,7 @@ public class CourseDao implements CourseDaoInterface {
       temp.setDescriptions(rs.getString("description"));
       return temp;
     } catch (Exception e) {
-      System.out.println(e);
+    	logger.error(e);
       return null;
     }
   }
@@ -146,7 +151,7 @@ public class CourseDao implements CourseDaoInterface {
       conn.close();
     } catch (Exception e) {
 
-      System.out.println(e);
+    	logger.error(e);
     }
     return courseList;
   }
@@ -208,7 +213,7 @@ public class CourseDao implements CourseDaoInterface {
 
       stmt.executeUpdate();
     } catch (Exception e) {
-      System.out.println(e);
+    	logger.error(e);
     }
 
     return true;

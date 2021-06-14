@@ -7,40 +7,53 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
+import org.apache.log4j.Logger;
+
 /** The Class NotificationDao. */
 public class NotificationDao {
+	
+	private static Logger logger = Logger.getLogger(NotificationDao.class);
 
-  /**
-   * Gets the notification.
-   *
-   * @param studentId the student id
-   * @return the notification
-   */
-  public List<Notification> getNotification(int studentId) {
-    Connection conn = Connection1.getConnection();
 
-    PreparedStatement stmt = null;
-    List<Notification> notificationList = new ArrayList<Notification>();
-    try {
-      String sql = "SELECT* FROM course";
+	/**
+    * Gets the notification.
+    *
+    * @param studentId the student id
+    * @return the notification
+    */
+	
+	public List<Notification> getNotification(int studentId) {
+		
+		Connection conn = Connection1.getConnection();
 
-      stmt = conn.prepareStatement(sql);
-      ResultSet rs = stmt.executeQuery(sql);
+	    PreparedStatement stmt = null;
+	    
+	    List<Notification> notificationList = new ArrayList<Notification>();
+	    
+	    try {
+	    	
+	    	String sql = "SELECT* FROM course";
 
-      while (rs.next()) {
+	    	stmt = conn.prepareStatement(sql);
+	    	ResultSet rs = stmt.executeQuery(sql);
 
-        Notification temp = new Notification();
-        temp.setId(rs.getInt("id"));
-        temp.setMessage(rs.getString("message"));
-        temp.setStudentId(studentId);
+	    	while (rs.next()) {
 
-        notificationList.add(temp);
-      }
-      stmt.close();
-      conn.close();
-    } catch (Exception e) {
-    }
-    return notificationList;
-  }
+	    		Notification temp = new Notification();
+	    		temp.setId(rs.getInt("id"));
+	    		temp.setMessage(rs.getString("message"));
+	    		temp.setStudentId(studentId);
+	    		
+	    		notificationList.add(temp);
+	    	}
+	    	
+	    	stmt.close();
+	    	conn.close();
+	    } catch (Exception e) {
+	    	
+	    	logger.error(e);
+	    }
+	    
+	    return notificationList;
+	}
 }

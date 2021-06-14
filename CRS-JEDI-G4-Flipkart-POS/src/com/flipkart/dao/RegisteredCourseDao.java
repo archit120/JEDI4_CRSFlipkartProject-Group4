@@ -10,9 +10,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 // TODO: Auto-generated Javadoc
 /** The Class RegisteredCourseDao. */
 public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
+	
+	private static Logger logger = Logger.getLogger(AdminDao.class);
+
 
   /**
    * Adds the registered course.
@@ -46,7 +51,7 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
 
     } catch (Exception e) {
 
-      System.out.println(e);
+    	logger.error(e);
     }
     return true;
   }
@@ -80,7 +85,7 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
       conn.close();
     } catch (Exception e) {
 
-      System.out.println(e);
+    	logger.error(e);
     }
     return courseList;
   }
@@ -136,7 +141,7 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
 
     } catch (Exception e) {
 
-      System.out.println(e);
+    	logger.error(e);
     }
     return true;
   }
@@ -175,7 +180,7 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
       conn.close();
     } catch (Exception e) {
 
-      System.out.println(e);
+    	logger.error(e);
     }
     // STEP 6: Clean-up environment
     // rs.close();
@@ -212,7 +217,7 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
       conn.close();
     } catch (Exception e) {
 
-      System.out.println(e);
+    	logger.error(e);
     }
     // STEP 6: Clean-up environment
     // rs.close();
@@ -251,7 +256,7 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
       stmt.executeUpdate();
 
     } catch (Exception e) {
-      System.out.println(e);
+    	logger.error(e);
     }
 
     return true;
@@ -279,7 +284,7 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
       stmt.executeUpdate();
 
     } catch (Exception e) {
-      System.out.println(e);
+    	logger.error(e);
     }
 
     return true;
@@ -333,7 +338,7 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
 
     } catch (Exception e) {
 
-      System.out.println(e);
+    	logger.error(e);
     }
     return report;
   }

@@ -10,9 +10,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 // TODO: Auto-generated Javadoc
 /** The Class StudentDao. */
 public class StudentDao implements StudentDaoInterface {
+	
+	private static Logger logger = Logger.getLogger(AdminDao.class);
+
 
   /**
    * Login.
@@ -44,8 +49,8 @@ public class StudentDao implements StudentDaoInterface {
       temp.setApproved(rs.getBoolean("isApproved"));
       return temp;
     } catch (Exception e) {
-
-      System.out.println(e);
+    	
+    	logger.error(e);
     }
     return null;
   }
@@ -104,7 +109,7 @@ public class StudentDao implements StudentDaoInterface {
 
     } catch (Exception e) {
 
-      System.out.println(e);
+    	logger.error(e);
     }
    return false;
   }
@@ -143,7 +148,7 @@ public class StudentDao implements StudentDaoInterface {
 
       } catch (Exception e) {
 
-        System.out.println(e);
+    	  logger.error(e);
       }
     }
     return students;
@@ -177,7 +182,7 @@ public class StudentDao implements StudentDaoInterface {
 
     } catch (Exception e) {
 
-      System.out.println(e);
+    	logger.error(e);
     }
 
     return sId;
@@ -206,7 +211,7 @@ public class StudentDao implements StudentDaoInterface {
 		  
 	  }catch(Exception e){
 		  
-		  System.out.println(e.getMessage());
+		  logger.error(e.getMessage());
 		  
 	  }finally {
 		  
@@ -233,7 +238,7 @@ public class StudentDao implements StudentDaoInterface {
 		  
 	  }catch(Exception e){
 		  
-		  System.out.println(e.getMessage());
+		  logger.error(e.getMessage());
 		  
 	  }finally {
 		  

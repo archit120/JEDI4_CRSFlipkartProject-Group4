@@ -8,9 +8,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 // TODO: Auto-generated Javadoc
 /** The Class SemesterRegistrationDao. */
 public class SemesterRegistrationDao implements SemesterRegistrationDaoInterface {
+	
+	private static Logger logger = Logger.getLogger(AdminDao.class);
+
 
   /**
    * Adds the semester registration.
@@ -40,7 +45,7 @@ public class SemesterRegistrationDao implements SemesterRegistrationDaoInterface
 
     } catch (Exception e) {
 
-      System.out.println(e);
+    	logger.error(e);
     }
     return true;
   }
@@ -73,7 +78,7 @@ public class SemesterRegistrationDao implements SemesterRegistrationDaoInterface
       conn.close();
     } catch (Exception e) {
 
-      System.out.println(e);
+    	logger.error(e);
     }
     return courseList;
   }
@@ -126,7 +131,7 @@ public class SemesterRegistrationDao implements SemesterRegistrationDaoInterface
 
     } catch (Exception e) {
 
-      System.out.println(e);
+    	logger.error(e);
     }
 
     return cId;
@@ -153,7 +158,7 @@ public class SemesterRegistrationDao implements SemesterRegistrationDaoInterface
 
       stmt.executeUpdate();
     } catch (Exception e) {
-      System.out.println(e);
+    	logger.error(e);
     }
 
     return true;

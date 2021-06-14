@@ -1,13 +1,14 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.Admin;
+import org.apache.log4j.Logger;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /** The Class AdminDao. */
 public class AdminDao implements AdminDaoInterface {
 
@@ -18,7 +19,9 @@ public class AdminDao implements AdminDaoInterface {
    * @param password the password
    * @return the admin
    */
-  public static Admin login(String username, String password) {
+	private static Logger logger = Logger.getLogger(AdminDao.class);
+	
+	public static Admin login(String username, String password) {
 
     Connection conn = Connection1.getConnection();
 
@@ -41,7 +44,7 @@ public class AdminDao implements AdminDaoInterface {
       return temp;
     } catch (Exception e) {
 
-      System.out.println(e);
+      logger.error(e);
     }
     return null;
   }
@@ -70,7 +73,7 @@ public class AdminDao implements AdminDaoInterface {
 
     } catch (Exception e) {
 
-      System.out.println(e);
+    	logger.error(e);
     }
     return true;
   }
@@ -105,7 +108,7 @@ public class AdminDao implements AdminDaoInterface {
 
     } catch (Exception e) {
 
-      System.out.println(e);
+    	logger.error(e);
     }
 
     return admins;

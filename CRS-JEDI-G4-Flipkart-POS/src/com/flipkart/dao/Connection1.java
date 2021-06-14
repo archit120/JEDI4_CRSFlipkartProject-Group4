@@ -4,6 +4,8 @@ package com.flipkart.dao;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
+import org.apache.log4j.Logger;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class Connection1.
@@ -11,6 +13,9 @@ import java.sql.PreparedStatement;
  * @author Shravya
  */
 public class Connection1 {
+	
+	private static Logger logger = Logger.getLogger(Connection1.class);
+
 
   /** The Constant JDBC_DRIVER. */
   static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -51,7 +56,7 @@ public class Connection1 {
     }
     // TODO Auto-generated method stub
     catch (Exception e) {
-      System.out.println(e);
+    	logger.error(e);
     }
     //		connectionInstance = conn;
     return conn;

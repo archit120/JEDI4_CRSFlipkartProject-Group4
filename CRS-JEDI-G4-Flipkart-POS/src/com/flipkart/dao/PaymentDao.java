@@ -6,9 +6,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import org.apache.log4j.Logger;
+
 // TODO: Auto-generated Javadoc
 /** The Class PaymentDao. */
 public class PaymentDao implements PaymentDaoInterface {
+	
+
+private static Logger logger = Logger.getLogger(AdminDao.class);
+
 
   /**
    * Make payment.
@@ -36,7 +42,7 @@ public class PaymentDao implements PaymentDaoInterface {
 
     } catch (Exception e) {
 
-      System.out.println(e);
+    	logger.error(e);
     }
     return true;
   }
