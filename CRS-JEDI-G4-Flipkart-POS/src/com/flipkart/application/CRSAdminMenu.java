@@ -13,8 +13,15 @@ import com.flipkart.service.CourseCatalogueImpl;
 import com.flipkart.service.CourseImpl;
 import com.flipkart.service.ProfessorImpl;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CRSAdminMenu.
+ */
 public class CRSAdminMenu {
 
+	/**
+	 * Show admin menu.
+	 */
 	public static void showAdminMenu() {
 
 		System.out.println("-----------Admin Menu-----------");
@@ -34,6 +41,9 @@ public class CRSAdminMenu {
 		System.out.println("---------------------------------");
 	}
 
+	/**
+	 * Admin menu handler.
+	 */
 	public static void adminMenuHandler() {
 
 		try {

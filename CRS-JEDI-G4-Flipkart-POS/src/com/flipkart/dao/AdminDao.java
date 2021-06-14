@@ -9,8 +9,19 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AdminDao.
+ */
 public class AdminDao implements AdminDaoInterface {
 
+	/**
+	 * Login.
+	 *
+	 * @param username the username
+	 * @param password the password
+	 * @return the admin
+	 */
 	public static Admin login(String username, String password) {
 		
 		
@@ -42,6 +53,12 @@ public class AdminDao implements AdminDaoInterface {
 		return null;
 	}
 
+	/**
+	 * Adds the admin.
+	 *
+	 * @param s the s
+	 * @return true, if successful
+	 */
 	public static boolean addAdmin(Admin s) {
 
 		Connection conn = Connection1.getConnection();
@@ -67,6 +84,11 @@ public class AdminDao implements AdminDaoInterface {
 
 	}
 
+	/**
+	 * Gets the admins.
+	 *
+	 * @return the admins
+	 */
 	public static List<Admin> getAdmins() {
 
 		Connection conn = Connection1.getConnection();

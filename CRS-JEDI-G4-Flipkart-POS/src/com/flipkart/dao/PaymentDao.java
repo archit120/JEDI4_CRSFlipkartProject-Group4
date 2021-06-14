@@ -7,8 +7,18 @@ import java.sql.Statement;
 
 import com.flipkart.bean.Payment;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PaymentDao.
+ */
 public class PaymentDao implements PaymentDaoInterface {
 	
+	/**
+	 * Make payment.
+	 *
+	 * @param p the p
+	 * @return true, if successful
+	 */
 	public static boolean makePayment(Payment p) {
 
 		Connection conn = Connection1.getConnection();

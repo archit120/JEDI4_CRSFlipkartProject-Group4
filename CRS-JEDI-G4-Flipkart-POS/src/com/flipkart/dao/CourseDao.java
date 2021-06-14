@@ -13,7 +13,18 @@ import com.flipkart.bean.Professor;
 import com.flipkart.bean.ReportCard;
 import com.flipkart.bean.Student;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CourseDao.
+ */
 public class CourseDao implements CourseDaoInterface {
+	
+	/**
+	 * Adds the course.
+	 *
+	 * @param s the s
+	 * @return true, if successful
+	 */
 	public static boolean addCourse(Course s) {
 
 		Connection conn = Connection1.getConnection();
@@ -65,6 +76,12 @@ public class CourseDao implements CourseDaoInterface {
 
 	}
 	
+	/**
+	 * Removes the course.
+	 *
+	 * @param courseId the course id
+	 * @return true, if successful
+	 */
 	public static boolean removeCourse(int courseId) {
 
 		Connection conn = Connection1.getConnection();
@@ -91,6 +108,12 @@ public class CourseDao implements CourseDaoInterface {
 
 	}
 
+	/**
+	 * Read course.
+	 *
+	 * @param rs the rs
+	 * @return the course
+	 */
 	private static Course readCourse(ResultSet rs) {
 		try {
 			Course temp = new Course();
@@ -110,6 +133,12 @@ public class CourseDao implements CourseDaoInterface {
 
 	}
 
+	/**
+	 * Gets the courses.
+	 *
+	 * @param sql the sql
+	 * @return the courses
+	 */
 	private static List<Course> getCourses(String sql) {
 		Connection conn = Connection1.getConnection();
 
@@ -132,20 +161,46 @@ public class CourseDao implements CourseDaoInterface {
 		return courseList;
 	}
 
+	/**
+	 * Gets the course.
+	 *
+	 * @param courseId the course id
+	 * @return the course
+	 */
 	public  static Course getCourse(int courseId) {
 		return getCourses("select * from course where id="+courseId).get(0);
 	}
 
+	/**
+	 * Find courses.
+	 *
+	 * @param courseCatalogue the course catalogue
+	 * @return the list
+	 */
 	public static List<Course> findCourses(CourseCatalogue courseCatalogue) {
 		return getCourses("select * from course where courseCatalogueId="+courseCatalogue.getId());
 	}
 
+	/**
+	 * Find course.
+	 *
+	 * @param courseCatalogue the course catalogue
+	 * @param coursecode the coursecode
+	 * @return the course
+	 */
 	public static Course findCourse(CourseCatalogue courseCatalogue, String coursecode) {
 		return getCourses("select * from course where courseCatalogueId="+courseCatalogue.getId()+" and coursecode='" + coursecode + "'").get(0);
 	}
 
 
 
+		/**
+		 * Mark course to teach.
+		 *
+		 * @param cId the c id
+		 * @param pId the id
+		 * @return true, if successful
+		 */
 		public static boolean markCourseToTeach(int cId,int pId) {			
 			Connection conn = Connection1.getConnection();
 

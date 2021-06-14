@@ -6,8 +6,15 @@ import java.util.Scanner;
 import com.flipkart.bean.*;
 import com.flipkart.service.*;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CRSProfessorMenu.
+ */
 public class CRSProfessorMenu {
 	
+	/**
+	 * Show professor menu.
+	 */
 	public static void showProfessorMenu() {
 		
 		System.out.println("-----------Professor Menu-----------");
@@ -26,6 +33,9 @@ public class CRSProfessorMenu {
 	}
 
 
+	/**
+	 * Professor menu handler.
+	 */
 	public static void professorMenuHandler() {
 		
 		Scanner sc = new Scanner(System. in);

@@ -14,8 +14,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CRSStudentMenu.
+ */
 public class CRSStudentMenu {
 
+	/**
+	 * Prints the menu.
+	 */
 	public void printMenu() {
 		System.out.println("-----------Welcome to the Student Menu-----------");
 		System.out.println("1. View Course Catalogue");
@@ -29,6 +36,9 @@ public class CRSStudentMenu {
 		System.out.println("----------------------------------------------------");
 	}
 
+	/**
+	 * Student menu.
+	 */
 	public void StudentMenu() {
 
 		Scanner sc = new Scanner(System.in);

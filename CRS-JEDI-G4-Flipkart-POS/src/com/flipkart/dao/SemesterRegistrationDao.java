@@ -10,7 +10,18 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SemesterRegistrationDao.
+ */
 public class SemesterRegistrationDao implements SemesterRegistrationDaoInterface {
+	
+	/**
+	 * Adds the semester registration.
+	 *
+	 * @param s the s
+	 * @return true, if successful
+	 */
 	public static boolean addSemesterRegistration(SemesterRegistration s) {
 
 		Connection conn = Connection1.getConnection();
@@ -40,6 +51,12 @@ public class SemesterRegistrationDao implements SemesterRegistrationDaoInterface
 
 	}
 
+	/**
+	 * Gets the semester registrations.
+	 *
+	 * @param sql the sql
+	 * @return the semester registrations
+	 */
 	private static List<SemesterRegistration> getSemesterRegistrations(String sql) {
 		Connection conn = Connection1.getConnection();
 
@@ -67,15 +84,32 @@ public class SemesterRegistrationDao implements SemesterRegistrationDaoInterface
 		return courseList;
 	}
 
+	/**
+	 * Gets the semester registrations by student id.
+	 *
+	 * @param studentId the student id
+	 * @return the semester registrations by student id
+	 */
 	public static List<SemesterRegistration> getSemesterRegistrationsByStudentId(int studentId) {
 		return getSemesterRegistrations("select * from semesterregistration where studentid="+studentId);
 	}
 
+	/**
+	 * Gets the semester registrations.
+	 *
+	 * @return the semester registrations
+	 */
 	public static List<SemesterRegistration> getSemesterRegistrations() {
 		return getSemesterRegistrations("select * from semesterregistration");
 	}
 	
 
+	/**
+	 * Gets the course idfrom code.
+	 *
+	 * @param courseCode the course code
+	 * @return the course idfrom code
+	 */
 	public static int getCourseIdfromCode(String courseCode) {
 //		System.out.println(courseCode);
 		Connection conn = Connection1.getConnection();
@@ -104,6 +138,13 @@ public class SemesterRegistrationDao implements SemesterRegistrationDaoInterface
 		return cId;
 	}
 	
+		/**
+		 * Adds the couse to teach.
+		 *
+		 * @param cId the c id
+		 * @param pId the id
+		 * @return true, if successful
+		 */
 		public static boolean addCouseToTeach(int cId,int pId) {
 			
 			Connection conn = Connection1.getConnection();
