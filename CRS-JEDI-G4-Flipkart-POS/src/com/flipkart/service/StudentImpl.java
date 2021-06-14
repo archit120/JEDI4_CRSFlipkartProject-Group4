@@ -136,11 +136,15 @@ public boolean approveStudent(String email) {
 	return StudentDao.approveStudent(email);
 }
 
-public boolean addStudent(String email,String password,String name) {
+public boolean addStudent(String email,String password,String name,String username,String roll,String dept) {
 	Student s = new Student();
 	s.setEmail(email);
 	s.setName(name);
 	s.setPassword(password);
+	s.setUsername(username);
+	s.setRollNo(roll);
+	s.setDepartment(dept);
+	s.setApproved(false);
 	
 	return StudentDao.addStudent(s);
 }

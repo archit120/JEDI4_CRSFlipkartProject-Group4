@@ -78,11 +78,20 @@ public class CRSApplicationMenu {
     	  System.out.println("Enter your email");
     	  String email = sc.next();
     	  
+    	  System.out.println("Enter your username");
+    	  String username = sc.next();
+    	  
     	  System.out.println("Enter your password");
     	  String password = sc.next();
     	  
+    	  System.out.println("Enter your Roll number");
+    	  String roll = sc.next();
+    	  
+    	  System.out.println("Enter your department");
+    	  String dept = sc.next();
+    	  
     	  StudentImpl studImpl = new StudentImpl();
-    	  boolean done = studImpl.addStudent(email, password, name);
+    	  boolean done = studImpl.addStudent(email, password, name,username,roll,dept);
     	  
     	  if(done) {
     		  System.out.println("You Have sucessfully been registered , waiting for admin approval !!");
