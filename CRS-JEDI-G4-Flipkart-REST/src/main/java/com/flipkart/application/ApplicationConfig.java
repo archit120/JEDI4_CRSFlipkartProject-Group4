@@ -3,15 +3,20 @@
  */
 package com.flipkart.application;
 
+import com.flipkart.restController.AdminRestAPI;
+import com.flipkart.restController.CommonRestAPI;
+import com.flipkart.restController.ProfessorRestAPI;
+import com.flipkart.restController.StudentRestAPI;
 import org.glassfish.jersey.server.ResourceConfig;
-
-import com.flipkart.restController.CustomerRestAPI;
 
 public class ApplicationConfig extends ResourceConfig {
 	
 	public ApplicationConfig() {
 		// Register all the services over here.
-		
-		register(CustomerRestAPI.class);
+
+		register(AdminRestAPI.class);
+		register(CommonRestAPI.class);
+		register(ProfessorRestAPI.class);
+		register(StudentRestAPI.class);
 	}
 }

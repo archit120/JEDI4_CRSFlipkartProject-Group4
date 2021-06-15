@@ -1,0 +1,103 @@
+package com.flipkart.service;
+
+import org.apache.log4j.Logger;
+
+import com.flipkart.bean.Admin;
+import com.flipkart.bean.Professor;
+import com.flipkart.bean.Student;
+import com.flipkart.dao.AdminDao;
+import com.flipkart.dao.ProfessorDao;
+import com.flipkart.dao.StudentDao;
+import com.flipkart.exception.LoginFailedException;
+import com.flipkart.exception.ProfessorPreExistsException;
+import com.flipkart.exception.StudentPreExistsException;
+
+// TODO: Auto-generated Javadoc
+/** The Class AdminImpl. */
+public class AdminImpl implements AdminInterface {
+	
+	private static Logger logger = Logger.getLogger(AdminImpl.class);
+
+  /** The admin instance. */
+  private static Admin adminInstance;
+
+  /** Instantiates a new admin impl. */
+  public AdminImpl() {}
+
+  /**
+   * Adds the professor.
+   *
+   * @param professorToBeAdded the professor to be added
+   * @return true, if successful
+   */
+  @Override
+  	public boolean addProfessor(Professor professorToBeAdded) throws ProfessorPreExistsException {
+  		
+  		if (ProfessorDao.addProfessor(professorToBeAdded) == true) {
+	    	
+	    	return true;
+	    } else {
+	    	
+	    	throw new ProfessorPreExistsException(professorToBeAdded.getEmpID());
+	    }
+  	}
+
+  /**
+   * Adds the student.
+   *
+   * @param student the student
+   * @return true, if successful
+   */
+  @Override
+  public boolean addStudent(Student student) throws StudentPreExistsException {
+    
+    if (StudentDao.addStudent(student) == true) {
+    	
+    	return true;
+    } else {
+    	
+    	throw new StudentPreExistsException(student.getUsername());
+    }
+  }
+
+  /**
+   * Approve grade.
+   *
+   * @param rollNo the roll no
+   * @return true, if successful
+   */
+  @Override
+  public boolean approveGrade(String rollNo) {
+	  logger.info("Approving grade todo");
+    return false;
+  }
+
+  /**
+   * Verify course reg.
+   *
+   * @param rollNo the roll no
+   * @return true, if successful
+   */
+  @Override
+  public boolean verifyCourseReg(String rollNo) {
+	  logger.info("Approving grade todo");
+    return false;
+  }
+
+  /**
+   * Login.
+   *
+   * @param userID the user ID
+   * @param password the password
+   * @return true, if successful
+ * @throws LoginFailedException 
+   */
+  @Override
+  public boolean login(String userID, String password) throws LoginFailedException {
+
+    Admin loginRes = AdminDao.login(userID, password);
+    if (loginRes == null) throw new LoginFailedException(userID);
+    adminInstance = loginRes;
+    return true;
+  }
+}
