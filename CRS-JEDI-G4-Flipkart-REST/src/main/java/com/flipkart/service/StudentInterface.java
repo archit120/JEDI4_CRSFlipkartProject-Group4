@@ -53,7 +53,7 @@ public interface StudentInterface {
  * @throws CourseAlreadyFullException 
  * @throws CourseAlreadyRegisteredException 
    */
-  boolean registerForCourse(SemesterRegistration semesterRegistration, Course CourseToRegister) throws CourseAlreadyFullException, CourseAlreadyRegisteredException;
+  boolean registerForCourse(int studentId, SemesterRegistration semesterRegistration, Course CourseToRegister) throws CourseAlreadyFullException, CourseAlreadyRegisteredException;
 
   /**
    * Login.
@@ -71,7 +71,7 @@ public interface StudentInterface {
    *
    * @return the student instance
    */
-  public Student getStudentInstance();
+//  public Student getStudentInstance();
   
   public List<Student> getStudentsWaitingApprocal();
   

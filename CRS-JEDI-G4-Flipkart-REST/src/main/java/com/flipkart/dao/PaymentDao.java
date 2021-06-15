@@ -46,6 +46,7 @@ private static Logger logger = Logger.getLogger(AdminDao.class);
     	}
     }catch(Exception e){
     	logger.error(e);
+    	return false;
     }
     
     String sql = SQLConstants.makePayment;
@@ -62,8 +63,8 @@ private static Logger logger = Logger.getLogger(AdminDao.class);
       }
 
     } catch (Exception e) {
-
     	logger.error(e);
+        return false;
     }
     return true;
   }

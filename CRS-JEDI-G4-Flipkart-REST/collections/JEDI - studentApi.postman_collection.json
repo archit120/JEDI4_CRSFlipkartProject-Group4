@@ -1,0 +1,412 @@
+{
+	"variables": [],
+	"info": {
+		"name": "JEDI - studentApi",
+		"_postman_id": "7326c3c3-bac3-87c9-4e45-08f420d7425f",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/JEDI_REST_Practice_war_exploded/rest/studentApi/login?username=archit&password=archit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"JEDI_REST_Practice_war_exploded",
+						"rest",
+						"studentApi",
+						"login"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "archit",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "password",
+							"value": "archit",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "loginFail",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/JEDI_REST_Practice_war_exploded/rest/studentApi/login?username=archit&password=architt",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"JEDI_REST_Practice_war_exploded",
+						"rest",
+						"studentApi",
+						"login"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "archit",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "password",
+							"value": "architt",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "getCourseCatalogues",
+			"request": {
+				"url": "http://localhost:8080/JEDI_REST_Practice_war_exploded/rest/studentApi/getCourseCatalogues",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "viewSemesterRegistrations",
+			"request": {
+				"url": "http://localhost:8080/JEDI_REST_Practice_war_exploded/rest/studentApi/viewSemesterRegistrations/1",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "addSemesterRegistration",
+			"request": {
+				"url": "http://localhost:8080/JEDI_REST_Practice_war_exploded/rest/studentApi/addSemesterRegistration",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"semester\":0,\n\t\"year\":2021,\n\t\"studentId\":1\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "findCourses",
+			"request": {
+				"url": "http://localhost:8080/JEDI_REST_Practice_war_exploded/rest/studentApi/findCourses/1",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "findCourse",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/JEDI_REST_Practice_war_exploded/rest/studentApi/findCourse/1?coursecode=a",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"JEDI_REST_Practice_war_exploded",
+						"rest",
+						"studentApi",
+						"findCourse",
+						"1"
+					],
+					"query": [
+						{
+							"key": "coursecode",
+							"value": "a",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "addCourse",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/JEDI_REST_Practice_war_exploded/rest/studentApi/registerForCourse?studentid=1&semesterId=1&courseid=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"JEDI_REST_Practice_war_exploded",
+						"rest",
+						"studentApi",
+						"registerForCourse"
+					],
+					"query": [
+						{
+							"key": "studentid",
+							"value": "1",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "semesterId",
+							"value": "1",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "courseid",
+							"value": "1",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "findRegisteredCourses",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/JEDI_REST_Practice_war_exploded/rest/studentApi/findRegisteredCourses?semesterRegistrationId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"JEDI_REST_Practice_war_exploded",
+						"rest",
+						"studentApi",
+						"findRegisteredCourses"
+					],
+					"query": [
+						{
+							"key": "semesterRegistrationId",
+							"value": "1",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "dropRegisteredCourse",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/JEDI_REST_Practice_war_exploded/rest/studentApi/dropRegisteredCourse?registeredCourseId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"JEDI_REST_Practice_war_exploded",
+						"rest",
+						"studentApi",
+						"dropRegisteredCourse"
+					],
+					"query": [
+						{
+							"key": "registeredCourseId",
+							"value": "1",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "getNotification",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/JEDI_REST_Practice_war_exploded/rest/studentApi/getNotification?id=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"JEDI_REST_Practice_war_exploded",
+						"rest",
+						"studentApi",
+						"getNotification"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "getCourse",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/JEDI_REST_Practice_war_exploded/rest/studentApi/getCourse?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"JEDI_REST_Practice_war_exploded",
+						"rest",
+						"studentApi",
+						"getCourse"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "showNotification",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/JEDI_REST_Practice_war_exploded/rest/studentApi/showNotification?message=test&rollno=a",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"JEDI_REST_Practice_war_exploded",
+						"rest",
+						"studentApi",
+						"showNotification"
+					],
+					"query": [
+						{
+							"key": "message",
+							"value": "test",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "rollno",
+							"value": "a",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "makePayment",
+			"request": {
+				"url": "http://localhost:8080/JEDI_REST_Practice_war_exploded/rest/studentApi/makePayment",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"mode\": \"postman\",\n\t\"studentId\": 1,\n\t\"semesterRegistrationId\": 2\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

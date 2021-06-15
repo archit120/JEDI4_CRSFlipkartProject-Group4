@@ -156,7 +156,7 @@ public class CRSStudentMenu {
 
         p.setMode(mode);
         p.setStudentId(stud.getStudentInstance().getUserID());
-        p.setSemesterRegisrationId(chosenSem.getId());
+        p.setSemesterRegistrationId(chosenSem.getId());
 
         PaymentImpl paymentImpl = new PaymentImpl();
 
