@@ -1,5 +1,6 @@
 package com.flipkart.application;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.flipkart.dao.AdminDao;
@@ -18,7 +19,7 @@ import org.apache.log4j.Logger;
 /** The Class CRSApplicationMenu. */
 public class CRSApplicationMenu {
 
-    private static Logger logger = Logger.getLogger(AdminDao.class);
+    private static Logger logger = Logger.getLogger(CRSApplicationMenu.class);
 
     /** First menu. */
     public static void firstMenu() {
@@ -52,66 +53,72 @@ public class CRSApplicationMenu {
         while (true) {
             firstMenu();
             System.out.println("Your choice: ");
-            int response1 = sc.nextInt();
-
-            if (response1 == 1) {
-                loginChoices();
-                System.out.println("Your response: ");
-                int loginResponse = sc.nextInt();
-
-                switch (loginResponse) {
-                    case 1:
-                        // Student Interface
-                        CRSStudentMenu menu = new CRSStudentMenu();
-                        menu.StudentMenu();
-
-                        break;
-                    case 2:
-                        // Professor Interface
-                        CRSProfessorMenu.professorMenuHandler();
-                        break;
-                    case 3:
-                        // Admin Interface
-                        CRSAdminMenu.adminMenuHandler();
-                        break;
-                    default:
-                        System.out.println("Invalid input.");
-                }
-            } else if (response1 == 2) {
-                // updatePasswordUser
-            } else if(response1 == 3){
-
-                System.out.println("Enter your name: ");
-                String name = sc.next();
-
-                System.out.println("Enter your email: ");
-                String email = sc.next();
-
-                System.out.println("Enter your username: ");
-                String username = sc.next();
-
-                System.out.println("Enter your password: ");
-                String password = sc.next();
-
-                System.out.println("Enter your Roll number: ");
-                String roll = sc.next();
-
-                System.out.println("Enter your department: ");
-                String dept = sc.next();
-
-                StudentImpl studImpl = new StudentImpl();
-                try {
-                    studImpl.addStudent(email, password, name,username,roll,dept);
-                    logger.info("You have successfully been registered, waiting for admin approval !!");
-                } catch (Exception e) {
-                    logger.error(e.getMessage());
-                }
-
-            } else if(response1 == 4) {
-                System.out.println("Exiting from the website.");
-                break;
-            } else {
-                System.out.println("INVALID !!!!");
+            
+            try {
+	            int response1 = sc.nextInt();
+	
+	            if (response1 == 1) {
+	                loginChoices();
+	                System.out.println("Your response: ");
+	                int loginResponse = sc.nextInt();
+	
+	                switch (loginResponse) {
+	                    case 1:
+	                        // Student Interface
+	                        CRSStudentMenu menu = new CRSStudentMenu();
+	                        menu.StudentMenu();
+	
+	                        break;
+	                    case 2:
+	                        // Professor Interface
+	                        CRSProfessorMenu.professorMenuHandler();
+	                        break;
+	                    case 3:
+	                        // Admin Interface
+	                        CRSAdminMenu.adminMenuHandler();
+	                        break;
+	                    default:
+	                        System.out.println("Invalid input.");
+	                }
+	            } else if (response1 == 2) {
+	                // updatePasswordUser
+	            } else if(response1 == 3){
+	
+	                System.out.println("Enter your name: ");
+	                String name = sc.next();
+	
+	                System.out.println("Enter your email: ");
+	                String email = sc.next();
+	
+	                System.out.println("Enter your username: ");
+	                String username = sc.next();
+	
+	                System.out.println("Enter your password: ");
+	                String password = sc.next();
+	
+	                System.out.println("Enter your Roll number: ");
+	                String roll = sc.next();
+	
+	                System.out.println("Enter your department: ");
+	                String dept = sc.next();
+	
+	                StudentImpl studImpl = new StudentImpl();
+	                try {
+	                    studImpl.addStudent(email, password, name,username,roll,dept);
+	                    logger.info("You have successfully been registered, waiting for admin approval !!");
+	                } catch (Exception e) {
+	                    logger.error(e.getMessage());
+	                }
+	
+	            } else if(response1 == 4) {
+	                System.out.println("Exiting from the website.");
+	                break;
+	            } else {
+	                System.out.println("Invalid input");
+	            }
+            }catch(InputMismatchException e) {
+            	sc.next();
+            	logger.error("Please enter valid input");
             }
         }
     }
