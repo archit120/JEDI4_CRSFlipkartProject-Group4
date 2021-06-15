@@ -16,6 +16,7 @@ import com.flipkart.exception.PaymentAlreadyDone;
 import com.flipkart.service.*;
 import org.apache.log4j.Logger;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -163,6 +164,7 @@ public class CRSStudentMenu {
 
           paymentImpl.makePayment(p);
           logger.info("Payment Done!");
+          new NotificationImpl().showNotification("Payment done at " + LocalDateTime.now(), stud.getStudentInstance().getRollNo());
         } catch(PaymentAlreadyDone e) {
           logger.error(e.getMessage());
         }
