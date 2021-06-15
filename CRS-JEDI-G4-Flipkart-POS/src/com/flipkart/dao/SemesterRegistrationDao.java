@@ -16,7 +16,7 @@ import org.apache.log4j.Logger;
 /** The Class SemesterRegistrationDao. */
 public class SemesterRegistrationDao implements SemesterRegistrationDaoInterface {
 
-  private static Logger logger = Logger.getLogger(AdminDao.class);
+  private static Logger logger = Logger.getLogger(SemesterRegistrationDao.class);
 
 
   /**

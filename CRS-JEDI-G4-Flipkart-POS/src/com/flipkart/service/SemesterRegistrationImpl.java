@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class SemesterRegistrationImpl implements SemesterRegistrationInterface {
 
-  private static Logger logger = Logger.getLogger(StudentImpl.class);
+  private static Logger logger = Logger.getLogger(SemesterRegistrationImpl.class);
 
   /** Instantiates a new semester registration impl. */
   public SemesterRegistrationImpl() {
