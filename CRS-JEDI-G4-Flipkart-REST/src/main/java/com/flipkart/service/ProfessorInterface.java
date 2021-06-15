@@ -37,7 +37,7 @@ public interface ProfessorInterface {
    * @param courseCatalogue the course catalogue
    * @return the enrolled students
    */
-  public List<Student> getEnrolledStudents(CourseCatalogue courseCatalogue);
+  public List<Student> getEnrolledStudents(int courseCatalogue,String professorId);
 
   /**
    * Login.
