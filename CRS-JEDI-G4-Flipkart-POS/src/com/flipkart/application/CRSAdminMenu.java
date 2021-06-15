@@ -7,10 +7,7 @@ import com.flipkart.bean.Student;
 import com.flipkart.dao.AdminDao;
 import com.flipkart.exception.LoginFailedException;
 import com.flipkart.exception.StudentApprovalFailedException;
-import com.flipkart.service.AdminImpl;
-import com.flipkart.service.CourseCatalogueImpl;
-import com.flipkart.service.CourseImpl;
-import com.flipkart.service.StudentImpl;
+import com.flipkart.service.*;
 import org.apache.log4j.Logger;
 
 import java.util.List;
@@ -226,11 +223,12 @@ public class CRSAdminMenu {
 
               System.out.println("** ENTER THE roll number OF THE STUDENT YOU WANT TO APPROVE");
 
-              String email = sc.next();
+              String rollno = sc.next();
 
               try {
 
-                boolean done = s.approveStudent(email);
+                boolean done = s.approveStudent(rollno);
+                (new NotificationImpl()).showNotification("Welcome to Flipkart University!", rollno);
                 logger.info("Student approved successfully !!!");
               } catch (StudentApprovalFailedException e) {
 
