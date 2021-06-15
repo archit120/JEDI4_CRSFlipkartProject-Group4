@@ -6,6 +6,7 @@ import java.util.Scanner;
 import com.flipkart.dao.AdminDao;
 import com.flipkart.exception.CourseAlreadyFullException;
 import com.flipkart.exception.CourseAlreadyRegisteredException;
+import com.flipkart.exception.CourseNotRegisteredException;
 
 import org.apache.log4j.BasicConfigurator;
 
@@ -44,8 +45,9 @@ public class CRSApplicationMenu {
     * The main method.
     *
     * @param args the arguments
+     * @throws CourseNotRegisteredException 
     */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CourseNotRegisteredException {
         BasicConfigurator.configure();
         @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
@@ -78,7 +80,7 @@ public class CRSApplicationMenu {
 	                        CRSAdminMenu.adminMenuHandler();
 	                        break;
 	                    default:
-	                        System.out.println("Invalid input.");
+	                    	logger.error("Please enter valid input");
 	                }
 	            } else if (response1 == 2) {
 	                // updatePasswordUser
@@ -107,6 +109,7 @@ public class CRSApplicationMenu {
 	                    studImpl.addStudent(email, password, name,username,roll,dept);
 	                    logger.info("You have successfully been registered, waiting for admin approval !!");
 	                } catch (Exception e) {
+	                	e.getClass().getSimpleName();
 	                    logger.error(e.getMessage());
 	                }
 	

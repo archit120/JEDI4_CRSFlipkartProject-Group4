@@ -2,6 +2,8 @@ package com.flipkart.service;
 
 import com.flipkart.bean.Course;
 import com.flipkart.bean.CourseCatalogue;
+import com.flipkart.exception.CourseDoesntExistException;
+
 import java.util.List;
 
 // TODO: Auto-generated Javadoc
@@ -30,8 +32,9 @@ public interface CourseCatalogueInterface {
    * @param catalogue the catalogue
    * @param courseID the course ID
    * @return the course
+ * @throws CourseDoesntExistException 
    */
-  Course findCourse(CourseCatalogue catalogue, String courseID);
+  Course findCourse(CourseCatalogue catalogue, String courseID) throws CourseDoesntExistException;
 
   /**
    * Gets the courses.

@@ -10,6 +10,8 @@ import com.flipkart.bean.SemesterRegistration;
 import com.flipkart.dao.CourseDao;
 import com.flipkart.exception.CourseAlreadyFullException;
 import com.flipkart.exception.CourseAlreadyRegisteredException;
+import com.flipkart.exception.CourseDoesntExistException;
+import com.flipkart.exception.CourseNotRegisteredException;
 import com.flipkart.exception.LoginFailedException;
 import com.flipkart.exception.StudentNotApprovedException;
 import com.flipkart.exception.PaymentAlreadyDone;
@@ -42,11 +44,12 @@ public class CRSStudentMenu {
   }
 
   /** Student menu. 
+ * @throws CourseNotRegisteredException 
  * @throws CourseAlreadyFullException 
  * @throws LoginFailedException 
  * @throws StudentNotApprovedException 
  */
-  public void StudentMenu() {
+  public void StudentMenu() throws CourseNotRegisteredException {
 
     Scanner sc = new Scanner(System.in);
     CourseCatalogue chosen = new CourseCatalogueImpl().getCourseCatalogues().get(0);
@@ -126,12 +129,18 @@ public class CRSStudentMenu {
         }
         catch (CourseAlreadyFullException e) {
           logger.error(e.getMessage());
+        }catch(CourseDoesntExistException e) {
+        	logger.error(e.getMessage());
         }
       } else if (option == 3) {
 
         System.out.println("Enter course code to be dropped: ");
-        regImpl.dropRegisteredCourse(regImpl.findRegisteredCourse(chosenSem, sc.next()));
-        System.out.println("Course dropped");
+        try {
+        	regImpl.dropRegisteredCourse(regImpl.findRegisteredCourse(chosenSem, sc.next()));
+        	System.out.println("Course dropped");
+        }catch(Exception e) {
+        	logger.error(e.getMessage());
+        }
 
       } else if (option == 4) {
 
@@ -169,31 +178,39 @@ public class CRSStudentMenu {
           logger.error(e.getMessage());
         }
 
-        break;
-
       } else if (option == 5) {
 
         System.out.println("Registered Courses are");
         List<RegisteredCourse> registeredCourses = regImpl.findRegisteredCourses(chosenSem);
         System.out.println("You have registered for a total of " + registeredCourses.size() + " courses.");
-
+        System.out.println("-------------------------------------------------------------------------------------------------------------");
+        System.out.format("%25s%n","Course Code");
+        System.out.println("-------------------------------------------------------------------------------------------------------------");
         for (RegisteredCourse registeredCourse : registeredCourses) {
 
-          System.out.println(CourseDao.getCourse(registeredCourse.getCourseId()).getCourseCode());
+          System.out.format("%25s%n" , CourseDao.getCourse(registeredCourse.getCourseId()).getCourseCode());
         }
 
       } else if (option == 6) {
-
-        System.out.println("Report Card");
-        ReportCard report = stud.viewReportCard(chosenSem);
-
-        for (int i = 0; i < report.getCourseCodes().size(); i++) {
-      
-          System.out.println(report.getCourseCodes().get(i) + "\t" + report.getGrades().get(i));
-        
+  
+        try {
+        	
+	        ReportCard report = stud.viewReportCard(chosenSem);
+	        System.out.println("Report Card:");
+	        System.out.println("--------------------------------------------------------");
+	        System.out.format("%25s%25s%n", "Course Code", "Grade");
+	        System.out.println("--------------------------------------------------------");
+	        for (int i = 0; i < report.getCourseCodes().size(); i++) {
+	        	
+	          System.out.format("%25s%25s%n", report.getCourseCodes().get(i), report.getGrades().get(i));
+	        
+	        }
+	        System.out.println("--------------------------------------------------------");
+	        System.out.println("GPA: " + report.getSgpa());
+	        System.out.println("--------------------------------------------------------");
+        }catch(Exception e) {
+        	
         }
-
-        System.out.println("GPA: " + report.getSgpa());
 
       } else if (option == 7) {
 
@@ -222,7 +239,7 @@ public class CRSStudentMenu {
       }
 
       printMenu();
-      System.out.println("\n\n ENTER YOUR CHOICE \n\n");
+      System.out.println("Your choice:");
       option = sc.nextInt();
     }    
   }

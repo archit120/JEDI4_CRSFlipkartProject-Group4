@@ -78,12 +78,15 @@ public class CRSProfessorMenu {
             List<Student> students = prof.getEnrolledStudents(chosen);
 
             System.out.println("Total " + students.size() + " students");
+            System.out.println("---------------------------------------------------------------------------------------------------------------------------------");
             System.out.format("%25s%25s%n", "Name", "Roll Number");
-            
+            System.out.println("---------------------------------------------------------------------------------------------------------------------------------");
             for (Student s : students) {
 
               System.out.format("%25s%25s%n", s.getName(), s.getRollNo());
             }
+            
+            System.out.println("---------------------------------------------------------------------------------------------------------------------------------");
 
             break;
 
@@ -99,6 +102,7 @@ public class CRSProfessorMenu {
             Grade grade = new Grade();
             grade.setGrade(g);
             regImpl.markGrade(courseCode, chosen, rollno, grade);
+            System.out.println("Graded the selected student for this course.");
             (new NotificationImpl()).showNotification("Your course " + courseCode + " has been graded now!", rollno);
 
             break;
@@ -107,14 +111,14 @@ public class CRSProfessorMenu {
             List<Course> courses = courseImpl.findCourses(chosen);
 
             System.out.println("Total " + courses.size() + " courses found");
-            System.out.println("-------------------------------------------------------------------------------------------------------------");
+            System.out.println("---------------------------------------------------------------------------------------------------------------------------------");
             System.out.format("%25s%25s%25s%25s%25s%n", "Course Code", "Course Description", "Course Department", "Course Prerequisites", "Availability" );
-            System.out.println("-------------------------------------------------------------------------------------------------------------");
+            System.out.println("---------------------------------------------------------------------------------------------------------------------------------");
             for (Course course : courses) {
 
               System.out.format("%25s%25s%25s%25s%25s%n",course.getCourseCode(), course.getDescriptions(), course.getDepartment(), course.getPreRequisites(),(course.getProfessorId()==0) ? "Available" : "Not Available");
             }
-            System.out.println("-------------------------------------------------------------------------------------------------------------");
+            System.out.println("---------------------------------------------------------------------------------------------------------------------------------");
 
             break;
 
