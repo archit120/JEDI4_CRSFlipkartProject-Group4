@@ -61,6 +61,7 @@ private static Logger logger = Logger.getLogger(PaymentDao.class);
       if (rs.next()) {
         p.setId(rs.getInt(1));
       }
+      logger.info("Payment Done");
 
     } catch (Exception e) {
 

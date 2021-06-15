@@ -1,0 +1,5 @@
+01:11:34,076  INFO StudentDao,main:52 - Student login sucessful
+01:11:38,979  INFO CourseDao,main:151 - Courses list fetched
+01:12:33,608  INFO CourseDao,main:151 - Courses list fetched
+01:12:33,868  INFO RegisteredCourseDao,main:66 - Student registration done
+01:12:45,813  INFO RegisteredCourseDao,main:166 - Registration deleted

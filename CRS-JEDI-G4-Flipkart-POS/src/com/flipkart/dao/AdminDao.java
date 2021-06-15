@@ -39,7 +39,7 @@ public class AdminDao implements AdminDaoInterface {
       ResultSet rs = stmt.executeQuery();
 
       if (!rs.next()) {
-
+    	  logger.error("Admin login failed");
         return null;
       }
 
@@ -50,7 +50,7 @@ public class AdminDao implements AdminDaoInterface {
       temp.setUsername(rs.getString("username"));
       temp.setPassword(rs.getString("password"));
       temp.setEmpID(rs.getString("empid"));
-
+      logger.info("Admin login successful");
       return temp;
     } catch (Exception e) {
 
@@ -82,6 +82,7 @@ public class AdminDao implements AdminDaoInterface {
       stmt.setString(4, s.getPassword());
       stmt.setString(5, s.getEmpID());
       stmt.executeUpdate();
+      logger.info("Admin created");
     } catch (Exception e) {
 
       logger.error(e);

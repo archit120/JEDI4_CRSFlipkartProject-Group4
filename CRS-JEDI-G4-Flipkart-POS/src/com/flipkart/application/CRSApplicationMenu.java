@@ -14,13 +14,11 @@ import com.flipkart.exception.LoginFailedException;
 import com.flipkart.exception.StudentApprovalFailedException;
 import com.flipkart.exception.StudentNotApprovedException;
 import com.flipkart.service.StudentImpl;
-import org.apache.log4j.Logger;
 
 // TODO: Auto-generated Javadoc
 /** The Class CRSApplicationMenu. */
 public class CRSApplicationMenu {
 
-    private static Logger logger = Logger.getLogger(CRSApplicationMenu.class);
 
     /** First menu. */
     public static void firstMenu() {
@@ -80,7 +78,7 @@ public class CRSApplicationMenu {
 	                        CRSAdminMenu.adminMenuHandler();
 	                        break;
 	                    default:
-	                    	logger.error("Please enter valid input");
+	                    	System.out.println("Please enter valid input");
 	                }
 	            } else if (response1 == 2) {
 	                // updatePasswordUser
@@ -107,10 +105,10 @@ public class CRSApplicationMenu {
 	                StudentImpl studImpl = new StudentImpl();
 	                try {
 	                    studImpl.addStudent(email, password, name,username,roll,dept);
-	                    logger.info("You have successfully been registered, waiting for admin approval !!");
+	                    System.out.println("You have successfully been registered, waiting for admin approval !!");
 	                } catch (Exception e) {
 	               
-	                    logger.error(e.getMessage());
+	                	System.out.println(e.getMessage());
 	                }
 	
 	            } else if(response1 == 4) {
@@ -121,7 +119,7 @@ public class CRSApplicationMenu {
 	            }
             }catch(InputMismatchException e) {
             	sc.next();
-            	logger.error("Please enter valid input");
+            	System.out.println("Please enter valid input");
             }
         }
     }

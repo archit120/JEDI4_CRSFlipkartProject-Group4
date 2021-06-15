@@ -56,15 +56,14 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
     stmt = null;
     String sql = SQLConstants.addRegisteredCourse;
     try {
-      // System.out.println("hi");
       stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-      stmt.setInt(1, s.getStudentId()); // This would set age
+      stmt.setInt(1, s.getStudentId()); 
       stmt.setInt(2, s.getCourseId());
       stmt.setInt(3, s.getGradeId());
       stmt.setInt(4, s.getSemesterRegistrationId());
 
       stmt.executeUpdate();
-
+      logger.info("Student registration done");
       ResultSet rs = stmt.getGeneratedKeys();
       if (rs.next()) {
         s.setId(rs.getInt(1));
@@ -164,7 +163,7 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
       stmt.setInt(1, registeredCourse.getId());
 
       stmt.executeUpdate();
-
+      logger.info("Registration deleted");
     } catch (Exception e) {
 
     	logger.error(e);
@@ -202,6 +201,7 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
         int temp = rs.getInt("registeredCourse.studentId");
         enrolledStudentsId.add(temp);
       }
+      logger.info("Enrolled Students list fetched");
       stmt.close();
       conn.close();
     } catch (Exception e) {

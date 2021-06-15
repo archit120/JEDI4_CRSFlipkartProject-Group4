@@ -8,7 +8,6 @@ import com.flipkart.dao.AdminDao;
 import com.flipkart.exception.LoginFailedException;
 import com.flipkart.exception.StudentApprovalFailedException;
 import com.flipkart.service.*;
-import org.apache.log4j.Logger;
 
 import java.util.List;
 import java.util.Scanner;
@@ -19,7 +18,6 @@ import javax.security.auth.login.LoginException;
 /** The Class CRSAdminMenu. */
 public class CRSAdminMenu {
 
-  private static Logger logger = Logger.getLogger(CRSAdminMenu.class);
 
   /** Show admin menu. */
   public static void showAdminMenu() {
@@ -76,7 +74,7 @@ public class CRSAdminMenu {
         }
         catch(LoginFailedException e){
 
-          logger.error(e.getMessage());
+        	System.out.println(e.getMessage());
         }
 
         //System.out.println("Invalid login. Please retry.");
@@ -127,7 +125,7 @@ public class CRSAdminMenu {
               System.out.println("The course was successfully added.");
             } catch (Exception e) {
 
-              logger.error(e.getMessage());
+            	System.out.println(e.getMessage());
             }
 
             break;
@@ -140,7 +138,7 @@ public class CRSAdminMenu {
             	 courseImpl.removeCourse(chosen, takeInput);
                  System.out.println("Course removed successfully!");
             }catch(Exception e) {
-            	logger.error(e.getMessage());
+            	System.out.println(e.getMessage());
             }
 
 
@@ -180,7 +178,7 @@ public class CRSAdminMenu {
               admin.addProfessor(newProfessor);
             } catch (Exception e) {
 
-              logger.error(e.getMessage());
+            	System.out.println(e.getMessage());
             }
 
             break;
@@ -188,6 +186,7 @@ public class CRSAdminMenu {
           case 4:
             List<Course> courses = courseImpl.findCourses(chosen);
             System.out.println("Total " + courses.size() + " courses found");
+            if(courses.size()>0) {
             System.out.println("-------------------------------------------------------------------------------------------------------------");
             System.out.format("%25s%25s%25s%25s%n", "Course Code", "Course Description", "Course Department", "Course Prerequisites" );
             System.out.println("-------------------------------------------------------------------------------------------------------------");
@@ -198,7 +197,7 @@ public class CRSAdminMenu {
             }
             
             System.out.println("-------------------------------------------------------------------------------------------------------------");
-
+            }
             break;
 
           case 5 :
@@ -230,10 +229,10 @@ public class CRSAdminMenu {
 
                 boolean done = s.approveStudent(rollno);
                 (new NotificationImpl()).showNotification("Welcome to Flipkart University!", rollno);
-                logger.info("Student approved successfully !!!");
+                System.out.println("Student approved successfully !!!");
               } catch (StudentApprovalFailedException e) {
 
-                logger.error(e.getMessage());
+            	  System.out.println(e.getMessage());
               }
             }
 
@@ -253,7 +252,7 @@ public class CRSAdminMenu {
       }
     } catch (Exception e) {
 
-      //logger.error(e.getMessage());
+    	System.out.println(e.getMessage());
     }
   }
 }
