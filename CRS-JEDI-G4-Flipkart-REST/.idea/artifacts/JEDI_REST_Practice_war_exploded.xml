@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="JEDI-REST-Practice:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/JEDI_REST_Practice_war_exploded</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="JEDI-REST-Practice" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="JEDI-REST-Practice/web/Web" />
+    </root>
+  </artifact>
+</component>
