@@ -46,19 +46,17 @@ public class StudentImpl implements StudentInterface {
      *
      * @param semesterRegistration the semester registration
      * @return the report card
+     * @throws GradeNotAssigned 
      */
     @Override
-    public ReportCard viewReportCard(SemesterRegistration semesterRegistration) {
+    public ReportCard viewReportCard(SemesterRegistration semesterRegistration) throws GradeNotAssigned {
 
         ReportCard report = new ReportCard();
 
-        try {
-
             report = RegisteredCourseDao.getReportCard(semesterRegistration.getId());
-        }catch(GradeNotAssigned e){
-
-            logger.error(e.getMessage());
-        }
+            
+            if(report.getCourseCodes().size()==0)throw new GradeNotAssigned();
+          
 
         return report;
     }

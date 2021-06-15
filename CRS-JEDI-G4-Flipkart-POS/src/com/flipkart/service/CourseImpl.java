@@ -5,6 +5,7 @@ import com.flipkart.bean.CourseCatalogue;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
 import com.flipkart.dao.CourseDao;
+import com.flipkart.exception.CourseDoesntExistException;
 import com.flipkart.exception.CourseNotAvailable;
 import com.flipkart.exception.CoursePreExistsException;
 import java.util.ArrayList;
@@ -69,9 +70,10 @@ public class CourseImpl implements CourseInterface {
    * @param courseCatalogue the course catalogue
    * @param courseCode the course code
    * @return true, if successful
+ * @throws CourseDoesntExistException 
    */
   @Override
-  public boolean removeCourse(CourseCatalogue courseCatalogue, String courseCode) {
+  public boolean removeCourse(CourseCatalogue courseCatalogue, String courseCode) throws CourseDoesntExistException {
     return CourseDao.removeCourse(findCourse(courseCatalogue, courseCode).getId());
   }
 
@@ -92,10 +94,15 @@ public class CourseImpl implements CourseInterface {
    * @param courseCatalogue the course catalogue
    * @param courseID the course ID
    * @return the course
+ * @throws CourseDoesntExistException 
    */
   @Override
-  public Course findCourse(CourseCatalogue courseCatalogue, String courseID) {
-    return CourseDao.findCourse(courseCatalogue, courseID);
+  public Course findCourse(CourseCatalogue courseCatalogue, String courseID) throws CourseDoesntExistException {
+    Course c = CourseDao.findCourse(courseCatalogue, courseID);
+    
+    if(c==null) throw new CourseDoesntExistException();
+    
+    return c;
   }
 
   /**

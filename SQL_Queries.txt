@@ -97,7 +97,7 @@ INSERT INTO professor (name, email, username, password, empId, department) VALUE
 
 INSERT INTO semesterRegistration (semester, year, studentId) VALUES (7, 2021, 1);
 
-INSERT INTO registeredCourse (semesterRegistrationId, courseId, grade, studentId) VALUES (1, 2021, 0,1);
+INSERT INTO registeredCourse (semesterRegistrationId, courseId, grade, studentId) VALUES (1, 1, 0,1);
 
 INSERT INTO payment (mode, semesterRegistrationId, studentId) VALUES ("Online", 1, 1);
 

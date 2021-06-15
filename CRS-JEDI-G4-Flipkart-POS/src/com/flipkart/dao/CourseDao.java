@@ -3,6 +3,7 @@ package com.flipkart.dao;
 import com.flipkart.bean.Course;
 import com.flipkart.bean.CourseCatalogue;
 import com.flipkart.constants.SQLConstants;
+import com.flipkart.exception.CourseDoesntExistException;
 import com.flipkart.utils.DBUtil;
 
 import java.sql.Connection;
@@ -182,15 +183,18 @@ public class CourseDao implements CourseDaoInterface {
    * @param courseCatalogue the course catalogue
    * @param coursecode the coursecode
    * @return the course
+ * @throws CourseDoesntExistException 
    */
-  public static Course findCourse(CourseCatalogue courseCatalogue, String coursecode) {
-    return getCourses(
+  public static Course findCourse(CourseCatalogue courseCatalogue, String coursecode) throws CourseDoesntExistException {
+    List<Course> courseList = getCourses(
             SQLConstants.getCoursePrefix+" courseCatalogueId="
                 + courseCatalogue.getId()
                 + " and coursecode='"
                 + coursecode
-                + "'")
-        .get(0);
+                + "'");
+        if(courseList.size()>0) return courseList.get(0);
+        
+        throw new CourseDoesntExistException();
   }
 
   /**

@@ -2,6 +2,8 @@ package com.flipkart.service;
 
 import com.flipkart.bean.*;
 import com.flipkart.dao.RegisteredCourseDao;
+import com.flipkart.exception.CourseNotRegisteredException;
+
 import java.util.List;
 
 // TODO: Auto-generated Javadoc
@@ -25,9 +27,10 @@ public class RegisteredCourseImpl implements RegisteredCourseInterface {
    * @param semesterRegistration the semester registration
    * @param courseCode the course code
    * @return the registered course
+ * @throws CourseNotRegisteredException 
    */
   @Override
-  public RegisteredCourse findRegisteredCourse(SemesterRegistration semesterRegistration, String courseCode) {
+  public RegisteredCourse findRegisteredCourse(SemesterRegistration semesterRegistration, String courseCode) throws CourseNotRegisteredException {
 
     return RegisteredCourseDao.getRegisteredCourseBySemesterRegistrationIdAndCourseCode(semesterRegistration.getId(), courseCode);
   }
@@ -49,9 +52,14 @@ public class RegisteredCourseImpl implements RegisteredCourseInterface {
    *
    * @param registeredCourse the registered course
    * @return true, if successful
+ * @throws CourseNotRegisteredException 
    */
   @Override
-  public boolean dropRegisteredCourse(RegisteredCourse registeredCourse) {
+  public boolean dropRegisteredCourse(RegisteredCourse registeredCourse) throws CourseNotRegisteredException {
+	  
+	  if(registeredCourse == null) {
+		  throw new CourseNotRegisteredException();
+	  }
 
     return RegisteredCourseDao.deleteRegisteredCourse(registeredCourse);
   }

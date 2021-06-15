@@ -124,9 +124,10 @@ public class CRSAdminMenu {
             try {
 
               courseImpl.addCourse(newCourse);
+              System.out.println("The course was successfully added.");
             } catch (Exception e) {
 
-              logger.error(e);
+              logger.error(e.getMessage());
             }
 
             break;
@@ -134,17 +135,14 @@ public class CRSAdminMenu {
           case 2:
             System.out.print("Enter Course code of Course to removed: ");
             takeInput = sc.next();
-            Course removalCourse = courseCatalogues.findCourse(chosen, takeInput);
-
-            if (removalCourse == null) {
-
-              System.out.println("Course not found!");
+            try {
+            	 courseCatalogues.findCourse(chosen, takeInput);
+            	 courseImpl.removeCourse(chosen, takeInput);
+                 System.out.println("Course removed successfully!");
+            }catch(Exception e) {
+            	logger.error(e.getMessage());
             }
-            else {
 
-              courseImpl.removeCourse(chosen, takeInput);
-              System.out.println("Course removed successfully!");
-            }
 
             break;
 
@@ -213,15 +211,18 @@ public class CRSAdminMenu {
               System.out.println("No students pending approval");
             }
             else {
-              System.out.println("****All the student waiting approval are***");
-
+              System.out.println("List of students waiting for approval:");
+              
+              System.out.format("%25s%25s%n","Name","Roll No");
+              System.out.println("-------------------------------------------------------------------------------------------------------------");
               for (int i = 0; i < student.size(); i++) {
 
-                System.out.println("Name\t" + "Rollno");
-                System.out.println(student.get(i).getName() + "\t" + student.get(i).getRollNo());
+                System.out.format("%25s%25s%n",student.get(i).getName(), student.get(i).getRollNo() );
+   
+//                System.out.println(student.get(i).getName() + "\t" + student.get(i).getRollNo());
               }
-
-              System.out.println("** ENTER THE roll number OF THE STUDENT YOU WANT TO APPROVE");
+              System.out.println("-------------------------------------------------------------------------------------------------------------");
+              System.out.println("Enter the roll number of student you want to approve");
 
               String rollno = sc.next();
 
