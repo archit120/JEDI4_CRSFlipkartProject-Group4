@@ -107,12 +107,14 @@ public class CRSProfessorMenu {
             List<Course> courses = courseImpl.findCourses(chosen);
 
             System.out.println("Total " + courses.size() + " courses found");
+            System.out.println("-------------------------------------------------------------------------------------------------------------");
             System.out.format("%25s%25s%25s%25s%25s%n", "Course Code", "Course Description", "Course Department", "Course Prerequisites", "Availability" );
-            
+            System.out.println("-------------------------------------------------------------------------------------------------------------");
             for (Course course : courses) {
 
               System.out.format("%25s%25s%25s%25s%25s%n",course.getCourseCode(), course.getDescriptions(), course.getDepartment(), course.getPreRequisites(),(course.getProfessorId()==0) ? "Available" : "Not Available");
             }
+            System.out.println("-------------------------------------------------------------------------------------------------------------");
 
             break;
 

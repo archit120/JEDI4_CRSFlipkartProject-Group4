@@ -193,30 +193,35 @@ public class CRSAdminMenu {
           case 4:
             List<Course> courses = courseImpl.findCourses(chosen);
             System.out.println("Total " + courses.size() + " courses found");
-
+            System.out.println("-------------------------------------------------------------------------------------------------------------");
             System.out.format("%25s%25s%25s%25s%n", "Course Code", "Course Description", "Course Department", "Course Prerequisites" );
-
+            System.out.println("-------------------------------------------------------------------------------------------------------------");
+            
             for (Course course : courses) {
 
               System.out.format("%25s%25s%25s%25s%n",course.getCourseCode(), course.getDescriptions(), course.getDepartment(), course.getPreRequisites());
             }
+            
+            System.out.println("-------------------------------------------------------------------------------------------------------------");
 
             break;
 
           case 5 :
 
-            System.out.println("****All the stduent waiting approval are***");
-
+            System.out.println("****Students waiting for approval***");
+            System.out.println("----------------------------------------------------------------------------");
             StudentImpl s = new StudentImpl();
             List<Student> student = s.getStudentsWaitingApprocal();
 
             for(int i = 0; i < student.size(); i++) {
 
-              System.out.println("Name\t" + "Rollno   ");
+              System.out.println("Name\t" + "Email   ");
               System.out.println(student.get(i).getName() + "\t" + student.get(i).getEmail());
             }
+            
+            System.out.println("----------------------------------------------------------------------------");
 
-            System.out.println("** ENTER THE roll number OF THE STUDENT YOU WANT TO APPROVE");
+            System.out.println("** ENTER THE Email OF THE STUDENT YOU WANT TO APPROVE");
 
             String email = sc.next();
 

@@ -101,12 +101,16 @@ public class CRSStudentMenu {
         List<Course> courses = courseImpl.findCourses(chosen);
         System.out.println("Total " + courses.size() + " courses found");
         
+        System.out.println("-------------------------------------------------------------------------------------------------------------");
         System.out.format("%25s%25s%25s%25s%n", "Course Code", "Course Description", "Course Department", "Course Prerequisites" );
+        System.out.println("-------------------------------------------------------------------------------------------------------------");
         
         for (Course course : courses) {
 
           System.out.format("%25s%25s%25s%25s%n",course.getCourseCode(), course.getDescriptions(), course.getDepartment(), course.getPreRequisites());         
         }
+        
+        System.out.println("-------------------------------------------------------------------------------------------------------------");
         
       } else if (option == 2) {
 
