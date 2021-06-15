@@ -208,32 +208,34 @@ public class CRSAdminMenu {
 
           case 5 :
 
-            System.out.println("****Students waiting for approval***");
-            System.out.println("----------------------------------------------------------------------------");
             StudentImpl s = new StudentImpl();
             List<Student> student = s.getStudentsWaitingApprocal();
 
-            for(int i = 0; i < student.size(); i++) {
-
-              System.out.println("Name\t" + "Email   ");
-              System.out.println(student.get(i).getName() + "\t" + student.get(i).getEmail());
+            if(student.size() == 0)
+            {
+              System.out.println("No students pending approval");
             }
-            
-            System.out.println("----------------------------------------------------------------------------");
+            else {
+              System.out.println("****All the student waiting approval are***");
 
-            System.out.println("** ENTER THE Email OF THE STUDENT YOU WANT TO APPROVE");
+              for (int i = 0; i < student.size(); i++) {
 
-            String email = sc.next();
+                System.out.println("Name\t" + "Rollno");
+                System.out.println(student.get(i).getName() + "\t" + student.get(i).getRollNo());
+              }
 
-            StudentImpl studImpl = new StudentImpl();
+              System.out.println("** ENTER THE roll number OF THE STUDENT YOU WANT TO APPROVE");
 
-            try {
+              String email = sc.next();
 
-              boolean done  = studImpl.approveStudent(email);
-              logger.info("Student approved successfully !!!");
-            } catch(StudentApprovalFailedException e) {
+              try {
 
-              logger.error(e.getMessage());
+                boolean done = s.approveStudent(email);
+                logger.info("Student approved successfully !!!");
+              } catch (StudentApprovalFailedException e) {
+
+                logger.error(e.getMessage());
+              }
             }
 
             break;

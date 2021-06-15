@@ -205,7 +205,7 @@ public class StudentDao implements StudentDaoInterface {
 		  while(rs.next()) {
 			  Student s = new Student();
 			  s.setName(rs.getString("name"));
-			  s.setEmail(rs.getString("email"));
+			  s.setRollNo(rs.getString("rollno"));
 			  
 			  students.add(s);
 		  }
