@@ -20,7 +20,7 @@ import org.apache.log4j.Logger;
 /** The Class RegisteredCourseDao. */
 public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
 	
-	private static Logger logger = Logger.getLogger(AdminDao.class);
+	private static Logger logger = Logger.getLogger(RegisteredCourseDao.class);
 
 
   /**

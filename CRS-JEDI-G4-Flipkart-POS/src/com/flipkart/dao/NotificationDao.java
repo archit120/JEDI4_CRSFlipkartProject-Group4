@@ -13,7 +13,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 /** The Class NotificationDao. */
-public class NotificationDao {
+public class NotificationDao implements NotificationDaoInterface{
 	
 	private static Logger logger = Logger.getLogger(NotificationDao.class);
 

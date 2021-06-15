@@ -15,7 +15,7 @@ import org.apache.log4j.Logger;
 /** The Class ProfessorDao. */
 public class ProfessorDao implements ProfessorDaoInterface {
 	
-	private static Logger logger = Logger.getLogger(AdminDao.class);
+	private static Logger logger = Logger.getLogger(ProfessorDao.class);
 
 
   /**

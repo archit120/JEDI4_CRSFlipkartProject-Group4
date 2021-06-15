@@ -16,7 +16,7 @@ import org.apache.log4j.Logger;
 public class PaymentDao implements PaymentDaoInterface {
 	
 
-private static Logger logger = Logger.getLogger(AdminDao.class);
+private static Logger logger = Logger.getLogger(PaymentDao.class);
 
 
   /**
