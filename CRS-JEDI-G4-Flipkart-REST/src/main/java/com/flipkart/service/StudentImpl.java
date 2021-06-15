@@ -21,26 +21,6 @@ public class StudentImpl implements StudentInterface {
 
     private static Logger logger = Logger.getLogger(StudentImpl.class);
 
-    /** The students. */
-    private static ArrayList<Student> students;
-
-    /**
-     * Gets the student instance.
-     *
-     * @return the student instance
-     */
-    public Student getStudentInstance() {
-        return studentInstance;
-    }
-
-    /** The student instance. */
-    private static Student studentInstance;
-
-    /** Instantiates a new student impl. */
-    public StudentImpl() {
-        if (students == null) students = new ArrayList<>();
-    }
-
     /**
      * View report card.
      *
@@ -100,7 +80,7 @@ public class StudentImpl implements StudentInterface {
      * @throws CourseAlreadyRegisteredException
      */
     @Override
-    public boolean registerForCourse(SemesterRegistration semesterRegistration, Course CourseToRegister) throws CourseAlreadyFullException, CourseAlreadyRegisteredException {
+    public boolean registerForCourse(int studentId, SemesterRegistration semesterRegistration, Course CourseToRegister) throws CourseAlreadyFullException, CourseAlreadyRegisteredException {
         // TODO Auto-generated method stub
 
         RegisteredCourseImpl rcInstance = new RegisteredCourseImpl();
@@ -112,7 +92,7 @@ public class StudentImpl implements StudentInterface {
 
         RegisteredCourse registeredCourse = new RegisteredCourse();
         registeredCourse.setCourseId(CourseToRegister.getId());
-        registeredCourse.setStudentId(studentInstance.getUserID());
+        registeredCourse.setStudentId(studentId);
         registeredCourse.setSemesterRegistrationId(semesterRegistration.getId());
         registeredCourse.setGradeId(-1);
 
@@ -149,7 +129,6 @@ public class StudentImpl implements StudentInterface {
             throw new StudentNotApprovedException(username);
         }
 
-        studentInstance = loginRes;
         return true;
     }
 
@@ -157,7 +136,6 @@ public class StudentImpl implements StudentInterface {
     @Override
     public void logout() {
         // TODO Auto-generated method stub
-        studentInstance = null;
     }
 
     @Override
