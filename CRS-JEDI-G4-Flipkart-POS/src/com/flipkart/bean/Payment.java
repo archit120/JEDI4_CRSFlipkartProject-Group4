@@ -84,7 +84,7 @@ public class Payment {
    *
    * @param semesterRegistrationId the new semester regisration id
    */
-  public void setSemesterRegisrationId(int semesterRegistrationId) {
+  public void setSemesterRegistrationId(int semesterRegistrationId) {
     this.semesterRegistrationId = semesterRegistrationId;
   }
 }
