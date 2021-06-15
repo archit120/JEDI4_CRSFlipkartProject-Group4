@@ -33,7 +33,7 @@ public class CRSProfessorMenu {
   }
 
   /** Professor menu handler. */
-  public static void professorMenuHandler() throws LoginFailedException {
+  public static void professorMenuHandler() {
 
     Scanner sc = new Scanner(System.in);
     CourseCatalogue chosen = new CourseCatalogueImpl().getCourseCatalogues().get(0);

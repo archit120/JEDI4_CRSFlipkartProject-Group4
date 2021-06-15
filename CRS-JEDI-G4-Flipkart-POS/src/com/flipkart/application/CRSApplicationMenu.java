@@ -43,17 +43,8 @@ public class CRSApplicationMenu {
     * The main method.
     *
     * @param args the arguments
-
-    * @throws CourseAlreadyFullException
-    * @throws CourseAlreadyRegisteredException
-    * @throws StudentApprovalFailedException
-    * @throws LoginFailedException
-    * @throws StudentNotApprovedException
-    * @throws StudentRegistrationFailedException
-    * @throws StudentAlreadyApprovedException
-    * @throws LoginException
     */
-    public static void main(String[] args) throws LoginFailedException, StudentNotApprovedException,StudentApprovalFailedException,CourseAlreadyFullException, CourseAlreadyRegisteredException {
+    public static void main(String[] args) {
         BasicConfigurator.configure();
         @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);

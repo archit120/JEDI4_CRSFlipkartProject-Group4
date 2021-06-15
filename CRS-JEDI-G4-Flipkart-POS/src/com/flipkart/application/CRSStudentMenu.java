@@ -45,7 +45,7 @@ public class CRSStudentMenu {
  * @throws LoginFailedException 
  * @throws StudentNotApprovedException 
  */
-  public void StudentMenu() throws LoginFailedException, StudentNotApprovedException, CourseAlreadyFullException, CourseAlreadyRegisteredException {
+  public void StudentMenu() {
 
     Scanner sc = new Scanner(System.in);
     CourseCatalogue chosen = new CourseCatalogueImpl().getCourseCatalogues().get(0);
@@ -119,7 +119,9 @@ public class CRSStudentMenu {
         }catch(CourseAlreadyRegisteredException e) {
           logger.error(e.getMessage());
         }
-
+        catch (CourseAlreadyFullException e) {
+          logger.error(e.getMessage());
+        }
       } else if (option == 3) {
 
         System.out.println("Enter course code to be dropped: ");
