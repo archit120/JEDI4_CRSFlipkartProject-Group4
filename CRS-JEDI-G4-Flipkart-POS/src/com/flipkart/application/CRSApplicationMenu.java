@@ -109,7 +109,7 @@ public class CRSApplicationMenu {
 	                    studImpl.addStudent(email, password, name,username,roll,dept);
 	                    logger.info("You have successfully been registered, waiting for admin approval !!");
 	                } catch (Exception e) {
-	                	e.getClass().getSimpleName();
+	               
 	                    logger.error(e.getMessage());
 	                }
 	
