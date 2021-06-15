@@ -31,8 +31,8 @@ public class ProfessorImpl implements ProfessorInterface {
 
   /** Instantiates a new professor impl. */
   public ProfessorImpl() {
-    //		if(professors == null)
-    //			professors = new ArrayList<>();
+    // if(professors == null)
+    // professors = new ArrayList<>();
   }
 
   /**
@@ -44,16 +44,21 @@ public class ProfessorImpl implements ProfessorInterface {
    */
   @Override
   public boolean addGrade(RegisteredCourse registeredCourse, Grade grade) {
-    if (CourseDao.getCourse(registeredCourse.getCourseId()).getProfessorId()
-        != professorInstance.getUserID()) return false;
+    if (CourseDao.getCourse(registeredCourse.getCourseId()).getProfessorId() != professorInstance.getUserID()) {
+
+      return false;
+    }
+
     registeredCourse.setGradeId(grade.getGrade());
     new RegisteredCourseImpl().markGrade(registeredCourse, grade);
+
     return true;
   }
 
   /** Logout. */
   @Override
   public void logout() {
+
     professorInstance = null;
   }
 
@@ -76,6 +81,7 @@ public class ProfessorImpl implements ProfessorInterface {
    */
   @Override
   public List<Student> getEnrolledStudents(CourseCatalogue courseCatalogue) {
+
     return new RegisteredCourseImpl().viewEnrolledStudents(courseCatalogue, professorInstance);
   }
 
@@ -85,13 +91,18 @@ public class ProfessorImpl implements ProfessorInterface {
    * @param userID the user ID
    * @param password the password
    * @return true, if successful
- * @throws LoginFailedException 
+   * @throws LoginFailedException
    */
   @Override
   public boolean login(String userID, String password) throws LoginFailedException {
 
     Professor loginRes = ProfessorDao.login(userID, password);
-    if (loginRes == null) throw new LoginFailedException(userID);
+
+    if (loginRes == null) {
+
+      throw new LoginFailedException(userID);
+    }
+
     professorInstance = loginRes;
     return true;
   }

@@ -14,6 +14,7 @@ import com.flipkart.exception.LoginFailedException;
 import com.flipkart.exception.StudentNotApprovedException;
 import com.flipkart.exception.PaymentAlreadyDone;
 import com.flipkart.service.*;
+import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,8 @@ import java.util.Scanner;
 // TODO: Auto-generated Javadoc
 /** The Class CRSStudentMenu. */
 public class CRSStudentMenu {
+
+  private static Logger logger = Logger.getLogger(CRSProfessorMenu.class);
 
   /** Prints the menu. */
   public void printMenu() {
@@ -53,20 +56,21 @@ public class CRSStudentMenu {
     SemesterRegistrationImpl semImpl = new SemesterRegistrationImpl();
 
     while (true) {
+
       System.out.print("Enter student username: ");
       String username = sc.next();
       System.out.print("Enter student password: ");
       String password = sc.next();
+
       try {
-      if (stud.login(username, password)) break;
-      }
-      catch(LoginFailedException e){
-    	  System.out.println(e.getMessage());
-    	  
-      }
-      catch(StudentNotApprovedException e1){
-    	  System.out.println(e1.getMessage());
-    	  
+
+        if (stud.login(username, password)) break;
+      } catch(LoginFailedException e){
+
+        logger.error(e.getMessage());
+      } catch(StudentNotApprovedException e1){
+
+        logger.error(e1.getMessage());
       }
       //System.out.println("Invalid login. Please retry.");
     }
@@ -75,14 +79,18 @@ public class CRSStudentMenu {
     int option = sc.nextInt();
 
     SemesterRegistration chosenSem = null;
+
     if (semImpl.viewSemesterRegistrations(stud.getStudentInstance().getUserID()).size() == 0) {
+
       chosenSem = new SemesterRegistration();
       chosenSem.setStudentId(stud.getStudentInstance().getUserID());
       chosenSem.setSemester(chosen.getSem());
       chosenSem.setYear(chosen.getYear());
       semImpl.addSemesterRegistration(chosenSem);
-    } else
+    } else {
+
       chosenSem = semImpl.viewSemesterRegistrations(stud.getStudentInstance().getUserID()).get(0);
+    }
 
     while (true) {
 
@@ -95,20 +103,22 @@ public class CRSStudentMenu {
         
         System.out.format("%25s%25s%25s%25s%n", "Course Code", "Course Description", "Course Department", "Course Prerequisites" );
         
-        for (Course course : courses) {    
+        for (Course course : courses) {
+
           System.out.format("%25s%25s%25s%25s%n",course.getCourseCode(), course.getDescriptions(), course.getDepartment(), course.getPreRequisites());         
         }
         
       } else if (option == 2) {
+
         System.out.println("Enter the course code you want to add");
+
         try {
-        Course c = courseImpl.findCourse(chosen, sc.next());
-        stud.registerForCourse(chosenSem, c);
-        System.out.println("Course registered");
+          Course c = courseImpl.findCourse(chosen, sc.next());
+          stud.registerForCourse(chosenSem, c);
+          logger.info("Course registered");
         }catch(CourseAlreadyRegisteredException e) {
-        	System.out.println(e.getMessage());
+          logger.error(e.getMessage());
         }
-        	
 
       } else if (option == 3) {
 
@@ -144,14 +154,12 @@ public class CRSStudentMenu {
         PaymentImpl paymentImpl = new PaymentImpl();
 
         try {
-        	paymentImpl.makePayment(p);
-        	 System.out.println("Payment Done!");
-        }catch(PaymentAlreadyDone e){
-        	System.out.println(e.getMessage());
-        }
-        
 
-       
+          paymentImpl.makePayment(p);
+          logger.info("Payment Done!");
+        } catch(PaymentAlreadyDone e) {
+          logger.error(e.getMessage());
+        }
 
         break;
 
@@ -160,8 +168,11 @@ public class CRSStudentMenu {
         System.out.println("Registered Courses are");
         List<RegisteredCourse> registeredCourses = regImpl.findRegisteredCourses(chosenSem);
         System.out.println("You have registered for a total of " + registeredCourses.size() + " courses.");
-        for (RegisteredCourse registeredCourse : registeredCourses)
+
+        for (RegisteredCourse registeredCourse : registeredCourses) {
+
           System.out.println(CourseDao.getCourse(registeredCourse.getCourseId()).getCourseCode());
+        }
 
       } else if (option == 6) {
 
@@ -173,6 +184,7 @@ public class CRSStudentMenu {
           System.out.println(report.getCourseCodes().get(i) + "\t" + report.getGrades().get(i));
         
         }
+
         System.out.println("GPA: " + report.getSgpa());
 
       } else if (option == 7) {
@@ -188,18 +200,21 @@ public class CRSStudentMenu {
         notificationList = notificationImp.getNotification(studentId);
 
         for (Notification n : notificationList) {
+
           System.out.println(n.getMessage());
         }
 
       } else if (option == 8) {
+
         stud.logout();
         break;
       } else {
+
         System.out.println("Enter valid Inputs");
       }
+
       printMenu();
       System.out.println("\n\n ENTER YOUR CHOICE \n\n");
-
       option = sc.nextInt();
     }    
   }
