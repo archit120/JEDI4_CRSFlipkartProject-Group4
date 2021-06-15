@@ -36,24 +36,27 @@ public class ProfessorRestAPI {
     }
 
     @GET
-    @Path("/getEnrolledStudents/{prof-id}")
+    @Path("/getEnrolledStudents")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Student> getEnrolledStudents(@PathParam("prof-id") String profId){
-
+    public List<Student> getEnrolledStudents(@QueryParam("profId") int profId,@QueryParam("courseCatalogueId") int courseCatalogueId){
+        Professor prof = new Professor();
+        prof.setUserID(profId);
+        CourseCatalogue courseCatalogue = new CourseCatalogue();
+        courseCatalogue.setId(courseCatalogueId);
         ProfessorImpl profImpl = new ProfessorImpl();
 
-        return profImpl.getEnrolledStudents(1,profId);
+        return profImpl.getEnrolledStudents(courseCatalogue, prof);
 
     }
 
     @POST
     @Path("/markGrade")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response markGrade(@FormParam("rollNumber") String rollNumber , @FormParam("courseCode") String courseCode , @FormParam("grade") int g){
+    public Response markGrade(@QueryParam("rollNumber") String rollNumber , @QueryParam("courseCode") String courseCode , @QueryParam("grade") int g, @QueryParam("courseCatalogueId") int courseCatalogueId){
 
         RegisteredCourseImpl regImpl = new RegisteredCourseImpl();
         CourseCatalogue catalog = new CourseCatalogue();
-        catalog.setId(1);
+        catalog.setId(courseCatalogueId);
         Grade grade = new Grade();
         grade.setGrade(g);
         boolean marked = regImpl.markGrade(courseCode, catalog,rollNumber, grade);
@@ -64,10 +67,10 @@ public class ProfessorRestAPI {
     @GET
     @Path("/availableCourses")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Course> getAvailableCourses(){
+    public List<Course> getAvailableCourses(@QueryParam("courseCatalogueId") int courseCatalogueId){
         CourseImpl courseImpl = new CourseImpl();
         CourseCatalogue catalogue = new CourseCatalogue();
-        catalogue.setId(1);
+        catalogue.setId(courseCatalogueId);
         return courseImpl.findCourses(catalogue);
     }
 

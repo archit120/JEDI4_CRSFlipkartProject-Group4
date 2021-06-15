@@ -5,7 +5,6 @@ import com.flipkart.bean.*;
 import com.flipkart.dao.CourseDao;
 import com.flipkart.dao.ProfessorDao;
 import com.flipkart.exception.LoginFailedException;
-import com.mysql.jdbc.log.NullLogger;
 
 import java.util.List;
 
@@ -19,7 +18,7 @@ public class ProfessorImpl implements ProfessorInterface {
 
   /** The professor instance. */
   //	private static ArrayList<Professor> professors;
-  private static Professor professorInstance;
+//  private static Professor professorInstance;
 
   /**
    * Gets the professor instance.
@@ -27,7 +26,8 @@ public class ProfessorImpl implements ProfessorInterface {
    * @return the professor instance
    */
   public static Professor getProfessorInstance() {
-    return professorInstance;
+//    return professorInstance;
+    return null;
   }
 
   /** Instantiates a new professor impl. */
@@ -44,7 +44,7 @@ public class ProfessorImpl implements ProfessorInterface {
    * @return true, if successful
    */
   @Override
-  public boolean addGrade(RegisteredCourse registeredCourse, Grade grade) {
+  public boolean addGrade(RegisteredCourse registeredCourse, Grade grade, Professor professorInstance) {
     if (CourseDao.getCourse(registeredCourse.getCourseId()).getProfessorId() != professorInstance.getUserID()) {
 
       return false;
@@ -58,10 +58,9 @@ public class ProfessorImpl implements ProfessorInterface {
 
   /** Logout. */
   @Override
-  public boolean logout() {
+  public void logout() {
 
-    professorInstance = null;
-    return  true;
+//    professorInstance = null;
   }
 
   /**
@@ -78,17 +77,13 @@ public class ProfessorImpl implements ProfessorInterface {
   /**
    * Gets the enrolled students.
    *
-   *
+   * @param courseCatalogue the course catalogue
    * @return the enrolled students
    */
   @Override
-  public List<Student> getEnrolledStudents(int courseCatalogueId  , String profId) {
+  public List<Student> getEnrolledStudents(CourseCatalogue courseCatalogue, Professor professorInstance) {
 
-    CourseCatalogue catalogue = new CourseCatalogue();
-    catalogue.setId(courseCatalogueId);
-    Professor professor = new Professor();
-    professor.setUserID(Integer.parseInt(profId));
-    return new RegisteredCourseImpl().viewEnrolledStudents(catalogue, professor);
+    return new RegisteredCourseImpl().viewEnrolledStudents(courseCatalogue, professorInstance);
   }
 
   /**
@@ -109,7 +104,7 @@ public class ProfessorImpl implements ProfessorInterface {
       throw new LoginFailedException(userID);
     }
 
-   // professorInstance = loginRes;
+//    professorInstance = loginRes;
     return true;
   }
 }

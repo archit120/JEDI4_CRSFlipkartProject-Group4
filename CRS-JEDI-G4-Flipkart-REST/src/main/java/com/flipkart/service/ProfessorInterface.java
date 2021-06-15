@@ -21,7 +21,7 @@ public interface ProfessorInterface {
    * @param grade the grade
    * @return true, if successful
    */
-  public boolean addGrade(RegisteredCourse registeredCourse, Grade grade);
+  public boolean addGrade(RegisteredCourse registeredCourse, Grade grade, Professor professorInstance);
 
   /**
    * Choose course.
@@ -37,7 +37,7 @@ public interface ProfessorInterface {
    * @param courseCatalogue the course catalogue
    * @return the enrolled students
    */
-  public List<Student> getEnrolledStudents(int courseCatalogue,String professorId);
+  public List<Student> getEnrolledStudents(CourseCatalogue courseCatalogue, Professor professorInstance);
 
   /**
    * Login.
@@ -50,5 +50,5 @@ public interface ProfessorInterface {
   public boolean login(String username, String password) throws LoginFailedException;
 
   /** Logout. */
-  public boolean logout();
+  public void logout();
 }
