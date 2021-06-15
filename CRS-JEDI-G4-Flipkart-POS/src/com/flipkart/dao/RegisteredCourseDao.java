@@ -5,6 +5,7 @@ import com.flipkart.bean.ReportCard;
 import com.flipkart.bean.Student;
 import com.flipkart.constants.SQLConstants;
 import com.flipkart.utils.DBUtil;
+import com.flipkart.exception.CourseNotRegisteredException;
 import com.flipkart.exception.GradeNotAssigned;
 
 import java.sql.Connection;
@@ -128,16 +129,21 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
    * @param semesterRegistrationId the semester registration id
    * @param courseCode the course code
    * @return the registered course by semester registration id and course code
+ * @throws CourseNotRegisteredException 
    */
   public static RegisteredCourse getRegisteredCourseBySemesterRegistrationIdAndCourseCode(
-      int semesterRegistrationId, String courseCode) {
-    return getRegisteredCourses(
+      int semesterRegistrationId, String courseCode) throws CourseNotRegisteredException {
+	  List<RegisteredCourse> courseList = getRegisteredCourses(
             SQLConstants.registerCoursePrefix+  "semesterRegistrationId="
                 + semesterRegistrationId
                 + " and courseid in (select id from course where coursecode='"
                 + courseCode   
-                + "')")
-        .get(0);
+                + "')");
+	  
+	  if(courseList.size()>0)return courseList.get(0);
+	  
+	  throw new CourseNotRegisteredException();
+        
   }
 
   /**
@@ -153,9 +159,9 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
     PreparedStatement stmt = null;
     String sql = SQLConstants.deleteRegisteredCourse;
     try {
-      // System.out.println("hi");
+      
       stmt = conn.prepareStatement(sql);
-      stmt.setInt(1, registeredCourse.getId()); // This would set age
+      stmt.setInt(1, registeredCourse.getId());
 
       stmt.executeUpdate();
 
@@ -344,7 +350,7 @@ public class RegisteredCourseDao implements RegisteredCourseDaoInterface {
       ResultSet rs = stmt.executeQuery();
       while (rs.next()) {
     	  
-    	 if(rs.getInt("registeredcourse.grade") == -1) throw new GradeNotAssigned("Your grades are not been assigned"); 
+    	 if(rs.getInt("registeredcourse.grade") == -1) throw new GradeNotAssigned("Your grades have not been assigned"); 
         grade.add(rs.getInt("registeredcourse.grade"));
         courseId.add(rs.getInt("registeredcourse.courseId"));
         courseCodes.add(rs.getString("course.courseCode"));

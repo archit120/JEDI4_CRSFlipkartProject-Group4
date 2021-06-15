@@ -1,6 +1,8 @@
 package com.flipkart.service;
 
 import com.flipkart.bean.*;
+import com.flipkart.exception.CourseNotRegisteredException;
+
 import java.util.List;
 
 // TODO: Auto-generated Javadoc
@@ -45,8 +47,9 @@ public interface RegisteredCourseInterface {
    *
    * @param registeredCourse the registered course
    * @return true, if successful
+ * @throws CourseNotRegisteredException 
    */
-  public boolean dropRegisteredCourse(RegisteredCourse registeredCourse);
+  public boolean dropRegisteredCourse(RegisteredCourse registeredCourse) throws CourseNotRegisteredException;
 
   /**
    * Find registered course.
@@ -54,9 +57,10 @@ public interface RegisteredCourseInterface {
    * @param semesterRegistration the semester registration
    * @param courseID the course ID
    * @return the registered course
+ * @throws CourseNotRegisteredException 
    */
   public RegisteredCourse findRegisteredCourse(
-      SemesterRegistration semesterRegistration, String courseID);
+      SemesterRegistration semesterRegistration, String courseID) throws CourseNotRegisteredException;
 
   /**
    * Find registered courses.

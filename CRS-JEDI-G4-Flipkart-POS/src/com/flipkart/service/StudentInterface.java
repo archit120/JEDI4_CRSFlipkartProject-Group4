@@ -8,6 +8,7 @@ import com.flipkart.bean.SemesterRegistration;
 import com.flipkart.bean.Student;
 import com.flipkart.exception.CourseAlreadyFullException;
 import com.flipkart.exception.CourseAlreadyRegisteredException;
+import com.flipkart.exception.GradeNotAssigned;
 import com.flipkart.exception.LoginFailedException;
 import com.flipkart.exception.StudentApprovalFailedException;
 import com.flipkart.exception.StudentNotApprovedException;
@@ -25,8 +26,9 @@ public interface StudentInterface {
    *
    * @param semesterRegistration the semester registration
    * @return the report card
+ * @throws GradeNotAssigned 
    */
-  ReportCard viewReportCard(SemesterRegistration semesterRegistration);
+  ReportCard viewReportCard(SemesterRegistration semesterRegistration) throws GradeNotAssigned;
 
   /**
    * Pay fee.

@@ -4,6 +4,7 @@ import com.flipkart.bean.Course;
 import com.flipkart.bean.CourseCatalogue;
 import com.flipkart.bean.Professor;
 import com.flipkart.bean.Student;
+import com.flipkart.exception.CourseDoesntExistException;
 import com.flipkart.exception.CourseNotAvailable;
 import com.flipkart.exception.CoursePreExistsException;
 import java.util.List;
@@ -44,8 +45,9 @@ public interface CourseInterface {
    * @param courseCatalogue the course catalogue
    * @param courseID the course ID
    * @return the course
+ * @throws CourseDoesntExistException 
    */
-  public Course findCourse(CourseCatalogue courseCatalogue, String courseID);
+  public Course findCourse(CourseCatalogue courseCatalogue, String courseID) throws CourseDoesntExistException;
 
   /**
    * Removes the course.
@@ -53,8 +55,9 @@ public interface CourseInterface {
    * @param courseCatalogue the course catalogue
    * @param courseID the course ID
    * @return true, if successful
+ * @throws CourseDoesntExistException 
    */
-  public boolean removeCourse(CourseCatalogue courseCatalogue, String courseID);
+  public boolean removeCourse(CourseCatalogue courseCatalogue, String courseID) throws CourseDoesntExistException;
 
   /**
    * View enrolled students.
