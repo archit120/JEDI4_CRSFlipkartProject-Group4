@@ -50,5 +50,5 @@ public interface ProfessorInterface {
   public boolean login(String username, String password) throws LoginFailedException;
 
   /** Logout. */
-  public void logout();
+  public boolean logout();
 }

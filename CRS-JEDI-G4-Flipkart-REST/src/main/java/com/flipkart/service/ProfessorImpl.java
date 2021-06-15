@@ -58,9 +58,10 @@ public class ProfessorImpl implements ProfessorInterface {
 
   /** Logout. */
   @Override
-  public void logout() {
+  public boolean logout() {
 
     professorInstance = null;
+    return  true;
   }
 
   /**
