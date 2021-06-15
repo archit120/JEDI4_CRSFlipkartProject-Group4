@@ -16,6 +16,6 @@ public class StudentApprovalFailedException extends Exception{
 
     @Override
     public String getMessage() {
-        return "Student with email " + this.email + " couldn't be approved!";
+        return "Student with Email " + this.email + " couldn't be approved!";
     }
 }
