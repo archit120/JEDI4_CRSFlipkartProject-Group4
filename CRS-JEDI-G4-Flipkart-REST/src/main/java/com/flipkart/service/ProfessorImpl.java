@@ -18,7 +18,7 @@ public class ProfessorImpl implements ProfessorInterface {
 
   /** The professor instance. */
   //	private static ArrayList<Professor> professors;
-  private static Professor professorInstance;
+//  private static Professor professorInstance;
 
   /**
    * Gets the professor instance.
@@ -26,7 +26,8 @@ public class ProfessorImpl implements ProfessorInterface {
    * @return the professor instance
    */
   public static Professor getProfessorInstance() {
-    return professorInstance;
+//    return professorInstance;
+    return null;
   }
 
   /** Instantiates a new professor impl. */
@@ -43,7 +44,7 @@ public class ProfessorImpl implements ProfessorInterface {
    * @return true, if successful
    */
   @Override
-  public boolean addGrade(RegisteredCourse registeredCourse, Grade grade) {
+  public boolean addGrade(RegisteredCourse registeredCourse, Grade grade, Professor professorInstance) {
     if (CourseDao.getCourse(registeredCourse.getCourseId()).getProfessorId() != professorInstance.getUserID()) {
 
       return false;
@@ -59,7 +60,7 @@ public class ProfessorImpl implements ProfessorInterface {
   @Override
   public void logout() {
 
-    professorInstance = null;
+//    professorInstance = null;
   }
 
   /**
@@ -80,7 +81,7 @@ public class ProfessorImpl implements ProfessorInterface {
    * @return the enrolled students
    */
   @Override
-  public List<Student> getEnrolledStudents(CourseCatalogue courseCatalogue) {
+  public List<Student> getEnrolledStudents(CourseCatalogue courseCatalogue, Professor professorInstance) {
 
     return new RegisteredCourseImpl().viewEnrolledStudents(courseCatalogue, professorInstance);
   }
@@ -103,7 +104,7 @@ public class ProfessorImpl implements ProfessorInterface {
       throw new LoginFailedException(userID);
     }
 
-    professorInstance = loginRes;
+//    professorInstance = loginRes;
     return true;
   }
 }
