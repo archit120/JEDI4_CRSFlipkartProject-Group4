@@ -18,7 +18,7 @@ import org.apache.log4j.Logger;
 /** The Class StudentDao. */
 public class StudentDao implements StudentDaoInterface {
 
-    private static Logger logger = Logger.getLogger(AdminDao.class);
+    private static Logger logger = Logger.getLogger( StudentDao.class);
 
 
   /**
@@ -189,7 +189,10 @@ public class StudentDao implements StudentDaoInterface {
     return sId;
   }
   
-  public static List<Student> getStudentsPendingApproval() {
+  /**
+ * @return
+ */
+public static List<Student> getStudentsPendingApproval() {
 	  
 	  List<Student> students = new ArrayList<Student>();
 	  
@@ -222,7 +225,11 @@ public class StudentDao implements StudentDaoInterface {
 	  
   }
   
-  public  static boolean approveStudent(String rollno) {
+  /**
+ * @param rollno
+ * @return
+ */
+public  static boolean approveStudent(String rollno) {
 	  
 	  String sql1 = SQLConstants.approveStudent_check;
 	  String sql = SQLConstants.approveStudent;

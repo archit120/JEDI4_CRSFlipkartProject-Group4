@@ -25,7 +25,7 @@ import java.util.Scanner;
 /** The Class CRSStudentMenu. */
 public class CRSStudentMenu {
 
-  private static Logger logger = Logger.getLogger(CRSProfessorMenu.class);
+  private static Logger logger = Logger.getLogger(CRSStudentMenu.class);
 
   /** Prints the menu. */
   public void printMenu() {

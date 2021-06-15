@@ -4,7 +4,7 @@ import com.flipkart.bean.Grade;
 
 // TODO: Auto-generated Javadoc
 /** The Class GradeImpl. */
-public class GradeImpl {
+public class GradeImpl implements GradeInterface{
 
   /**
    * Adds the grade.
