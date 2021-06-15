@@ -45,7 +45,7 @@ public class CRSAdminMenu {
   }
 
   /** Admin menu handler. */
-  public static void adminMenuHandler() throws LoginFailedException, StudentApprovalFailedException {
+  public static void adminMenuHandler() {
 
     try {
 
