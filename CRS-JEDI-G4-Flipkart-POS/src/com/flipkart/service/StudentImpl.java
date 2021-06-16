@@ -202,4 +202,9 @@ public class StudentImpl implements StudentInterface {
             throw new StudentPreExistsException(s.getUsername());
         }
     }
+    
+    public boolean changePassword(int id,String password,String newPassword) {
+    	
+    	return StudentDao.changePassword(id, password, newPassword);
+    }
 }

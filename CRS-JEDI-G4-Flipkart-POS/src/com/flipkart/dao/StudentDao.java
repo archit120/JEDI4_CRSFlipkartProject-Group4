@@ -271,5 +271,29 @@ public  static boolean approveStudent(String rollno) {
 	  }
 	  
   }
+
+public static boolean changePassword(int id,String password , String newPassword) {
+	
+	Connection conn = Connection1.getConnection();
+	 String sql = "UPDATE student SET PASSWORD = ? WHERE ID = ? AND PASSWORD = ?";
+	 
+	 try {
+		 
+		 PreparedStatement stmt = conn.prepareStatement(sql);
+		 stmt.setString(1, newPassword);
+		 stmt.setInt(2, id);
+		 stmt.setString(3, password);
+		 int rowsAffected = stmt.executeUpdate();
+		 System.out.println(rowsAffected);
+		 if(rowsAffected == 1) return true;
+		 return false;
+		 
+	 }catch(Exception e) {
+		 logger.error(e.getMessage());
+		 return false;
+	 }
+	 
+	
+}
   
 }

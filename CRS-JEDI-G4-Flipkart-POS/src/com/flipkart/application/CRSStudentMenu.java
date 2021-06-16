@@ -8,6 +8,7 @@ import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.ReportCard;
 import com.flipkart.bean.SemesterRegistration;
 import com.flipkart.dao.CourseDao;
+import com.flipkart.dao.StudentDao;
 import com.flipkart.exception.CourseAlreadyFullException;
 import com.flipkart.exception.CourseAlreadyRegisteredException;
 import com.flipkart.exception.CourseDoesntExistException;
@@ -37,7 +38,8 @@ public class CRSStudentMenu {
     System.out.println("5. View Registered Courses");
     System.out.println("6. View Report Card");
     System.out.println("7. View Notifications");
-    System.out.println("8. Logout");
+    System.out.println("8. update your password");
+    System.out.println("9. Logout");
     System.out.println("----------------------------------------------------");
   }
 
@@ -227,7 +229,24 @@ public class CRSStudentMenu {
           System.out.println(n.getMessage());
         }
 
-      } else if (option == 8) {
+      } else if(option == 8) {
+    	  
+    	  // cahnge password
+    	  System.out.println("Enter your current pssword !!");
+    	  String pass = sc.next();
+    	  System.out.println("Enter your new Password");
+    	  String newPass = sc.next();
+    	  
+    	  boolean changed = stud.changePassword(stud.getStudentInstance().getUserID(),pass,newPass);
+    	  
+    	  if(changed) {
+    		  System.out.println("**Password changed successfully**");
+    	  }else {
+    		  System.out.println("**Something went wrong**");
+    	  }
+    	  
+    	  
+      } else if (option == 9) {
 
         stud.logout();
         break;

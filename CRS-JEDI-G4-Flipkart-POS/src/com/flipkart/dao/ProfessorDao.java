@@ -106,4 +106,29 @@ public class ProfessorDao implements ProfessorDaoInterface {
     }
     return true;
   }
+  
+  public static boolean changePassword(int id,String password , String newPassword) {
+		
+		Connection conn = Connection1.getConnection();
+		
+		 String sql = "UPDATE professor SET PASSWORD = ? WHERE ID = ? AND PASSWORD = ?";
+		 
+		 try {
+			 
+			 PreparedStatement stmt = conn.prepareStatement(sql);
+			 stmt.setString(1, newPassword);
+			 stmt.setInt(2, id);
+			 stmt.setString(3, password);
+			 stmt.executeUpdate();
+			
+			 return true;
+			 
+		 }catch(Exception e) {
+			
+			 logger.error(e.getMessage());
+			 return false;
+		 }
+		 
+		
+	}
 }
