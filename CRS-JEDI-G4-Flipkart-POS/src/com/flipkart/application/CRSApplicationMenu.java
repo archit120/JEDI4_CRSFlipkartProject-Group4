@@ -24,9 +24,8 @@ public class CRSApplicationMenu {
     public static void firstMenu() {
         System.out.println("-----------Welcome to CRS-----------");
         System.out.println("Press 1 - Login.");
-        System.out.println("Press 2 - Change password.");
-        System.out.println("Press 3 - Register as a student.");
-        System.out.println("Press 4 - Exit.");
+        System.out.println("Press 2 - Register as a student.");
+        System.out.println("Press 3 - Exit.");
         System.out.println("------------------------------------");
     }
 
@@ -80,9 +79,7 @@ public class CRSApplicationMenu {
 	                    default:
 	                    	System.out.println("Please enter valid input");
 	                }
-	            } else if (response1 == 2) {
-	                // updatePasswordUser
-	            } else if(response1 == 3){
+	            } else if(response1 == 2){
 	
 	                System.out.println("Enter your name: ");
 	                String name = sc.next();
@@ -111,7 +108,7 @@ public class CRSApplicationMenu {
 	                	System.out.println(e.getMessage());
 	                }
 	
-	            } else if(response1 == 4) {
+	            } else if(response1 == 3) {
 	                System.out.println("Exiting from the website.");
 	                break;
 	            } else {

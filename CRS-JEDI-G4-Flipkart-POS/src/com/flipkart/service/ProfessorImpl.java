@@ -4,6 +4,7 @@ package com.flipkart.service;
 import com.flipkart.bean.*;
 import com.flipkart.dao.CourseDao;
 import com.flipkart.dao.ProfessorDao;
+import com.flipkart.dao.StudentDao;
 import com.flipkart.exception.LoginFailedException;
 
 import java.util.List;
@@ -105,5 +106,10 @@ public class ProfessorImpl implements ProfessorInterface {
 
     professorInstance = loginRes;
     return true;
+  }
+  
+  public boolean changePassword(int id,String password,String newPassword) {
+  	
+  	return ProfessorDao.changePaaword(id, password, newPassword);
   }
 }

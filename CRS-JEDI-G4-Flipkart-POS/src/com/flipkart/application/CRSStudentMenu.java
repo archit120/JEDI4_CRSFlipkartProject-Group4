@@ -38,7 +38,8 @@ public class CRSStudentMenu {
     System.out.println("5. View Registered Courses");
     System.out.println("6. View Report Card");
     System.out.println("7. View Notifications");
-    System.out.println("8. Logout");
+    System.out.println("8. update your password");
+    System.out.println("9. Logout");
     System.out.println("----------------------------------------------------");
   }
 
