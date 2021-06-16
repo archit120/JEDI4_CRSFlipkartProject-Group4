@@ -17,10 +17,10 @@ import java.util.List;
 @Path("/professorApi")
 public class ProfessorRestAPI {
 
-    @POST
+    @GET
     @Path("/login")
     @Produces(MediaType.APPLICATION_JSON)
-    public  Response login(@FormParam("email") String username , @FormParam("password") String password){
+    public  Response login(@QueryParam("username") String username , @QueryParam("password") String password){
 
         try{
             ProfessorImpl profImpl = new ProfessorImpl();
@@ -77,7 +77,7 @@ public class ProfessorRestAPI {
     @POST
     @Path("/teach")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response signUpForCourse(@FormParam("profId") int profId , @FormParam("courseCode") int courseId){
+    public Response signUpForCourse(@QueryParam("profId") int profId , @QueryParam("courseId") int courseId){
 
         try {
             CourseImpl courseImpl = new CourseImpl();
