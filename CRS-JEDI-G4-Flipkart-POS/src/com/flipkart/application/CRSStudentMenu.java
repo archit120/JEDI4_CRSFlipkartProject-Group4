@@ -8,6 +8,7 @@ import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.ReportCard;
 import com.flipkart.bean.SemesterRegistration;
 import com.flipkart.dao.CourseDao;
+import com.flipkart.dao.StudentDao;
 import com.flipkart.exception.CourseAlreadyFullException;
 import com.flipkart.exception.CourseAlreadyRegisteredException;
 import com.flipkart.exception.CourseDoesntExistException;
@@ -227,7 +228,25 @@ public class CRSStudentMenu {
           System.out.println(n.getMessage());
         }
 
-      } else if (option == 8) {
+      } else if(option == 8) {
+    	  
+    	  // cahnge password
+    	  StudentImpl st = new StudentImpl();
+    	  System.out.println("Enter your current pssword !!");
+    	  String pass = sc.next();
+    	  System.out.println("Enter your new Paaword");
+    	  String newPass = sc.next();
+    	  
+    	  boolean changed = st.changePassword(st.getStudentInstance().getUserID(),pass,newPass);
+    	  
+    	  if(changed) {
+    		  System.out.println("**Paaword changed successfully**");
+    	  }else {
+    		  System.out.println("**Something went wrong**");
+    	  }
+    	  
+    	  
+      } else if (option == 9) {
 
         stud.logout();
         break;
