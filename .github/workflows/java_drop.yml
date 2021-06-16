@@ -1,4 +1,4 @@
-name: Java CI
+name: Java REST DROP CI
 
 on: [push]
 
@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./CRS-JEDI-G4-Flipkart-POS
+        working-directory: ./CRS-JEDI-G4-Flipkart-DropWizard
 
     steps:
       - uses: actions/checkout@v2
