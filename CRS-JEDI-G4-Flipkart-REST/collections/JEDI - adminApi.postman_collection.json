@@ -1,0 +1,120 @@
+{
+	"variables": [],
+	"info": {
+		"name": "JEDI - adminApi",
+		"_postman_id": "0265d44b-122c-120b-3fe6-0c119a21b55e",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/JEDI_REST_Practice_war_exploded/rest/adminApi/login?username=root&password=root",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"JEDI_REST_Practice_war_exploded",
+						"rest",
+						"adminApi",
+						"login"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "root",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "password",
+							"value": "root",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "addCourse",
+			"request": {
+				"url": "http://localhost:8080/JEDI_REST_Practice_war_exploded/rest/adminApi/addCourse",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"courseCatalogueId\": 1,\n    \"courseCode\": \"postman\",\n    \"department\": \"a\",\n    \"descriptions\": \"a\",\n    \"preRequisites\": \"a\"\n\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "removeCourse",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/JEDI_REST_Practice_war_exploded/rest/adminApi/removeCourse?courseCatalogueID=1&courseCode=postman",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"JEDI_REST_Practice_war_exploded",
+						"rest",
+						"adminApi",
+						"removeCourse"
+					],
+					"query": [
+						{
+							"key": "courseCatalogueID",
+							"value": "1",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "courseCode",
+							"value": "postman",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "getStudentListWaitingForApproval",
+			"request": {
+				"url": "http://localhost:8080/JEDI_REST_Practice_war_exploded/rest/adminApi/getStudentListWaitingForApproval",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

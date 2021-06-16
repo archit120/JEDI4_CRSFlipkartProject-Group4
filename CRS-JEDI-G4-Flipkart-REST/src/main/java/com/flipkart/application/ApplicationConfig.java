@@ -3,7 +3,7 @@
  */
 package com.flipkart.application;
 
-//import com.flipkart.restController.AdminRestAPI;
+import com.flipkart.restController.AdminRestAPI;
 //import com.flipkart.restController.CommonRestAPI;
 import com.flipkart.restController.ProfessorRestAPI;
 import com.flipkart.restController.StudentRestAPI;
@@ -16,7 +16,7 @@ public class ApplicationConfig extends ResourceConfig {
 		// Register all the services over here.
 		BasicConfigurator.configure();
 
-//		register(AdminRestAPI.class);
+		register(AdminRestAPI.class);
 //		register(CommonRestAPI.class);
 		register(ProfessorRestAPI.class);
 		register(StudentRestAPI.class);

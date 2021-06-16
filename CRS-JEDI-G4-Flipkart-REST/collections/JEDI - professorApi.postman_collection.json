@@ -1,0 +1,173 @@
+{
+	"variables": [],
+	"info": {
+		"name": "JEDI - professorApi",
+		"_postman_id": "d039bb18-342f-c541-1e68-661d82f5c951",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/JEDI_REST_Practice_war_exploded/rest/professorApi/login?username=b&password=b",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"JEDI_REST_Practice_war_exploded",
+						"rest",
+						"professorApi",
+						"login"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "b",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "password",
+							"value": "b",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "markGrade",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/JEDI_REST_Practice_war_exploded/rest/professorApi/markGrade?rollNumber=archit&courseCode=a&courseCatalogueId=1&grade=6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"JEDI_REST_Practice_war_exploded",
+						"rest",
+						"professorApi",
+						"markGrade"
+					],
+					"query": [
+						{
+							"key": "rollNumber",
+							"value": "archit",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "courseCode",
+							"value": "a",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "courseCatalogueId",
+							"value": "1",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "grade",
+							"value": "6",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "getEnrolledStudents",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/JEDI_REST_Practice_war_exploded/rest/professorApi/getEnrolledStudents?profId=1&courseCatalogueId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"JEDI_REST_Practice_war_exploded",
+						"rest",
+						"professorApi",
+						"getEnrolledStudents"
+					],
+					"query": [
+						{
+							"key": "profId",
+							"value": "1",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "courseCatalogueId",
+							"value": "1",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "availableCourses",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/JEDI_REST_Practice_war_exploded/rest/professorApi/availableCourses?courseCatalogueId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"JEDI_REST_Practice_war_exploded",
+						"rest",
+						"professorApi",
+						"availableCourses"
+					],
+					"query": [
+						{
+							"key": "courseCatalogueId",
+							"value": "1",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
