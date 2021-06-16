@@ -1,12 +1,12 @@
-name: Java Formatting
+# name: Java Formatting
 
-on: [pull_request]
+# on: [pull_request]
 
-jobs:
-  formatting:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2 # v2 minimum required
-      - uses: axel-op/googlejavaformat-action@v3
-        with:
-          args: "--replace"
+# jobs:
+#   formatting:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2 # v2 minimum required
+#       - uses: axel-op/googlejavaformat-action@v3
+#         with:
+#           args: "--replace"
