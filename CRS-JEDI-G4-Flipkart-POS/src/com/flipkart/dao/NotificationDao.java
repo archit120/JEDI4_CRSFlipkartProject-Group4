@@ -29,7 +29,7 @@ public class NotificationDao implements NotificationDaoInterface{
 			stmt.setString(1, rollno); // This would set age
 			stmt.setString(2, message);
 			stmt.executeUpdate();
-
+			logger.info("New notification recieved");
 			stmt.close();
 			conn.close();
 		} catch (Exception e) {

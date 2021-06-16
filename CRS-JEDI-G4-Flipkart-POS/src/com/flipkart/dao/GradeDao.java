@@ -33,7 +33,7 @@ public class GradeDao implements GradeDaoInterface {
 	      stmt = conn.prepareStatement(sql);
 	      stmt.setInt(1, g.getGrade());
 	      stmt.executeUpdate();
-
+	      logger.info("Grade added");
 	    } catch (Exception e) {
 
 	    	logger.error(e);

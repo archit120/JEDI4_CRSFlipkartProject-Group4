@@ -148,6 +148,7 @@ public class CourseDao implements CourseDaoInterface {
         // Retrieve by column name
         courseList.add(readCourse(rs));
       }
+      logger.info("Courses list fetched");
       stmt.close();
       conn.close();
     } catch (Exception e) {

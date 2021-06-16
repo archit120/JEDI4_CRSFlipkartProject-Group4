@@ -44,6 +44,7 @@ public class ProfessorDao implements ProfessorDaoInterface {
       temp.setUsername(rs.getString("username"));
       temp.setPassword(rs.getString("password"));
       temp.setEmpID(rs.getString("empid"));
+      logger.info("Professor login successful");
       return temp;
     } catch (Exception e) {
 
@@ -98,7 +99,7 @@ public class ProfessorDao implements ProfessorDaoInterface {
       if (rs.next()) {
         s.setUserID(rs.getInt(1));
       }
-
+      logger.info("Professor added successfully");
     } catch (Exception e) {
 
     	logger.error(e);

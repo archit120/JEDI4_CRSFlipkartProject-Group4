@@ -49,6 +49,7 @@ public class StudentDao implements StudentDaoInterface {
       temp.setRollNo(rs.getString("rollno"));
       temp.setDepartment(rs.getString("department"));
       temp.setApproved(rs.getBoolean("isApproved"));
+      logger.info("Student login sucessful");
       return temp;
     } catch (Exception e) {
     	
@@ -105,7 +106,7 @@ public class StudentDao implements StudentDaoInterface {
       if (rs.next()) {
         s.setUserID(rs.getInt(1));
       }
-      
+      logger.info("Student added successfully");
       return true;
 
     } catch (Exception e) {
@@ -212,6 +213,7 @@ public static List<Student> getStudentsPendingApproval() {
 			  
 			  students.add(s);
 		  }
+		  logger.info("Students pending for approval list fetched");
 		  
 	  }catch(Exception e){
 		  

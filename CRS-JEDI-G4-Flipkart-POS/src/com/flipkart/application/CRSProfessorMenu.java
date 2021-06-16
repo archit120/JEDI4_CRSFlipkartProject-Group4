@@ -3,7 +3,6 @@ package com.flipkart.application;
 import com.flipkart.bean.*;
 import com.flipkart.exception.LoginFailedException;
 import com.flipkart.service.*;
-import org.apache.log4j.Logger;
 
 import java.util.List;
 import java.util.Scanner;
@@ -12,7 +11,6 @@ import java.util.Scanner;
 /** The Class CRSProfessorMenu. */
 public class CRSProfessorMenu {
 
-  private static Logger logger = Logger.getLogger(CRSProfessorMenu.class);
 
   /** Show professor menu. */
   public static void showProfessorMenu() {
@@ -58,7 +56,7 @@ public class CRSProfessorMenu {
           if (prof.login(username, password)) break;
         } catch(LoginFailedException e) {
 
-          logger.error(e.getMessage());
+        	System.out.println(e.getMessage());
         }
         //throw new LoginFailedException(username);
         
@@ -78,6 +76,7 @@ public class CRSProfessorMenu {
             List<Student> students = prof.getEnrolledStudents(chosen);
 
             System.out.println("Total " + students.size() + " students");
+            if(students.size()>0) {
             System.out.println("---------------------------------------------------------------------------------------------------------------------------------");
             System.out.format("%25s%25s%n", "Name", "Roll Number");
             System.out.println("---------------------------------------------------------------------------------------------------------------------------------");
@@ -87,7 +86,7 @@ public class CRSProfessorMenu {
             }
             
             System.out.println("---------------------------------------------------------------------------------------------------------------------------------");
-
+            }
             break;
 
           case 2:
@@ -111,6 +110,7 @@ public class CRSProfessorMenu {
             List<Course> courses = courseImpl.findCourses(chosen);
 
             System.out.println("Total " + courses.size() + " courses found");
+            if(courses.size()>0) {
             System.out.println("---------------------------------------------------------------------------------------------------------------------------------");
             System.out.format("%25s%25s%25s%25s%25s%n", "Course Code", "Course Description", "Course Department", "Course Prerequisites", "Availability" );
             System.out.println("---------------------------------------------------------------------------------------------------------------------------------");
@@ -119,7 +119,7 @@ public class CRSProfessorMenu {
               System.out.format("%25s%25s%25s%25s%25s%n",course.getCourseCode(), course.getDescriptions(), course.getDepartment(), course.getPreRequisites(),(course.getProfessorId()==0) ? "Available" : "Not Available");
             }
             System.out.println("---------------------------------------------------------------------------------------------------------------------------------");
-
+            }
             break;
 
           case 4:
@@ -136,7 +136,7 @@ public class CRSProfessorMenu {
                 courseImpl.indicateProfessor(registerCourse, ProfessorImpl.getProfessorInstance());
               } catch (Exception e) {
 
-                logger.error(e.getMessage());
+            	  System.out.println(e.getMessage());
               }
             }
 
@@ -156,7 +156,7 @@ public class CRSProfessorMenu {
       }
     } catch (Exception e) {
 
-      //logger.error(e);
+    	System.out.println(e);
     }
   }
 }

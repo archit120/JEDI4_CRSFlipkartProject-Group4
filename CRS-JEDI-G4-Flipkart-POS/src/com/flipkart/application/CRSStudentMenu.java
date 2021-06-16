@@ -16,7 +16,6 @@ import com.flipkart.exception.LoginFailedException;
 import com.flipkart.exception.StudentNotApprovedException;
 import com.flipkart.exception.PaymentAlreadyDone;
 import com.flipkart.service.*;
-import org.apache.log4j.Logger;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -27,7 +26,6 @@ import java.util.Scanner;
 /** The Class CRSStudentMenu. */
 public class CRSStudentMenu {
 
-  private static Logger logger = Logger.getLogger(CRSStudentMenu.class);
 
   /** Prints the menu. */
   public void printMenu() {
@@ -71,10 +69,10 @@ public class CRSStudentMenu {
         if (stud.login(username, password)) break;
       } catch(LoginFailedException e){
 
-        logger.error(e.getMessage());
+    	  System.out.println(e.getMessage());
       } catch(StudentNotApprovedException e1){
 
-        logger.error(e1.getMessage());
+    	  System.out.println(e1.getMessage());
       }
       //System.out.println("Invalid login. Please retry.");
     }
@@ -104,7 +102,7 @@ public class CRSStudentMenu {
 
         List<Course> courses = courseImpl.findCourses(chosen);
         System.out.println("Total " + courses.size() + " courses found");
-        
+        if(courses.size()>0) {
         System.out.println("-------------------------------------------------------------------------------------------------------------");
         System.out.format("%25s%25s%25s%25s%n", "Course Code", "Course Description", "Course Department", "Course Prerequisites" );
         System.out.println("-------------------------------------------------------------------------------------------------------------");
@@ -115,7 +113,7 @@ public class CRSStudentMenu {
         }
         
         System.out.println("-------------------------------------------------------------------------------------------------------------");
-        
+        }
       } else if (option == 2) {
 
         System.out.println("Enter the course code you want to add");
@@ -123,14 +121,14 @@ public class CRSStudentMenu {
         try {
           Course c = courseImpl.findCourse(chosen, sc.next());
           stud.registerForCourse(chosenSem, c);
-          logger.info("Course registered");
+          System.out.println("Course registered");
         }catch(CourseAlreadyRegisteredException e) {
-          logger.error(e.getMessage());
+        	System.out.println(e.getMessage());
         }
         catch (CourseAlreadyFullException e) {
-          logger.error(e.getMessage());
+        	System.out.println(e.getMessage());
         }catch(CourseDoesntExistException e) {
-        	logger.error(e.getMessage());
+        	System.out.println(e.getMessage());
         }
       } else if (option == 3) {
 
@@ -139,7 +137,7 @@ public class CRSStudentMenu {
         	regImpl.dropRegisteredCourse(regImpl.findRegisteredCourse(chosenSem, sc.next()));
         	System.out.println("Course dropped");
         }catch(Exception e) {
-        	logger.error(e.getMessage());
+        	System.out.println(e.getMessage());
         }
 
       } else if (option == 4) {
@@ -172,10 +170,10 @@ public class CRSStudentMenu {
         try {
 
           paymentImpl.makePayment(p);
-          logger.info("Payment Done!");
+          System.out.println("Payment Done!");
           new NotificationImpl().showNotification("Payment done at " + LocalDateTime.now(), stud.getStudentInstance().getRollNo());
         } catch(PaymentAlreadyDone e) {
-          logger.error(e.getMessage());
+        	System.out.println(e.getMessage());
         }
 
       } else if (option == 5) {
