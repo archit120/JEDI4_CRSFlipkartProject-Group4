@@ -205,6 +205,6 @@ public class StudentImpl implements StudentInterface {
     
     public boolean changePassword(int id,String password,String newPassword) {
     	
-    	return StudentDao.changePaaword(id, password, newPassword);
+    	return StudentDao.changePassword(id, password, newPassword);
     }
 }

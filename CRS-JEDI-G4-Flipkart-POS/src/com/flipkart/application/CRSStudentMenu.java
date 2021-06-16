@@ -232,16 +232,15 @@ public class CRSStudentMenu {
       } else if(option == 8) {
     	  
     	  // cahnge password
-    	  StudentImpl st = new StudentImpl();
     	  System.out.println("Enter your current pssword !!");
     	  String pass = sc.next();
-    	  System.out.println("Enter your new Paaword");
+    	  System.out.println("Enter your new Password");
     	  String newPass = sc.next();
     	  
-    	  boolean changed = st.changePassword(st.getStudentInstance().getUserID(),pass,newPass);
+    	  boolean changed = stud.changePassword(stud.getStudentInstance().getUserID(),pass,newPass);
     	  
     	  if(changed) {
-    		  System.out.println("**Paaword changed successfully**");
+    		  System.out.println("**Password changed successfully**");
     	  }else {
     		  System.out.println("**Something went wrong**");
     	  }

@@ -148,15 +148,14 @@ public class CRSProfessorMenu {
         	  
         	  System.out.println("Enter your current pssword !!");
         	  String pass = sc.next();
-        	  System.out.println("Enter your new Paaword");
+        	  System.out.println("Enter your new Password");
         	  String newPass = sc.next();
         	  
-        	  ProfessorImpl profImpl = new ProfessorImpl();
-        	  
-        	  boolean changed = profImpl.changePassword(ProfessorImpl.getProfessorInstance().getUserID(),pass,newPass);
+
+        	  boolean changed = prof.changePassword(ProfessorImpl.getProfessorInstance().getUserID(),pass,newPass);
         	  
         	  if(changed) {
-        		  System.out.println("**Paaword changed successfully**");
+        		  System.out.println("**Password changed successfully**");
         	  }else {
         		  System.out.println("**Something went wrong**");
         	  }

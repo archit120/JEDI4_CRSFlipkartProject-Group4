@@ -272,7 +272,7 @@ public  static boolean approveStudent(String rollno) {
 	  
   }
 
-public static boolean changePaaword(int id,String password , String newPassword) {
+public static boolean changePassword(int id,String password , String newPassword) {
 	
 	Connection conn = Connection1.getConnection();
 	 String sql = "UPDATE student SET PASSWORD = ? WHERE ID = ? AND PASSWORD = ?";

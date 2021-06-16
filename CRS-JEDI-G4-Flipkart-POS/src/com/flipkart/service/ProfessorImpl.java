@@ -110,6 +110,6 @@ public class ProfessorImpl implements ProfessorInterface {
   
   public boolean changePassword(int id,String password,String newPassword) {
   	
-  	return ProfessorDao.changePaaword(id, password, newPassword);
+  	return ProfessorDao.changePassword(id, password, newPassword);
   }
 }

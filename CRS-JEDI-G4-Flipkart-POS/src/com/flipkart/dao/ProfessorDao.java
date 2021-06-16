@@ -107,7 +107,7 @@ public class ProfessorDao implements ProfessorDaoInterface {
     return true;
   }
   
-  public static boolean changePaaword(int id,String password , String newPassword) {
+  public static boolean changePassword(int id,String password , String newPassword) {
 		
 		Connection conn = Connection1.getConnection();
 		
