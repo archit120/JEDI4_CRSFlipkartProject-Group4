@@ -72,7 +72,7 @@ public class SemesterRegistrationDao implements SemesterRegistrationDaoInterface
         temp.setId(rs.getInt("id"));
         temp.setSemester(rs.getInt("semester"));
         temp.setYear(rs.getInt("year"));
-        temp.setStudentId(rs.getInt("year"));
+        temp.setStudentId(rs.getInt("studentId"));
         courseList.add(temp);
       }
       stmt.close();
